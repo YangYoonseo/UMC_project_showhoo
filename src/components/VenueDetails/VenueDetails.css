@@ -1,0 +1,499 @@
+.venue-detail-page {
+    background-color: #fbfbfb;
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.venue-detail-component {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 80px;
+    background-color: #fbfbfb;
+    font-family: 'Pretendard';
+}
+
+.venue-info {
+    margin-bottom: 20px;
+    margin-left: 20px;
+}
+
+.venue-info h1 {
+    font-size: 2.5em;
+    margin-bottom: 10px;
+}
+
+.venue-info .venue-rating {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    gap: 5px;
+}
+
+.venue-info .venue-rating .rating {
+    font-size: 1.2em;
+    margin-right: 5px;
+}
+
+.venue-info .venue-rating .reviews {
+    font-size: 1em;
+    color: gray;
+}
+
+.venue-info .venue-rating .address {
+    font-size: 1em;
+    color: gray;
+}
+
+.venue-images {
+    margin-bottom: 20px;
+    margin-left: 20px;
+}
+
+.venue-images .main-image img {
+    width: 40%;
+    height: auto;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    padding-right:20px;
+}
+
+.venue-content {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.venue-main-content {
+    flex-grow: 1;
+    margin-right: 20px;
+}
+
+.venue-tabs {
+    display: flex;
+    margin-bottom: 20px;
+    width: 650px;
+    margin-left: 20px;
+    border: 1px solid #dee1e6;
+    border-radius: 20px;
+}
+
+.venue-tabs button {
+    padding: 15px;
+    width: 130px;
+    height: 60px;
+    border-radius: 20px;
+    border: 2px solid transparent;
+    background-color: transparent;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background-color 0.3s ease;
+}
+
+.venue-tabs button:hover,
+.venue-tabs button.active {
+    background-color: #09F1B9;
+    box-shadow: 5px 0 10px rgba(0, 0, 0, 0.15);
+}
+
+.booking-form {
+    width: 100%;
+    max-width: 300px;
+    height:500px;
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 30px;
+    text-align: center;
+    border: 1px solid #dee1e6;
+}
+
+.booking-form .price-info {
+    display: flex;
+    justify-content: center;
+    align-items: baseline;
+    margin-bottom: 20px;
+}
+
+.booking-form .price-value {
+    font-size: 2em;
+    font-weight: bold;
+    margin-right: 5px;
+}
+
+.booking-form .price-unit {
+    font-size: 1.2em;
+    color: gray;
+}
+
+.booking-form .booking-options {
+    margin-bottom: 20px;
+}
+
+.booking-form .booking-option {
+    display: flex;
+    height: 40px;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border: 1px solid #e0e0e0;
+    border-radius: 5px;
+    background-color: #ffffff;
+    margin-bottom: 0;
+    width: 80%;
+    margin: 0 auto;
+}
+
+.booking-form .booking-option + .booking-option {
+    border-top: none;
+}
+
+.booking-form .booking-option-label {
+    font-size: 15px;
+    color: #4f4f4f;
+}
+
+.booking-form .booking-button {
+    width: 90%;
+    background-color: #09f1b9;
+    color: black;
+    padding: 15px 30px;
+    font-size: 15px;
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-bottom: 20px;
+}
+
+.booking-form .booking-button:hover {
+    background-color: #07d3a5;
+}
+
+.booking-form .additional-info {
+    padding-top: 10px;
+}
+
+.booking-form .additional-info-row {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+    border-top: 1px solid #e0e0e0;
+    padding-top: 10px;
+}
+
+.booking-form .additional-info-row:first-child {
+    border-top: none;
+    padding-top: 0;
+}
+
+.rental-fee, .total-fee {
+    color: #4f4f4f;
+}
+
+
+
+
+
+.venue-introduction,
+.facility-info,
+.venue-notice,
+.venue-qna,
+.venue-reviews {
+    max-width: 650px;
+    width: 80%;
+    margin: 20px 20px;
+    padding: 20px;
+    background-color: transparent;
+    /*border: 1px gray solid;
+    border-radius:10px;*/
+}
+
+.facility-info {
+    background-color: #ffffff;
+    border-radius: 10px;
+}
+
+.equipment-section {
+    margin-bottom: 50px;
+}
+
+.equipment-section h3 {
+    margin-bottom: 20px;
+    font-size: 1.2em;
+}
+
+.equipment-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.equipment-table th,
+.equipment-table td {
+    border: 1px solid #dee1e6;
+    padding: 10px;
+    text-align: center;
+    font-size: 15px;
+}
+
+.equipment-table th {
+    background-color: black;
+    color: #09f1b9;
+    text-align: center;
+}
+
+.equipment-table th:first-child {
+    border-top-left-radius: 10px;
+}
+
+.equipment-table th:last-child {
+    border-top-right-radius: 10px;
+}
+
+.equipment-table td:first-child {
+    border-bottom-left-radius: 10px;
+}
+
+.equipment-table td:last-child {
+    border-bottom-right-radius: 10px;
+}
+
+  .notice-section {
+    margin-bottom: 20px;
+  }
+  
+  .notice-section h3 {
+    margin-bottom: 10px;
+    font-size: 1.2em;
+  }
+  
+  .notice-section p {
+    margin-bottom: 10px;
+    line-height: 1.6;
+  }
+  
+  .notice-section ul {
+    list-style-type: disc;
+    margin-left: 20px;
+  }
+  
+  .notice-section ul li {
+    margin-bottom: 5px;
+    line-height: 1.6;
+  }
+  
+  
+  /*4번 : q&a*/
+  
+  .qna-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .qna-title {
+    display: flex;
+    align-items: center;
+  }
+  
+  .qna-title h2 {
+    font-size: 1.5em;
+    margin: 0;
+  }
+  
+  .qna-title span {
+    font-size: 1.2em;
+    color: #09f1b9;
+    margin-left: 15px; /* Q&A 글씨와 질문 갯수 사이에 15px 간격을 추가 */
+  }
+  
+  .qna-button {
+    background-color: #09f1b9;
+    color: black;
+    padding: 10px 20px;
+    font-size: 1em;
+    border: none;
+    border-radius: 20px;
+    width:170px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .qna-button:hover {
+    background-color: #07d3a5;
+  }
+  
+  .question-item {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 20px;
+  }
+  
+  .profile-image {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 15px;
+  }
+  
+  .question-content {
+    flex: 1;
+  }
+  
+  .profile-name {
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+  
+  .question-content p {
+    margin: 5px 0;
+  }
+  
+  .timestamp {
+    font-size: 0.9em;
+    color: #999;
+  }
+  
+  .answer-content {
+    margin-top: 10px;
+    padding-left: 15px;
+    border-left: 3px solid #09f1b9;
+  }
+  
+  .answer {
+    font-weight: bold;
+    color: #09f1b9;
+    margin-bottom: 5px;
+  }
+  
+  .answer-content p {
+    margin: 5px 0;
+  }
+  
+  .answer-timestamp {
+    font-size: 0.9em;
+    color: #999;
+  }
+  
+
+
+
+  /*5번 버튼!!!!!!*/
+  
+  .reviews-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .reviews-title {
+    display: flex;
+    align-items: center;
+  }
+  
+  .reviews-title h2 {
+    font-size: 1.5em;
+    margin: 0;
+    margin-right:10px;
+  }
+  
+  .review-count,
+  .average-rating {
+    font-size: 1.2em;
+    color: #09f1b9;
+    margin-right:30px;
+  }
+  
+  .reviews-button {
+    background-color: #09f1b9;
+    color: black;
+    padding: 10px 20px;
+    font-size: 1em;
+    border: none;
+    border-radius: 20px;
+    width:170px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .reviews-button:hover {
+    background-color: #07d3a5;
+  }
+  
+  .review-item {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 20px;
+  }
+  
+  .profile-image {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 15px;
+  }
+  
+  .review-content {
+    flex: 1;
+  }
+  
+  .review-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .profile-name {
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+  
+  .review-rating {
+    color: #09f1b9;
+    font-size: 1em;
+  }
+  
+  .review-content p {
+    margin: 5px 0;
+  }
+  
+  .review-image {
+    width: 100%;
+    max-width: 300px;
+    margin: 10px 0;
+    border-radius: 10px;
+  }
+  
+  .timestamp {
+    font-size: 0.9em;
+    color: #999;
+  }
+  
+  .answer-content {
+    margin-top: 10px;
+    padding-left: 15px;
+    border-left: 3px solid #09f1b9;
+  }
+  
+  .answer {
+    font-weight: bold;
+    color: #09f1b9;
+    margin-bottom: 5px;
+  }
+  
+  .answer-content p {
+    margin: 5px 0;
+  }
+  
+  .answer-timestamp {
+    font-size: 0.9em;
+    color: #999;
+  }
