@@ -1,0 +1,39 @@
+.Button {
+  box-sizing: border-box;
+  width: 167px;
+  height: 51.12px;
+
+  border-radius: 16px;
+
+  font-family: "Pretendard";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 26px;
+  /* identical to box height, or 142% */
+
+  text-align: center;
+
+  color: #0f0f0f;
+}
+
+.Button_green {
+  background: #09f1b9;
+  border: none;
+}
+
+.Button_white {
+  border: 1px solid #0f0f0f;
+  background-color: #fbfbfb;
+}
+
+.Button_black {
+  border: 1px solid #09f1b9;
+  color: #09f1b9;
+  background-color: #0f0f0f;
+}
+
+.Button_gray {
+  background-color: #e8e8e8;
+  border: none;
+}

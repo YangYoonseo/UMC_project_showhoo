@@ -1,0 +1,83 @@
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000; /* 다른 요소들보다 위에 표시되도록 함 */
+}
+
+.OneButton {
+  position: absolute;
+  width: 698px;
+  height: 754px;
+  left: 707px;
+  top: 250px;
+
+  background: #ffffff;
+  border-radius: 25px;
+
+  padding: 0;
+  z-index: 1001; /* 백드롭보다 위에 표시되도록 함 */
+}
+
+.OneButton h1 {
+  position: absolute;
+  width: 516px;
+  height: 48px;
+  left: 91px;
+  top: 61px;
+  margin: 0;
+
+  font-family: "Pretendard";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 40px;
+  line-height: 30px;
+  /* or 75% */
+  display: flex;
+  align-items: center;
+
+  color: #0f0f0f;
+}
+
+.OneButton .content {
+  position: absolute;
+  width: 516px;
+  height: 400px;
+  left: 91px;
+  top: 140px;
+  margin: 0;
+
+  font-family: "Pretendard";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 30px;
+  /* or 150% */
+
+  align-items: center;
+
+  color: #0f0f0f;
+}
+
+.OneButton .content p {
+  margin: 7px;
+}
+
+.OneButton .Button {
+  position: absolute;
+  width: 242px;
+  height: 48px;
+  top: 645px;
+  left: 228px;
+
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 30px;
+  /* or 167% */
+}

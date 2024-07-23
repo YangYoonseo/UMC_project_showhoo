@@ -1,0 +1,118 @@
+.Container113 {
+  padding: 0;
+  position: absolute;
+  height: 156px;
+  left: 0px;
+  right: -1px;
+  top: 0px;
+  background: #0f0f0f;
+}
+
+.Frame128 {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0px;
+  gap: 408px;
+  position: absolute;
+  width: 918px;
+  height: 58px;
+  left: 28px;
+  top: 12px;
+}
+
+.Frame128 img {
+  width: 58.34px;
+  height: 58px;
+  background: #0f0f0f;
+}
+
+.Frame127 {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 0px;
+  gap: 45px;
+  width: 452px;
+  height: 36px;
+}
+
+.Frame169 {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0px;
+  gap: 22px;
+  position: absolute;
+  width: 155.44px;
+  height: 39.44px;
+  left: 1249px;
+  top: 20px;
+}
+
+.Frame169 button {
+  border: none;
+  padding: 0;
+  width: 94px;
+  height: 39px;
+  background: rgba(255, 255, 255, 0.4);
+  border-radius: 22px;
+
+  /* Sign in */
+
+  font-family: "Pretendard";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 22px;
+  /* identical to box height, or 122% */
+  text-align: center;
+
+  color: #ffffff;
+}
+
+.Frame169 img {
+  width: 39.44px;
+  height: 39.44px;
+  left: 116px;
+  top: 0px;
+  background: #0f0f0f;
+  border: none;
+}
+
+.Frame127 button {
+  background-color: #0f0f0f;
+  border: none;
+}
+
+.Button47,
+.Button48,
+.Button49,
+.Button50 {
+  padding: 0;
+
+  font-family: "Pretendard";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 22px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  color: #ffffff;
+}
+
+.Button47 {
+  width: 34px;
+}
+
+.Button48 {
+  width: 109px;
+}
+
+.Button49,
+.Button50 {
+  width: 87px;
+}

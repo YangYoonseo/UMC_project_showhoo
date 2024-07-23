@@ -1,0 +1,288 @@
+.Mypage {
+  /* 마이페이지 */
+
+  position: relative;
+  width: 1440px;
+  height: 1216px;
+
+  background: #ffffff;
+  box-shadow: 0px 3px 6px rgba(18, 15, 40, 0.12);
+}
+
+.Mypage_content {
+  /* 예매 확인 */
+
+  position: absolute;
+  height: 1138px;
+  left: 0px;
+  right: -1px;
+  top: 78px;
+
+  background: #fbfbfb;
+  border-radius: 36px;
+}
+
+.Mypage_content h3 {
+  /* Group 36 */
+
+  position: absolute;
+  width: 173px;
+  height: 68px;
+  left: 246px;
+  top: 107px;
+  margin: 0;
+
+  /* Product title */
+
+  font-family: "Pretendard";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 40px;
+  line-height: 68px;
+  /* identical to box height, or 170% */
+
+  color: #171a1f;
+}
+
+.Mypage_content .profile_img {
+  /* Frame 339 */
+
+  position: absolute;
+  width: 67px;
+  height: 64.77px;
+  left: 246px;
+  top: 202px;
+  margin: 0;
+
+  background: #94bfe7;
+  border-radius: 50.25px;
+}
+
+.Mypage_content .name {
+  /* 홍길동 */
+
+  position: absolute;
+  width: 166px;
+  height: 34px;
+  left: 337px;
+  top: 215px;
+  margin: 0;
+
+  font-family: "Pretendard";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 26px;
+  line-height: 30px;
+  /* or 115% */
+  display: flex;
+  align-items: center;
+
+  color: #0f0f0f;
+}
+
+.Mypage_content .latest {
+  /* Group 37 */
+
+  position: absolute;
+  width: 306px;
+  height: 36px;
+  left: 568px;
+  top: 291px;
+
+  /* Product title */
+
+  position: absolute;
+  width: 306px;
+  height: 36px;
+  left: 568px;
+  top: 291px;
+  margin: 0;
+
+  font-family: "Pretendard";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 28px;
+  line-height: 30px;
+  /* or 107% */
+  display: flex;
+  align-items: center;
+
+  color: #171a1f;
+}
+
+.Mypage_content .latest span {
+  color: #058f6d;
+}
+
+.profile-latest {
+  /* Container 171 */
+
+  position: absolute;
+  width: 530px;
+  height: 193.74px;
+  left: calc(50% - 530px / 2 + 0.5px);
+  top: 354px;
+
+  background: #ffffff;
+  border: 1.86292px solid #e8e8e8;
+  border-radius: 17.1812px;
+  margin: 0;
+}
+
+.profile-latest img {
+  /* Frame 83 */
+
+  /* Auto layout */
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: flex-start;
+  padding: 10.996px 13.0577px;
+  gap: 6.87px;
+  margin: 0;
+  padding: 0;
+
+  position: absolute;
+  width: 219.82px;
+  height: 182.57px;
+  left: 5.59px;
+  top: 5.59px;
+
+  border-radius: 11.6832px;
+}
+
+.profile-latest .profile-date {
+  left: 119.21px;
+}
+
+.profile-latest h3 {
+  /* 고스락 */
+
+  position: absolute;
+  width: 190.37px;
+  height: 35.4px;
+  left: 245.91px;
+  top: 21.42px;
+
+  font-weight: 500;
+  font-size: 27.9438px;
+  line-height: 21px;
+  /* or 74% */
+}
+
+.profile-latest .members_img {
+  width: 26.02px;
+  height: 26.02px;
+  top: 67.64px;
+  left: 248.7px;
+  gap: 0px;
+  opacity: 0px;
+}
+
+.profile-latest .members_p {
+  width: 228.21px;
+  height: 48.44px;
+  top: 71.72px;
+  left: 282.23px;
+  gap: 0px;
+  opacity: 0px;
+}
+
+.profile-latest .school_img {
+  width: 26.08px;
+  height: 26.08px;
+  gap: 0px;
+  opacity: 0px;
+  top: 131.34px;
+  left: 248.7px;
+}
+
+.profile-latest .school_p {
+  width: 362.34px;
+  height: 26.08px;
+  gap: 0px;
+  opacity: 0px;
+
+  top: 131.34px;
+  left: 282.23px;
+
+  font-size: 18.63px;
+  font-weight: 400;
+  line-height: 27.94px;
+  text-align: left;
+}
+
+.profile-latest .profile-card-buttons,
+.profile-latest .Line40 {
+  display: none;
+}
+
+.choice {
+  /* 선택 */
+
+  box-sizing: border-box;
+
+  position: absolute;
+  width: 950px;
+  height: 394px;
+  left: 246px;
+  top: 594px;
+
+  background: #ffffff;
+  border: 1px solid #e8e8e8;
+  border-radius: 25px;
+}
+
+.choice button {
+  padding: 0;
+  padding-left: 41px;
+  /* padding-top: 22px; */
+
+  font-family: "Pretendard";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 17px;
+  line-height: 176%;
+  /* or 176% */
+
+  color: #0f0f0f;
+  background: #ffffff;
+  border: none;
+  border-bottom: 1px solid #e8e8e8;
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+
+  position: absolute;
+  width: 950.08px;
+  height: 65px;
+  left: 0px;
+}
+
+.choice button:nth-of-type(1) {
+  top: 0px;
+}
+
+.choice button:nth-of-type(2) {
+  top: 65px;
+}
+
+.choice button:nth-of-type(3) {
+  top: 130px;
+}
+
+.choice button:nth-of-type(4) {
+  top: 195px;
+}
+
+.choice button:nth-of-type(5) {
+  top: 260px;
+}
+
+.choice button:nth-of-type(6) {
+  top: 325px;
+
+  border: none;
+}

@@ -1,0 +1,25 @@
+.PerformerUpdate {
+  /* 공연자 등록 페이지 - 수정 */
+
+  position: relative;
+  width: 1440px;
+  height: 1830px;
+
+  background: #ffffff;
+  box-shadow: 0px 3px 6px rgba(18, 15, 40, 0.12);
+}
+
+.Container117_update {
+  /* Container 117 */
+
+  position: absolute;
+  width: 1440px;
+  height: 1790px;
+  left: 0px;
+  right: 0px;
+  top: 81px;
+
+  background: #f8f8f8;
+
+  border-radius: 36px;
+}

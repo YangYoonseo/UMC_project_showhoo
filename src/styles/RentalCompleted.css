@@ -1,0 +1,30 @@
+.OneButton_RentalCompleted {
+  /* 예매하기 */
+
+  position: absolute;
+  width: 697px;
+  height: 318px;
+  left: 707px;
+  top: 250px;
+}
+
+.OneButton_RentalCompleted .content {
+  /* 공연장이 승인하기까지 시간이 소요될 수 있습니다 */
+
+  position: absolute;
+  width: 547px;
+  height: 30px;
+  left: 91px;
+  top: 130px;
+}
+
+.OneButton_RentalCompleted .Button {
+  /* 예매하기 버튼 */
+
+  position: absolute;
+  width: 242px;
+  height: 48px;
+  left: 228px;
+  top: 209px;
+  margin: 0;
+}

@@ -1,0 +1,98 @@
+.TwoButton {
+  /* 예매하기 */
+
+  position: absolute;
+  width: 697px;
+  height: 377px;
+  left: 707px;
+  top: 250px;
+
+  background: #ffffff;
+  border-radius: 25px;
+
+  padding: 0;
+}
+
+.TwoButton h1 {
+  /* 대관 신청하시겠습니까? */
+
+  width: 547px;
+  height: 48px;
+  margin: 0;
+
+  position: absolute;
+  left: 91px;
+  top: 61px;
+
+  font-family: "Pretendard";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 40px;
+  line-height: 30px;
+  /* or 75% */
+  display: flex;
+  align-items: center;
+
+  color: #0f0f0f;
+
+  /* Inside auto layout */
+  flex: none;
+  order: 0;
+  align-self: stretch;
+  flex-grow: 0;
+}
+
+.TwoButton .content {
+  /* 대관 신청 이후, 공연장측에서 송금을 확인한 후, 대관 신청이 승인됩니다. 공연장측의 불가피한 상황으로 대관 신청이 거부될 수 있으며, 이러한 상황 발생시 예약금은 보내신 계좌로 환불됩니다. */
+
+  width: 547px;
+  height: 90px;
+  margin: 0;
+
+  position: absolute;
+  left: 91px;
+  top: 130px;
+
+  font-family: "Pretendard";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 30px;
+  /* or 150% */
+
+  color: #0f0f0f;
+
+  /* Inside auto layout */
+  flex: none;
+  order: 1;
+  align-self: stretch;
+  flex-grow: 0;
+}
+
+.TwoButton .content p {
+  margin: 7px;
+}
+
+.TwoButton_RentalApply button:nth-of-type(1) {
+  /* 예매하기 버튼 */
+
+  width: 242px;
+  height: 48px;
+
+  position: absolute;
+  left: 91px;
+  top: 269px;
+
+  font-size: 18px;
+}
+
+.TwoButton_RentalApply button:nth-of-type(2) {
+  width: 242px;
+  height: 48px;
+
+  position: absolute;
+  left: 365px;
+  top: 269px;
+
+  font-size: 18px;
+}

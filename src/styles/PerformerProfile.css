@@ -1,0 +1,246 @@
+.profile-card {
+  position: absolute;
+  width: 743px;
+  height: 243px;
+  background: #ffffff;
+  border: 2px solid #e8e8e8;
+  border-radius: 18.4455px;
+}
+
+.profile-card-header img {
+  /* Frame 83 */
+
+  /* Auto layout */
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: flex-start;
+  padding: 11.8051px 14.0186px;
+  gap: 7.38px;
+
+  position: absolute;
+  width: 274.39px;
+  height: 230.75px;
+  left: 5.91px;
+  top: 5.92px;
+  padding: 0;
+
+  border-radius: 12.5429px;
+}
+
+.profile-date {
+  position: absolute;
+  padding: auto auto;
+
+  width: 94px;
+  height: 30px;
+  line-height: 20.94px;
+  border-radius: 7.44px 0px 0px 0px;
+
+  top: 13px;
+  left: 166.38px;
+
+  justify-content: flex-end;
+
+  background: rgba(255, 255, 255, 0.4);
+  border-radius: 11.5678px;
+
+  /* Inside auto layout */
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+
+  /* 2024-07-10 */
+  font-family: "Pretendard";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 30px;
+  /* or 181% */
+
+  text-align: center;
+
+  color: #ffffff;
+
+  z-index: 1000;
+
+  /* Inside auto layout */
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+}
+
+.profile-card h3 {
+  /* 고스락 */
+
+  position: absolute;
+  width: 204.38px;
+  height: 38px;
+  left: 309px;
+  top: 29px;
+  margin: 0;
+
+  font-family: "Pretendard";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 30px;
+  line-height: 22px;
+  /* or 74% */
+  display: flex;
+  align-items: center;
+
+  color: #0f0f0f;
+}
+
+.profile-card .members_img {
+  /* ion:people-outline */
+
+  position: absolute;
+  width: 27.93px;
+  height: 27.93px;
+  left: 312px;
+  top: 78.62px;
+}
+
+.profile-card .members_p {
+  /* 전채운, 김심야, 김태형, 이기준, 고낭신, 수지후 */
+
+  position: absolute;
+  width: 389px;
+  height: 28px;
+  left: 348px;
+  top: 79px;
+  margin: 0;
+
+  font-family: "Pretendard";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 30px;
+  /* or 150% */
+  display: flex;
+  align-items: center;
+
+  color: #4f4f4f;
+}
+
+.profile-card .school_img {
+  /* ph:map-pin */
+
+  position: absolute;
+  width: 28px;
+  height: 28px;
+  left: 312px;
+  top: 116px;
+  padding: 0;
+}
+
+.profile-card .school_p {
+  /* 홍익대학교 소속 */
+
+  position: absolute;
+  width: 389px;
+  height: 28px;
+  left: 348px;
+  top: 116px;
+  margin: 0;
+
+  font-family: "Pretendard";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 30px;
+  /* or 150% */
+  display: flex;
+  align-items: center;
+
+  color: #4f4f4f;
+}
+
+.profile-card .profile-card-buttons {
+  /* Frame 103 */
+
+  /* Auto layout */
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 0px;
+  gap: 11.14px;
+
+  position: absolute;
+  width: 148.29px;
+  height: 36px;
+  left: 560px;
+  top: 192px;
+}
+
+.profile-card .edit-button {
+  /* Frame 31 */
+
+  box-sizing: border-box;
+
+  width: 68.57px;
+  height: 36px;
+
+  border: 0.857143px solid #0f0f0f;
+  border-radius: 13.7143px;
+
+  /* Inside auto layout */
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+
+  /* 수정 */
+
+  font-family: "Pretendard";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14.2266px;
+  line-height: 26px;
+  /* or 181% */
+  align-items: center;
+  text-align: center;
+
+  color: #171a1f;
+}
+
+.profile-card .delete-button {
+  border: none;
+  /* Frame 33 */
+
+  width: 68.57px;
+  height: 36px;
+
+  background: #09f1b9;
+  border-radius: 13.7143px;
+
+  /* Inside auto layout */
+  flex: none;
+  order: 1;
+  flex-grow: 0;
+
+  /* 삭제 */
+
+  font-family: "Pretendard";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14.2266px;
+  line-height: 26px;
+  /* or 181% */
+  align-items: center;
+  text-align: center;
+
+  color: #0f0f0f;
+}
+
+.profile-card .Line40 {
+  /* Line 40 */
+
+  position: absolute;
+  width: 399.01px;
+  height: 0px;
+  left: 308.99px;
+  top: 171.52px;
+
+  border: 2px solid #e8e8e8;
+}

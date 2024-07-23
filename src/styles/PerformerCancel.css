@@ -1,0 +1,112 @@
+.PerformerCancel {
+  /* 예매하기 */
+
+  position: absolute;
+  width: 697px;
+  height: 319px;
+  left: 708px;
+  top: 332px;
+
+  background: #ffffff;
+  border-radius: 25px;
+}
+
+.PerformerCancel h3 {
+  /* 탈퇴하시겠습니까? */
+
+  position: absolute;
+  width: 424px;
+  height: 48px;
+  left: 91px;
+  top: 61px;
+  margin: 0;
+
+  font-family: "Pretendard";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 40px;
+  line-height: 30px;
+  /* or 75% */
+  display: flex;
+  align-items: center;
+
+  color: #0f0f0f;
+}
+
+.PerformerCancel p {
+  /* 이 계정과 관련된 프로필과 공연장 정보 모두 삭제됩니다 */
+
+  position: absolute;
+  width: 547px;
+  height: 30px;
+  left: 91px;
+  top: 130px;
+
+  margin: 0;
+
+  font-family: "Pretendard";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 22px;
+  line-height: 30px;
+  /* identical to box height, or 136% */
+  display: flex;
+  align-items: center;
+
+  color: #0f0f0f;
+}
+
+.PerformerCancel .backbutton {
+  /* 예매하기 버튼 */
+
+  position: absolute;
+  width: 242px;
+  height: 48px;
+  left: 91px;
+  top: 209px;
+
+  background: #e8e8e8;
+  border-radius: 14px;
+  border: none;
+
+  /* 뒤로 가기 */
+
+  font-family: "Pretendard";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 17px;
+  line-height: 30px;
+  /* or 176% */
+
+  text-align: center;
+
+  color: #0f0f0f;
+}
+
+.PerformerCancel .cancelbutton {
+  /* 예매하기 버튼 */
+
+  box-sizing: border-box;
+
+  position: absolute;
+  width: 242px;
+  height: 48px;
+  left: 365px;
+  top: 209px;
+
+  background: #09f1b9;
+  border: 1px solid #09f1b9;
+  border-radius: 14px;
+
+  /* 탈퇴하기 */
+
+  font-family: "Pretendard";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 17px;
+  line-height: 30px;
+  /* or 176% */
+  text-align: center;
+
+  color: #0f0f0f;
+}

@@ -1,0 +1,178 @@
+.Footer {
+  /* Container 116 */
+
+  position: absolute;
+  height: 345px;
+  width: 1440px;
+  left: 0px;
+  bottom: -345px;
+  background: #0f0f0f;
+}
+
+.LogoText img {
+  /* 로고: 공연자 */
+
+  position: absolute;
+  width: 67.39px;
+  height: 67px;
+  left: 585px;
+  top: 138px;
+}
+
+.LogoText p {
+  /* ShowHoo */
+  margin: 0;
+
+  position: absolute;
+  width: 196px;
+  height: 48px;
+  left: 659px;
+  top: 149px;
+
+  font-family: "Lexend";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 40px;
+  line-height: 50px;
+  display: flex;
+  align-items: center;
+
+  color: #ffffff;
+}
+
+.FooterText .text1 {
+  /* © 2022 Brand, Inc. */
+
+  margin: 0;
+
+  position: absolute;
+  width: 237px;
+  height: 22px;
+  left: 413px;
+  bottom: 47px;
+
+  font-family: "Pretendard";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 22px;
+  /* identical to box he2ight, or 157% */
+
+  color: #ffffff;
+}
+
+.FooterText .text2 {
+  /* © 2022 Brand, Inc. */
+
+  margin: 0;
+
+  position: absolute;
+  width: 101px;
+  height: 22px;
+  left: 663px;
+  bottom: 47px;
+
+  font-family: "Pretendard";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 22px;
+  /* identical to box height, or 157% */
+
+  color: #ffffff;
+}
+
+.FooterText .text3 {
+  /* © 2022 Brand, Inc. */
+
+  margin: 0;
+
+  position: absolute;
+  width: 4px;
+  height: 22px;
+  left: 772px;
+  bottom: 47px;
+
+  font-family: "Pretendard";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 22px;
+  /* identical to box height, or 157% */
+
+  color: #ffffff;
+}
+
+.FooterText .text4 {
+  /* © 2022 Brand, Inc. */
+
+  margin: 0;
+
+  position: absolute;
+  width: 89px;
+  height: 22px;
+  left: 785px;
+  bottom: 47px;
+
+  font-family: "Pretendard";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 22px;
+  /* identical to box height, or 157% */
+
+  color: #ffffff;
+}
+
+.Frame294 {
+  /* Frame 294 */
+
+  /* Auto layout */
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 0px;
+  gap: 17px;
+
+  position: absolute;
+  width: 132.4px;
+  height: 36px;
+  left: 895px;
+  top: 256px;
+}
+
+.Frame294 .img1 {
+  /* mdi:github */
+
+  width: 33.6px;
+  height: 33.6px;
+
+  /* Inside auto layout */
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+}
+
+.Frame294 .img2 {
+  /* ri:kakao-talk-fill */
+
+  width: 36px;
+  height: 36px;
+
+  /* Inside auto layout */
+  flex: none;
+  order: 1;
+  flex-grow: 0;
+}
+
+.Frame294 .img3 {
+  /* lucide:instagram */
+
+  width: 28.8px;
+  height: 28.8px;
+
+  /* Inside auto layout */
+  flex: none;
+  order: 2;
+  flex-grow: 0;
+}

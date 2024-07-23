@@ -1,0 +1,1468 @@
+.RentalDetails {
+  /* 공연장 대관 선입금 결제 페이지-1 */
+
+  position: relative;
+  width: 1440px;
+  height: 1932px;
+
+  background: #ffffff;
+  box-shadow: 0px 3px 6px rgba(18, 15, 40, 0.12);
+}
+
+.RentalDetails_content {
+  /* Container 117 */
+
+  position: absolute;
+  width: 1440px;
+  height: 1932px;
+  left: 0px;
+  right: 0px;
+  top: 77px;
+
+  background: #fbfbfb;
+  border-radius: 36px;
+}
+
+.RentalDetails_content .detail_back_button {
+  /* oui:arrow-up */
+
+  position: absolute;
+  width: 36px;
+  height: 48px;
+  left: 162px;
+  top: 114px;
+  font-size: 40px;
+  line-height: 68px;
+
+  background-color: #ffffff;
+  border: none;
+  padding: 0;
+}
+
+.RentalDetails_content .Product_title1 {
+  /* Product title */
+
+  position: absolute;
+  width: 317px;
+  height: 48px;
+  left: 221px;
+  top: 114px;
+
+  font-family: "Pretendard";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 40px;
+  line-height: 68px;
+  /* or 170% */
+
+  color: #171a1f;
+  margin: 0;
+}
+
+.RentalDetails_content .information h4 {
+  /* Product title */
+
+  position: absolute;
+  width: 135px;
+  height: 48px;
+  left: 221px;
+  top: 192px;
+  margin: 0;
+
+  font-family: "Pretendard";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 28px;
+  line-height: 68px;
+  /* or 243% */
+  display: flex;
+  align-items: center;
+
+  color: #171a1f;
+}
+
+.information_date {
+  /* Frame 259 */
+
+  /* Auto layout */
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0px;
+  gap: 192px;
+
+  position: absolute;
+  width: 442.23px;
+  height: 38px;
+  left: 223.77px;
+  top: 252px;
+}
+
+.information_date .Frame256 {
+  /* Frame 256 */
+
+  /* Auto layout */
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  padding: 0px;
+  gap: 10px;
+
+  width: 205.13px;
+  height: 26.89px;
+
+  /* Inside auto layout */
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+}
+
+.information_date .Frame256 img {
+  /* uil:calender */
+
+  width: 26.89px;
+  height: 26.89px;
+
+  /* Inside auto layout */
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+}
+
+.information_date .Frame256 p {
+  /* 2024-06-01 */
+
+  margin: 0;
+
+  width: 168.24px;
+  height: 25.35px;
+
+  font-family: "Pretendard";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 17px;
+  line-height: 28px;
+  /* or 163% */
+  display: flex;
+  align-items: center;
+
+  color: #4f4f4f;
+
+  /* Inside auto layout */
+  flex: none;
+  order: 1;
+  flex-grow: 0;
+}
+
+.information .update_button {
+  /* Frame 253 */
+
+  width: 45px;
+  height: 38px;
+
+  /* Inside auto layout */
+  flex: none;
+  order: 1;
+  flex-grow: 0;
+
+  /* 수정 */
+
+  padding-left: 5px;
+  padding-top: 6px;
+
+  font-family: "Pretendard";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 17px;
+  line-height: 28px;
+  /* or 163% */
+
+  text-decoration-line: underline;
+  border: none;
+  background-color: #ffffff;
+
+  color: #058f6d;
+}
+
+.information .information_poeple {
+  /* Frame 260 */
+
+  /* Auto layout */
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0px;
+  gap: 192px;
+
+  position: absolute;
+  width: 443px;
+  height: 38px;
+  left: 223px;
+  top: 305px;
+}
+
+.information .information_poeple .Frame257 {
+  /* Frame 257 */
+
+  /* Auto layout */
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 0px;
+  gap: 10px;
+
+  width: 205.89px;
+  height: 29.04px;
+
+  /* Inside auto layout */
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+}
+
+.information .information_poeple img {
+  /* ion:people-outline */
+
+  width: 27.66px;
+  height: 29.04px;
+
+  /* Inside auto layout */
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+}
+
+.information .information_poeple p {
+  /* 최대 100명 */
+
+  width: 168.24px;
+  height: 25.35px;
+  margin: 0px;
+
+  font-family: "Pretendard";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 17px;
+  line-height: 28px;
+  /* or 163% */
+  display: flex;
+  align-items: center;
+
+  color: #4f4f4f;
+
+  /* Inside auto layout */
+  flex: none;
+  order: 1;
+  flex-grow: 0;
+}
+
+.information .information_video {
+  /* Frame 261 */
+
+  /* Auto layout */
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0px;
+  gap: 192px;
+
+  position: absolute;
+  width: 443px;
+  height: 38px;
+  left: 223px;
+  top: 360px;
+}
+
+.information .information_video .Frame258 {
+  /* Frame 258 */
+
+  /* Auto layout */
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 0px;
+  gap: 10px;
+
+  width: 205.89px;
+  height: 27.66px;
+
+  /* Inside auto layout */
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+}
+
+.information .information_video .Frame258 img {
+  /* Frame 22 */
+
+  width: 27.66px;
+  height: 27.66px;
+
+  /* Inside auto layout */
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+}
+
+.information .information_video .Frame258 p {
+  /* 공연 영상 제공 */
+
+  width: 168.24px;
+  height: 25.35px;
+  margin: 0px;
+
+  font-family: "Pretendard";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 17px;
+  line-height: 28px;
+  /* or 163% */
+  display: flex;
+  align-items: center;
+
+  color: #4f4f4f;
+
+  /* Inside auto layout */
+  flex: none;
+  order: 1;
+  flex-grow: 0;
+}
+
+.pay h4 {
+  /* Product title */
+
+  position: absolute;
+  width: 135px;
+  height: 48px;
+  left: 221px;
+  top: 459px;
+  margin: 0;
+
+  font-family: "Pretendard";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 28px;
+  line-height: 68px;
+  /* or 243% */
+  display: flex;
+  align-items: center;
+
+  color: #171a1f;
+}
+
+.pay .pay_explain {
+  /* 입금자명은 ‘홍길동’으로 해주세요 */
+
+  position: absolute;
+  width: 269px;
+  height: 28px;
+  left: 223px;
+  top: 524px;
+  margin: 0;
+
+  font-family: "Pretendard";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 17px;
+  line-height: 30px;
+  /* or 176% */
+  display: flex;
+  align-items: center;
+
+  color: #4f4f4f;
+}
+
+.pay p:nth-of-type(2) {
+  /* 입금 계좌 */
+
+  position: absolute;
+  width: 81px;
+  height: 28px;
+  left: 223px;
+  top: 570px;
+  margin: 0;
+
+  font-family: "Pretendard";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 17px;
+  line-height: 30px;
+  /* or 176% */
+  display: flex;
+  align-items: center;
+
+  color: #0f0f0f;
+}
+
+.pay p:nth-of-type(3) {
+  /* (예금주) 쇼호 */
+
+  position: absolute;
+  width: 127px;
+  height: 28px;
+  left: 539px;
+  top: 570px;
+  margin: 0;
+
+  font-family: "Pretendard";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 17px;
+  line-height: 30px;
+  /* or 176% */
+  display: flex;
+  align-items: center;
+  text-align: right;
+
+  color: #0f0f0f;
+}
+
+.pay p:nth-of-type(4) {
+  /* 우리은행 1002061254000 */
+
+  position: absolute;
+  width: 260px;
+  height: 28px;
+  left: 224px;
+  top: 617px;
+  margin: 0;
+
+  font-family: "Pretendard";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 17px;
+  line-height: 30px;
+  /* or 176% */
+  display: flex;
+  align-items: center;
+
+  color: #0f0f0f;
+}
+
+.pay button {
+  /* Frame 243 */
+
+  position: absolute;
+  width: 124px;
+  height: 28px;
+  left: 546px;
+  top: 617px;
+
+  /* 계좌 복사하기 */
+
+  padding: 0;
+  padding-left: 8px;
+  padding-top: 2px;
+
+  font-family: "Pretendard";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 17px;
+  line-height: 30px;
+  /* or 176% */
+  display: flex;
+  align-items: center;
+  text-align: right;
+
+  color: #058f6f;
+  background-color: #ffffff;
+  border: none;
+}
+
+.profile_provide h4 {
+  /* Product title */
+
+  position: absolute;
+  width: 467px;
+  height: 48px;
+  left: 221px;
+  top: 716px;
+  margin: 0;
+
+  font-family: "Pretendard";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 28px;
+  line-height: 68px;
+  /* or 243% */
+  display: flex;
+  align-items: center;
+
+  color: #171a1f;
+}
+
+.profile-detail1 {
+  /* Container 142 */
+
+  box-sizing: border-box;
+
+  position: absolute;
+  width: 445px;
+  height: 165px;
+  left: calc(50% - 445px / 2 - 276.5px);
+  top: 790px;
+
+  background: #ffffff;
+  border: 2px solid #07c093;
+  border-radius: 12.66px;
+}
+
+.profile-detail2 {
+  /* Container 146 */
+
+  box-sizing: border-box;
+
+  position: absolute;
+  width: 445px;
+  height: 165px;
+  left: calc(50% - 445px / 2 - 279.5px);
+  top: 975px;
+
+  background: #ffffff;
+  border: 1px solid #e8e8e8;
+  border-radius: 12.66px;
+}
+
+.profile-detail3 {
+  /* Container 147 */
+
+  box-sizing: border-box;
+
+  position: absolute;
+  width: 445px;
+  height: 165px;
+  left: calc(50% - 445px / 2 - 279.5px);
+  top: 1160px;
+
+  background: #ffffff;
+  border: 1px solid #e8e8e8;
+  border-radius: 12.66px;
+}
+
+.profile-detail1 img,
+.profile-detail2 img,
+.profile-detail3 img {
+  /* Frame 389 */
+
+  /* Auto layout */
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  padding: 6px;
+  gap: 10px;
+
+  position: absolute;
+  width: 138px;
+  height: 153px;
+  left: 6px;
+  top: 6px;
+  padding: 0;
+
+  border-radius: 7.09px;
+}
+
+.profile-detail1 h3,
+.profile-detail2 h3,
+.profile-detail3 h3 {
+  /* 고스락 */
+
+  position: absolute;
+  width: 168.49px;
+  height: 29.34px;
+  left: 163px;
+  top: 12px;
+  margin: 0;
+
+  font-family: "Pretendard";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 17.0379px;
+  line-height: 28px;
+  /* or 167% */
+  display: flex;
+  align-items: center;
+
+  color: #0f0f0f;
+}
+
+.profile-detail1 .members_img,
+.profile-detail2 .members_img,
+.profile-detail3 .members_img {
+  /* ion:people-outline */
+
+  width: 18.93px;
+  height: 19.88px;
+
+  position: absolute;
+  top: 46.06px;
+  left: 163px;
+
+  /* Inside auto layout */
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+}
+
+.profile-detail1 .members_p,
+.profile-detail2 .members_p,
+.profile-detail3 .members_p {
+  /* 전채운, 김심야, 김태형, 이기준, 고낭신, 수지후 */
+
+  width: 240px;
+  height: 30px;
+
+  position: absolute;
+  left: 187.76px;
+  top: 41px;
+  margin: 0;
+
+  font-family: "Pretendard";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 28px;
+  /* or 218% */
+  display: flex;
+  align-items: center;
+
+  color: #535353;
+
+  /* Inside auto layout */
+  flex: none;
+  order: 1;
+  flex-grow: 0;
+}
+
+.profile-detail1 .school_img,
+.profile-detail2 .school_img,
+.profile-detail3 .school_img {
+  /* ph:map-pin-bold */
+
+  width: 18px;
+  height: 18px;
+
+  position: absolute;
+  top: 72.5px;
+  left: 163px;
+
+  /* Inside auto layout */
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+}
+
+.profile-detail1 .school_p,
+.profile-detail2 .school_p,
+.profile-detail3 .school_p {
+  /* 홍익대학교 소속 */
+
+  width: 91px;
+  height: 29px;
+
+  position: absolute;
+  top: 67px;
+  left: 187.41px;
+  margin: 0;
+
+  font-family: "Pretendard";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 28px;
+  /* identical to box height, or 218% */
+  display: flex;
+  align-items: center;
+
+  color: #535353;
+
+  /* Inside auto layout */
+  flex: none;
+  order: 1;
+  flex-grow: 0;
+}
+
+.profile-detail1 .Line40,
+.profile-detail2 .Line40,
+.profile-detail3 .Line40 {
+  /* Line 40 */
+
+  position: absolute;
+  width: 261px;
+  height: 0px;
+  left: 163px;
+  top: 104.5px;
+
+  border: 1.41983px solid #e8e8e8;
+}
+
+.profile-detail1 .profile-card-buttons,
+.profile-detail2 .profile-card-buttons,
+.profile-detail3 .profile-card-buttons {
+  /* Frame 103 */
+
+  /* Auto layout */
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 0px;
+  gap: 8.19px;
+
+  position: absolute;
+  width: 109px;
+  height: 26.46px;
+  left: 280px;
+  top: 119px;
+}
+
+.profile-detail1 .profile-card-header .profile-date,
+.profile-detail2 .profile-card-header .profile-date,
+.profile-detail3 .profile-card-header .profile-date {
+  /* Frame 32 */
+
+  width: 60px;
+  height: 18px;
+  line-height: 20.94px;
+  border-radius: 7.44px 0px 0px 0px;
+
+  left: 77px;
+
+  border-radius: 10.775px;
+
+  /* 2024-07-10 */
+
+  font-weight: 500;
+  font-size: 7.1775px;
+}
+
+.RentalDetails_content .checkbox1 {
+  /* Frame 390 */
+
+  /* Auto layout */
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 0px;
+  gap: 9px;
+
+  position: absolute;
+  width: 288.85px;
+  height: 35.87px;
+  left: 221px;
+  top: 1603px;
+}
+
+.RentalDetails_content .checkbox1 input {
+  /* 체크박스 */
+
+  width: 22.93px;
+  height: 23.87px;
+
+  /* Inside auto layout */
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+
+  accent-color: #07c093;
+}
+
+.RentalDetails_content .checkbox1 p {
+  /* 결제 내용 확인 및 동의 */
+
+  width: 244.92px;
+  height: 26.97px;
+
+  font-family: "Pretendard";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 32px;
+  /* or 180% */
+  display: flex;
+  align-items: center;
+
+  color: #0f0f0f;
+
+  /* Inside auto layout */
+  flex: none;
+  order: 1;
+  flex-grow: 0;
+}
+
+.RentalDetails_content .checkbox2 {
+  /* Frame 395 */
+
+  /* Auto layout */
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0px;
+  gap: 10px;
+
+  position: absolute;
+  width: 435px;
+  height: 60px;
+  left: 231px;
+  top: 1647px;
+}
+
+.RentalDetails_content .checkbox2 .checkbox2_1 {
+  /* Frame 392 */
+
+  /* Auto layout */
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0px;
+  gap: 298px;
+
+  width: 435px;
+  height: 25px;
+
+  /* Inside auto layout */
+  flex: none;
+  order: 0;
+  align-self: stretch;
+  flex-grow: 0;
+}
+
+.RentalDetails_content .checkbox2 .checkbox2_1 span,
+.RentalDetails_content .checkbox2 .checkbox2_2 span {
+  /* Frame 391 */
+
+  /* Auto layout */
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 0px;
+  gap: 18px;
+
+  width: 104.26px;
+  height: 25px;
+
+  /* Inside auto layout */
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+}
+
+.RentalDetails_content .checkbox2 .checkbox2_1 input {
+  /* ph:check-bold */
+
+  width: 16.26px;
+  height: 16.26px;
+
+  accent-color: white;
+
+  /* Inside auto layout */
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+}
+
+.RentalDetails_content .checkbox2 .checkbox2_1 p:nth-of-type(1) {
+  /* 환불규정 */
+
+  width: 70px;
+  height: 25px;
+
+  font-family: "Pretendard";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 17px;
+  line-height: 30px;
+  /* or 176% */
+  display: flex;
+  align-items: center;
+
+  color: #696969;
+
+  /* Inside auto layout */
+  flex: none;
+  order: 1;
+  flex-grow: 0;
+}
+
+.RentalDetails_content .checkbox2 .checkbox2_1 .see,
+.RentalDetails_content .checkbox2 .checkbox2_2 .see {
+  /* 보기 */
+
+  width: 33px;
+  height: 25px;
+
+  font-family: "Pretendard";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 17px;
+  line-height: 30px;
+  /* or 176% */
+  display: flex;
+  align-items: center;
+  text-align: right;
+  text-decoration-line: underline;
+
+  color: #363636;
+
+  /* Inside auto layout */
+  flex: none;
+  order: 1;
+  flex-grow: 0;
+}
+
+.RentalDetails_content .checkbox2 .checkbox2_2 {
+  /* Frame 394 */
+
+  /* Auto layout */
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0px;
+  gap: 298px;
+
+  width: 435px;
+  height: 25px;
+
+  /* Inside auto layout */
+  flex: none;
+  order: 1;
+  align-self: stretch;
+  flex-grow: 0;
+}
+
+.RentalDetails_content .checkbox2 .checkbox2_2 input {
+  /* ph:check-bold */
+
+  width: 16.26px;
+  height: 16.26px;
+  accent-color: white;
+
+  /* Inside auto layout */
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+}
+
+.RentalDetails_content .checkbox2 .checkbox2_2 p:nth-of-type(1) {
+  /* 유의사항 */
+
+  width: 70px;
+  height: 25px;
+
+  font-family: "Pretendard";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 17px;
+  line-height: 30px;
+  /* or 176% */
+  display: flex;
+  align-items: center;
+
+  color: #696969;
+
+  /* Inside auto layout */
+  flex: none;
+  order: 1;
+  flex-grow: 0;
+}
+
+.RentalDetails_content .checkbox2 .checkbox2_2 p:nth-of-type(2) {
+  /* 보기 */
+
+  width: 33px;
+  height: 25px;
+
+  font-family: "Pretendard";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 17px;
+  line-height: 30px;
+  /* or 176% */
+  display: flex;
+  align-items: center;
+  text-align: right;
+  text-decoration-line: underline;
+
+  color: #363636;
+
+  /* Inside auto layout */
+  flex: none;
+  order: 1;
+  flex-grow: 0;
+}
+
+.RentalDetails_content .application {
+  /* Frame 31 */
+
+  position: absolute;
+  width: 167px;
+  height: 51.12px;
+  left: 221px;
+  top: 1758px;
+
+  background: #09f1b9;
+  border-radius: 14px;
+  border: none;
+
+  /* 대관 신청하기 */
+
+  font-family: "Pretendard";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 26px;
+  /* identical to box height, or 142% */
+
+  text-align: center;
+
+  color: #0f0f0f;
+}
+
+.RentalDetails_content .rental_card {
+  /* Container 143 */
+
+  box-sizing: border-box;
+
+  position: absolute;
+  width: 451px;
+  height: 542px;
+  left: calc(50% - 451px / 2 + 273.5px);
+  top: 192px;
+
+  background: #ffffff;
+  border: 1px solid #e8e8e8;
+  border-radius: 25px;
+}
+
+.RentalDetails_content .rental_card .venue_img {
+  /* Rectangle 12 */
+
+  position: absolute;
+  width: 142px;
+  height: 142px;
+  left: 37px;
+  top: 37px;
+
+  border-radius: 14px;
+}
+
+.RentalDetails_content .rental_card .venue_name {
+  /* 001 클럽 */
+
+  position: absolute;
+  width: 289.21px;
+  height: 37px;
+  left: 195px;
+  top: 53px;
+
+  font-family: "Pretendard";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 29px;
+  line-height: 49px;
+  /* or 168% */
+  display: flex;
+  align-items: center;
+
+  color: #0f0f0f;
+  margin: 0;
+}
+
+.RentalDetails_content .rental_card .venue_location {
+  /* 서울특별시 마포구 와우산로18길 20 */
+
+  position: absolute;
+  width: 221px;
+  height: 25px;
+  left: 195px;
+  top: 92px;
+
+  margin: 0;
+
+  font-family: "Pretendard";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 49px;
+  /* or 325% */
+  display: flex;
+  align-items: center;
+
+  color: #535353;
+}
+
+.RentalDetails_content .rental_card .rental_card_capacity {
+  /* Frame 62 */
+
+  /* Auto layout */
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 0px;
+  gap: 7.08px;
+
+  width: 101.83px;
+  height: 35.42px;
+
+  position: absolute;
+  left: 195px;
+  top: 128px;
+
+  /* Inside auto layout */
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+}
+
+.RentalDetails_content .rental_card .rental_card_capacity img {
+  /* ion:people-outline */
+
+  width: 24.79px;
+  height: 24.79px;
+
+  /* Inside auto layout */
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+}
+.RentalDetails_content .rental_card .rental_card_capacity p {
+  /* 최대 120명 */
+
+  width: 169.95px;
+  height: 35.42px;
+
+  margin: 0;
+
+  font-family: "Pretendard";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 27px;
+  /* or 190% */
+  display: flex;
+  align-items: center;
+
+  color: #535353;
+
+  /* Inside auto layout */
+  flex: none;
+  order: 1;
+  flex-grow: 0;
+}
+
+.RentalDetails_content .rental_card .rental_card_size {
+  /* Frame 63 */
+
+  /* Auto layout */
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 0px;
+  gap: 4.43px;
+
+  width: 78.8px;
+  height: 35.42px;
+
+  position: absolute;
+  left: 310.99px;
+  top: 128px;
+
+  /* Inside auto layout */
+  flex: none;
+  order: 1;
+  flex-grow: 0;
+}
+
+.RentalDetails_content .rental_card .rental_card_size img {
+  /* bx:area */
+
+  width: 24.79px;
+  height: 24.79px;
+
+  /* Inside auto layout */
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+}
+
+.RentalDetails_content .rental_card .rental_card_size p {
+  /* 198m² */
+
+  width: 69.95px;
+  height: 35.42px;
+
+  font-family: "Pretendard";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 27px;
+  /* or 190% */
+  display: flex;
+  align-items: center;
+
+  color: #535353;
+
+  /* Inside auto layout */
+  flex: none;
+  order: 1;
+  flex-grow: 0;
+}
+
+.rental_card .rental_price h3 {
+  /* 대관비용 */
+
+  position: absolute;
+  width: 165px;
+  height: 37px;
+  left: 38px;
+  top: 225px;
+  margin: 0;
+
+  font-family: "Pretendard";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 49px;
+  /* or 203% */
+  display: flex;
+  align-items: center;
+
+  color: #0f0f0f;
+}
+
+.rental_card .rental_price p:nth-of-type(1) {
+  /* 대관료 */
+
+  position: absolute;
+  width: 113px;
+  height: 28px;
+  left: 38px;
+  top: 273px;
+  margin: 0;
+
+  font-family: "Pretendard";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 17px;
+  line-height: 30px;
+  /* or 176% */
+  display: flex;
+  align-items: center;
+
+  color: #424956;
+}
+
+.rental_card .rental_price p:nth-of-type(2) {
+  /* ₩700,000 */
+
+  position: absolute;
+  width: 166px;
+  height: 28px;
+  left: 246px;
+  top: 273px;
+  margin: 0;
+
+  font-family: "Pretendard";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 17px;
+  line-height: 30px;
+  /* or 176% */
+
+  text-align: right;
+
+  color: #424956;
+}
+
+.rental_card .rental_price p:nth-of-type(3) {
+  /* 추가비 */
+
+  position: absolute;
+  width: 113px;
+  height: 28px;
+  left: 38px;
+  top: 311px;
+  margin: 0;
+
+  font-family: "Pretendard";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 17px;
+  line-height: 30px;
+  /* or 176% */
+  display: flex;
+  align-items: center;
+
+  color: #424956;
+}
+
+.rental_card .rental_price p:nth-of-type(4) {
+  /* ₩100,000 */
+
+  position: absolute;
+  width: 166px;
+  height: 28px;
+  left: 246px;
+  top: 311px;
+  margin: 0;
+
+  font-family: "Pretendard";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 17px;
+  line-height: 30px;
+  /* or 176% */
+
+  text-align: right;
+
+  color: #424956;
+}
+
+.rental_card .rental_price p:nth-of-type(5) {
+  /* 총 합계 */
+
+  position: absolute;
+  width: 113px;
+  height: 28px;
+  left: 38px;
+  top: 374px;
+  margin: 0;
+
+  font-family: "Pretendard";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 17px;
+  line-height: 30px;
+  /* or 176% */
+  display: flex;
+  align-items: center;
+
+  color: #424956;
+}
+
+.rental_card .rental_price p:nth-of-type(6) {
+  /* ₩805,000 */
+
+  position: absolute;
+  width: 166px;
+  height: 28px;
+  left: 249px;
+  top: 374px;
+  margin: 0;
+
+  font-family: "Pretendard";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 17px;
+  line-height: 30px;
+  /* or 176% */
+
+  text-align: right;
+
+  color: #424956;
+}
+
+.rental_card .rental_price p:nth-of-type(7) {
+  /* 예약금 */
+
+  position: absolute;
+  width: 83px;
+  height: 32px;
+  left: 38px;
+  top: 435px;
+  margin: 0;
+
+  font-family: "Pretendard";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 17px;
+  line-height: 30px;
+  /* or 176% */
+  display: flex;
+  align-items: center;
+
+  color: #f01569;
+}
+
+.rental_card .rental_price p:nth-of-type(8) {
+  /* ₩200,000 */
+
+  position: absolute;
+  width: 166px;
+  height: 28px;
+  left: 246px;
+  top: 437px;
+  margin: 0;
+
+  font-family: "Pretendard";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 17px;
+  line-height: 30px;
+  /* or 176% */
+
+  text-align: right;
+
+  color: #f01569;
+}
+
+.rental_card .rental_price p:nth-of-type(9) {
+  /* * 총 대관비를 반드시 확인하고 예약금을 지불하세요 */
+
+  position: absolute;
+  width: 374px;
+  height: 28px;
+  left: 38px;
+  top: 477px;
+  margin: 0;
+
+  font-family: "Pretendard";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 30px;
+  /* or 200% */
+  display: flex;
+  align-items: center;
+
+  color: #424956;
+}
+
+.rental_card .Line42 {
+  /* Line 42 */
+
+  position: absolute;
+  width: 378px;
+  height: 0px;
+  left: 37px;
+  top: 202px;
+
+  border: 1.5px solid #e8e8e8;
+}
+
+.rental_card .Line41 {
+  /* Line 41 */
+
+  position: absolute;
+  width: 378px;
+  height: 0px;
+  left: 38px;
+  top: 359px;
+
+  border: 1.5px solid #e8e8e8;
+}
+
+.rental_card .Line43 {
+  /* Line 43 */
+
+  position: absolute;
+  width: 378px;
+  height: 0px;
+  left: 38px;
+  top: 417px;
+
+  border: 1.5px solid #e8e8e8;
+}
