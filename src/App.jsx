@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import "./App.css";
 
 import { Routes, Route } from "react-router-dom";
@@ -98,6 +99,17 @@ function App() {
         </VenueContext.Provider>
       </ProfileContext.Provider>
     </>
+=======
+import React from 'react';
+import './App.css';
+import VenueDetailPage from './pages/VenueDetailPage';
+
+function App() {
+  return (
+    <div className="App">
+      <VenueDetailPage />
+    </div>
+>>>>>>> 8b4c400a40cfa142433ae12c323a221e2291f1dc
   );
 }
 
