@@ -1,0 +1,36 @@
+.readySubmit {
+    box-sizing: border-box;
+    width: 264px;
+    height: 196px;
+    background: #FFFFFF;
+    border: 1.5px solid #E8E8E8;
+    border-radius: 14px;
+}
+
+.readySubmit > img {
+    margin: 30px auto;
+    width: 72px;
+    height: 80px;
+    display: flex;
+    justify-content: center;
+    filter: grayscale(100%);
+}
+.readySubmit > p {
+    margin: 20px auto;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    color: #878686;
+}
+
+.readySubmit_1 {
+    border-color: #07C093;
+}
+
+.readySubmit_1 > img {
+    filter: grayscale(0%);
+}
+
+.readySubmit_1 > p {
+    color:#07C093;
+}

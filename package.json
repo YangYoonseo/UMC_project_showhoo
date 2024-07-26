@@ -1,9 +1,5 @@
 {
-<<<<<<< HEAD
   "name": "umc-showhoo",
-=======
-  "name": "web",
->>>>>>> 8b4c400a40cfa142433ae12c323a221e2291f1dc
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -14,24 +10,17 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "axios": "^1.7.2",
     "react": "^18.3.1",
-<<<<<<< HEAD
     "react-dom": "^18.3.1",
     "react-router-dom": "^6.25.1"
-=======
-    "react-dom": "^18.3.1"
->>>>>>> 8b4c400a40cfa142433ae12c323a221e2291f1dc
   },
   "devDependencies": {
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
     "@vitejs/plugin-react": "^4.3.1",
     "eslint": "^8.57.0",
-<<<<<<< HEAD
     "eslint-plugin-react": "^7.34.3",
-=======
-    "eslint-plugin-react": "^7.34.2",
->>>>>>> 8b4c400a40cfa142433ae12c323a221e2291f1dc
     "eslint-plugin-react-hooks": "^4.6.2",
     "eslint-plugin-react-refresh": "^0.4.7",
     "vite": "^5.3.4"

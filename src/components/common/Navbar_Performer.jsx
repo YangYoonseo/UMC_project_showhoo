@@ -29,7 +29,14 @@ const Navbar_Perforemr = () => {
           >
             대관 내역
           </button>
-          <button className="Button50">공연 준비</button>
+          <button 
+            className="Button50"
+            onClick={() => {
+              nav("/concert_ready");
+            }}
+          >
+            공연 준비
+          </button>
         </div>
       </div>
       <div className="Frame169">

@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import "./App.css";
 
 import { Routes, Route } from "react-router-dom";
@@ -13,6 +12,7 @@ import PerformerUpdate from "./pages/PerformerUpdate";
 import Mypage from "./pages/Mypage";
 import RentalDetails from "./pages/RentalDetails";
 import RentalHistory from "./pages/RentalHistory";
+import Ready from "./pages/Ready";
 
 const profiles = [
   {
@@ -94,22 +94,12 @@ function App() {
               <Route path="/mypage" element={<Mypage />} />
               <Route path="/rental_details" element={<RentalDetails />} />
               <Route path="/rental_history" element={<RentalHistory />} />
+              <Route path="/concert_ready" element={<Ready />} />
             </Routes>
           </div>
         </VenueContext.Provider>
       </ProfileContext.Provider>
     </>
-=======
-import React from 'react';
-import './App.css';
-import VenueDetailPage from './pages/VenueDetailPage';
-
-function App() {
-  return (
-    <div className="App">
-      <VenueDetailPage />
-    </div>
->>>>>>> 8b4c400a40cfa142433ae12c323a221e2291f1dc
   );
 }
 
