@@ -39,6 +39,7 @@ const VenueDetailComponent = () => {
   return (
     <div className="venue-detail-component">
       <VenueInfo data={mockData} />
+
       <VenueImages images={mockData.images} />
       <div className="venue-content">
         <div className="venue-main-content">

@@ -1,10 +1,13 @@
+/* venuedetails.css */
 .venue-detail-page {
-    background-color: #fbfbfb;
-    width: 100%;
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  position: absolute;
+  height: 2075px;
+  left: 0px;
+  right: -1px;
+  top: 81px;
+
+  background: #FBFBFB;
+  border-radius: 36px;
 }
 
 .venue-detail-component {
@@ -16,50 +19,160 @@
     font-family: 'Pretendard';
 }
 
+.venue-info2{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 0px;
+  
+  position: absolute;
+  width: 206px;
+  height: 51px;
+  left: 1048px;
+  top: 131px;
+}
+.venue-info2 .linkcopy,
+.venue-info2 .heart {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 10px;
+  height: 51px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.venue-info2 .linkcopy {
+  width: 115px;
+  margin-right: 5px;
+}
+
+.venue-info2 .heart {
+  width: 91px;
+}
+
+.venue-info2 img {
+  margin-right: 5px;
+}
+
+.venue-info2 span {
+  font-size: 14px;
+  font-weight: normal;
+  color: #000;
+}
+
+/* 커서를 올렸을 때 밑줄이 생기도록 설정 */
+.venue-info2 .linkcopy:hover span,
+.venue-info2 .heart:hover span {
+  text-decoration: underline;
+}
+
+
+
+/* venu-info 컴포넌트 설정 */
 .venue-info {
-    margin-bottom: 20px;
-    margin-left: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0px;
+  gap: 4px;
+
+  position: absolute;
+  width: 425.53px;
+  height: 105px;
+  left: 186px;
+  top: 68px;
 }
 
 .venue-info h1 {
-    font-size: 2.5em;
-    margin-bottom: 10px;
+  font-size: 2.5em;
+  margin-bottom: 10px;
 }
 
 .venue-info .venue-rating {
-    display: flex;
-    align-items: center;
-    margin-bottom: 10px;
-    gap: 5px;
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  gap: 5px;
 }
 
 .venue-info .venue-rating .rating {
-    font-size: 1.2em;
-    margin-right: 5px;
+  font-size: 25px; /* 폰트 크기 변경 */
+  margin-right: 5px;
+  color: #07C093;
+
+}
+
+.venue-info .venue-rating .star-icon {
+  width: 21.54px;
+ height: 25.3px;
+  margin-left: 3px;
 }
 
 .venue-info .venue-rating .reviews {
-    font-size: 1em;
-    color: gray;
+  font-size: 1em;
+  color: gray;
 }
 
 .venue-info .venue-rating .address {
-    font-size: 1em;
-    color: gray;
+  font-size: 1em;
+  color: gray;
 }
 
+
+
+/* venueimage 컴포넌트 설정 */
 .venue-images {
     margin-bottom: 20px;
     margin-left: 20px;
 }
 
 .venue-images .main-image img {
-    width: 40%;
-    height: auto;
-    border-radius: 10px;
-    margin-bottom: 20px;
-    padding-right:20px;
+
+  position: absolute;
+  width: 585px;
+  height: 397px;
+  left: 186px;
+  top: 213px;
+  
+  background: url(001사진.jpg);
+  border-radius: 25px 0px 0px 25px;
+  
 }
+.venue-images .sub-image .sub1 {
+  position: absolute;
+  width: 233px;
+  height: 189px;
+  left: 791px;
+  top: 215px;
+  
+}
+
+.venue-images .sub-image .sub2 {
+  position: absolute;
+  width: 233px;
+  height: 189px;
+  left: 1041px;
+  top: 213px;
+  border-radius: 0px 25px 0px 0px;
+}
+
+.venue-images .sub-image .sub3 {
+position: absolute;
+width: 233px;
+height: 189px;
+left: 791px;
+top: 421px; 
+}
+
+.venue-images .sub-image .sub4 {
+  position: absolute;
+  width: 233px;
+  height: 189px;
+  left: 1041px;
+  top: 421px;
+  border-radius: 0px 0px 25px 0px;
+  }
 
 .venue-content {
     display: flex;
@@ -72,6 +185,8 @@
     margin-right: 20px;
 }
 
+
+
 .venue-tabs {
     display: flex;
     margin-bottom: 20px;
@@ -79,6 +194,13 @@
     margin-left: 20px;
     border: 1px solid #dee1e6;
     border-radius: 20px;
+
+    position: absolute;
+    top: 678px;
+    left: 187px;
+    gap: 0px;
+    border: 1px 0px 0px 0px;
+    
 }
 
 .venue-tabs button {
@@ -99,15 +221,21 @@
     box-shadow: 5px 0 10px rgba(0, 0, 0, 0.15);
 }
 
+
+
+
+/* 제출 폼 컴포넌트 */
 .booking-form {
-    width: 100%;
-    max-width: 300px;
-    height:500px;
-    background-color: #ffffff;
-    padding: 20px;
-    border-radius: 30px;
-    text-align: center;
-    border: 1px solid #dee1e6;
+  box-sizing: border-box;
+  position: absolute;
+  width: 341px;
+  height: 489px;
+  left: calc(50% - 341px/2 + 384px);
+  top: 678px;
+
+background: #FFFFFF;
+border: 1px solid #E8E8E8;
+border-radius: 25px;
 }
 
 .booking-form .price-info {
@@ -118,54 +246,114 @@
 }
 
 .booking-form .price-value {
-    font-size: 2em;
-    font-weight: bold;
-    margin-right: 5px;
+  position: absolute;
+  width: 166px;
+  height: 31px;
+  left: 41px;
+  top: 33px;
+  
+  font-family: 'Pretendard';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 30px;
+  line-height: 30px;
+  /* or 100% */
+  display: flex;
+  align-items: center;
+  
+  color: #0F0F0F;
 }
 
 .booking-form .price-unit {
-    font-size: 1.2em;
-    color: gray;
+position: absolute;
+width: 38px;
+height: 23px;
+left: 192px;
+top: 41px;
+
+font-family: 'Pretendard';
+font-style: normal;
+font-weight: 400;
+font-size: 16px;
+line-height: 30px;
+/* or 188% */
+display: flex;
+align-items: center;
+
+color: #0F0F0F;
+
+
 }
 
-.booking-form .booking-options {
-    margin-bottom: 20px;
+
+.booking-options {
+  margin-bottom: 20px;
 }
 
-.booking-form .booking-option {
-    display: flex;
-    height: 40px;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px;
-    border: 1px solid #e0e0e0;
-    border-radius: 5px;
-    background-color: #ffffff;
-    margin-bottom: 0;
-    width: 80%;
-    margin: 0 auto;
+.booking-option {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+  border: 1px solid #B5B5B5;
+  height: 43px;
+  width:260px;
+  padding-left:20px;
+
 }
 
-.booking-form .booking-option + .booking-option {
-    border-top: none;
+.first-option {
+  border-top-left-radius: 25px;
+  border-top-right-radius: 25px;
+  position: absolute;
+  top: 90px;
+  left: 30px;
 }
 
-.booking-form .booking-option-label {
-    font-size: 15px;
-    color: #4f4f4f;
+.sec-option {
+
+  position: absolute;
+  top: 153px;
+  left: 30px;
 }
+
+.last-option {
+  border-bottom-left-radius: 25px;
+  border-bottom-right-radius: 25px;
+  position: absolute;
+  top: 217px;
+  left: 30px;
+  gap: 0px;
+}
+
+.booking-option img {
+  margin-right: 10px;
+}
+
+.booking-option-label {
+  flex-grow: 1;
+  font-size: 15px;
+  color: #4f4f4f;
+}
+
+
+
 
 .booking-form .booking-button {
-    width: 90%;
-    background-color: #09f1b9;
-    color: black;
-    padding: 15px 30px;
-    font-size: 15px;
-    border: none;
-    border-radius: 15px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    margin-bottom: 20px;
+  position: absolute;
+  width: 277px;
+  height: 42px;
+  left: 32px;
+  top: 305px;
+
+  background: #09F1B9;
+  border-radius: 14px;  
+  color: black;
+  font-size: 15px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+
 }
 
 .booking-form .booking-button:hover {
@@ -177,22 +365,138 @@
 }
 
 .booking-form .additional-info-row {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 10px;
-    border-top: 1px solid #e0e0e0;
-    padding-top: 10px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 0px;
+  gap: 100px;
+  
+  position: absolute;
+  width: 262px;
+  height: 28px;
+  left: 41px;
+  top: 371px; 
+}
+.booking-form .additional-info-row .feetext {
+
+  width: 79px;
+  height: 28px;
+  
+  font-family: 'Pretendard';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 17px;
+  line-height: 30px;
+  /* or 176% */
+  display: flex;
+  align-items: center;
+  
+  color: #4F4F4F;
+  
+  
+  /* Inside auto layout */
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+  
 }
 
-.booking-form .additional-info-row:first-child {
-    border-top: none;
-    padding-top: 0;
+.booking-form .additional-info-row .rental-fee{
+
+  width: 116px;
+  height: 28px;
+  
+  font-family: 'Pretendard';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 17px;
+  line-height: 30px;
+  /* or 176% */
+  display: flex;
+  align-items: center;
+  text-align: right;
+  
+  color: #4F4F4F;
+  
+  
+  /* Inside auto layout */
+  flex: none;
+  order: 1;
+  flex-grow: 0;
+  
+
 }
 
-.rental-fee, .total-fee {
-    color: #4f4f4f;
+.booking-form .additional-info-row2 {
+
+  /* Auto layout */
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 0px;
+  gap: 100px;
+  
+  position: absolute;
+  width: 265px;
+  height: 28px;
+  left: 40px;
+  top: 428px;
 }
 
+
+.booking-form .additional-info-row2 .total-fee{
+  /* ₩700,000 */
+
+width: 116px;
+height: 28px;
+
+font-family: 'Pretendard';
+font-style: normal;
+font-weight: 500;
+font-size: 17px;
+line-height: 30px;
+/* or 176% */
+display: flex;
+align-items: center;
+text-align: right;
+
+color: #4F4F4F;
+flex: none;
+order: 1;
+flex-grow: 0;
+}
+.booking-form .additional-info-row2 .totaltext {
+
+  width: 79px;
+  height: 28px;
+  
+  font-family: 'Pretendard';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 17px;
+  line-height: 30px;
+  /* or 176% */
+  display: flex;
+  align-items: center;
+  
+  color: #4F4F4F;
+  
+  
+  /* Inside auto layout */
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+  
+}
+
+.divider-line {
+  position: absolute;
+  width: 265px;
+  height: 0px;
+  left: 38px;
+  top: 405px;
+  border: 1.5px solid #E8E8E8;
+}
 
 
 
@@ -209,6 +513,14 @@
     background-color: transparent;
     /*border: 1px gray solid;
     border-radius:10px;*/
+    position:absolute;
+    width: 342px;
+    height: 53px;
+    top: 798px;
+    left: 209px;
+    gap: 0px;
+    opacity: 0px;
+
 }
 
 .facility-info {
