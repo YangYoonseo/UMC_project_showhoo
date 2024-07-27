@@ -23,14 +23,14 @@
     color: #878686;
 }
 
-.readySubmit_1 {
+.readySubmit_true {
     border-color: #07C093;
 }
 
-.readySubmit_1 > img {
+.readySubmit_true > img {
     filter: grayscale(0%);
 }
 
-.readySubmit_1 > p {
+.readySubmit_true > p {
     color:#07C093;
 }

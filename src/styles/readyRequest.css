@@ -6,7 +6,6 @@
 .Request_content {
     margin: 20px 0;
     width: 894px;
-    height: 900px;
 }
 
 .Request_content > h4 {
@@ -44,10 +43,11 @@
 }
 
 .Request_button {
+    padding-top: 100px;
     display: flex;
     align-items: center;
     justify-content:space-between;
-    margin: 20px;
+    margin: 20px 0;
     width: 894px;
     height: 100px;
 }

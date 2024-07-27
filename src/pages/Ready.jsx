@@ -11,7 +11,7 @@ const Ready = () => {
             <Footer />
             <ReadyMain />
         </div>
-    )
+    );
 };
 
 export default Ready;

@@ -23,6 +23,7 @@
 }
 
 .Frame128 img {
+  filter: grayscale(0%);
   width: 58.34px;
   height: 58px;
   background: #0f0f0f;

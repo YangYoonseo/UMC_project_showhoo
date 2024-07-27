@@ -3,6 +3,25 @@ import React, { useState } from "react";
 import Button from "../common/Button";
 
 const ReadyPoster = ({ preStep, nextStep }) => {
+    const [image, setImage] = useState(null);
+
+    const handleUploadClick = () => {
+      document.getElementById('file-input').click();
+    };
+  
+    const handleFileChange = (event) => {
+      const file = event.target.files[0];
+      if (file && (file.type === 'image/jpeg' || file.type === 'image/png')) {
+        const reader = new FileReader();
+        reader.onload = (e) => {
+          setImage(e.target.result);
+        };
+        reader.readAsDataURL(file);
+      } else {
+        alert('Only JPG, JPEG, and PNG files are allowed.');
+      }
+    };
+
     const [formData, setFormData] = useState({
         club: '',
         concertName: '',
@@ -26,7 +45,16 @@ const ReadyPoster = ({ preStep, nextStep }) => {
                     <h4>공연 포스터</h4>
                     <p>포스터 이미지는 표준 종이 규격 (A,B)에 최적화되어 있습니다.</p>
                     <p>사진 형식은 JPG,JPEG, PNG만 가능합니다.</p>
-                    <div className="Poster"></div>
+                    <div className="Poster">
+                        {!image && (
+                                <div className="upload-text">
+                                    <p>포스트를 추가하세요.</p>
+                                    <p><span className="upload-link" onClick={handleUploadClick}>기기에서 업로드</span></p>
+                                </div>
+                                )}
+                        {image && <img src={image} alt="Uploaded" />}
+                        <input type="file" id="file-input" accept=".jpg, .jpeg, .png" style={{ display: 'none' }} onChange={handleFileChange} />
+                    </div>
                 </div>
                 <div className="Poster_inf">
                     <h4>공연 정보</h4>

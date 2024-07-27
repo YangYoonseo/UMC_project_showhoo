@@ -1,6 +1,6 @@
 import "../../styles/readyDownload.css";
 
-const ReadyDownload = ({text, img, url}) => {
+const ReadyDownload = ({text, img, url , id}) => {
     const fileUrl = url; // 다운로드할 파일의 URL
     const fileName = 'file.pdf'
 
@@ -15,7 +15,7 @@ const ReadyDownload = ({text, img, url}) => {
 
     return (
         <div className="readyDownload" onDoubleClick={handleDoubleClick}>
-            <img src={img} alt="download" />
+            <img className={`img img_${id}`} src={img} alt="download" />
             <p>{text}</p>
         </div>
     )

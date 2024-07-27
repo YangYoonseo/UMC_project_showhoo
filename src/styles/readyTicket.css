@@ -5,7 +5,6 @@
 
 .Ticket_container {
     width: 894px;
-    height: 900px;
     display: flex;
     justify-content: space-between;
     gap: 30px;
@@ -210,6 +209,7 @@ h5 {
 }
 
 .Ticket_button {
+    padding-top: 100px;
     display: flex;
     align-items: center;
     justify-content:space-between;

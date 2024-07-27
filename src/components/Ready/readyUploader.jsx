@@ -1,9 +1,9 @@
 import "../../styles/readyUploader.css";
 import Button from "../common/Button";
 import React, { useState } from 'react';
-import axios from 'axios';
+/// import axios from 'axios';
 
-const ReadyUploader = ({ onClose, uploader }) => {
+const ReadyUploader = ({ onClose, uploadSuc, uploadFail }) => {
     const [selectedFile, setSelectedFile] = useState(null);
     const [fileName, setFileName] = useState('선택된 파일 없음');
 
@@ -13,27 +13,26 @@ const ReadyUploader = ({ onClose, uploader }) => {
         setFileName(file ? file.name : '선택된 파일 없음');
     };
 
-    const handleFileUpload = async () => {
+    const handleFileUpload = () => {
         if (!selectedFile) {
-            alert('업로드할 파일을 선택하세요.');
+            console.log('No file selected, calling uploadNonComplete and onClose');
+            uploadFail();
+            onClose();
             return;
         }
 
-        const formData = new FormData();
-        formData.append('file', selectedFile);
-
-        try {
-            const response = await axios.post('YOUR_BACKEND_URL_HERE', formData, {
-                headers: {
-                'Content-Type': 'multipart/form-data',
-                },
-            });
-            console.log('File uploaded successfully', response.data);
-            uploader();
+        const reader = new FileReader();
+        reader.onload = (e) => {
+            // 파일이 성공적으로 로드되었을 때 처리
+            console.log('File read successfully:', e.target.result);
+            uploadSuc();
             onClose();
-        } catch (error) {
-            console.error('Error uploading file', error);
-        }
+        };
+        reader.onerror = (e) => {
+            console.error('Error reading file', e);
+            alert('파일을 읽는 중에 오류가 발생했습니다.');
+        };
+        reader.readAsDataURL(selectedFile);
     };
 
   return (
