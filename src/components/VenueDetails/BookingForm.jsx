@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import './VenueDetails.css';
 import arrowbutton from "../../assets/images/venuedetailpage/oui_arrow-up.png";
 import peopleimg from "../../assets/images/venuedetailpage/ion_people-outline.png";
-import calenderimg from "../../assets/images/venuedetailpage/uil_calender.png";
+import calenderimg from "../../assets/images/venuedetailpage/uil_calender.svg";
 import plusimg from "../../assets/images/venuedetailpage/plus_button.png";
 
 const BookingForm = ({ rentalFee }) => {

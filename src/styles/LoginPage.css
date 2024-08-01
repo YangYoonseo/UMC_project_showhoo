@@ -1,0 +1,103 @@
+.login-page {
+    position: relative;
+    height: 816px;
+    width: 1441px;
+    left: 0px;
+    right: -1px;
+    top: 81px;
+    background: #FBFBFB;
+    border-radius: 36px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .login-box {
+    width: 551px;
+    height: 437px;
+    background: #0F0F0F;
+    border-radius: 25px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+  }
+  
+  .close-button {
+    position: absolute;
+    top: -20px;
+    right: -20px;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+  }
+  
+  .login-content {
+    text-align: center;
+  }
+  
+  .showhoo-text {
+    font-family: 'Lexend';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 40px;
+    line-height: 28px;
+    color: #09F1B9;
+    position: relative;
+    top: -25px;
+    padding-right:10px;
+  }
+  
+  .welcome-text {
+    font-family: 'Pretendard';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 40px;
+    line-height: 28px;
+    color: #FFFFFF;
+    position: relative;
+    top: -25px;
+  }
+  
+  .greeting-text {
+    position: absolute;
+    width: 185px;
+    height: 48px;
+    left: calc(50% - 185px/2 - 3px);
+    top: 116px;
+    font-family: 'Pretendard';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 40px;
+    line-height: 28px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: #FFFFFF;
+  }
+  
+  .kakao-login-button {
+    width: 359px;
+    height: 44px;
+    background: #FEE500;
+    border-radius: 14px;
+    cursor: pointer;
+    margin-top: 70px;
+  }
+  
+  .login-links {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    font-family: 'Pretendard';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 30px;
+    color: #E8E8E8; /* 글씨 색 변경 */
+    margin-top: 10px;
+    text-align: center;
+    position: relative;
+    top:50px;
+  }

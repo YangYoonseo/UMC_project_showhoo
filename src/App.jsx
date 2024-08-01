@@ -14,12 +14,6 @@ import Mypage from "./pages/Mypage";
 import RentalDetails from "./pages/RentalDetails";
 import RentalHistory from "./pages/RentalHistory";
 import VenueDetailPage from "./pages/VenueDetailPage";
-import Alarm from "./pages/Alarm";
-import MyActivity from "./pages/MyActivity.jsx";
-import ConcertReady from "./pages/ConcertReady.jsx";
-import BookingHistroy from "./pages/BookingHistory.jsx";
-import PerformerReady from "./pages/PerformerReady.jsx";
-import ConReady from "./pages/ConReady.jsx";
 
 const ex_profiles = [
   {

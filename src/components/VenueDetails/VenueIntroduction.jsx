@@ -5,19 +5,21 @@ const VenueIntroduction = ({ data }) => {
   return (
     <div className="venue-introduction">
       <h2>001 클럽에 대하여</h2>
-      <br></br>
+      <br />
       <p>{data.about}</p>
-      <br></br>
-      <p><span style={{ color: 'gray' ,marginRight: '10px' }}>면적</span> {data.area}</p>
-      <p><span style={{ color: 'gray' ,marginRight: '10px'}}>인원</span> {data.capacity}</p>
-      <p><span style={{ color: 'gray' ,marginRight: '10px'}}>대관시간</span> {data.rentalTime}</p>
-      <p><span style={{ color: 'gray' ,marginRight: '10px'}}>대관료</span> {data.rentalFee}</p>
-      <p><span style={{ color: 'gray',marginRight: '10px' }}>추가 서비스</span> {data.additionalServices}</p>
-      <br></br>
+      <br />
+      <p><span className="label">면적 </span> <span className="value">{data.area}</span></p>
+      <p><span className="label">인원 </span> <span className="value">{data.capacity}</span></p>
+      <p><span className="label">대관시간 </span> <span className="value">{data.rentalTime}</span></p>
+      <p><span className="label">대관료 </span> <span className="value">{data.rentalFee}</span></p>
+      <p><span className="label">추가 서비스 </span> <span className="value">{data.additionalServices}</span></p>
+      <br />
       <h2>위치</h2>
-      <p>{data.location}</p>
+      <p className="location">{data.location}</p>
+      <div className="map-image"></div>
     </div>
   );
 };
 
 export default VenueIntroduction;
+
