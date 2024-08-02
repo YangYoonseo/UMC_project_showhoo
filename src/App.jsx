@@ -14,6 +14,10 @@ import Mypage from "./pages/Mypage";
 import RentalDetails from "./pages/RentalDetails";
 import RentalHistory from "./pages/RentalHistory";
 import VenueDetailPage from "./pages/VenueDetailPage";
+import Navbar_Performer from "./components/common/Navbar_Performer";
+import Navbar_Performer_Host from "./components/common/Navbar_Performer_Host";
+import Footer from "./components/common/Footer";
+import LoginPage from "./pages/Loginpage";
 
 const ex_profiles = [
   {
