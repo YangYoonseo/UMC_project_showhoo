@@ -83,6 +83,7 @@
     display: flex;
     justify-content: center; 
     align-items: center; 
+    cursor: pointer;
 }
 
 .Circle > p {
@@ -107,6 +108,7 @@
 }
 
 .QCircle_1 {
+    box-sizing: border-box;
     color:#09F1B9;
     background-color:#0F0F0F;
     border: 2px solid #09F1B9;
@@ -121,6 +123,7 @@
 }
 
 .RCircle_2 {
+    box-sizing: border-box;
     color:#09F1B9;
     background-color:#0F0F0F;
     border: 2px solid #09F1B9;
@@ -135,6 +138,7 @@
 }
 
 .TCircle_3 {
+    box-sizing: border-box;
     color:#09F1B9;
     background-color:#0F0F0F;
     border: 2px solid #09F1B9;
@@ -149,6 +153,7 @@
 }
 
 .TCircle_4 {
+    box-sizing: border-box;
     color:#09F1B9;
     background-color:#0F0F0F;
     border: 2px solid #09F1B9;
@@ -162,12 +167,28 @@
     border-color:#09F1B9;
 }
 
-.CCircle_5 {
+.MCircle_5 {
+    box-sizing: border-box;
     color:#09F1B9;
     background-color:#0F0F0F;
     border: 2px solid #09F1B9;
 }
 
-.CCircle_5 > p {
+.MCircle_5 > p {
+    color:#09F1B9;
+}
+
+.MLine_5 {
+    border-color:#09F1B9;
+}
+
+.CCircle_6 {
+    box-sizing: border-box;
+    color:#09F1B9;
+    background-color:#0F0F0F;
+    border: 2px solid #09F1B9;
+}
+
+.CCircle_6 > p {
     color:#09F1B9;
 }

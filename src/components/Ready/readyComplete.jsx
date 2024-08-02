@@ -1,11 +1,11 @@
 import "../../styles/readyComplete.css";
 
 import { useNavigate } from "react-router-dom";
-import Star1 from "../../assets/img_Ready/Star1.png";
-import Star2 from "../../assets/img_Ready/Star2.png";
-import Logo from "../../assets/img_Ready/Logo.png";
-import background1 from "../../assets/img_Ready/background1.png";
-import background2 from "../../assets/img_Ready/background2.png";
+import Star1 from "../../assets/img_Ready/Star1.svg";
+import Star2 from "../../assets/img_Ready/Star2.svg";
+import Logo from "../../assets/img_Ready/Logo.svg";
+import background1 from "../../assets/img_Ready/background1.svg";
+import background2 from "../../assets/img_Ready/background2.svg";
 import Button from "../common/Button";
 
 const ReadyComplete = () => {

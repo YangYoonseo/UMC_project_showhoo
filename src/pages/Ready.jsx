@@ -9,7 +9,9 @@ const Ready = () => {
         <div className="Ready">
             <Navbar_Perforemr />
             <Footer />
-            <ReadyMain />
+            <div className="Container117">
+                <ReadyMain />
+            </div>
         </div>
     );
 };

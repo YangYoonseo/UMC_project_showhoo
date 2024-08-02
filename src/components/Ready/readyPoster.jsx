@@ -1,9 +1,21 @@
 import "../../styles/readyPoster.css";
 import React, { useState } from "react";
 import Button from "../common/Button";
+import EditableDiv from "./editableDiv";
 
-const ReadyPoster = ({ preStep, nextStep }) => {
+const ReadyPoster = ({ preStep, nextStep, check }) => {
     const [image, setImage] = useState(null);
+    // const [editorData, setEditorData] = useState('');
+
+    const [formData, setFormData] = useState([
+        {
+            club: '',
+            concertName: '',
+            date: '',
+            time: '',
+            runningTime: '',
+        }
+    ]);
 
     const handleUploadClick = () => {
       document.getElementById('file-input').click();
@@ -21,14 +33,6 @@ const ReadyPoster = ({ preStep, nextStep }) => {
         alert('Only JPG, JPEG, and PNG files are allowed.');
       }
     };
-
-    const [formData, setFormData] = useState({
-        club: '',
-        concertName: '',
-        date: '',
-        time: '',
-        runningTime: ''
-    });
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -62,29 +66,25 @@ const ReadyPoster = ({ preStep, nextStep }) => {
                     <input
                         className="inf_club" 
                         type="text" 
-                        value={formData.club} 
                         placeholder="001 클럽"
                         onChange={handleChange} 
                     />
                     <input 
                         className="inf_concertName"
                         type="text" 
-                        value={formData.concertName} 
                         placeholder="공연명" 
                         onChange={handleChange} 
                     />
                     <div className="inf_table">
                         <input 
                             className="inf_date"
-                            type="text" 
-                            value={formData.date} 
+                            type="text"  
                             placeholder="날짜" 
                             onChange={handleChange} 
                         />
                         <input 
                             className="inf_time"
                             type="text" 
-                            value={formData.time} 
                             placeholder="시간" 
                             onChange={handleChange} 
                         />
@@ -92,12 +92,19 @@ const ReadyPoster = ({ preStep, nextStep }) => {
                     <input 
                         className="inf_runningTime"
                         type="text" 
-                        value={formData.runningTime} 
                         placeholder="러닝 타임" 
                         onChange={handleChange} 
                     />                   
                 </div>
             </div>
+            <div className="Detail_Container">
+                <h4>공연 상세 내용</h4>
+                <p>공연/리허설 과정에서 발생한 내용을 메모하세요.</p>
+                <p>이미지는 드래그 앤 드롭으로 첨부 가능해요.</p>
+                <div className="editor">
+                    <EditableDiv />
+                </div>
+            </div>                
             <div className="Poster_button">
                 <Button text={"뒤로 가기"} type={"gray"} onClick={preStep} />
                 <Button text={"다음 단계"} type={"green"} onClick={nextStep} />

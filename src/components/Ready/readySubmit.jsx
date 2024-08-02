@@ -1,9 +1,9 @@
 import "../../styles/readySubmit.css";
 import { useState } from 'react';
-import submit from "../../assets/img_Ready/submit.png";
+import submit from "../../assets/img_Ready/submit.svg";
 import ReadyUploader from "./readyUploader";
 
-const ReadySubmit = ({ text }) => {
+const ReadySubmit = ({ text, id, onCheck }) => {
     const [showUploader, setShowUploader] = useState(false);
     const [complete, setComplete] = useState(false);
 
@@ -13,15 +13,14 @@ const ReadySubmit = ({ text }) => {
 
     const closeModal = () => {
         setShowUploader(false);
-        console.log('closeModal');
     };
 
     const uploadSuc = () => {
         setComplete(true);
+        onCheck(id);
     };
     const uploadFail = () => {
         setComplete(false);
-        console.log('nonFile');
     };
 
     return (

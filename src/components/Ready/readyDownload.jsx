@@ -1,6 +1,6 @@
 import "../../styles/readyDownload.css";
 
-const ReadyDownload = ({text, img, url , id}) => {
+const ReadyDownload = ({ text, img, url , id }) => {
     const fileUrl = url; // 다운로드할 파일의 URL
     const fileName = 'file.pdf'
 
