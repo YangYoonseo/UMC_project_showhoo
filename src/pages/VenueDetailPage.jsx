@@ -1,4 +1,4 @@
-// VenueDetailPage.jsx
+// VenueRegisterPage.jsx
 import React, { useState } from 'react';
 import VenueInfo from '../components/VenueDetails/VenueInfo';
 import VenueInfo2 from '../components/VenueDetails/VenueInfo2';

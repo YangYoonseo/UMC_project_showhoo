@@ -1,6 +1,10 @@
 import React, { useState } from "react";
 import VenueInfo from "../components/VenueDetails/VenueInfo";
 import VenueImages from "../components/VenueDetails/VenueImages";
+//사용안함!!!!!!!!!!
+import React, { useState } from 'react';
+import VenueInfo from '../components/VenueDetails/VenueInfo';
+import VenueImages from '../components/VenueDetails/VenueImages';
 // import VenueMap from '../components/VenueDetails/VenueMap';
 import BookingForm from "../components/VenueDetails/BookingForm";
 import VenueTabs from "../components/VenueDetails/VenueTabs";

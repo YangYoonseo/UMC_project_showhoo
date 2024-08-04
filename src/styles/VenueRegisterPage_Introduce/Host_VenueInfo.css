@@ -1,0 +1,43 @@
+/* venu-info 컴포넌트 설정 */
+
+  .venue-info h1 {
+    position: absolute;
+    width: 248px;
+    height: 68px;
+    left: 186px;
+    top: 68px;
+    
+    font-family: 'Pretendard';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 40px;
+    line-height: 68px;
+    
+    color: #0F0F0F;
+    
+    
+  }
+
+  .venue-info p{
+
+    position: absolute;
+    width: 240px;
+    height: 28px;
+    left: 186px;
+    top: 142.5px;
+    
+    font-family: 'Pretendard';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 22px;
+    /* or 108% */
+    display: flex;
+    align-items: center;
+    
+    color: #9C9C9C;
+    
+    
+    
+  }
+  

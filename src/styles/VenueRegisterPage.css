@@ -1,0 +1,149 @@
+.venue-register-page{
+
+    position: relative;
+    height: 2739px;
+    width: 1441px;
+    left: 0px;
+    right: 0px;
+    top: 81px;
+
+    background: #FBFBFB;
+    border-radius: 36px;
+
+}
+
+.venue-name{
+
+    position: absolute;
+    width: 248px;
+    height: 68px;
+    left: 186px;
+    top: 42px;
+    
+    font-family: 'Pretendard';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 40px;
+    line-height: 68px;
+    
+    color: #0F0F0F;
+}
+
+.name_edit_icon{
+
+    position: absolute;
+    width: 45px;
+    height: 45px;
+    left: 381px;
+    top: 79px;
+}
+
+.venue-location{
+
+    position: absolute;
+    width: 240px;
+    height: 28px;
+    left: 186px;
+    top: 130px;
+    
+    font-family: 'Pretendard';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 22px;
+    /* or 108% */
+    display: flex;
+    align-items: center;
+    
+    color: #9C9C9C;
+}
+
+.registerbtn{
+
+    position: absolute;
+    width: 145.16px;
+    height: 44.44px;
+    left: 1129.16px;
+    top: 83px;
+    
+    background: #09F1B9;
+    border-radius: 14px;
+    border: none;
+    font-size: 18px;/* 등록하기 */
+    font-family: 'Pretendard';
+    font-style: normal;
+
+    
+    
+
+}
+
+.imagepanel1{/* Frame 188 */
+
+    position: absolute;
+    width: 585px;
+    height: 397px;
+    left: 186px;
+    top: 213px;
+    
+    background: #E8E8E8;
+    border-radius: 25px 0px 0px 25px;
+}
+
+.imagepanel2{/* Frame 189 */
+
+    position: absolute;
+    width: 233px;
+    height: 189px;
+    left: 791px;
+    top: 215px;
+    
+    background: #E8E8E8;
+}
+
+.imagepanel3{/* Frame 190 */
+
+    position: absolute;
+    width: 233px;
+    height: 189px;
+    left: 791px;
+    top: 421px;
+    
+    background: #E8E8E8;
+}
+
+.imagepanel4{/* Frame 191 */
+
+    position: absolute;
+    width: 233px;
+    height: 189px;
+    left: 1041px;
+    top: 213px;
+    
+    background: #E8E8E8;
+    border-radius: 0px 25px 0px 0px;
+}
+
+.imagepanel5{/* Frame 192 */
+
+    position: absolute;
+    width: 233px;
+    height: 189px;
+    left: 1041px;
+    top: 421px;
+    
+    background: #E8E8E8;
+    border-radius: 0px 0px 25px 0px;  
+}
+
+.register_image_btn{/* Frame 32 */
+
+    position: absolute;
+    width: 108px;
+    height: 35px;
+    left: 1150px;
+    top: 555px;
+    
+
+    z-index: 2;
+}
