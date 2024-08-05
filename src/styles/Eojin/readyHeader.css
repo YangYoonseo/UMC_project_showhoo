@@ -1,0 +1,194 @@
+.ReadyHeader {
+    /* Container 113 */
+    position: absolute;
+    height: 491px;
+    left: 0px;
+    right: -1px;
+    top: 0px;
+    
+    background: #0F0F0F;
+    border-radius: 0px;
+}
+
+.ReadyHeader_Dday {
+    /* Frame 448 */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0px;
+
+    height: 96px;
+    margin-top: 20px
+}
+
+.ReadyHeader_Dday > h3 {
+    /* Product Title */
+    height: 68px;
+
+    font-family: 'Lexend';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 48px;
+    line-height: 68px;
+
+    display: flex;
+    align-items: center;
+    text-align: center;
+
+    color: #09F1B9;
+
+    flex: none;
+    order: 0;
+    align-self: stretch;
+    flex-grow: 0;
+    margin: 0 auto;
+}
+
+.ReadyHeader_Dday > p {
+    /* 2024-08-13 */
+    height: 28px;
+
+    font-family: 'Lexend';
+    font-style: normal;
+    font-weight: 300;
+    font-size: 16px;
+    line-height: 68px;
+
+    display: flex;
+    align-items: center;
+    text-align: center;
+
+    color: #09F1B9;
+    flex: none;
+    order: 1;
+    align-self: stretch;
+    flex-grow: 0;
+    margin: 2px auto;
+}
+
+.Level {
+    display: flex;
+    justify-content: center;
+    margin: 40px 0;
+}
+
+.Circle {
+    border-radius: 50%;
+    width: 117.83px;
+    height: 114.56px;
+    background-color: #E8E8E8;
+    color: #0F0F0F;
+    text-align: center;
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+    cursor: pointer;
+}
+
+.Circle > p {
+    width: 117.83px;
+    height: 114.56px;
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+    font-family: 'Pretendard';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14.8894px;
+    text-align: center;
+    color: #0F0F0F;
+}
+
+.Line {
+    border: 1.5px solid #E8E8E8;
+    width: 36px;
+    height: 0px;
+    margin: auto 10px;
+}
+
+.QCircle_1 {
+    box-sizing: border-box;
+    color:#09F1B9;
+    background-color:#0F0F0F;
+    border: 2px solid #09F1B9;
+}
+
+.QCircle_1 > p {
+    color:#09F1B9;
+}
+
+.QLine_1 {
+    border-color:#09F1B9;
+}
+
+.RCircle_2 {
+    box-sizing: border-box;
+    color:#09F1B9;
+    background-color:#0F0F0F;
+    border: 2px solid #09F1B9;
+}
+
+.RCircle_2 > p {
+    color:#09F1B9;
+}
+
+.RLine_2 {
+    border-color:#09F1B9;
+}
+
+.TCircle_3 {
+    box-sizing: border-box;
+    color:#09F1B9;
+    background-color:#0F0F0F;
+    border: 2px solid #09F1B9;
+}
+
+.TCircle_3 > p {
+    color:#09F1B9;
+}
+
+.TLine_3 {
+    border-color:#09F1B9;
+}
+
+.TCircle_4 {
+    box-sizing: border-box;
+    color:#09F1B9;
+    background-color:#0F0F0F;
+    border: 2px solid #09F1B9;
+}
+
+.TCircle_4 > p {
+    color:#09F1B9;
+}
+
+.TLine_4 {
+    border-color:#09F1B9;
+}
+
+.MCircle_5 {
+    box-sizing: border-box;
+    color:#09F1B9;
+    background-color:#0F0F0F;
+    border: 2px solid #09F1B9;
+}
+
+.MCircle_5 > p {
+    color:#09F1B9;
+}
+
+.MLine_5 {
+    border-color:#09F1B9;
+}
+
+.CCircle_6 {
+    box-sizing: border-box;
+    color:#09F1B9;
+    background-color:#0F0F0F;
+    border: 2px solid #09F1B9;
+}
+
+.CCircle_6 > p {
+    color:#09F1B9;
+}

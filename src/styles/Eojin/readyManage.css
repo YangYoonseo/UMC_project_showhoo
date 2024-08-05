@@ -1,0 +1,63 @@
+.readyManage {
+    width: 894px;
+    margin: 120px 273px;
+}
+
+h4 {
+    margin: 15px 0;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 30px;
+}
+
+p {
+    margin: 5px 0;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 15px;
+    align-items: center;
+    color: #F01569;
+}
+
+.Reservation_table {
+    margin: 40px 0;
+    background: #FFFFFF;
+    border: 1px solid #B5B5B5;
+    border-radius: 18px;
+    width: 995px;
+    height: 422px;
+}
+
+.table_bar {
+    display: flex;
+    height: 44px;
+    border-bottom: 6px solid #E8E8E8;
+}
+
+.table_bar > p {
+    margin: 0;
+    width: 136px;
+    height: 44px;
+    line-height: 44px;
+    text-align: center;
+    align-items: center;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 17px;
+    color: #363636;
+    cursor: pointer;
+}
+
+.table_bar > .active {
+    border-bottom: 6px solid #09F1B9; 
+}
+
+.Ticket_button {
+    padding-top: 100px;
+    display: flex;
+    align-items: center;
+    justify-content:space-between;
+    margin: 20px;
+    width: 894px;
+    height: 100px;
+}

@@ -1,0 +1,27 @@
+.Ready_container {
+    position: absolute;
+    top: 0px;
+    width: 1440px;
+    left: 0px;
+    right: 0px;
+  }
+  
+  .Ready_header {
+    position: absolute;
+    top: 0px;
+    width: 1440px;
+    height: 319px;
+    left: 0px;
+    right: 0px;
+  }
+  
+  .Ready_content {
+    position: absolute;
+    width: 1440px;
+    left: 0px;
+    right: 0px;
+    top: 319px;
+  
+    background: #FBFBFB;
+    border-radius: 36px;
+  }

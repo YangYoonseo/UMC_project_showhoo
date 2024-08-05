@@ -1,0 +1,54 @@
+.readyDownload {
+    box-sizing: border-box;
+    width: 264px;
+    height: 196px;
+    background: #FFFFFF;
+    border: 1.5px solid #E8E8E8;
+    border-radius: 14px;
+}
+
+.img {
+    margin: 40px auto;
+    display: flex;
+    justify-content: center;
+    filter: grayscale(100%);
+}
+
+.img_setList {
+    width: 83px;
+    height: 56px;
+}
+
+.img_rentalTime {
+    width: 84px;
+    height: 84px;
+    margin-bottom: 15px;
+    margin-top: 35px;
+}
+
+.img_plus {
+    width: 84px;
+    height: 84px;
+    margin-bottom: 15px;
+    margin-top: 35px;
+}
+
+.readyDownload > p {
+    margin: 20px auto;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    color: #878686;
+}
+
+.readyDownload:hover {
+    border-color: #07C093;
+}
+
+.readyDownload:hover > img {
+    filter: grayscale(0%);
+}
+
+.readyDownload:hover > p {
+    color:#07C093;
+}

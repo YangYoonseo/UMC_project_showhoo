@@ -22,7 +22,6 @@ const PerformerRegistration = () => {
             <PerformerProfile
               key={index}
               profile={profile}
-              setProfiles={setProfiles}
               className={`profile-card profile-${index + 1}`}
             />
           ))}

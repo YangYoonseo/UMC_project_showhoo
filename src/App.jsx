@@ -18,6 +18,7 @@ import Alarm from "./pages/Alarm";
 import MyActivity from "./pages/MyActivity.jsx";
 import ConcertReady from "./pages/ConcertReady.jsx";
 import BookingHistroy from "./pages/BookingHistory.jsx";
+import Ready from "./pages/Ready";
 
 const ex_profiles = [
   {

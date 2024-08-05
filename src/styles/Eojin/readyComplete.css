@@ -1,0 +1,88 @@
+.readyComplete {
+    width: 894px;
+    margin: 0 273px;
+}
+
+.Complete_img {
+    position: static;
+    height: 550px;
+}
+
+.Complete_img > img {
+    position: relative;
+    filter: grayscale(0%);
+}
+
+.background2 {
+    display: flex;
+    margin: 0 auto;
+    width: 493px;
+    height: 458px;
+}
+
+.background1 {
+    display: flex;
+    top: -36.5px;
+    margin: 0 auto;
+    width: 493px;
+    height: 73px;
+}
+
+.Logo {
+    display: flex;
+    top: -300px;
+    margin: 0 auto;
+    width: 253.28px;
+    height: 251.8px;
+}
+
+.Star1 {
+    display: flex;
+    top: -560px;
+    left: 300px;
+    margin: 0;
+    width: 38px;
+    height: 63px;
+}
+
+.Star2 {
+    display: flex;
+    top: -480px;
+    left: 550px;
+    margin: 0;
+    width: 38px;
+    height: 63px;
+}
+
+.Complete_text {
+    margin: 0 auto;
+    text-align: center;
+}
+
+.Complete_text > h4 {
+    margin: 0;
+    font-family: 'Pretendard';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 40px;
+    align-items: center;
+    text-align: center;
+    color: #0F0F0F;
+}
+
+.Complete_text > p {
+    margin: 10px auto;
+    font-family: 'Pretendard';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 25px;
+    align-items: center;
+    text-align: center;
+    color: #0F0F0F;
+}
+
+.Complete_button {
+    margin: 50px auto;
+    display: flex;
+    justify-content: center;
+}
