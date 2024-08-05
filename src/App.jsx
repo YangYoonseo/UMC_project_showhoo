@@ -144,7 +144,7 @@ export const VenueContext = createContext();
 export const PamphletContext = createContext();
 
 function App() {
-  // 공연장은 useState, 프로필은 useReducer로 했음
+  // 공연장, 관람자는 useState, 프로필은 useReducer로 했음
   const [venues, setVenues] = useState(ex_venues);
   const [profiles, dispatch] = useReducer(reducer, ex_profiles);
   const [pamphlets, setPamphlets] = useState(ex_pamphlets);
