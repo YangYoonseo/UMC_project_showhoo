@@ -1,4 +1,4 @@
-import "../../styles/readyHeader.css"
+import "../../styles/Eojin/readyHeader.css"
 
 const ReadyHeader = ({ step, onClick }) => {
     return (

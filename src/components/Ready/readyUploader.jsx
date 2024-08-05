@@ -1,4 +1,4 @@
-import "../../styles/readyUploader.css";
+import "../../styles/Eojin/readyUploader.css";
 import Button from "../common/Button";
 import React, { useState } from 'react';
 /// import axios from 'axios';

@@ -1,4 +1,4 @@
-import "../../styles/readyQsheet.css";
+import "../../styles/Eojin/readyQsheet.css";
 import { useState } from "react";
 import Button from "../common/Button";
 import ReadySubmit from "./readySubmit";

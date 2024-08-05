@@ -1,4 +1,4 @@
-import "../../styles/readyComplete.css";
+import "../../styles/Eojin/readyComplete.css";
 
 import { useNavigate } from "react-router-dom";
 import Star1 from "../../assets/img_Ready/Star1.svg";

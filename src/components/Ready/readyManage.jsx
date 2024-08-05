@@ -1,4 +1,4 @@
-import "../../styles/readyManage.css";
+import "../../styles/Eojin/readyManage.css";
 import { useState } from "react";
 import Button from "../common/Button";
 import ReservationTicket from "./manage/reservationTicket";

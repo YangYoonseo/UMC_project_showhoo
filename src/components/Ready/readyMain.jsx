@@ -1,4 +1,4 @@
-import "../../styles/readyMain.css";
+import "../../styles/Eojin/readyMain.css";
 import React, { useState, useEffect } from 'react';
 
 import ReadyHeader from "./readyHeader";

@@ -1,7 +1,7 @@
-import "../../styles/readyPoster.css";
+import "../../styles/Eojin/readyPoster.css";
 import React, { useState } from "react";
 import Button from "../common/Button";
-import EditableDiv from "./editableDiv";
+import Editor from "./Editor/Editor";
 
 const ReadyPoster = ({ preStep, nextStep, check }) => {
     const [image, setImage] = useState(null);
@@ -102,7 +102,7 @@ const ReadyPoster = ({ preStep, nextStep, check }) => {
                 <p>공연/리허설 과정에서 발생한 내용을 메모하세요.</p>
                 <p>이미지는 드래그 앤 드롭으로 첨부 가능해요.</p>
                 <div className="editor">
-                    <EditableDiv />
+                    <Editor />
                 </div>
             </div>                
             <div className="Poster_button">

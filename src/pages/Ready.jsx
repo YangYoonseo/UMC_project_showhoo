@@ -1,4 +1,4 @@
-import "../styles/Ready.css";
+import "../styles/Eojin/Ready.css";
 
 import Navbar_Perforemr from "../components/common/Navbar_Performer";
 import Footer from "../components/common/Footer";

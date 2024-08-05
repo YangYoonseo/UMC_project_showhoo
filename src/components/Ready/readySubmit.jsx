@@ -1,4 +1,4 @@
-import "../../styles/readySubmit.css";
+import "../../styles/Eojin/readySubmit.css";
 import { useState } from 'react';
 import submit from "../../assets/img_Ready/submit.svg";
 import ReadyUploader from "./readyUploader";

@@ -1,4 +1,4 @@
-import "../../styles/readyDownload.css";
+import "../../styles/Eojin/readyDownload.css";
 
 const ReadyDownload = ({ text, img, url , id }) => {
     const fileUrl = url; // 다운로드할 파일의 URL
