@@ -1,0 +1,268 @@
+.PerformerCalendar {
+  /* Container 173 */
+
+  position: absolute;
+  width: 879px;
+  height: 282px;
+  left: calc(50% - 879px / 2 - 0.5px);
+  top: 1173px;
+
+  background: #ffffff;
+  border: 1px solid #e8e8e8;
+  border-radius: 25px;
+}
+
+.PerformerCalendar .profile_img {
+  /* Rectangle 12 */
+
+  position: absolute;
+  width: 276px;
+  height: 260px;
+  left: 11px;
+  top: 11px;
+
+  border-radius: 14px;
+}
+
+.PerformerCalendar .status {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 11px 26px;
+  gap: 10px;
+
+  position: absolute;
+  width: 116px;
+  height: 48px;
+  left: 7px;
+  top: 54px;
+
+  padding: 0;
+  padding-right: 34px;
+  margin: 0;
+
+  font-family: "Pretendard";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 15px;
+  line-height: 49px;
+  /* identical to box height, or 325% */
+
+  text-align: center;
+}
+
+.PerformerCalendar .status_application {
+  /* 대관신청 */
+
+  background: #09f1b9;
+  border-radius: 0px 15px 15px 0px;
+
+  color: #0f0f0f;
+}
+
+.PerformerCalendar .status_completed {
+  /* Rectangle 22 */
+
+  background: #0f0f0f;
+  border: 1px solid #09f1b9;
+  border-radius: 0px 15px 15px 0px;
+
+  /* 대관완료 */
+
+  color: #09f1b9;
+
+  border: 1px solid #09f1b9;
+}
+
+.PerformerCalendar .status_show {
+  /* Rectangle 22 */
+
+  background: #ebebeb;
+  border-radius: 0px 15px 15px 0px;
+
+  /* 공연 완료 */
+
+  color: #0f0f0f;
+}
+
+.PerformerCalendar .performerCalendar_div {
+  /* Frame 506 */
+
+  /* Auto layout */
+  padding: 0px;
+
+  position: absolute;
+  width: 519px;
+  height: 152px;
+  left: 324px;
+  top: 0;
+}
+
+.performerCalendar_div h3 {
+  /* 고스락 23기 */
+
+  position: absolute;
+  top: 39px;
+  left: 0;
+
+  width: 289.21px;
+  height: 38px;
+  margin: 0;
+
+  font-family: "Pretendard";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 30px;
+  line-height: 49px;
+  /* or 162% */
+  display: flex;
+  align-items: center;
+
+  color: #0f0f0f;
+}
+
+.performerCalendar_div .school_p {
+  /* 홍익대학교 소속 */
+
+  position: absolute;
+  top: 83px;
+  left: 0;
+  margin: 0;
+
+  width: 519px;
+  height: 28px;
+
+  font-family: "Pretendard";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 49px;
+  /* or 244% */
+  display: flex;
+  align-items: center;
+
+  color: #4f4f4f;
+}
+
+.performerCalendar_div .people {
+  /* Frame 97 */
+
+  position: absolute;
+  top: 133px;
+  left: 0px;
+  width: 231.5px;
+  height: 51px;
+
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.performerCalendar_div .people p {
+  /* 예상 관람객 80 ~ 100명 */
+
+  width: 189px;
+  height: 51px;
+  margin: 0;
+
+  font-family: "Pretendard";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 19.497px;
+  line-height: 49px;
+  /* or 250% */
+  display: flex;
+  align-items: center;
+
+  color: #4f4f4f;
+}
+
+.performerCalendar_div .service {
+  position: absolute;
+  top: 133px;
+  left: 251.49px;
+  width: 231.5px;
+  height: 51px;
+  display: flex;
+
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.performerCalendar_div .service p {
+  /* 추가서비스 택 4 */
+
+  width: 135px;
+  height: 50px;
+  margin: 0;
+
+  font-family: "Pretendard";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 19.497px;
+  line-height: 49px;
+  /* or 250% */
+  display: flex;
+  align-items: center;
+
+  color: #4f4f4f;
+}
+
+.PerformerCalendar .line {
+  /* Line 40 */
+
+  width: 519px;
+  height: 0px;
+
+  position: absolute;
+  top: 191px;
+  left: 0;
+
+  border: 1.5px solid #e8e8e8;
+
+  /* Inside auto layout */
+  flex: none;
+  order: 1;
+  align-self: stretch;
+  flex-grow: 0;
+}
+
+.performerCalendar_button {
+  /* Frame 103 */
+
+  /* Auto layout */
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 0px;
+  gap: 13px;
+
+  position: absolute;
+  width: 173px;
+  height: 42px;
+  left: 670px;
+  top: 213px;
+}
+
+.performerCalendar_button .Button_gray,
+.performerCalendar_button .Button_green,
+.performerCalendar_button .Button_black {
+  /* Frame 31 */
+
+  /* width: 80px;
+  height: 42px; */
+
+  /* 거절 */
+
+  font-family: "Pretendard";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 30px;
+  /* or 188% */
+
+  text-align: center;
+  text-overflow: ellipsis;
+}

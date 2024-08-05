@@ -1,0 +1,164 @@
+.ReadyCalendar .react-calendar {
+  /* 달력 */
+
+  box-sizing: border-box;
+
+  position: absolute;
+  width: 975px;
+  height: 905px;
+  left: 233px;
+  top: 202px;
+
+  background: #ffffff;
+  border: 1px solid #b5b5b5;
+  border-radius: 25px;
+}
+
+.ReadyCalendar .react-calendar__navigation {
+  /* Frame 405 */
+
+  /* Auto layout */
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 0px;
+  margin: 0;
+
+  position: absolute;
+  width: 803.24px;
+  height: 39.32px;
+  left: 86px;
+  top: 51px;
+}
+
+.ReadyCalendar .react-calendar__navigation__label__labelText {
+  /* 2024년 8월 */
+
+  width: 163.59px;
+  height: 39.32px;
+
+  font-family: "Pretendard";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 28px;
+  line-height: 30px;
+  /* or 107% */
+
+  color: #0f0f0f;
+}
+
+.ReadyCalendar .react-calendar__navigation__arrow {
+  /* oui:arrow-up */
+  padding: 0;
+  font-size: 40px;
+}
+
+.ReadyCalendar .react-calendar__viewContainer {
+  position: absolute;
+  width: 975px;
+  height: 750px;
+  left: 0px;
+  top: 146px;
+
+  font-size: 16px;
+}
+
+.ReadyCalendar .react-calendar__month-view__weekdays {
+  /* 일월화수목금토 */
+
+  position: absolute;
+  width: 975px;
+  height: 50px;
+  left: 0px;
+  top: 0px;
+  font-size: 18px;
+
+  border-bottom: 1.19px solid #b5b5b5;
+}
+
+.react-calendar__month-view__weekdays abbr {
+  text-decoration: none;
+}
+
+.ReadyCalendar .react-calendar__month-view__days {
+  position: absolute;
+  left: 0px;
+  top: 50px;
+}
+
+.ReadyCalendar .react-calendar__tile {
+  /* 각 날짜 타일 */
+  justify-content: center;
+  position: relative;
+  height: 140px; /* 날짜 타일의 높이 */
+  width: 100px; /* 날짜 타일의 너비 */
+  padding: 0;
+}
+
+.ReadyCalendar .react-calendar__month-view__days__day {
+  padding-bottom: 80px;
+  font-size: 18px;
+}
+
+.ReadyCalendar .react-calendar__tile .event {
+  /* 각 이벤트 스타일 */
+
+  display: block;
+  position: absolute;
+  width: 129px;
+  height: 28px;
+  line-height: 28px;
+  top: 50px; /* 하단에 위치 */
+  left: 50%; /* 중앙에 위치 */
+  transform: translateX(-50%); /* 중앙 정렬 */
+  border-radius: 5px;
+  font-size: 15px;
+  z-index: 1;
+  text-align: center;
+
+  white-space: nowrap; /* 텍스트 줄 바꿈 방지 */
+}
+
+.ReadyCalendar .react-calendar__tile .event_application {
+  /* 대관 신청 */
+  color: #0f0f0f;
+  background: #09f1b9;
+}
+
+.ReadyCalendar .react-calendar__tile .event_show {
+  /* 공연 완료 */
+  background-color: #e8e8e8;
+  color: #0f0f0f;
+}
+
+.ReadyCalendar .react-calendar__tile .event_completed {
+  /* 대관 완료 */
+
+  background-color: #0f0f0f;
+  color: #09f1b9;
+}
+
+.ReadyCalendar .react-calendar__tile--now {
+  /* 오늘 날짜 타일 */
+  background: none;
+  color: #000;
+}
+
+.ReadyCalendar .PerformerCalendar_calendar {
+  /* Container 173 */
+
+  position: absolute;
+  width: 879px;
+  height: 282px;
+  left: calc(50% - 879px / 2 - 0.5px);
+  top: 1173px;
+
+  background: #ffffff;
+  border: 1px solid #e8e8e8;
+  border-radius: 25px;
+}
+
+.ReadyCalendar .PerformerCalendar_calendar:hover {
+  border: 2px solid #07c093;
+}

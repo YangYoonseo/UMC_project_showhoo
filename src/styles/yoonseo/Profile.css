@@ -21,7 +21,7 @@
   /* 새 프로필 */
 
   position: absolute;
-  width: 219px;
+  width: 521px;
   height: 48px;
   left: 330px;
   top: 100px;
@@ -31,7 +31,7 @@
   font-style: normal;
   font-weight: 500;
   font-size: 26px;
-  line-height: 36px;
+
   /* or 138% */
   display: flex;
   align-items: center;
@@ -139,7 +139,11 @@
   margin: 0;
 }
 
-.add_img1 p:last-child {
+.add_img1 input {
+  display: none;
+}
+
+.add_img1 .upload_button {
   /* 기기에서 업로드 */
 
   position: absolute;
@@ -220,100 +224,16 @@
   top: 109px;
 }
 
-.Container117_update h4 {
-  /* 공연자 */
-
-  position: absolute;
-  width: 219px;
-  height: 38px;
-  left: 330px;
-  top: 1166px;
-
-  font-family: "Pretendard";
-  font-style: normal;
-  font-weight: 500;
-  font-size: 26px;
-  line-height: 36px;
-  /* or 138% */
-  display: flex;
-  align-items: center;
-
-  color: #000000;
-}
-
-.add_person {
-  /* Frame 283 */
-
-  box-sizing: border-box;
-
-  position: absolute;
-  width: 170.84px;
-  height: 126.27px;
-  left: 330px;
-  top: 1260px;
-
-  background: #ffffff;
-  border: 1.5px solid #e8e8e8;
-  border-radius: 14px;
-}
-
-.add_person p {
-  /* 멤버를 추가하세요 */
-
-  margin: 0;
-
-  position: absolute;
-  width: 132.48px;
-  height: 23.07px;
-  left: 19.53px;
-  top: 42.51px;
-
-  font-family: "Pretendard";
-  font-style: normal;
-  font-weight: 500;
-  font-size: 12.8515px;
-  line-height: 22px;
-  /* or 174% */
-
-  text-align: center;
-
-  color: #0f0f0f;
-}
-
-.add_person img {
-  /* Frame 21 */
-
-  position: absolute;
-  width: 22.02px;
-  height: 22.02px;
-  left: 72.21px;
-  top: 67.67px;
-}
-
-.Container117_update button {
+.Container117_update .Button {
   /* Frame 31 */
 
   position: absolute;
   width: 167px;
   height: 51.12px;
   left: 926px;
-  top: 1607px;
+  top: 1186px;
 
-  background: #09f1b9;
-  border-radius: 14px;
-
-  border: none;
-
-  /* 완료 */
-
-  font-family: "Pretendard";
-  font-style: normal;
-  font-weight: 500;
   font-size: 18px;
   line-height: 26px;
   /* identical to box height, or 142% */
-
-  text-align: center;
-
-  color: #0f0f0f;
 }

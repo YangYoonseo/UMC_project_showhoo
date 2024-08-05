@@ -1,0 +1,33 @@
+.Favorite {
+  position: absolute;
+  top: 257px;
+  left: 248px;
+  width: 836px;
+  height: 10000px;
+}
+
+.Favorite .greenbar {
+  /* Rectangle 19 */
+
+  position: absolute;
+  width: 136.27px;
+  height: 4.01px;
+  left: 125px;
+  top: 0;
+
+  background: #09f1b9;
+  border-radius: 7.01393px;
+}
+
+.Favorite .graybar {
+  /* Rectangle 16 */
+
+  position: absolute;
+  width: 835.66px;
+  height: 6.01px;
+  left: 0;
+  top: 0;
+
+  background: #e8e8e8;
+  border-radius: 7.01393px;
+}

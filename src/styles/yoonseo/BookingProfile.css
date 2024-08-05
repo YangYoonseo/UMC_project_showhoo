@@ -1,0 +1,310 @@
+.pamphlet {
+  /* 공연 예매 내역 */
+
+  position: absolute;
+  width: 960px;
+  height: 347px;
+  left: 0px;
+  padding: 8px;
+}
+
+.pamphlet_ticket {
+  /* 공연 예매 티켓 */
+
+  position: absolute;
+  width: 871px;
+  height: 303px;
+  left: 0px;
+  top: 0;
+}
+
+.pamphlet_ticket_show {
+  position: absolute;
+  width: 630px;
+  height: 303px;
+  left: 0px;
+  top: 0;
+}
+
+.pamphlet-1 {
+  top: 17px;
+}
+
+.pamphlet-2 {
+  top: 364px;
+}
+
+.pamphlet-3 {
+  top: 711px;
+}
+
+.pamphlet .pamphlet_image {
+  /* Rectangle 12 */
+
+  position: absolute;
+  width: 214px;
+  height: 260px;
+  left: 7px;
+  top: 11px;
+
+  border-radius: 14px;
+}
+
+.pamphlet .status {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 11px 26px;
+  gap: 10px;
+
+  position: absolute;
+  width: 80px;
+  height: 48px;
+  left: 7px;
+  top: 35px;
+
+  padding: 0;
+  padding-right: 34px;
+  margin: 0;
+
+  font-family: "Pretendard";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 15px;
+  line-height: 49px;
+  /* identical to box height, or 325% */
+
+  text-align: center;
+}
+
+.pamphlet .status_schedule {
+  /* 대관신청 */
+
+  background: #09f1b9;
+  border-radius: 0px 15px 15px 0px;
+
+  color: #0f0f0f;
+}
+
+/* 수정 필요 */
+.pamphlet .status_completed {
+  /* Rectangle 22 */
+
+  background: #0f0f0f;
+  border: 1px solid #09f1b9;
+  border-radius: 0px 15px 15px 0px;
+
+  /* 대관완료 */
+
+  color: #09f1b9;
+
+  border: 1px solid #09f1b9;
+}
+
+/* 수정 필요 */
+.pamphlet .status_show {
+  /* Rectangle 22 */
+
+  background: #ebebeb;
+  border-radius: 0px 15px 15px 0px;
+
+  /* 공연 완료 */
+
+  color: #0f0f0f;
+}
+
+.pamphlet_div {
+  /* Frame 181 */
+
+  /* Auto layout */
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0px;
+  gap: 32px;
+
+  position: absolute;
+  width: 323.01px;
+  height: 250px;
+  left: 256px;
+  top: 23px;
+  padding-right: 41px;
+}
+
+.pamphlet_id {
+  /* Frame 173 */
+
+  /* Auto layout */
+
+  width: 323px;
+  height: 56px;
+  margin: 0;
+
+  /* ID 58908502582 */
+
+  font-family: "Pretendard";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 49px;
+  /* identical to box height, or 244% */
+  display: flex;
+  align-items: center;
+
+  color: #0f0f0f;
+
+  border-bottom: 2px solid #cfcfcf;
+}
+
+.pamphlet_title {
+  /* 2024 PS 여름 정기공연 */
+
+  width: 323.01px;
+  height: 37px;
+  margin: 0;
+
+  font-family: "Pretendard";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 29px;
+  line-height: 30px;
+  /* or 103% */
+  display: flex;
+  align-items: center;
+
+  color: #0f0f0f;
+}
+
+.pamphlet_div1,
+.pamphlet_div2 {
+  display: flex;
+  gap: 0;
+}
+
+.pamphlet_div1 p,
+.pamphlet_div2 p {
+  border-top: 1px solid #cfcfcf;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.pamphlet_location {
+  /* 연세대학교 PS */
+
+  width: 151.5px;
+  height: 27px;
+  margin: 0;
+
+  font-family: "Pretendard";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 19px;
+  line-height: 49px;
+  /* or 257% */
+  display: flex;
+  align-items: center;
+
+  color: #4f4f4f;
+  border-right: 1px solid #cfcfcf;
+}
+
+.pamphlet_date {
+  /* 2024-08-23 */
+
+  width: 161.5px;
+  height: 27px;
+  margin: 0;
+
+  font-family: "Pretendard";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 19px;
+  line-height: 24px;
+  /* or 127% */
+  display: flex;
+  align-items: center;
+
+  color: #4f4f4f;
+  padding-left: 10px;
+}
+
+.pamphlet_club {
+  /* clubAOR */
+
+  width: 151.5px;
+  height: 27px;
+  margin: 0;
+
+  font-family: "Pretendard";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 19px;
+  line-height: 49px;
+  /* or 257% */
+  display: flex;
+  align-items: center;
+
+  color: #4f4f4f;
+  border-right: 1px solid #cfcfcf;
+}
+
+.pamphlet_time {
+  /* 19:00 */
+
+  width: 161.5px;
+  height: 27px;
+  margin: 0;
+  padding-left: 10px;
+
+  font-family: "Pretendard";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 19px;
+  line-height: 24px;
+  /* or 127% */
+  display: flex;
+  align-items: center;
+
+  color: #4f4f4f;
+}
+
+.pamphlet_status_schedule,
+.pamphlet_status_completed {
+  border-right: 1px dashed #4f4f4f;
+}
+
+.pamphlet_button {
+  /* Frame 76 */
+
+  /* Auto layout */
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 26px 0px;
+  gap: 23px;
+
+  position: absolute;
+  width: 166px;
+  height: 159px;
+  left: 665px;
+  top: 60px;
+}
+
+.pamphlet_button .Button {
+  /* 더 보기 */
+
+  box-sizing: border-box;
+
+  width: 166px;
+  height: 42px;
+
+  /* 더 보기 */
+
+  font-family: "Pretendard";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 30px;
+  /* or 214% */
+}

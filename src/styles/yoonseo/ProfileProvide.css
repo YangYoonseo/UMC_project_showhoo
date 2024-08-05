@@ -1,0 +1,301 @@
+.ProfileProvide h4 {
+  /* Product title */
+
+  position: absolute;
+  width: 467px;
+  height: 48px;
+  left: 221px;
+  top: 716px;
+  margin: 0;
+
+  font-family: "Pretendard";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 28px;
+  line-height: 68px;
+  /* or 243% */
+  display: flex;
+  align-items: center;
+
+  color: #171a1f;
+}
+
+.profile-detail,
+.addProfiles {
+  box-sizing: border-box;
+
+  position: absolute;
+  width: 445px;
+  height: 165px;
+
+  background: #ffffff;
+  border-radius: 12.66px;
+  border: 1px solid #e8e8e8;
+}
+
+.profile-detail1,
+.ProfileProvide .addProfiles4 {
+  /* Container 142 */
+  top: 790px;
+  left: 221px;
+}
+
+.profile-detail2,
+.ProfileProvide .addProfiles3 {
+  /* Container 146 */
+  top: 975px;
+  left: 218px;
+}
+
+.profile-detail3,
+.ProfileProvide .addProfiles2 {
+  /* Container 147 */
+  top: 1160px;
+  left: 218px;
+}
+
+.profile-detail4,
+.ProfileProvide .addProfiles1 {
+  /* Container 145 */
+  top: 1345px;
+  left: 221px;
+}
+
+.profile-detail img {
+  /* Frame 389 */
+
+  /* Auto layout */
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  padding: 6px;
+  gap: 10px;
+
+  position: absolute;
+  width: 138px;
+  height: 153px;
+  left: 6px;
+  top: 6px;
+  padding: 0;
+
+  border-radius: 7.09px;
+}
+
+.profile-detail h3 {
+  /* 고스락 */
+
+  position: absolute;
+  width: 168.49px;
+  height: 29.34px;
+  left: 163px;
+  top: 12px;
+  margin: 0;
+
+  font-family: "Pretendard";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 17.0379px;
+  line-height: 28px;
+  /* or 167% */
+  display: flex;
+  align-items: center;
+
+  color: #0f0f0f;
+}
+
+.profile-detail .members_img {
+  /* ion:people-outline */
+
+  width: 18.93px;
+  height: 19.88px;
+
+  position: absolute;
+  top: 46.06px;
+  left: 163px;
+
+  /* Inside auto layout */
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+}
+
+.profile-detail .members_p {
+  /* 전채운, 김심야, 김태형, 이기준, 고낭신, 수지후 */
+
+  width: 240px;
+  height: 30px;
+
+  position: absolute;
+  left: 187.76px;
+  top: 41px;
+  margin: 0;
+
+  font-family: "Pretendard";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 28px;
+  /* or 218% */
+  display: flex;
+  align-items: center;
+
+  color: #535353;
+
+  /* Inside auto layout */
+  flex: none;
+  order: 1;
+  flex-grow: 0;
+}
+
+.profile-detail .school_img {
+  /* ph:map-pin-bold */
+
+  width: 18px;
+  height: 18px;
+
+  position: absolute;
+  top: 72.5px;
+  left: 163px;
+
+  /* Inside auto layout */
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+}
+
+.profile-detail .school_p {
+  /* 홍익대학교 소속 */
+
+  width: 91px;
+  height: 29px;
+
+  position: absolute;
+  top: 67px;
+  left: 187.41px;
+  margin: 0;
+
+  font-family: "Pretendard";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 28px;
+  /* identical to box height, or 218% */
+  display: flex;
+  align-items: center;
+
+  color: #535353;
+
+  /* Inside auto layout */
+  flex: none;
+  order: 1;
+  flex-grow: 0;
+}
+
+.profile-detail .Line40 {
+  /* Line 40 */
+
+  position: absolute;
+  width: 261px;
+  height: 0px;
+  left: 163px;
+  top: 104.5px;
+
+  border: 1.41983px solid #e8e8e8;
+}
+
+.profile-detail .profile-card-buttons {
+  /* Frame 103 */
+
+  /* Auto layout */
+  padding: 0px;
+  gap: 8.19px;
+
+  position: absolute;
+  width: 109px;
+  height: 26.46px;
+  left: 315px;
+  top: 119px;
+}
+
+.profile-detail .profile-card-buttons .Button_white {
+  /* Frame 31 */
+
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  width: 50.4px;
+  height: 26.46px;
+  border-radius: 10.0809px;
+
+  font-size: 11px;
+  font-weight: 500;
+  line-height: 18.9px;
+}
+
+.profile-detail .profile-card-buttons .Button_green {
+  /* Frame 31 */
+
+  position: absolute;
+  top: 0;
+  left: 58.6px;
+
+  width: 50.4px;
+  height: 26.46px;
+  border-radius: 10.0809px;
+
+  font-size: 11px;
+  font-weight: 500;
+  line-height: 18.9px;
+}
+
+.profile-detail .profile-card-header .profile-date {
+  /* Frame 32 */
+
+  width: 60px;
+  height: 18px;
+  line-height: 20.94px;
+  border-radius: 7.44px 0px 0px 0px;
+
+  left: 77px;
+
+  border-radius: 10.775px;
+
+  /* 2024-07-10 */
+
+  font-weight: 500;
+  font-size: 7.1775px;
+}
+
+.ProfileProvide .addProfiles p {
+  /* 프로필을 더 추가하세요 */
+
+  position: absolute;
+  width: 168.49px;
+  height: 29.34px;
+  left: 139px;
+  top: 39px;
+  margin: 0;
+
+  font-family: "Pretendard";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 17.0379px;
+  line-height: 28px;
+  /* or 167% */
+  display: flex;
+  align-items: center;
+  text-align: center;
+
+  color: #0f0f0f;
+}
+
+.ProfileProvide .addProfiles img {
+  /* Frame 21 */
+
+  position: absolute;
+  width: 28px;
+  height: 28px;
+  left: 206px;
+  top: 71px;
+}

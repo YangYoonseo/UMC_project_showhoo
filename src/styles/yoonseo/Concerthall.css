@@ -33,11 +33,9 @@
   left: 11px;
   top: 11px;
 
-  background: url(unnamed.jpg);
   border-radius: 14px;
 }
-
-.venue_status {
+.venue-card .status {
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
@@ -70,7 +68,7 @@
   flex-grow: 0;
 }
 
-.venue-1 .venue_status {
+.venue-card .status_scheduled {
   /* Frame 105 */
 
   /* Auto layout */
@@ -83,7 +81,7 @@
   color: #0f0f0f;
 }
 
-.venue-2 .venue_status {
+.venue-card .status_completed {
   /* Rectangle 22 */
 
   background: #0f0f0f;
@@ -96,8 +94,7 @@
 
   border: 1px solid #09f1b9;
 }
-
-.venue-3 .venue_status {
+.venue-card .status_past {
   /* Rectangle 22 */
 
   background: #ebebeb;

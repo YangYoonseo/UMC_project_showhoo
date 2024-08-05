@@ -1,10 +1,10 @@
-<<<<<<< HEAD
 import "./App.css";
 
 import { Routes, Route } from "react-router-dom";
-import { createContext } from "react";
+import { createContext, useState, useReducer } from "react";
 
 import logo_performer from "./assets/images/logo_performer.png";
+import poster from "./assets/img_Booking/poster.svg";
 
 // 페이지 가져오기
 import Home from "./pages/_test_/Home_seoya";
@@ -13,35 +13,46 @@ import PerformerUpdate from "./pages/PerformerUpdate";
 import Mypage from "./pages/Mypage";
 import RentalDetails from "./pages/RentalDetails";
 import RentalHistory from "./pages/RentalHistory";
+import VenueDetailPage from "./pages/VenueDetailPage";
+import Alarm from "./pages/Alarm";
+import MyActivity from "./pages/MyActivity.jsx";
+import ConcertReady from "./pages/ConcertReady.jsx";
+import BookingHistroy from "./pages/BookingHistory.jsx";
 
-const profiles = [
+const ex_profiles = [
   {
     date: "2024-07-10",
-    title: "고스락",
+    title: "고스락 23기",
     members: ["전재윤", "김시아", "김태형", "이기준", "고남신", "수지후"],
     school: "홍익대학교 소속",
     image: logo_performer,
-    information: "",
+    information: "설명1",
+    status: "대관 신청",
+    number: "010-0000-0000",
   },
   {
     date: "2023-11-23",
-    title: "고스락",
+    title: "고스락 22기",
     members: ["전재윤", "김시아", "김태형", "이기준", "고남신", "수지후"],
     school: "홍익대학교 소속",
     image: logo_performer,
-    information: "",
+    information: "설명2",
+    status: "공연 완료",
+    number: "010-0000-0000",
   },
   {
     date: "2023-09-12",
-    title: "고스락",
+    title: "BUZZY",
     members: ["전재윤", "김시아", "김태형", "이기준", "고남신", "수지후"],
     school: "홍익대학교 소속",
     image: logo_performer,
-    information: "",
+    information: "설명3",
+    status: "대관 완료",
+    number: "010-0000-0000",
   },
 ];
 
-const venues = [
+const ex_venues = [
   {
     id: "18508080132",
     name: "001 클럽",
@@ -52,6 +63,7 @@ const venues = [
     status: "승인 예정",
     image: logo_performer,
     size: "198",
+    like: true,
   },
   {
     id: "45728350353",
@@ -62,6 +74,7 @@ const venues = [
     price: "₩900,000",
     status: "승인 완료",
     image: logo_performer,
+    like: true,
   },
   {
     id: "57389108490",
@@ -72,44 +85,134 @@ const venues = [
     price: "₩700,000",
     status: "지난 공연",
     image: logo_performer,
+    like: false,
   },
 ];
 
+const ex_pamphlets = [
+  {
+    id: "58908502581",
+    status: "승인 예정",
+    title: "2024 PS 여름 정기공연",
+    location: "연세대학교 PS",
+    date: "2024-08-23",
+    time: "19:00",
+    club: "clubAOR",
+    image: poster,
+  },
+  {
+    id: "58908502582",
+    status: "예매 완료",
+    title: "2024 PS 여름 정기공연",
+    location: "연세대학교 PS",
+    date: "2024-08-23",
+    time: "19:00",
+    club: "clubAOR",
+    image: poster,
+  },
+  {
+    id: "58908502583",
+    status: "공연 완료",
+    title: "2024 PS 여름 정기공연",
+    location: "연세대학교 PS",
+    date: "2024-08-23",
+    time: "19:00",
+    club: "clubAOR",
+    image: poster,
+  },
+];
+
+function reducer(state, action) {
+  switch (action.type) {
+    case "ADD":
+      return [action.data, ...state];
+    case "UPDATE":
+      return state.map((item) =>
+        String(item.id) === String(action.data.id) ? action.data : item
+      );
+    case "DELETE":
+      return state.filter((item) => String(item.id) !== String(action.id));
+    default:
+      return state;
+  }
+}
+
 export const ProfileContext = createContext();
+export const ProfileDispatch = createContext();
 export const VenueContext = createContext();
+export const PamphletContext = createContext();
 
 function App() {
+  // 공연장은 useState, 프로필은 useReducer로 했음
+  const [venues, setVenues] = useState(ex_venues);
+  const [profiles, dispatch] = useReducer(reducer, ex_profiles);
+  const [pamphlets, setPamphlets] = useState(ex_pamphlets);
+
+  const cancelPamphlet = (id) => {
+    setPamphlets(
+      pamphlets.map((pamphlet) =>
+        pamphlet.id === id ? { ...pamphlet, status: "취소" } : pamphlet
+      )
+    );
+  };
+
+  const addProfile = (profile) => {
+    dispatch({
+      type: "ADD",
+      data: profile,
+    });
+  };
+
+  const updateProfile = (profile) => {
+    dispatch({
+      type: "UPDATE",
+      data: profile,
+    });
+  };
+
+  const deleteProfile = (id) => {
+    dispatch({
+      type: "DELETE",
+      id,
+    });
+  };
+
   return (
     <>
       <ProfileContext.Provider value={profiles}>
-        <VenueContext.Provider value={venues}>
-          <div className="App">
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route
-                path="/performer_registraion"
-                element={<PerformerRegistration />}
-              />
-              <Route path="/performer_update" element={<PerformerUpdate />} />
-              <Route path="/mypage" element={<Mypage />} />
-              <Route path="/rental_details" element={<RentalDetails />} />
-              <Route path="/rental_history" element={<RentalHistory />} />
-            </Routes>
-          </div>
-        </VenueContext.Provider>
+        <ProfileDispatch.Provider
+          value={{ addProfile, updateProfile, deleteProfile }}
+        >
+          <VenueContext.Provider value={{ venues, setVenues }}>
+            <PamphletContext.Provider
+              value={{ pamphlets, setPamphlets, cancelPamphlet }}
+            >
+              <div className="App">
+                <Routes>
+                  <Route path="/" element={<Home />} />
+                  <Route
+                    path="/performer_registraion"
+                    element={<PerformerRegistration />}
+                  />
+                  <Route
+                    path="/performer_update"
+                    element={<PerformerUpdate />}
+                  />
+                  <Route path="/mypage" element={<Mypage />} />
+                  <Route path="/rental_details" element={<RentalDetails />} />
+                  <Route path="/rental_history" element={<RentalHistory />} />
+                  <Route path="/venue_detail" element={<VenueDetailPage />} />
+                  <Route path="alarm" element={<Alarm />} />
+                  <Route path="/my_activity" element={<MyActivity />} />
+                  <Route path="/concert_ready" element={<ConcertReady />} />
+                  <Route path="/booking_history" element={<BookingHistroy />} />
+                </Routes>
+              </div>
+            </PamphletContext.Provider>
+          </VenueContext.Provider>
+        </ProfileDispatch.Provider>
       </ProfileContext.Provider>
     </>
-=======
-import React from 'react';
-import './App.css';
-import VenueDetailPage from './pages/VenueDetailPage';
-
-function App() {
-  return (
-    <div className="App">
-      <VenueDetailPage />
-    </div>
->>>>>>> 8b4c400a40cfa142433ae12c323a221e2291f1dc
   );
 }
 

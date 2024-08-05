@@ -1,0 +1,50 @@
+.Alarm {
+  /* 공연자 - 마이페이지 - 알림 (수정 완료) */
+
+  position: relative;
+  width: 1440px;
+  height: 1340px;
+
+  filter: drop-shadow(0px 3px 6px rgba(18, 15, 40, 0.12));
+}
+
+.Alarm_content {
+  /* 알림 */
+
+  position: absolute;
+  height: 1262px;
+  left: 0px;
+  right: -1px;
+  top: 78px;
+
+  background: #fbfbfb;
+  border-radius: 36px;
+}
+
+.Alarm_content h1 {
+  /* Group 36 */
+
+  position: absolute;
+  width: 70px;
+  height: 68px;
+  left: 246px;
+  top: 107px;
+  margin: 0;
+
+  /* Product title */
+
+  font-family: "Pretendard";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 40px;
+  line-height: 68px;
+  /* identical to box height, or 170% */
+
+  color: #0f0f0f;
+}
+
+.Alarm_map {
+  position: absolute;
+  left: 246px;
+  top: 214px;
+}

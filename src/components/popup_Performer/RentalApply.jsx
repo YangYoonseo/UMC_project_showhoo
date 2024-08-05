@@ -1,4 +1,4 @@
-import "../../styles/RentalApply.css";
+import "../../styles/yoonseo/RentalApply.css";
 import TwoButton from "../../modals/TwoButton";
 
 const RentalApply = ({ onClose, onCompletedOpen }) => {

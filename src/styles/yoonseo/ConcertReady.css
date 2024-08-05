@@ -1,0 +1,43 @@
+.ConcertReady {
+  /* 공연장 - 공연 준비 - 캘린더 */
+
+  position: relative;
+  width: 1440px;
+  height: 1678px;
+
+  background: #ffffff;
+  box-shadow: 0px 3px 6px rgba(18, 15, 40, 0.12);
+}
+
+.ConcertReady_content {
+  /* Container 117 */
+
+  position: absolute;
+  height: 1678px;
+  left: 0px;
+  right: 0px;
+  top: 78px;
+
+  background: #fbfbfb;
+  border-radius: 36px;
+}
+
+.ConcertReady_content .title {
+  /* Product title */
+
+  position: absolute;
+  width: 248px;
+  height: 68px;
+  left: 233px;
+  top: 68px;
+
+  font-family: "Pretendard";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 40px;
+  line-height: 68px;
+  /* identical to box height, or 170% */
+
+  color: #0f0f0f;
+  margin: 0;
+}

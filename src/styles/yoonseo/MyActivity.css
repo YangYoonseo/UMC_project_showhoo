@@ -1,0 +1,95 @@
+.MyActivity {
+  /* 공연자 - 마이페이지 - 내 활동(수정완료) */
+
+  position: relative;
+  width: 1440px;
+  height: 1340px;
+
+  filter: drop-shadow(0px 3px 6px rgba(18, 15, 40, 0.12));
+}
+
+.MyActivity_content {
+  /* 예매 확인 */
+
+  position: absolute;
+  height: 1262px;
+  left: 0px;
+  right: -1px;
+  top: 78px;
+
+  background: #fbfbfb;
+  border-radius: 36px;
+}
+
+.MyActivity_content h1 {
+  /* Group 36 */
+
+  position: absolute;
+  width: 114px;
+  height: 68px;
+  left: 246px;
+  top: 107px;
+  margin: 0;
+
+  /* Product title */
+
+  font-family: "Pretendard";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 40px;
+  line-height: 68px;
+  /* identical to box height, or 170% */
+
+  color: #0f0f0f;
+}
+
+.MyActivity_content .review {
+  /* 이용 후기 */
+
+  position: absolute;
+  width: 107.21px;
+  height: 31.06px;
+  left: 262px;
+  top: 214px;
+  margin: 0;
+
+  font-family: "Pretendard";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 23px;
+  line-height: 30px;
+  /* or 130% */
+  display: flex;
+  align-items: center;
+  text-align: center;
+
+  color: #9c9c9c;
+}
+
+.MyActivity_content .favorite {
+  /* 관심 목록 */
+
+  position: absolute;
+  width: 107.21px;
+  height: 31.06px;
+  left: 398px;
+  top: 214px;
+  margin: 0;
+
+  font-family: "Pretendard";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 23px;
+  line-height: 36px;
+  /* or 157% */
+  display: flex;
+  align-items: center;
+  text-align: center;
+
+  color: #9c9c9c;
+}
+
+.MyActivity_content .review_review,
+.MyActivity_content .favorite_favorite {
+  color: #0f0f0f;
+}

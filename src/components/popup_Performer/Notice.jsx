@@ -1,13 +1,12 @@
-import "../../styles/Notice.css";
+import "../../styles/yoonseo/Notice.css";
 import OneButton from "../../modals/OneButton";
 
-const Notice = ({ onClose, onApplyOpen }) => {
+const Notice = ({ onClose }) => {
   return (
     <OneButton
       title="유의사항"
       onClose={() => {
         onClose();
-        onApplyOpen();
       }}
       className={"OneButton OneButton_Notice"}
     >

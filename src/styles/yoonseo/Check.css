@@ -1,0 +1,34 @@
+.Check {
+  position: absolute;
+  top: 277px;
+  left: 280px;
+  width: 960px;
+  height: 1200px;
+}
+
+.Check .greenbar {
+  /* Rectangle 19 */
+
+  position: absolute;
+  width: 136px;
+  height: 4px;
+  left: 0px;
+  top: 0;
+
+  background: #09f1b9;
+  border-radius: 7px;
+  z-index: 1000;
+}
+
+.Check .graybar {
+  /* Rectangle 16 */
+
+  position: absolute;
+  width: 868px;
+  height: 6px;
+  left: 0px;
+  top: 0;
+
+  background: #e8e8e8;
+  border-radius: 7px;
+}

@@ -283,6 +283,10 @@
 
 .choice button:nth-of-type(6) {
   top: 325px;
+}
+
+.choice button:nth-of-type(7) {
+  top: 390px;
 
   border: none;
 }

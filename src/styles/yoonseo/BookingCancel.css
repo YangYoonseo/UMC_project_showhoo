@@ -1,0 +1,128 @@
+.TwoButton_BookingCancel {
+  width: 698px;
+  height: 479px;
+}
+
+.TwoButton_BookingCancel h1 {
+  /* 예매 취소 */
+
+  position: absolute;
+  width: 482px;
+  height: 48px;
+  left: 91px;
+  top: 64px;
+  margin: 0;
+
+  font-family: "Pretendard";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 40px;
+  line-height: 30px;
+  /* or 75% */
+  display: flex;
+  align-items: center;
+
+  color: #0f0f0f;
+}
+
+.TwoButton_BookingCancel .content {
+  /* 환불받을 계좌정보를 입력해주세요 */
+
+  position: absolute;
+  left: 91px;
+  top: 130px;
+  margin: 0;
+
+  font-family: "Pretendard";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 22px;
+  line-height: 30px;
+  /* identical to box height, or 136% */
+  display: flex;
+  align-items: center;
+
+  color: #696969;
+}
+
+.TwoButton_BookingCancel .content p {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+
+  margin: 0;
+
+  font-family: "Pretendard";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 22px;
+  line-height: 30px;
+  /* identical to box height, or 136% */
+  display: flex;
+  align-items: center;
+
+  color: #696969;
+}
+
+.TwoButton_BookingCancel button:nth-of-type(1),
+.TwoButton_BookingCancel button:nth-of-type(2) {
+  top: 357px;
+}
+
+/* 박스 css */
+.TwoButton_BookingCancel .full {
+  /* 선택 */
+
+  box-sizing: border-box;
+
+  position: absolute;
+  width: 516px;
+  height: 128px;
+  left: 0px;
+  top: 60px;
+
+  background: #ffffff;
+  border: 1px solid #b5b5b5;
+  border-radius: 18px;
+}
+
+.TwoButton_BookingCancel .full textarea {
+  height: 41px;
+  resize: none;
+  margin: 0;
+
+  padding-left: 31px;
+  font-size: 18px;
+}
+
+.TwoButton_BookingCancel .full textarea:focus {
+  outline: none;
+}
+
+.TwoButton_BookingCancel .name,
+.TwoButton_BookingCancel .bank {
+  padding: 0;
+  padding-top: 18px;
+  width: 223px;
+  border: none;
+  border-bottom: 1px solid #b5b5b5;
+
+  border-top-left-radius: 18px;
+}
+
+.TwoButton_BookingCancel .bank {
+  border-right: 1px solid #b5b5b5;
+}
+
+.TwoButton_BookingCancel .name {
+  border-top-right-radius: 18px;
+}
+
+.TwoButton_BookingCancel .number {
+  padding: 0;
+  padding-top: 14px;
+  width: 460px;
+
+  border: none;
+  border-radius: 18px;
+}

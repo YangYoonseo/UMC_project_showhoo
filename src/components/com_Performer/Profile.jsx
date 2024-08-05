@@ -1,11 +1,35 @@
-import "../../styles/Profile.css";
+import "../../styles/yoonseo/Profile.css";
 
 import { useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
+
+import Button from "../common/Button";
 
 import Frame21 from "../../assets/img_Performer/Frame21.png";
 
-const Profile = () => {
+const Profile = ({ profile }) => {
   const nav = useNavigate();
+  const [school, setSchool] = useState(profile.school);
+  const [information, setInformation] = useState(profile.information);
+  const [file, setFile] = useState(null);
+
+  useEffect(() => {
+    setSchool(profile.school);
+    setInformation(profile.information);
+  }, [profile]);
+
+  const schoolChange = (e) => {
+    setSchool(e.target.value);
+  };
+
+  const informationChange = (e) => {
+    setInformation(e.target.value);
+  };
+
+  const handleFileChange = (e) => {
+    setFile(e.target.files[0]);
+  };
+
   return (
     <div className="Container117_update">
       <p
@@ -16,14 +40,39 @@ const Profile = () => {
       >
         &lt;
       </p>
-      <h3>새 프로필</h3>
-      <textarea className="school" name="school" placeholder="소속" />
-      <textarea className="content" name="content" placeholder="소개" />
+      <h3>
+        {profile.date} {profile.title}
+      </h3>
+      <textarea
+        className="school"
+        name="school"
+        placeholder="소속"
+        value={school}
+        onChange={schoolChange}
+      />
+      <textarea
+        className="content"
+        name="content"
+        placeholder="소개"
+        value={information}
+        onChange={informationChange}
+      />
       <div>
         <div className="add_img1">
           <p>포스터를 추가하세요</p>
-          <p>기기에서 업로드</p>
+          <label htmlFor="file">
+            <div className="upload_button">기기에서 업로드</div>
+          </label>
+          <input
+            type="file"
+            accept="image/*/"
+            name="file"
+            id="file"
+            onChange={handleFileChange}
+          />
+          {file && <div>Selected file: {file.name}</div>}
         </div>
+
         <div className="add_img2">
           <img src={Frame21} alt="" />
         </div>
@@ -35,20 +84,13 @@ const Profile = () => {
         </div>
       </div>
 
-      <h4>공연자</h4>
-
-      <div className="add_person">
-        <p>멤버를 추가하세요</p>
-        <img src={Frame21} alt="" />
-      </div>
-
-      <button
+      <Button
+        text={"완료"}
+        type={"green"}
         onClick={() => {
           nav("/mypage");
         }}
-      >
-        완료
-      </button>
+      />
     </div>
   );
 };

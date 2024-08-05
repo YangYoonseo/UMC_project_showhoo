@@ -1,15 +1,28 @@
-import "../../styles/Concerthall.css";
+import "../../styles/yoonseo/Concerthall.css";
 
 import ion_people_outline from "../../assets/img_Performer/ion_people_outline.png";
 import uil_calender from "../../assets/img_Performer/uil_calender.png";
 import Line40 from "../../assets/img_Performer/Line40.png";
 
 const Concerthall = ({ venue, className }) => {
+  const getClassName = () => {
+    switch (venue.status) {
+      case "승인 예정":
+        return "status_scheduled";
+      case "승인 완료":
+        return "status_completed";
+      case "지난 공연":
+        return "status_past";
+      default:
+        return "";
+    }
+  };
+
   return (
     // className: venue-card venue-${index + 1}
     <div className={className}>
       <img src={venue.image} alt="" className="venue_img" />
-      <p className="venue_status">{venue.status}</p>
+      <p className={`status ${getClassName()}`}>{venue.status}</p>
       <div className="venue_div">
         <p className="venue_id">ID {venue.id}</p>
         <img src={Line40} alt="" className="Line41_1" />

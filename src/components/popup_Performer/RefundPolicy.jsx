@@ -1,13 +1,12 @@
-import "../../styles/RefundPolicy.css";
+import "../../styles/yoonseo/RefundPolicy.css";
 import OneButton from "../../modals/OneButton";
 
-const RefundPolicy = ({ onClose, onNoticeOpen }) => {
+const RefundPolicy = ({ onClose }) => {
   return (
     <OneButton
       title="환불규정"
       onClose={() => {
         onClose();
-        onNoticeOpen();
       }}
       className={"OneButton OneButton_RefundPolicy"}
     >

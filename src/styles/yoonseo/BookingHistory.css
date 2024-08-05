@@ -1,0 +1,96 @@
+.BookingHistory {
+  /* 관람자 - 예매 내역 - 예매 확인(수정 완료) */
+
+  position: relative;
+  width: 1440px;
+  height: 1479px;
+
+  background: #ffffff;
+  box-shadow: 0px 3px 6px rgba(18, 15, 40, 0.12);
+}
+
+.BookingHistory_content {
+  /* 예매 확인 */
+
+  position: absolute;
+  height: 1479px;
+  left: 0px;
+  right: 0px;
+  top: 78px;
+
+  background: #fbfbfb;
+  border-radius: 36px;
+}
+
+.BookingHistory_content h1 {
+  /* Product title */
+
+  position: absolute;
+  width: 248px;
+  height: 48px;
+  left: 293px;
+  top: 144px;
+  margin: 0;
+
+  font-family: "Pretendard";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 40px;
+  line-height: 68px;
+  /* or 170% */
+  display: flex;
+  align-items: center;
+
+  color: #0f0f0f;
+}
+
+.BookingHistory_content .check {
+  /* 예매 확인 */
+
+  position: absolute;
+  width: 106px;
+  height: 31px;
+  left: 304px;
+  top: 234px;
+  margin: 0;
+
+  font-family: "Pretendard";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 23px;
+  line-height: 36px;
+  /* or 157% */
+  display: flex;
+  align-items: center;
+  text-align: center;
+
+  color: #9c9c9c;
+}
+
+.BookingHistory_content .cancel {
+  /* 취소 내역 */
+
+  position: absolute;
+  width: 107px;
+  height: 31px;
+  left: 439px;
+  top: 234px;
+  margin: 0;
+
+  font-family: "Pretendard";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 23px;
+  line-height: 36px;
+  /* or 157% */
+  display: flex;
+  align-items: center;
+  text-align: center;
+
+  color: #9c9c9c;
+}
+
+.BookingHistory_content .check_check,
+.BookingHistory_content .cancel_cancel {
+  color: #0f0f0f;
+}

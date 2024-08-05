@@ -1,0 +1,26 @@
+.TwoButton_PerformerDelete {
+  position: absolute;
+  width: 697px;
+  height: 319px;
+  top: 350px; /* 원하는 위치로 설정 */
+  left: 500px; /* 원하는 위치로 설정 */
+}
+
+.TwoButton_PerformerDelete h3 {
+  /* 삭제하시겠습니까? */
+
+  position: absolute;
+  width: 373px;
+  height: 85px;
+  left: 91px;
+  top: 48px;
+}
+
+.TwoButton_PerformerDelete .content {
+  /* 삭제하시면 복구가 불가능하니 신중히 결정해주세요. */
+
+  width: 547px;
+  height: 30px;
+  left: 91px;
+  top: 145px;
+}

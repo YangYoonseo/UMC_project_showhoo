@@ -1,0 +1,120 @@
+.AlarmDetail {
+  position: relative;
+  width: 752px;
+  height: 120px;
+  margin: 0;
+}
+
+.AlarmDetail .icon_wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 67px;
+  height: 64.77px;
+  background-color: #0f0f0f;
+  border: 1px solid #0f0f0f;
+  border-radius: 50.25px;
+
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.AlarmDetail .icon {
+  font-size: 35px; /* 아이콘 크기 조절 */
+  color: white;
+}
+
+.AlarmDetail .content {
+  /* Frame 359 */
+
+  position: absolute;
+  left: 100px;
+
+  /* Auto layout */
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0px;
+  gap: 19px;
+
+  width: 582px;
+  height: 54px;
+}
+
+.AlarmDetail .content p {
+  /* 001클럽이 회원님의 후기에 댓글을 남겼습니다. */
+
+  width: 582px;
+  height: 26px;
+  margin: 0;
+
+  font-family: "Pretendard";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 36px;
+  /* or 200% */
+  display: flex;
+  align-items: center;
+
+  color: #0f0f0f;
+
+  /* Inside auto layout */
+  flex: none;
+  order: 0;
+  align-self: stretch;
+  flex-grow: 0;
+}
+
+.AlarmDetail .content span {
+  /* 2024.08.23 17:43:54 */
+
+  width: 582px;
+  height: 20px;
+
+  font-family: "Pretendard";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 36px;
+  /* or 300% */
+  display: flex;
+  align-items: center;
+
+  color: #9c9c9c;
+
+  /* Inside auto layout */
+  flex: none;
+  order: 1;
+  align-self: stretch;
+  flex-grow: 0;
+}
+
+.AlarmDetail .close {
+  /* 삭제 */
+
+  position: absolute;
+  width: 28.74px;
+  height: 28.74px;
+  top: 10px;
+  right: 0;
+  color: #9c9c9c;
+
+  border: none;
+  background-color: #fbfbfb;
+
+  font-size: 25px;
+}
+
+.AlarmDetail img {
+  /* Line 42 */
+
+  position: absolute;
+  width: 753px;
+  height: 0px;
+  left: 0px;
+  top: 90px;
+
+  border: 1.5px solid #e8e8e8;
+}

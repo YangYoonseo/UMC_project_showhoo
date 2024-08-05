@@ -1,0 +1,264 @@
+.ConcertReceipt {
+  box-sizing: border-box;
+  padding-bottom: 100px;
+  position: absolute;
+  width: 698px;
+  /* height: 1523px; */
+  height: 80%;
+
+  left: 707px;
+  top: 95px;
+
+  background: #ffffff;
+  border-radius: 25px;
+  overflow-y: auto;
+  /* 스크롤 가능 */
+}
+
+/* 스크롤 숨기기 */
+.ConcertReceipt::-webkit-scrollbar {
+  display: none; /* Chrome , Safari , Opera */
+}
+
+.ConcertReceipt h1 {
+  /* 고스락 23기 */
+
+  position: absolute;
+  width: 482px;
+  height: 48px;
+  left: 91px;
+  top: 64px;
+  margin: 0;
+
+  font-family: "Pretendard";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 40px;
+  line-height: 30px;
+  /* or 75% */
+  display: flex;
+  align-items: center;
+
+  color: #0f0f0f;
+}
+
+.ConcertReceipt .date {
+  /* 2024-02-28에 공연장 대관을 신청했습니다 */
+
+  position: absolute;
+  width: 548px;
+  height: 30px;
+  left: 91px;
+  top: 134px;
+  margin: 0;
+
+  font-family: "Pretendard";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 22px;
+  line-height: 30px;
+  /* identical to box height, or 136% */
+  display: flex;
+  align-items: center;
+
+  color: #0f0f0f;
+}
+
+.ConcertReceipt .school {
+  /* 소속 */
+
+  box-sizing: border-box;
+  padding: 0;
+  padding-left: 23px;
+  padding-top: 5px;
+
+  position: absolute;
+  width: 529px;
+  height: 63px;
+  left: 91px;
+  top: 187px;
+
+  background: #ffffff;
+  border: 1px solid #b5b5b5;
+  border-radius: 18px;
+}
+
+.ConcertReceipt p:nth-of-type(1) {
+  /* 소속 */
+
+  width: 74px;
+  height: 20px;
+  margin: 0;
+
+  font-family: "Pretendard";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 30px;
+  /* or 250% */
+  display: flex;
+  align-items: center;
+
+  color: #828282;
+}
+
+.ConcertReceipt p:nth-of-type(2) {
+  /* 홍익대학교 */
+
+  font-family: "Pretendard";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 17px;
+  line-height: 30px;
+  /* or 176% */
+  display: flex;
+  align-items: center;
+  margin: 0;
+
+  color: #363636;
+}
+
+.ConcertReceipt .number {
+  /* 소속 */
+
+  box-sizing: border-box;
+  padding: 0;
+  padding-left: 23px;
+  padding-top: 5px;
+
+  position: absolute;
+  width: 529px;
+  height: 63px;
+  left: 91px;
+  top: 267px;
+
+  background: #ffffff;
+  border: 1px solid #b5b5b5;
+  border-radius: 18px;
+}
+
+.ConcertReceipt .information {
+  /* 소속 */
+
+  box-sizing: border-box;
+  padding: 0;
+  padding-left: 23px;
+  padding-top: 5px;
+
+  position: absolute;
+  width: 529px;
+  height: 186px;
+  left: 91px;
+  top: 347px;
+
+  background: #ffffff;
+  border: 1px solid #b5b5b5;
+  border-radius: 18px;
+}
+
+.ConcertReceipt .image {
+  position: absolute;
+  top: 550px;
+  left: 91px;
+  width: 529px;
+  height: 377px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.ConcertReceipt .image img {
+  /* Frame 285 */
+
+  /* Auto layout */
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: flex-start;
+  padding: 18.7285px 18.7285px 21.7251px 35.9588px;
+  gap: 7.49px;
+
+  position: absolute;
+  width: 255px;
+  height: 179px;
+  padding: 0;
+
+  border-radius: 18px;
+}
+
+.ConcertReceipt h3 {
+  /* 영수증 */
+
+  position: absolute;
+  width: 374px;
+  height: 37px;
+  left: 91px;
+  top: 988px;
+  margin: 0;
+
+  font-family: "Pretendard";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 49px;
+  /* or 203% */
+  display: flex;
+  align-items: center;
+
+  color: #0f0f0f;
+}
+
+.ConcertReceipt .price {
+  /* 가격 */
+
+  box-sizing: border-box;
+  padding: 0;
+  padding-top: 30px;
+  padding-left: 78px;
+
+  position: absolute;
+  width: 529px;
+  height: 298px;
+  left: 91px;
+  top: 1043px;
+
+  background: #ffffff;
+  border: 1px solid #e8e8e8;
+  border-radius: 18px;
+}
+
+.ConcertReceipt .price p {
+  /* 대관료 */
+
+  font-family: "Pretendard";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 17px;
+  line-height: 30px;
+  /* or 176% */
+  display: flex;
+  align-items: center;
+
+  color: #363636;
+}
+
+.ConcertReceipt .Button_green {
+  /* 추가하기 */
+
+  box-sizing: border-box;
+
+  position: absolute;
+  width: 242px;
+  height: 48px;
+  left: 235px;
+  top: 1425px;
+
+  font-size: 17px;
+}
+
+.ConcertReceipt .empty {
+  position: absolute;
+  width: 242px;
+  height: 50px;
+  left: 235px;
+  top: 1473px;
+}

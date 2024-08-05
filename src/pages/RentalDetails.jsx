@@ -1,12 +1,12 @@
-import "../styles/RentalDetails.css";
+import "../styles/yoonseo/RentalDetails.css";
 
 import { useContext, useState } from "react";
-import { ProfileContext } from "../App";
 import { VenueContext } from "../App";
 
 import Navbar_Perforemr from "../components/common/Navbar_Performer";
 import Footer from "../components/common/Footer";
-import PerformerProfile from "../components/com_Performer/PerformerProfile";
+import ProfileProvide from "../components/com_Performer/ProfileProvide";
+import Button from "../components/common/Button";
 
 // 팝업창
 import RefundPolicy from "../components/popup_Performer/RefundPolicy";
@@ -19,14 +19,23 @@ import ion_people_outline from "../assets/img_Performer/ion_people_outline.png";
 import Frame22 from "../assets/img_Performer/Frame22.png";
 import bx_area from "../assets/img_Performer/bx_area.png";
 import Line40 from "../assets/img_Performer/Line40.png";
+import octicon_copy_16 from "../assets/img_Performer/octicon_copy_16.png";
 
 const RentalDetails = () => {
-  const profiles = useContext(ProfileContext);
-  const venues = useContext(VenueContext);
+  const { venues } = useContext(VenueContext);
   const [refundPopup, setRefundPopup] = useState(false);
   const [noticePopup, setNoticePopup] = useState(false);
   const [applyPopup, setApplyPopup] = useState(false);
   const [completedPopup, setCompletedPopup] = useState(false);
+
+  const CopyEvent = async (text) => {
+    try {
+      await navigator.clipboard.writeText(text);
+      alert("복사성공");
+    } catch (error) {
+      alert("복사 실패");
+    }
+  };
 
   return (
     <div className="RentalDetails">
@@ -42,7 +51,6 @@ const RentalDetails = () => {
               <img src={uil_calender} alt="" />
               <p>2024-06-21</p>
             </div>
-            <button className="update_button">수정</button>
           </div>
 
           <div className="information_poeple">
@@ -50,8 +58,6 @@ const RentalDetails = () => {
               <img src={ion_people_outline} alt="" />
               <p>최대 100명</p>
             </div>
-
-            <button className="update_button">수정</button>
           </div>
 
           <div className="information_video">
@@ -59,35 +65,29 @@ const RentalDetails = () => {
               <img src={Frame22} alt="" />
               <p>공연 영상 제공</p>
             </div>
-
-            <button className="update_button">수정</button>
           </div>
         </div>
         <div className="pay">
           <h4>결제하기</h4>
-          <p className="pay_explain">입금자명은 '홍길동'으로 해주세요</p>
+          <p className="pay_explain">
+            입금자명은{" "}
+            <strong>&nbsp;'소속/공연자 팀명/대표자 이름'&nbsp;</strong> 으로
+            해주세요
+          </p>
 
           <p>입금 계좌</p>
           <p>(예금주) 쇼호</p>
 
           <p>우리 은행 1002061254000</p>
-          <button>계좌 복사하기</button>
+          <div
+            className="copy_accout"
+            onClick={() => CopyEvent("우리 은행 1002061254000")}
+          >
+            <img src={octicon_copy_16} alt="" />
+            <p>계좌 복사하기</p>
+          </div>
         </div>
-        <div className="profile_provide">
-          <h4>공연장에게 프로필 제공하기</h4>
-          <PerformerProfile
-            profile={profiles[0]}
-            className={"profile-card profile-detail1"}
-          />
-          <PerformerProfile
-            profile={profiles[1]}
-            className={"profile-card profile-detail2"}
-          />
-          <PerformerProfile
-            profile={profiles[2]}
-            className={"profile-card profile-detail3"}
-          />
-        </div>
+        <ProfileProvide />
         <div className="checkbox1">
           <input type="checkbox" />
           <p>결제 내용 확인 및 동의</p>
@@ -98,7 +98,14 @@ const RentalDetails = () => {
               <input type="checkbox" />
               <p>환불규정</p>
             </span>
-            <p className="see">보기</p>
+            <p
+              className="see"
+              onClick={() => {
+                setRefundPopup(true);
+              }}
+            >
+              보기
+            </p>
           </div>
           <div className="checkbox2_2">
             <span>
@@ -106,26 +113,28 @@ const RentalDetails = () => {
               <p>유의사항</p>
             </span>
 
-            <p className="see">보기</p>
+            <p
+              className="see"
+              onClick={() => {
+                setNoticePopup(true);
+              }}
+            >
+              보기
+            </p>
           </div>
         </div>
-        <button
-          className="application"
+        <Button
+          text={"대관 신청하기"}
+          type={"green"}
           onClick={() => {
-            setRefundPopup(true);
+            setApplyPopup(true);
           }}
-        >
-          대관 신청하기
-        </button>
+        />
 
         {refundPopup && (
           <RefundPolicy
             onClose={() => {
               setRefundPopup(false);
-            }}
-            onNoticeOpen={() => {
-              setRefundPopup(false);
-              setNoticePopup(true);
             }}
           />
         )}
@@ -134,10 +143,6 @@ const RentalDetails = () => {
           <Notice
             onClose={() => {
               setNoticePopup(false);
-            }}
-            onApplyOpen={() => {
-              setNoticePopup(false);
-              setApplyPopup(true);
             }}
           />
         )}

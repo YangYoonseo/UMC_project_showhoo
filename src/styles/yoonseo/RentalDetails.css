@@ -155,36 +155,6 @@
   flex-grow: 0;
 }
 
-.information .update_button {
-  /* Frame 253 */
-
-  width: 45px;
-  height: 38px;
-
-  /* Inside auto layout */
-  flex: none;
-  order: 1;
-  flex-grow: 0;
-
-  /* 수정 */
-
-  padding-left: 5px;
-  padding-top: 6px;
-
-  font-family: "Pretendard";
-  font-style: normal;
-  font-weight: 500;
-  font-size: 17px;
-  line-height: 28px;
-  /* or 163% */
-
-  text-decoration-line: underline;
-  border: none;
-  background-color: #ffffff;
-
-  color: #058f6d;
-}
-
 .information .information_poeple {
   /* Frame 260 */
 
@@ -357,7 +327,7 @@
   /* 입금자명은 ‘홍길동’으로 해주세요 */
 
   position: absolute;
-  width: 269px;
+  width: 400px;
   height: 28px;
   left: 223px;
   top: 524px;
@@ -442,21 +412,37 @@
   color: #0f0f0f;
 }
 
-.pay button {
+.copy_accout {
   /* Frame 243 */
 
   position: absolute;
   width: 124px;
   height: 28px;
-  left: 546px;
+  left: 515px;
   top: 617px;
 
+  cursor: pointer;
+}
+
+.copy_accout img {
+  /* octicon:copy-16 */
+
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  left: 4px;
+  top: 7px;
+}
+
+.copy_accout p {
   /* 계좌 복사하기 */
 
-  padding: 0;
-  padding-left: 8px;
-  padding-top: 2px;
-
+  position: absolute;
+  width: 112px;
+  height: 25px;
+  left: 25px;
+  top: 2px;
+  margin: 0;
   font-family: "Pretendard";
   font-style: normal;
   font-weight: 600;
@@ -468,273 +454,6 @@
   text-align: right;
 
   color: #058f6f;
-  background-color: #ffffff;
-  border: none;
-}
-
-.profile_provide h4 {
-  /* Product title */
-
-  position: absolute;
-  width: 467px;
-  height: 48px;
-  left: 221px;
-  top: 716px;
-  margin: 0;
-
-  font-family: "Pretendard";
-  font-style: normal;
-  font-weight: 500;
-  font-size: 28px;
-  line-height: 68px;
-  /* or 243% */
-  display: flex;
-  align-items: center;
-
-  color: #171a1f;
-}
-
-.profile-detail1 {
-  /* Container 142 */
-
-  box-sizing: border-box;
-
-  position: absolute;
-  width: 445px;
-  height: 165px;
-  left: calc(50% - 445px / 2 - 276.5px);
-  top: 790px;
-
-  background: #ffffff;
-  border: 2px solid #07c093;
-  border-radius: 12.66px;
-}
-
-.profile-detail2 {
-  /* Container 146 */
-
-  box-sizing: border-box;
-
-  position: absolute;
-  width: 445px;
-  height: 165px;
-  left: calc(50% - 445px / 2 - 279.5px);
-  top: 975px;
-
-  background: #ffffff;
-  border: 1px solid #e8e8e8;
-  border-radius: 12.66px;
-}
-
-.profile-detail3 {
-  /* Container 147 */
-
-  box-sizing: border-box;
-
-  position: absolute;
-  width: 445px;
-  height: 165px;
-  left: calc(50% - 445px / 2 - 279.5px);
-  top: 1160px;
-
-  background: #ffffff;
-  border: 1px solid #e8e8e8;
-  border-radius: 12.66px;
-}
-
-.profile-detail1 img,
-.profile-detail2 img,
-.profile-detail3 img {
-  /* Frame 389 */
-
-  /* Auto layout */
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  padding: 6px;
-  gap: 10px;
-
-  position: absolute;
-  width: 138px;
-  height: 153px;
-  left: 6px;
-  top: 6px;
-  padding: 0;
-
-  border-radius: 7.09px;
-}
-
-.profile-detail1 h3,
-.profile-detail2 h3,
-.profile-detail3 h3 {
-  /* 고스락 */
-
-  position: absolute;
-  width: 168.49px;
-  height: 29.34px;
-  left: 163px;
-  top: 12px;
-  margin: 0;
-
-  font-family: "Pretendard";
-  font-style: normal;
-  font-weight: 500;
-  font-size: 17.0379px;
-  line-height: 28px;
-  /* or 167% */
-  display: flex;
-  align-items: center;
-
-  color: #0f0f0f;
-}
-
-.profile-detail1 .members_img,
-.profile-detail2 .members_img,
-.profile-detail3 .members_img {
-  /* ion:people-outline */
-
-  width: 18.93px;
-  height: 19.88px;
-
-  position: absolute;
-  top: 46.06px;
-  left: 163px;
-
-  /* Inside auto layout */
-  flex: none;
-  order: 0;
-  flex-grow: 0;
-}
-
-.profile-detail1 .members_p,
-.profile-detail2 .members_p,
-.profile-detail3 .members_p {
-  /* 전채운, 김심야, 김태형, 이기준, 고낭신, 수지후 */
-
-  width: 240px;
-  height: 30px;
-
-  position: absolute;
-  left: 187.76px;
-  top: 41px;
-  margin: 0;
-
-  font-family: "Pretendard";
-  font-style: normal;
-  font-weight: 400;
-  font-size: 13px;
-  line-height: 28px;
-  /* or 218% */
-  display: flex;
-  align-items: center;
-
-  color: #535353;
-
-  /* Inside auto layout */
-  flex: none;
-  order: 1;
-  flex-grow: 0;
-}
-
-.profile-detail1 .school_img,
-.profile-detail2 .school_img,
-.profile-detail3 .school_img {
-  /* ph:map-pin-bold */
-
-  width: 18px;
-  height: 18px;
-
-  position: absolute;
-  top: 72.5px;
-  left: 163px;
-
-  /* Inside auto layout */
-  flex: none;
-  order: 0;
-  flex-grow: 0;
-}
-
-.profile-detail1 .school_p,
-.profile-detail2 .school_p,
-.profile-detail3 .school_p {
-  /* 홍익대학교 소속 */
-
-  width: 91px;
-  height: 29px;
-
-  position: absolute;
-  top: 67px;
-  left: 187.41px;
-  margin: 0;
-
-  font-family: "Pretendard";
-  font-style: normal;
-  font-weight: 400;
-  font-size: 13px;
-  line-height: 28px;
-  /* identical to box height, or 218% */
-  display: flex;
-  align-items: center;
-
-  color: #535353;
-
-  /* Inside auto layout */
-  flex: none;
-  order: 1;
-  flex-grow: 0;
-}
-
-.profile-detail1 .Line40,
-.profile-detail2 .Line40,
-.profile-detail3 .Line40 {
-  /* Line 40 */
-
-  position: absolute;
-  width: 261px;
-  height: 0px;
-  left: 163px;
-  top: 104.5px;
-
-  border: 1.41983px solid #e8e8e8;
-}
-
-.profile-detail1 .profile-card-buttons,
-.profile-detail2 .profile-card-buttons,
-.profile-detail3 .profile-card-buttons {
-  /* Frame 103 */
-
-  /* Auto layout */
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  padding: 0px;
-  gap: 8.19px;
-
-  position: absolute;
-  width: 109px;
-  height: 26.46px;
-  left: 280px;
-  top: 119px;
-}
-
-.profile-detail1 .profile-card-header .profile-date,
-.profile-detail2 .profile-card-header .profile-date,
-.profile-detail3 .profile-card-header .profile-date {
-  /* Frame 32 */
-
-  width: 60px;
-  height: 18px;
-  line-height: 20.94px;
-  border-radius: 7.44px 0px 0px 0px;
-
-  left: 77px;
-
-  border-radius: 10.775px;
-
-  /* 2024-07-10 */
-
-  font-weight: 500;
-  font-size: 7.1775px;
 }
 
 .RentalDetails_content .checkbox1 {
@@ -757,15 +476,24 @@
 .RentalDetails_content .checkbox1 input {
   /* 체크박스 */
 
-  width: 22.93px;
-  height: 23.87px;
+  width: 22.58px;
+  height: 22.58px;
 
-  /* Inside auto layout */
-  flex: none;
-  order: 0;
-  flex-grow: 0;
+  appearance: none;
 
-  accent-color: #07c093;
+  border: 1.75px solid #07c093;
+  border-radius: 2.70961px;
+  background-color: #fbfbfb;
+  position: relative;
+}
+
+.RentalDetails_content .checkbox1 input:checked {
+  border-color: transparent;
+  background-image: url("data:image/svg+xml,%3Csvg%20width%3D%2213%22%20height%3D%2210%22%20viewBox%3D%220%200%2013%2010%22%20fill%3D%22none%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%3Cpath%20d%3D%22M12.7262%200.928223C13.0888%201.29085%2013.0888%201.87977%2012.7262%202.2424L5.29949%209.66909C4.93686%2010.0317%204.34795%2010.0317%203.98532%209.66909L0.271973%205.95574C-0.0906578%205.59311%20-0.0906578%205.0042%200.271973%204.64157C0.634605%204.27894%201.22352%204.27894%201.58615%204.64157L4.64386%207.69638L11.4149%200.928223C11.7775%200.565592%2012.3665%200.565592%2012.7291%200.928223H12.7262Z%22%20fill%3D%22white%22/%3E%3C/svg%3E");
+
+  background-position: 50%;
+  background-repeat: no-repeat;
+  background-color: #07c093;
 }
 
 .RentalDetails_content .checkbox1 p {
@@ -773,6 +501,7 @@
 
   width: 244.92px;
   height: 26.97px;
+  margin: 0;
 
   font-family: "Pretendard";
   font-style: normal;
@@ -849,18 +578,27 @@
   flex-grow: 0;
 }
 
-.RentalDetails_content .checkbox2 .checkbox2_1 input {
+.RentalDetails_content .checkbox2 .checkbox2_1 input,
+.RentalDetails_content .checkbox2 .checkbox2_2 input {
   /* ph:check-bold */
 
-  width: 16.26px;
-  height: 16.26px;
+  width: 22.58px;
+  height: 22.58px;
+  margin: 0;
+  appearance: none;
+  border-color: transparent;
 
-  accent-color: white;
+  background-image: url("data:image/svg+xml,%3Csvg%20width%3D%2213%22%20height%3D%2211%22%20viewBox%3D%220%200%2013%2011%22%20fill%3D%22none%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%3Cpath%20d%3D%22M12.7262%201.05713C13.0888%201.41976%2013.0888%202.00867%2012.7262%202.37131L5.29949%209.798C4.93686%2010.1606%204.34795%2010.1606%203.98532%209.798L0.271973%206.08465C-0.0906578%205.72202%20-0.0906578%205.13311%200.271973%204.77047C0.634605%204.40784%201.22352%204.40784%201.58615%204.77047L4.64386%207.82528L11.4149%201.05713C11.7775%200.694498%2012.3665%200.694498%2012.7291%201.05713H12.7262Z%22%20fill%3D%22%239C9C9C%22/%3E%3C/svg%3E");
+  background-color: #fbfbfb;
+  border: none;
+  position: relative;
+  background-repeat: no-repeat;
+  background-position: 50%;
+}
 
-  /* Inside auto layout */
-  flex: none;
-  order: 0;
-  flex-grow: 0;
+.RentalDetails_content .checkbox2 .checkbox2_1 input:checked,
+.RentalDetails_content .checkbox2 .checkbox2_2 input:checked {
+  background-image: url("data:image/svg+xml,%3Csvg%20width%3D%2213%22%20height%3D%2210%22%20viewBox%3D%220%200%2013%2010%22%20fill%3D%22none%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%3Cpath%20d%3D%22M12.7262%200.910645C13.0888%201.27328%2013.0888%201.86219%2012.7262%202.22482L5.29949%209.65151C4.93686%2010.0141%204.34795%2010.0141%203.98532%209.65151L0.271973%205.93817C-0.0906578%205.57554%20-0.0906578%204.98662%200.271973%204.62399C0.634605%204.26136%201.22352%204.26136%201.58615%204.62399L4.64386%207.6788L11.4149%200.910645C11.7775%200.548014%2012.3665%200.548014%2012.7291%200.910645H12.7262Z%22%20fill%3D%22%2307C093%22/%3E%3C/svg%3E");
 }
 
 .RentalDetails_content .checkbox2 .checkbox2_1 p:nth-of-type(1) {
@@ -868,6 +606,7 @@
 
   width: 70px;
   height: 25px;
+  margin: 0;
 
   font-family: "Pretendard";
   font-style: normal;
@@ -933,19 +672,6 @@
   flex-grow: 0;
 }
 
-.RentalDetails_content .checkbox2 .checkbox2_2 input {
-  /* ph:check-bold */
-
-  width: 16.26px;
-  height: 16.26px;
-  accent-color: white;
-
-  /* Inside auto layout */
-  flex: none;
-  order: 0;
-  flex-grow: 0;
-}
-
 .RentalDetails_content .checkbox2 .checkbox2_2 p:nth-of-type(1) {
   /* 유의사항 */
 
@@ -994,31 +720,16 @@
   flex-grow: 0;
 }
 
-.RentalDetails_content .application {
-  /* Frame 31 */
-
+.RentalDetails_content .Button {
   position: absolute;
   width: 167px;
   height: 51.12px;
   left: 221px;
   top: 1758px;
 
-  background: #09f1b9;
-  border-radius: 14px;
-  border: none;
-
-  /* 대관 신청하기 */
-
-  font-family: "Pretendard";
-  font-style: normal;
   font-weight: 500;
   font-size: 18px;
   line-height: 26px;
-  /* identical to box height, or 142% */
-
-  text-align: center;
-
-  color: #0f0f0f;
 }
 
 .RentalDetails_content .rental_card {
@@ -1026,7 +737,8 @@
 
   box-sizing: border-box;
 
-  position: absolute;
+  position: fixed;
+  /* 아래로 스크롤할때 내려간다는게 이게 맞는지..?? */
   width: 451px;
   height: 542px;
   left: calc(50% - 451px / 2 + 273.5px);

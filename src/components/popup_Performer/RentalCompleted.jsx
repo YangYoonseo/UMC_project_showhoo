@@ -1,4 +1,4 @@
-import "../../styles/RentalCompleted.css";
+import "../../styles/yoonseo/RentalCompleted.css";
 import OneButton from "../../modals/OneButton";
 
 const RentalCompleted = ({ onClose }) => {

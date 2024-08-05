@@ -1,4 +1,4 @@
-import "../styles/RentalHistory.css";
+import "../styles/yoonseo/RentalHistory.css";
 
 import { useContext } from "react";
 import { VenueContext } from "../App";
@@ -8,7 +8,7 @@ import Footer from "../components/common/Footer";
 import Concerthall from "../components/com_Performer/Concerthall";
 
 const RentalHistory = () => {
-  const venues = useContext(VenueContext);
+  const { venues } = useContext(VenueContext);
 
   return (
     <div className="RentalHistory">

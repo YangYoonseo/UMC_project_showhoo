@@ -1,4 +1,4 @@
-import "../styles/Mypage.css";
+import "../styles/yoonseo/Mypage.css";
 
 import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -8,7 +8,7 @@ import Frame339 from "../assets/img_Performer/Frame339.png";
 
 import Navbar_Perforemr from "../components/common/Navbar_Performer";
 import PerformerProfile from "../components/com_Performer/PerformerProfile";
-import PerformerCancel from "../components/com_Performer/PerformerCancel";
+import PerformerCancel from "../components/popup_Performer/PerformerCancel";
 
 const Mypage = () => {
   const nav = useNavigate();
@@ -32,7 +32,13 @@ const Mypage = () => {
         />
 
         <div className="choice">
-          <button>알림</button>
+          <button
+            onClick={() => {
+              nav("/alarm");
+            }}
+          >
+            알림
+          </button>
           <button
             onClick={() => {
               nav("/performer_registraion");
@@ -46,6 +52,13 @@ const Mypage = () => {
             }}
           >
             대관내역
+          </button>
+          <button
+            onClick={() => {
+              nav("/my_activity");
+            }}
+          >
+            내 활동
           </button>
           <button>역할 전환</button>
           <button>로그아웃</button>
