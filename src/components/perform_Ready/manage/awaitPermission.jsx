@@ -2,6 +2,8 @@ import "./table.css";
 
 import React, { useState } from 'react';
 import { useTable } from 'react-table';
+import allow from "../../../assets/img_Ready/allow.svg";
+import cancel from "../../../assets/img_Ready/cancel.svg";
 
 const mockReservations = [
     {
@@ -84,10 +86,10 @@ const mockReservations = [
           Header: '승인',
           accessor: 'isApproved',
           Cell: ({ row }) => (
-            <input
-              type="checkbox"
-              checked={row.original.isApproved}
-              onChange={() => {
+            <img
+              src={row.original.isApproved ? allow  : cancel }
+              alt={row.original.isApproved ? "승인됨" : "승인되지 않음"}
+              onClick={() => {
                 const newData = data.map(item => 
                   item.orderNumber === row.original.orderNumber 
                     ? { ...item, isApproved: !item.isApproved }
@@ -95,6 +97,7 @@ const mockReservations = [
                 );
                 setData(newData);
               }}
+              style={{ cursor: 'pointer' }}
             />
           )
         },

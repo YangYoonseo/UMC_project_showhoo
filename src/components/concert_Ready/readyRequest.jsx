@@ -1,25 +1,45 @@
 import "../../styles/Eojin/perform_readyRequest.css";
 import React, { useState, useEffect } from "react";
 import Button from "../common/Button";
-
-const mockdata = [
-    {
-        request: '일단, 곡에 대한 요청사항은 큐시트에 작성한 바와 같습니다. 하지만 곡 외적인 퍼포먼스를 위한 요청사항이 있습니다. 첫번째 공연곡 이전에 스모그를 통해 공연 시작의 분위기를 만들어 주시면 감사하겠습니다.또한, 마지막 공연곡 이후에 카운트 10 이후에 다시 마지막 후렴부분으로 돌아갈 예정입니다. 바로 조명 OFF 해주시고, 카운트 이후 모든 조명을 보컬에게 맞춰서 쏴주시면 감사하겠습니다.',
-    }
-];
+import axios from 'axios';
 
 const ReadyRequest = ({ preStep, nextStep }) => {
     const [request, setRequest] = useState("");
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
 
     useEffect(() => {
-        // mockdata를 가져오는 시뮬레이션
         const fetchData = async () => {
-            // 여기에서 데이터를 비동기로 가져오는 것처럼 시뮬레이션합니다.
-            setRequest(mockdata[0].request);
+            const apiUrl = 'http://ec2-3-34-248-63.ap-northeast-2.compute.amazonaws.com:8081';
+            const showId = 1;
+            const endpoint = `/performer/${showId}/prepare`;
+
+            // const token = localStorage.getItem('eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIzNjMyMDg3MDEzIiwiZXhwIjoxNzIyOTMwODI1fQ.a06BQyKx1BR1gh8uSJJ9VhoUnpUAAfHTQKQdJD3H0r7pNQwZh3zmz5DW8v-Sj5WV-4cQz2UJ8lU7i7igJVWgIg');
+
+            try {
+                const response = await axios.get(apiUrl + endpoint, {
+                    headers: {
+                        Authorization: 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIzNjMyMDg3MDEzIiwiZXhwIjoxNzIyOTMyNDE5fQ.SObShaA7p64yXuex_ue5yudQdfTz9YT7l5MyCbjbu-NExdi4mhaB-q5FX2dsuRrfZb4FhqDIOFZNLJbxz94UQA',
+                    }
+                });
+                setRequest(response.data.request); // assuming response.data has the request field
+            } catch (error) {
+                setError(error.message);
+            } finally {
+                setLoading(false);
+            }
         };
 
         fetchData();
     }, []);
+
+    if (loading) {
+        return <div>Loading...</div>;
+    }
+
+    if (error) {
+        return <div>Error: {error}</div>;
+    }
 
     return (
         <div className="ReadyRequest">
@@ -39,3 +59,4 @@ const ReadyRequest = ({ preStep, nextStep }) => {
 };
 
 export default ReadyRequest;
+

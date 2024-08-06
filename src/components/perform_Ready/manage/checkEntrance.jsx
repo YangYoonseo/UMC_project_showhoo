@@ -1,6 +1,8 @@
 import "./table.css";
 import React, { useState } from 'react';
 import { useTable } from 'react-table';
+import checkbox from "../../../assets/img_Ready/checkbox.svg";
+import check from "../../../assets/img_Ready/check.svg";
 
 const initialData = [
   { orderNumber: 'A001', name: '홍길동', phone: '010-1234-5678', isApproved: true, isCheckedIn: true },
@@ -21,17 +23,18 @@ const CheckEntrance = () => {
         Header: '입장 확인',
         accessor: 'isCheckedIn',
         Cell: ({ row }) => (
-          <input
-            type="checkbox"
-            checked={row.original.isCheckedIn}
-            onChange={() => {
+          <img
+            src={row.original.isCheckedIn ? check  : checkbox }
+            alt={row.original.isApproved ? "승인됨" : "승인되지 않음"}
+            onClick={() => {
               const newData = data.map(item => 
                 item.orderNumber === row.original.orderNumber 
-                  ? { ...item, isCheckedIn: !item.isCheckedIn }
+                ? { ...item, isCheckedIn: !item.isCheckedIn }
                   : item
               );
               setData(newData);
             }}
+            style={{ cursor: 'pointer' }}
           />
         )
       },
@@ -42,20 +45,11 @@ const CheckEntrance = () => {
         Header: '승인',
         accessor: 'isApproved',
         Cell: ({ row }) => (
-          <input
-            type="checkbox"
-            checked={row.original.isApproved}
-            onChange={() => {
-              const newData = data.map(item => 
-                item.orderNumber === row.original.orderNumber 
-                  ? { ...item, isApproved: !item.isApproved }
-                  : item
-              );
-              setData(newData);
-            }}
-          />
+          <span>
+            {row.original.isApproved ? "YES" : "NO"}
+          </span>
         )
-      },
+      }
     ],
     [data]
   );

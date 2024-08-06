@@ -1,11 +1,14 @@
 import "../../styles/Eojin/readyPoster.css";
 import React, { useState } from "react";
+import DatePicker from "react-datepicker";
 import Button from "../common/Button";
 import Editor from "./Editor/Editor";
+import arrow from "../../assets/img_Ready/arrow.svg";
 
 const ReadyPoster = ({ preStep, nextStep, check }) => {
     const [image, setImage] = useState(null);
-    // const [editorData, setEditorData] = useState('');
+    const [selectedDate, setSelectedDate] = useState(null);
+    const [isOpen, setIsOpen] = useState(false);
 
     const [formData, setFormData] = useState([
         {
@@ -42,6 +45,15 @@ const ReadyPoster = ({ preStep, nextStep, check }) => {
         }));
     };
 
+    const onClick = () => {
+        setIsOpen(!isOpen);
+    };
+
+    const handleDate = () => {
+        setSelectedDate(date);
+        setIsOpen(false); // 선택 후 닫기
+    }
+
     return (
         <div className="ReadyPoster">
             <div className="Poster_container">
@@ -75,26 +87,26 @@ const ReadyPoster = ({ preStep, nextStep, check }) => {
                         placeholder="공연명" 
                         onChange={handleChange} 
                     />
-                    <div className="inf_table">
-                        <input 
-                            className="inf_date"
-                            type="text"  
-                            placeholder="날짜" 
-                            onChange={handleChange} 
-                        />
-                        <input 
-                            className="inf_time"
-                            type="text" 
-                            placeholder="시간" 
-                            onChange={handleChange} 
-                        />
+                    <div className="inf_date" onClick={onClick}>
+                        <p>공연 날짜</p>
+                        <img className="arrow" src={arrow} arc="arrow" />
                     </div>
+                    {isOpen && (
+                        <DatePicker
+                            selected={selectedDate}
+                            onChange={(date) => setSelectedDate(date)}
+                        />
+                    )}
                     <input 
                         className="inf_runningTime"
                         type="text" 
                         placeholder="러닝 타임" 
                         onChange={handleChange} 
-                    />                   
+                    />
+                    <div className="inf_cancel">
+                        <p>예매 취소 기한</p>
+                        <img className="arrow" src={arrow} arc="arrow" />
+                    </div>                
                 </div>
             </div>
             <div className="Detail_Container">

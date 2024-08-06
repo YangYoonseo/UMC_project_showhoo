@@ -1,7 +1,7 @@
 import "../../styles/Eojin/readyUploader.css";
 import Button from "../common/Button";
-import React, { useState } from 'react';
-/// import axios from 'axios';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 
 const ReadyUploader = ({ onClose, uploadSuc, uploadFail }) => {
     const [selectedFile, setSelectedFile] = useState(null);
@@ -13,7 +13,7 @@ const ReadyUploader = ({ onClose, uploadSuc, uploadFail }) => {
         setFileName(file ? file.name : '선택된 파일 없음');
     };
 
-    const handleFileUpload = () => {
+    const handleFileUpload = async () => {
         if (!selectedFile) {
             console.log('No file selected, calling uploadNonComplete and onClose');
             uploadFail();
@@ -21,18 +21,35 @@ const ReadyUploader = ({ onClose, uploadSuc, uploadFail }) => {
             return;
         }
 
-        const reader = new FileReader();
-        reader.onload = (e) => {
-            // 파일이 성공적으로 로드되었을 때 처리
-            console.log('File read successfully:', e.target.result);
-            uploadSuc();
+        const formData = new FormData();
+        formData.append('file', selectedFile);
+
+        const apiUrl = 'http://ec2-3-34-248-63.ap-northeast-2.compute.amazonaws.com:8081';
+        const showId = 1;
+        const endpoint = '/space/' + showId + '/show-prepare';
+
+        // 인증 토큰 가져오기 
+        const token = localStorage.getItem('eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIzNjMyMDg3MDEzIiwiZXhwIjoxNzIyOTMwODI1fQ.a06BQyKx1BR1gh8uSJJ9VhoUnpUAAfHTQKQdJD3H0r7pNQwZh3zmz5DW8v-Sj5WV-4cQz2UJ8lU7i7igJVWgIg');
+
+        try {
+            const response = await axios.post(apiUrl+endpoint, formData, {
+                headers: {
+                    'Content-Type': 'multipart/form-data',
+                    'Authorization': `Bearer ${token}` // 인증 토큰 포함
+                }
+            });
+            console.log('File upload response:', response.data);
+            if (response.status === 200) {
+                uploadSuc();
+            } else {
+                uploadFail();
+            }
+        } catch (error) {
+            console.error('Error uploading file:', error);
+            uploadFail();
+        } finally {
             onClose();
-        };
-        reader.onerror = (e) => {
-            console.error('Error reading file', e);
-            alert('파일을 읽는 중에 오류가 발생했습니다.');
-        };
-        reader.readAsDataURL(selectedFile);
+        }
     };
 
   return (
