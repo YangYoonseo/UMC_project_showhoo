@@ -109,7 +109,7 @@
   width: 129px;
   height: 28px;
   line-height: 28px;
-  top: 50px; /* 하단에 위치 */
+  top: 60px; /* 하단에 위치 */
   left: 50%; /* 중앙에 위치 */
   transform: translateX(-50%); /* 중앙 정렬 */
   border-radius: 5px;
@@ -143,6 +143,34 @@
   /* 오늘 날짜 타일 */
   background: none;
   color: #000;
+}
+
+.ReadyCalendar .react-calendar__tile--active {
+  position: relative;
+  background-color: white !important;
+}
+
+.ReadyCalendar .react-calendar__tile--active::before {
+  content: ""; /* 내용이 없는 요소 생성 */
+  position: absolute; /* 위치 지정 */
+  top: 13%; /* 타일 상단 근처에 위치 */
+  left: 50%; /* 중앙 정렬 */
+  transform: translate(-50%, -20%); /* 중앙 정렬과 상단으로 조정 */
+  width: 40px; /* 원의 너비 */
+  height: 40px; /* 원의 높이 */
+  border-radius: 50%; /* 원형으로 만들기 */
+  background-color: black; /* 원의 배경색 */
+  z-index: 2; /* 원이 텍스트 아래에 위치하도록 설정 */
+}
+
+/* 텍스트가 원 위에 위치하도록 설정 */
+.ReadyCalendar .react-calendar__tile--active abbr {
+  position: relative;
+  z-index: 2; /* 텍스트가 원 위에 위치하도록 설정 */
+  display: block; /* 텍스트 블록화 */
+  text-align: center; /* 텍스트 중앙 정렬 */
+  line-height: 0px; /* 타일의 높이와 맞추기 (필요 시 조정) */
+  color: white;
 }
 
 .ReadyCalendar .PerformerCalendar_calendar {
