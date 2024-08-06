@@ -18,7 +18,8 @@ import Alarm from "./pages/Alarm";
 import MyActivity from "./pages/MyActivity.jsx";
 import ConcertReady from "./pages/ConcertReady.jsx";
 import BookingHistroy from "./pages/BookingHistory.jsx";
-import Ready from "./pages/Ready";
+import PerformerReady from "./pages/PerformerReady.jsx";
+import ConReady from "./pages/ConReady.jsx";
 
 const ex_profiles = [
   {
@@ -207,6 +208,8 @@ function App() {
                   <Route path="/my_activity" element={<MyActivity />} />
                   <Route path="/concert_ready" element={<ConcertReady />} />
                   <Route path="/booking_history" element={<BookingHistroy />} />
+                  <Route path="/performer_ready" element={<PerformerReady />} />
+                  <Route path="/con_ready" element={<ConReady />} />
                 </Routes>
               </div>
             </PamphletContext.Provider>

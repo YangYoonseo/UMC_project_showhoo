@@ -17,7 +17,7 @@ const Navbar_Perforemr = () => {
           <button className="Button47">홈</button>
           <button className="Button48">공연장 대관</button>
           <button className="Button49">대관 내역</button>
-          <button className="Button50">공연 준비</button>
+          <button className="Button50" onClick={()=>{nav("/performer_ready")}}>공연 준비</button>
         </div>
       </div>
       <div className="Frame169">

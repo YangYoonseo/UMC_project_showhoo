@@ -2,9 +2,9 @@ import "../styles/Eojin/Ready.css";
 
 import Navbar_Perforemr from "../components/common/Navbar_Performer";
 import Footer from "../components/common/Footer";
-import ReadyMain from "../components/Ready/readyMain";
+import ReadyMain from "../components/perform_Ready/readyMain";
 
-const Ready = () => {
+const PerformerReady = () => {
     return (
         <div className="Ready">
             <Navbar_Perforemr />
@@ -16,4 +16,4 @@ const Ready = () => {
     );
 };
 
-export default Ready;
+export default PerformerReady;

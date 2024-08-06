@@ -14,7 +14,7 @@ const Navbar_Concert = () => {
         <div className="Frame127 concert_navbar">
           <button className="home">홈</button>
           <button className="concert_register">공연장 등록</button>
-          <button className="concert_ready">공연 준비</button>
+          <button className="concert_ready" onClick={()=>{nav("/con_ready")}}>공연 준비</button>
         </div>
       </div>
       <div className="Frame169">
