@@ -1,3 +1,4 @@
+/* Host_VenuRegisterPage.css */
 .venue-register-page{
 
     position: relative;
@@ -12,39 +13,51 @@
 
 }
 
-.venue-name{
+/* 공연장 이름과 수정 아이콘을 inline-flex로 묶기 */
+.venue-name-wrapper {
+    display: inline-flex;
+    align-items: center;
+    margin-left: 186px;
+    margin-top: 42px;
+}
 
+.venue-name{
+/* 
     position: absolute;
-    width: 248px;
+    width: 400px;
     height: 68px;
     left: 186px;
-    top: 42px;
+    top: 42px; */
     
     font-family: 'Pretendard';
     font-style: normal;
     font-weight: 600;
     font-size: 40px;
     line-height: 68px;
+    margin-right:10px;
     
     color: #0F0F0F;
+    max-width: 700px; /* 최대 너비 설정 */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    margin-right: 10px; /* 아이콘과 이름 사이 간격 */
 }
 
 .name_edit_icon{
 
-    position: absolute;
     width: 45px;
     height: 45px;
-    left: 381px;
-    top: 79px;
+    cursor:pointer;
 }
 
 .venue-location{
 
     position: absolute;
-    width: 240px;
+    width: 700px;
     height: 28px;
     left: 186px;
-    top: 130px;
+    top: 140px;
     
     font-family: 'Pretendard';
     font-style: normal;

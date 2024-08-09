@@ -927,6 +927,7 @@ flex-grow: 0;
 
 .review-content p {
   margin: 5px 0;
+  color: black;
 }
 
 .review-image {

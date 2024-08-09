@@ -1,3 +1,4 @@
+//사용하지 않음
 import React from 'react';
 import '../../styles/VenueRegisterPage_Introduce/Host_VenueInfo.css';
 const Host_VenueInfo = ({ data }) => {
