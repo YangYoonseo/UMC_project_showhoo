@@ -160,3 +160,13 @@
 
     z-index: 2;
 }
+
+/* main-content */
+.main-content {
+    margin: 20px;
+    padding: 20px;
+    position: absolute;
+    top: 730px;
+    left: 190px;
+    width: 100%;
+}
