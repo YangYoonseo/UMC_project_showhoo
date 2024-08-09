@@ -1,15 +1,15 @@
 // VenueRegisterPage.jsx
 import React, { useState } from 'react';
-import VenueInfo from '../components/VenueDetails/VenueInfo';
-import VenueInfo2 from '../components/VenueDetails/VenueInfo2';
-import VenueImages from '../components/VenueDetails/VenueImages';
-import BookingForm from '../components/VenueDetails/BookingForm';
-import VenueTabs from '../components/VenueDetails/VenueTabs';
-import VenueIntroduction from '../components/VenueDetails/VenueIntroduction';
-import FacilityInfo from '../components/VenueDetails/FacilityInfo';
-import Notice from '../components/VenueDetails/Notice';
-import Schedule from '../components/VenueDetails/Schedule';
-import Reviews from '../components/VenueDetails/Reviews';
+// import VenueInfo from '../components/VenueDetails/VenueInfo';
+// import VenueInfo2 from '../components/VenueDetails/VenueInfo2';
+// import VenueImages from '../components/VenueDetails/VenueImages';
+// import BookingForm from '../components/VenueDetails/BookingForm';
+// import VenueTabs from '../components/VenueDetails/VenueTabs';
+// import VenueIntroduction from '../components/VenueDetails/VenueIntroduction';
+// import FacilityInfo from '../components/VenueDetails/FacilityInfo';
+// import Notice from '../components/VenueDetails/Notice';
+// import Schedule from '../components/VenueDetails/Schedule';
+// import Reviews from '../components/VenueDetails/Reviews';
 import '../components/VenueDetails/VenueDetails.css';
 
 const VenueDetailPage = () => {

@@ -1,58 +1,86 @@
 import "../../styles/Eojin/readyPoster.css";
-import React, { useState } from "react";
-import DatePicker from "react-datepicker";
+import React, { useState, useEffect } from "react";
 import Button from "../common/Button";
 import Editor from "./Editor/Editor";
+import SelectCalender from "./Datepicker/calender";
 import arrow from "../../assets/img_Ready/arrow.svg";
+import { format } from 'date-fns'; // 날짜 포맷팅을 위해 가져오기
 
 const ReadyPoster = ({ preStep, nextStep, check }) => {
     const [image, setImage] = useState(null);
-    const [selectedDate, setSelectedDate] = useState(null);
-    const [isOpen, setIsOpen] = useState(false);
+    const [selectedDate1, setSelectedDate1] = useState(null);
+    const [selectedDate2, setSelectedDate2] = useState(null);
+    const [isDatePickerOpen1, setIsDatePickerOpen1] = useState(false);
+    const [isDatePickerOpen2, setIsDatePickerOpen2] = useState(false);
 
-    const [formData, setFormData] = useState([
-        {
-            club: '',
-            concertName: '',
-            date: '',
-            time: '',
-            runningTime: '',
-        }
-    ]);
+    const [formData, setFormData] = useState({
+        club: '',
+        concertName: '',
+        date1: '',
+        time1: '',
+        runningTime: '',
+        date2: '',
+        time2: '',
+    });
+
+    useEffect(() => {
+        console.log("Updated formData:", formData);
+    }, [formData]);
 
     const handleUploadClick = () => {
-      document.getElementById('file-input').click();
+        document.getElementById('file-input').click();
     };
   
     const handleFileChange = (event) => {
-      const file = event.target.files[0];
-      if (file && (file.type === 'image/jpeg' || file.type === 'image/png')) {
-        const reader = new FileReader();
-        reader.onload = (e) => {
-          setImage(e.target.result);
-        };
-        reader.readAsDataURL(file);
-      } else {
-        alert('Only JPG, JPEG, and PNG files are allowed.');
-      }
+        const file = event.target.files[0];
+        if (file && (file.type === 'image/jpeg' || file.type === 'image/png')) {
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                setImage(e.target.result);
+            };
+            reader.readAsDataURL(file);
+        } else {
+            alert('Only JPG, JPEG, and PNG files are allowed.');
+        }
     };
 
     const handleChange = (e) => {
         const { name, value } = e.target;
         setFormData((prevData) => ({
-          ...prevData,
-          [name]: value
+            ...prevData,
+            [name]: value
         }));
     };
 
-    const onClick = () => {
-        setIsOpen(!isOpen);
+    const handleDateChange1 = (date) => {
+        setSelectedDate1(date);
+        setFormData((prevData) => ({
+            ...prevData,
+            date1: format(date, "yyyy-MM-dd HH:mm"), // 원하는 형식으로 날짜 저장
+            time1: date.toLocaleTimeString()  // 원하는 형식으로 시간 저장
+        }));
+        setIsDatePickerOpen1(false); // 선택 후 DatePicker 닫기
+        console.log(formData);
     };
 
-    const handleDate = () => {
-        setSelectedDate(date);
-        setIsOpen(false); // 선택 후 닫기
-    }
+    const handleDateChange2 = (date) => {
+        setSelectedDate2(date);
+        setFormData((prevData) => ({
+            ...prevData,
+            date2: format(date, "yyyy-MM-dd HH:mm"), // 원하는 형식으로 날짜 저장
+            time2: date.toLocaleTimeString()  // 원하는 형식으로 시간 저장
+        }));
+        setIsDatePickerOpen2(false); // 선택 후 DatePicker 닫기
+        console.log(formData);
+    };
+
+    const toggleDatePicker1 = () => {
+        setIsDatePickerOpen1(!isDatePickerOpen1);
+    };
+
+    const toggleDatePicker2 = () => {
+        setIsDatePickerOpen2(!isDatePickerOpen2);
+    };
 
     return (
         <div className="ReadyPoster">
@@ -63,11 +91,11 @@ const ReadyPoster = ({ preStep, nextStep, check }) => {
                     <p>사진 형식은 JPG,JPEG, PNG만 가능합니다.</p>
                     <div className="Poster">
                         {!image && (
-                                <div className="upload-text">
-                                    <p>포스트를 추가하세요.</p>
-                                    <p><span className="upload-link" onClick={handleUploadClick}>기기에서 업로드</span></p>
-                                </div>
-                                )}
+                            <div className="upload-text">
+                                <p>포스트를 추가하세요.</p>
+                                <p><span className="upload-link" onClick={handleUploadClick}>기기에서 업로드</span></p>
+                            </div>
+                        )}
                         {image && <img src={image} alt="Uploaded" />}
                         <input type="file" id="file-input" accept=".jpg, .jpeg, .png" style={{ display: 'none' }} onChange={handleFileChange} />
                     </div>
@@ -80,33 +108,40 @@ const ReadyPoster = ({ preStep, nextStep, check }) => {
                         type="text" 
                         placeholder="001 클럽"
                         onChange={handleChange} 
+                        name="club"
                     />
                     <input 
                         className="inf_concertName"
                         type="text" 
                         placeholder="공연명" 
                         onChange={handleChange} 
+                        name="concertName"
                     />
-                    <div className="inf_date" onClick={onClick}>
-                        <p>공연 날짜</p>
-                        <img className="arrow" src={arrow} arc="arrow" />
+                    <div className="inf_date" onClick={toggleDatePicker1}>
+                        {selectedDate1 ? (
+                            <p>{formData.date1}</p>
+                        ) : (
+                            <p>공연 날짜</p>
+                        )}
+                        <img className="arrow" src={arrow} alt="arrow" />
                     </div>
-                    {isOpen && (
-                        <DatePicker
-                            selected={selectedDate}
-                            onChange={(date) => setSelectedDate(date)}
-                        />
-                    )}
+                    {isDatePickerOpen1 && <SelectCalender selectedDate={selectedDate1} handleDateChange={handleDateChange1} />}
                     <input 
                         className="inf_runningTime"
                         type="text" 
-                        placeholder="러닝 타임" 
+                        placeholder="러닝 타임(분 기준)" 
                         onChange={handleChange} 
+                        name="runningTime"
                     />
-                    <div className="inf_cancel">
-                        <p>예매 취소 기한</p>
-                        <img className="arrow" src={arrow} arc="arrow" />
-                    </div>                
+                    <div className="inf_cancel" onClick={toggleDatePicker2}>
+                        {selectedDate2 ? (
+                                <p>{formData.date2}</p>
+                            ) : (
+                            <p>예매 취소 기한</p>
+                        )}
+                        <img className="arrow" src={arrow} alt="arrow" />
+                    </div>
+                    {isDatePickerOpen2 && <SelectCalender selectedDate={selectedDate2} handleDateChange={handleDateChange2} />}                  
                 </div>
             </div>
             <div className="Detail_Container">
