@@ -1,5 +1,5 @@
+//Host_VenueTabs.jsx
 import React from 'react';
-import './VenueDetails.css';
 
 const VenueTabs = ({ selectedTab, setSelectedTab }) => {
   return (

@@ -14,6 +14,11 @@ import Mypage from "./pages/Mypage";
 import RentalDetails from "./pages/RentalDetails";
 import RentalHistory from "./pages/RentalHistory";
 import VenueDetailPage from "./pages/VenueDetailPage";
+import VenueRegisterPage from "./pages/VenueRegisterPage";
+import Navbar_Performer from "./components/common/Navbar_Performer";
+import Navbar_Performer_Host from "./components/common/Navbar_Performer_Host";
+import Footer from "./components/common/Footer";
+import LoginPage from "./pages/Loginpage";
 import Alarm from "./pages/Alarm";
 import MyActivity from "./pages/MyActivity.jsx";
 import ConcertReady from "./pages/ConcertReady.jsx";
@@ -203,7 +208,8 @@ function App() {
                   <Route path="/mypage" element={<Mypage />} />
                   <Route path="/rental_details" element={<RentalDetails />} />
                   <Route path="/rental_history" element={<RentalHistory />} />
-                  <Route path="/venue_detail" element={<VenueDetailPage />} />
+                  <Route path="/venue_detail" element={<VenueDetailPage />} />  {/* 공연자 플로우 */}
+                  <Route path="/venue_register" element={<VenueRegisterPage />} />  {/* 공연장 플로우 */}
                   <Route path="alarm" element={<Alarm />} />
                   <Route path="/my_activity" element={<MyActivity />} />
                   <Route path="/concert_ready" element={<ConcertReady />} />

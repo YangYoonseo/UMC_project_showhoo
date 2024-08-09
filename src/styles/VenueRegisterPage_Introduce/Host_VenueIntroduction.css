@@ -1,0 +1,215 @@
+/* Host_VenueIntroduction.css */
+body {
+    font-family: 'Pretendard';
+}
+.host-venue-introduction {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 650px;
+    margin: 20px;
+    padding: 20px;
+    position: absolute;
+    top: 730px;
+    left: 190px;
+    gap: 10px;
+  }
+  
+  .introduction-header {
+    margin-bottom: 0px;
+  }
+  
+  .introduction-header h2 {
+    font-size: 25px;
+    margin-bottom: 20px;
+  }
+  
+  .introduction-header p {
+    font-size: 18px;
+    color: black;
+  }
+  
+  .venue-description {
+    width: 626px;
+    height: 135px;
+    border-radius: 14px;
+    border: 1px solid #9c9c9c;
+    margin-bottom: 40px;
+    margin-top: 10px;
+    resize: none;
+    font-size: 15px;
+    padding: 20px;
+    box-sizing: border-box;
+  }
+  
+  .input-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+  }
+  
+  .input-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  
+label{
+    font-size: 21px;
+    color: #9c9c9c;
+    margin-right: 10px;
+    white-space: nowrap;
+    font-weight: 500;
+    line-height: 36px;
+  }
+  
+  .input-with-unit {
+    display: flex;
+    align-items: center;
+  }
+  
+  input[type="text"] {
+    width: 112px;
+    height: 41px;
+    border: 1px solid #9c9c9c;;
+    border-radius: 10px;
+    margin-right: 5px;
+    margin-left:10px;
+    padding: 20px;
+    box-sizing: border-box;
+  }
+  .time-field{
+    width: 626px;
+    height: 135px;
+    border-radius: 14px;
+    border: 1px solid #9c9c9c;;
+    padding: 10px;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    resize: none;
+    padding: 20px;
+    box-sizing: border-box;
+  }
+
+  textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #9c9c9c;;
+    border-radius: 4px;
+  }
+  
+  .input-with-unit span {
+    font-size: 21px;
+    color: #4f4f4f;
+    margin-left: 5px;
+  }
+  
+  .input-group, .info-row {
+    display: flex;
+    flex-direction: column; /* 세로로 배치되도록 설정 */
+    margin-bottom: 15px;
+    position: relative;
+}
+  .info-row label {
+    font-size: 14px;
+  }
+  
+  .input-field {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #dcdcdc;
+    margin-top: 5px;
+  }
+  
+  .register-button {
+    width: 121px;
+    height: 41px;
+    background-color: #e8e8e8;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    right: 0; /* 부모 요소의 오른쪽 끝으로 이동 */
+    top: 230px; /* 버튼이 필드 상단에 위치하도록 설정 */
+  }
+  
+  .location-section {
+    margin-top: 40px;
+  }
+  
+  .location-section h2 {
+    font-size: 25px;
+    margin-bottom: 20px;
+  }
+  
+  .location-section p {
+    font-size: 20px;
+    color: #9c9c9c;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+
+  /* 기존 label 스타일에 맞추기 위해 추가 */
+label[for="fee"],
+label[for="service"] {
+    font-size: 21px;
+    color: #9c9c9c;
+    margin-right: 10px;
+    white-space: nowrap;
+    font-weight: 500;
+    line-height: 36px;
+}
+
+
+  
+.fee-field{
+    width: 626px;
+    height: 158px;
+    border-radius: 14px;
+    border: 1px solid #9c9c9c;
+    padding: 10px;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    resize: none;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.service-field{
+    width: 626px;
+    height: 158px;
+    border-radius: 14px;
+    border: 1px solid #9c9c9c;
+    padding: 10px;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    resize: none;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.location-header {
+    display: flex;
+    align-items: center;
+  }
+  
+.ex_map {
+    display: flex;
+    width:618px;
+    height:303px;
+    border-radius: 14px;
+  }
+.place_edit_icon {
+    width: 22px;
+    height: 22px;
+    margin-left: 10px;
+
+    position: relative;
+    top:-7px;
+    cursor: pointer;
+  }
+  

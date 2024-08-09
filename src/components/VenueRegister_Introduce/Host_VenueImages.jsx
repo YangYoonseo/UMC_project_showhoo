@@ -1,6 +1,5 @@
+//사용하지 않음
 import React from 'react';
-import './VenueDetails.css';
-
 import mainImage from '../../assets/images/eximage1.png';
 import galleryImage1 from '../../assets/images/eximage2.png';
 import galleryImage2 from '../../assets/images/eximage3.png';

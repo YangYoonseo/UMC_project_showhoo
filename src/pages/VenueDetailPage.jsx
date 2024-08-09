@@ -40,13 +40,24 @@ const VenueDetailPage = () => {
     amenities: `공연장 내 주차 가능, 유료 발렛 파킹 서비스 제공.<br>대기실 및 화장실은 공연장 내에 위치하고 있습니다.`
   };
 
-function VenueDetailPage() {
   return (
     <div className="venue-detail-page">
-      <VenueDetailComponent />
+      <VenueInfo data={mockData} />
+      <VenueInfo2 />
+      <VenueImages images={mockData.images} />
+      <div className="venue-content">
+        <div className="venue-main-content">
+          <VenueTabs selectedTab={selectedTab} setSelectedTab={setSelectedTab} />
+          {selectedTab === 'introduction' && <VenueIntroduction data={mockData.description} />}
+          {selectedTab === 'facility' && <FacilityInfo />}
+          {selectedTab === 'notice' && <Notice data={mockData} />}
+          {selectedTab === 'schedule' && <Schedule />}
+          {selectedTab === 'reviews' && <Reviews />}
+        </div>
+        <BookingForm rentalFee={mockData.rentalFee} />
+      </div>
     </div>
   );
-}
-}
+};
 
 export default VenueDetailPage;

@@ -1,0 +1,76 @@
+/* Pop_Name.css */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }
+  
+  .modal-container {
+    width: 698px;
+    height: 424px;
+    background: white;
+    border-radius: 25px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-sizing: border-box;
+    padding: 20px 80px 70px 80px;
+  }
+
+  h2{
+    font-size: 40px;
+    margin-bottom: -15px;
+  }
+
+  .p{
+    font-size:22px;
+    color:#696969;
+  }
+
+  .modal-input {
+    width: 516px !important;
+    height: 64px !important;
+    border-radius: 18px;
+    border: 1px solid #ccc; /* 여기에 추가적으로 border 스타일을 지정 */
+    padding: 10px;
+    padding-left: 40px;
+    font-size: 16px;
+    box-sizing: border-box;
+
+    position: relative;
+    left:-10px;
+  }
+
+  
+  .modal-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+  }
+  
+  .cancel-button,
+  .confirm-button {
+    width: 250px;
+    height: 50px;
+    border-radius: 12px;
+    font-size: 18px;
+    cursor: pointer;
+  }
+  
+  .cancel-button {
+    background: #e8e8e8;
+    border: none;
+  }
+  
+  .confirm-button {
+    background: #09f1b9;
+    border: none;
+  }
+  
