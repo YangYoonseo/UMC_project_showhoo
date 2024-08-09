@@ -13,6 +13,7 @@ const Navbar_Perforemr_Host = () => {
         <img src={logo_performer} alt="" />
         <div className="Frame127">
           <button className="Button47">홈</button>
+          {/* 홈 버튼 이동 구현할 것! */}
           <button
             className="Button48"
             onClick={() => {
@@ -23,6 +24,7 @@ const Navbar_Perforemr_Host = () => {
             className="Button50"
             onClick={() => {
               nav("/ready_for_show");
+              // 이동할 링크 이 부분에 수정해서 넣을 것!
             }}
           >공연 준비</button>
         </div>
