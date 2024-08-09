@@ -5,13 +5,7 @@ body {
 .host-venue-introduction {
     display: flex;
     flex-direction: column;
-    width: 100%;
     max-width: 650px;
-    margin: 20px;
-    padding: 20px;
-    position: absolute;
-    top: 730px;
-    left: 190px;
     gap: 10px;
   }
   

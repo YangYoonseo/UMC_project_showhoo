@@ -2,6 +2,10 @@
 import React, { useState } from 'react';
 import Host_VenueTabs from '../components/VenueRegister_Introduce/Host_VenueTabs';
 import Host_VenueIntroduction from '../components/VenueRegister_Introduce/Host_VenueIntroduction';
+import Host_VenueFacility from '../components/VenueRegister_Introduce/Host_VenueFacility';
+import Host_VenueNotice from '../components/VenueRegister_Introduce/Host_VenueNotice';
+import Host_VenueSchedule from '../components/VenueRegister_Introduce/Host_VenueSchedule';
+import Host_VenueReviews from '../components/VenueRegister_Introduce/Host_VenueReviews';
 import edit_icon from '../assets/images/venueregisterpage_introduce/edit_icon.svg';
 import register_image_btn from "../assets/images/venueregisterpage_introduce/register_image_btn.svg";
 import Pop_Name from '../components/VenueRegister_Introduce/Pop_Name';
@@ -51,9 +55,23 @@ const VenueRegisterPage = () => {
       <div className="venue-content">
         <div className="venue-main-content">
           <Host_VenueTabs selectedTab={selectedTab} setSelectedTab={setSelectedTab} />
-          {selectedTab === 'introduction' && (
-            <Host_VenueIntroduction openPlaceModal={openPlaceModal} /> // 장소 모달 여는 함수 전달
-          )}
+            <div className="main-content">
+              {selectedTab === 'introduction' && (
+                <Host_VenueIntroduction openPlaceModal={openPlaceModal} /> // 장소 모달 여는 함수 전달
+              )}
+              {selectedTab === 'facility' && (
+                <Host_VenueFacility openPlaceModal={openPlaceModal} /> // 장소 모달 여는 함수 전달
+              )}
+              {selectedTab === 'notice' && (
+                <Host_VenueNotice openPlaceModal={openPlaceModal} /> // 장소 모달 여는 함수 전달
+              )}
+              {selectedTab === 'schedule' && (
+                <Host_VenueSchedule openPlaceModal={openPlaceModal} /> // 장소 모달 여는 함수 전달
+              )}
+              {selectedTab === 'reviews' && (
+                <Host_VenueReviews openPlaceModal={openPlaceModal} /> // 장소 모달 여는 함수 전달
+              )}
+            </div>
         </div>
       </div>
 
