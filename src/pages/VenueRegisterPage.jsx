@@ -10,6 +10,8 @@ import edit_icon from '../assets/images/venueregisterpage_introduce/edit_icon.sv
 import register_image_btn from "../assets/images/venueregisterpage_introduce/register_image_btn.svg";
 import Pop_Name from '../components/VenueRegister_Introduce/Pop_Name';
 import Pop_Place from '../components/VenueRegister_Introduce/Pop_Place'; // Pop_Place 컴포넌트 추가
+import Footer from '../components/common/Footer';
+import Navbar_Concert from '../components/common/Navbar_Concert';
 import '../styles/VenueRegisterPage.css';
 
 const VenueRegisterPage = () => {
@@ -38,6 +40,9 @@ const VenueRegisterPage = () => {
   };
 
   return (
+    <div className="navfot">
+    <Navbar_Concert/>
+    <Footer/>
     <div className="venue-register-page">
       <div className="venue-name-wrapper">
         <h1 className="venue-name">{venueName}</h1>
@@ -77,6 +82,7 @@ const VenueRegisterPage = () => {
 
       <Pop_Name isOpen={isNameModalOpen} onClose={closeNameModal} onConfirm={updateVenueName} />
       <Pop_Place isOpen={isPlaceModalOpen} onClose={closePlaceModal} onConfirm={updateVenueLocation} /> {/* Pop_Place 추가 */}
+    </div>
     </div>
   );
 };
