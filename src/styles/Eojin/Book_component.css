@@ -28,7 +28,7 @@ body {
 }
 
 .Book_component > .img_true {
-    filter:grayscale(100%);
+    filter:grayscale(100%) !important;
 }
 
 .com_content {
