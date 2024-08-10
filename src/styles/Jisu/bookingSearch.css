@@ -1,0 +1,88 @@
+.body {
+    background-color: rgb(255, 255, 255);
+}
+
+.ConcertHallImg {
+    width: 296px;
+    height: 236px;
+    border-radius: 11px;
+    object-fit: cover;
+}
+
+.BookingSearchBar {
+    width: 957px;
+    height: 98px;
+    margin: auto;
+
+    border: 1px;
+    border-style: solid;
+    border-color: rgb(0, 0, 0);
+    border-radius: 50px;
+
+    font-family: "Pretendard";
+    font-weight: 500;
+    color: Black;
+    background-color: white;
+
+    display: flex;
+}
+
+.topicDevide{
+    margin-top:27px;
+    margin-bottom:27px;
+    width:1.9px;
+    background-color: #CFCFCF;
+}
+
+.Concerthall {
+    padding-top:23px;
+    padding-left: 60px;
+    padding-right: 60px;
+}
+
+.Locate {
+    padding-left: 40px;
+    padding-top:23px;
+    padding-right: 40px;
+}
+
+.Date {
+    padding-top:23px;
+    padding-left: 40px;
+    padding-right: 44.94px;
+}
+
+.category {
+    padding-left: 40px;
+    padding-top:23px;
+    padding-right: 43.81px;
+}
+
+.topic {
+    font-size: 16px;
+    color: Black;
+    font-weight: 500;
+    margin-bottom: 3px;
+}
+
+.detail {
+    font-size: 19.97px;
+    color: #9C9C9C;
+    font-weight: 400;
+}
+
+.concertText{
+    font-size: 30px;
+    font-weight: 600;
+    margin-top: 92px;
+    padding-bottom: 38px;
+    margin-left: 68px;
+}
+
+.ConcertHallList {
+    width: 1330px;
+    display: flex;
+    justify-content: space-between;
+    margin-left: 61px;
+    margin-bottom: 38px;
+}
