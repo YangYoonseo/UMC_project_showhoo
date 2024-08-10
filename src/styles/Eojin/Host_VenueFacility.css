@@ -1,0 +1,36 @@
+body {
+    font-family: 'Pretendard';
+    font-style: normal;
+}
+
+.Host_VenueFacility > h4 {
+    width: 342px;
+    height: 30px;
+    font-weight: 600;
+    font-size: 25px;
+    display: flex;
+    text-align: center;
+}
+
+.Host_VenueFacility > p {
+    width: 582px;
+    height: 30px;
+    font-weight: 400;
+    font-size: 22px;
+    display: flex;
+    text-align: center;
+    color: #0F0F0F;
+    margin: 15px 0;
+}
+
+.Facility_Top {
+    display: flex;
+    margin: 40px 0;
+    gap: 30px;
+}
+
+.Facility_Bottom{
+    display: flex;
+    margin: 40px 0;
+    gap: 30px;
+}

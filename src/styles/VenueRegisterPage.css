@@ -169,9 +169,8 @@
     height: 35px;
     left: 1150px;
     top: 555px;
-    
-
     z-index: 2;
+    cursor: pointer;
 }
 
 /* main-content */
@@ -181,5 +180,6 @@
     position: absolute;
     top: 730px;
     left: 190px;
-    width: 100%;
+    width: 1050px;
+    box-sizing: border-box;
 }
