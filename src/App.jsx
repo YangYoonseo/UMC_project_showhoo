@@ -9,7 +9,7 @@ import poster from "./assets/img_Booking/poster.svg";
 // 페이지 가져오기
 import Home from "./pages/_test_/Home_seoya";
 import Rental from "./pages/_test_/Rental.jsx";
-import RentalAfter from "./pages/_test_/RentalAfter.jsx";
+import RentalSearch from "./pages/_test_/RentalSearch.jsx";
 import PerformerRegistration from "./pages/PerformerRegistration";
 import PerformerUpdate from "./pages/PerformerUpdate";
 import Mypage from "./pages/Mypage";
@@ -209,7 +209,7 @@ function App() {
                     element={<PerformerUpdate />}
                   />
                   <Route path="/rental" element={<Rental />} />
-                  <Route path="/rental_after" element={<RentalAfter />} />
+                  <Route path="/rental_search" element={<RentalSearch />} />
                   <Route path="/mypage" element={<Mypage />} />
                   <Route path="/rental_details" element={<RentalDetails />} />
                   <Route path="/rental_history" element={<RentalHistory />} />
