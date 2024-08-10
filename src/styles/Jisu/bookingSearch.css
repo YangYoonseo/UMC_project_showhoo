@@ -1,4 +1,4 @@
-.body {
+.rentalBody {
     background-color: rgb(255, 255, 255);
 }
 
@@ -27,34 +27,34 @@
     display: flex;
 }
 
-.topicDevide{
-    margin-top:27px;
-    margin-bottom:27px;
-    width:1.9px;
+.topicDevide {
+    margin-top: 27px;
+    margin-bottom: 27px;
+    width: 1.9px;
     background-color: #CFCFCF;
 }
 
 .Concerthall {
-    padding-top:23px;
+    padding-top: 23px;
     padding-left: 60px;
     padding-right: 60px;
 }
 
 .Locate {
     padding-left: 40px;
-    padding-top:23px;
+    padding-top: 23px;
     padding-right: 40px;
 }
 
 .Date {
-    padding-top:23px;
+    padding-top: 23px;
     padding-left: 40px;
     padding-right: 44.94px;
 }
 
 .category {
     padding-left: 40px;
-    padding-top:23px;
+    padding-top: 23px;
     padding-right: 43.81px;
 }
 
@@ -71,7 +71,7 @@
     font-weight: 400;
 }
 
-.concertText{
+.concertText {
     font-size: 30px;
     font-weight: 600;
     margin-top: 92px;

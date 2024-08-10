@@ -8,7 +8,7 @@ const BookingSearchButton = () => {
     const nav = useNavigate();
 
     return <button className="searchButton"
-    onClick={()=>{nav("/booking_after")
+    onClick={()=>{nav("/rental_search")
         }}>
         <div className="SearchImg">
             <img src={SearchImg} alt="SearchImg"/>

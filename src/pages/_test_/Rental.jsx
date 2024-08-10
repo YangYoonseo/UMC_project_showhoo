@@ -2,7 +2,6 @@ import "../../styles/Jisu/bookingSearch.css";
 
 import Navbar_Perforemr from "../../components/common/Navbar_Performer";
 import BookingInfoPoster from "../../components/_test_/Booking/BookingInfoPoster";
-import Footer from "../../components/common/Footer";
 import BookingSearchBar from "../../components/_test_/Booking/BookingSearchBar";
 import HotConcertHall from "../../components/_test_/Booking/HotConcertHall";
 
@@ -10,8 +9,7 @@ import HotConcertHall from "../../components/_test_/Booking/HotConcertHall";
 
 const Rental = () => {
   return (
-      <div className="body">
-        <div className="Booking">
+      <div className="rentalBody">
           <Navbar_Perforemr/>
           <BookingInfoPoster />
           <BookingSearchBar />
@@ -44,7 +42,6 @@ const Rental = () => {
             <HotConcertHall />
             <HotConcertHall />
             <HotConcertHall />
-        </div>
         </div>
       </div>
     );
