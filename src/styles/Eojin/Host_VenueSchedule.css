@@ -26,3 +26,9 @@ body {
 .highlight{
     color: #F01569;
 }
+
+.calender {
+    width: 625px;
+    height: 581px;
+    margin: 20px 0;
+}

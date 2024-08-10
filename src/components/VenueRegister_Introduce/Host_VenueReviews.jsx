@@ -58,6 +58,7 @@ const Host_VenueReviews = () => {
                 {mockdata.map((review) => (
                     <HostReview
                         key={review.id}
+                        id={review.id}
                         profile={review.profile}
                         name={review.name}
                         review={review.review}
