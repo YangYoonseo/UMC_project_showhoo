@@ -25,6 +25,7 @@ import ConcertReady from "./pages/ConcertReady.jsx";
 import BookingHistroy from "./pages/BookingHistory.jsx";
 import PerformerReady from "./pages/PerformerReady.jsx";
 import ConReady from "./pages/ConReady.jsx";
+import Booking from "./pages/Booking.jsx";
 
 const ex_profiles = [
   {
@@ -216,6 +217,7 @@ function App() {
                   <Route path="/booking_history" element={<BookingHistroy />} />
                   <Route path="/performer_ready" element={<PerformerReady />} />
                   <Route path="/con_ready" element={<ConReady />} />
+                  <Route path="/booking" element={<Booking />} />
                 </Routes>
               </div>
             </PamphletContext.Provider>
