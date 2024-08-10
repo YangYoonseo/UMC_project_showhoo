@@ -8,6 +8,8 @@ import poster from "./assets/img_Booking/poster.svg";
 
 // 페이지 가져오기
 import Home from "./pages/_test_/Home_seoya";
+import Booking from "./pages/_test_/Booking.jsx";
+import BookingAfter from "./pages/_test_/BookingAfter.jsx";
 import PerformerRegistration from "./pages/PerformerRegistration";
 import PerformerUpdate from "./pages/PerformerUpdate";
 import Mypage from "./pages/Mypage";
@@ -205,6 +207,8 @@ function App() {
                     path="/performer_update"
                     element={<PerformerUpdate />}
                   />
+                  <Route path="/booking" element={<Booking />} />
+                  <Route path="/booking_after" element={<BookingAfter />} />
                   <Route path="/mypage" element={<Mypage />} />
                   <Route path="/rental_details" element={<RentalDetails />} />
                   <Route path="/rental_history" element={<RentalHistory />} />

@@ -3,6 +3,7 @@ import home_2 from "../../../assets/images/img_Home/home_2.png"
 import home_3 from "../../../assets/images/img_Home/home_3.png"
 
 const MainInfo = () => {
+    // 임시 이미지입니다.
     return <div>
         <img src={home_1} ></img>
         <img src={home_2} ></img>
