@@ -6,6 +6,7 @@ import ReadyDownload from "./readyDownload";
 import setList from "../../assets/img_Ready/setList.svg";
 import rentalTime from "../../assets/img_Ready/rentalTime.svg";
 import plus from "../../assets/img_Ready/plus.svg";
+import ImageUrl from "./imageUrl";
 
 const ReadyQsheet = ({ nextStep, check }) => {
     const [ qsheet, setQsheet ] = useState ([
@@ -54,7 +55,7 @@ const ReadyQsheet = ({ nextStep, check }) => {
                 <h4>다운로드</h4>
                 <p>대관을 위해 제출해야 할 신청서 및 양식을 다운로드하실 수 있습니다.</p>
                 <div className="download_container">
-                    <ReadyDownload text={"공연 셋리스트 양식"} id={"setList"} img={setList} />
+                    <ReadyDownload text={"공연 셋리스트 양식"} id={"setList"} img={setList} url={ImageUrl}/>
                     <ReadyDownload text={"대관 시간 양식"} id={"rentalTime"} img={rentalTime} />
                     <ReadyDownload text={"추가 주문 양식"} id={"plus"} img={plus} />
                 </div>
