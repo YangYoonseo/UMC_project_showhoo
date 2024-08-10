@@ -1,4 +1,4 @@
-// navigate 다 뺐어요!!!
+// navigate 추가해주세용
 
 import "./Navbar_Performer.css";
 import { useNavigate } from "react-router-dom";

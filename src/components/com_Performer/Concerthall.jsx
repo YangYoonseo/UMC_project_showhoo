@@ -2,7 +2,7 @@ import "../../styles/yoonseo/Concerthall.css";
 
 import ion_people_outline from "../../assets/img_Performer/ion_people_outline.png";
 import uil_calender from "../../assets/img_Performer/uil_calender.png";
-import Line40 from "../../assets/img_Performer/Line40.png";
+import Line40 from "../../assets/img_Performer/Line40.svg";
 import { useNavigate } from "react-router-dom";
 
 const Concerthall = ({ venue, className }) => {
@@ -45,7 +45,14 @@ const Concerthall = ({ venue, className }) => {
             <button className="last_button">취소</button>
           ) : null}
           {venue.status == "승인 완료" ? (
-            <button className="prepare_button" onClick={()=>{nav("/concert_ready");}}>공연 준비</button>
+            <button
+              className="prepare_button"
+              onClick={() => {
+                nav("/concert_ready");
+              }}
+            >
+              공연 준비
+            </button>
           ) : null}
           {venue.status == "지난 공연" ? (
             <button className="last_button">삭제</button>

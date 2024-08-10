@@ -76,7 +76,7 @@
   box-sizing: border-box;
 
   position: absolute;
-  width: 516px;
+  width: 507px;
   height: 128px;
   left: 0px;
   top: 60px;
@@ -87,11 +87,11 @@
 }
 
 .TwoButton_BookingCancel .full textarea {
-  height: 41px;
+  height: 46px;
   resize: none;
   margin: 0;
 
-  padding-left: 31px;
+  padding-left: 32px;
   font-size: 18px;
 }
 
@@ -101,26 +101,27 @@
 
 .TwoButton_BookingCancel .name,
 .TwoButton_BookingCancel .bank {
+  width: 236px;
   padding: 0;
-  padding-top: 18px;
-  width: 223px;
   border: none;
   border-bottom: 1px solid #b5b5b5;
-
-  border-top-left-radius: 18px;
 }
 
 .TwoButton_BookingCancel .bank {
-  border-right: 1px solid #b5b5b5;
+  border-top-left-radius: 18px;
 }
 
 .TwoButton_BookingCancel .name {
+  padding-top: 15px;
+  border-radius: 0;
   border-top-right-radius: 18px;
+  border-left: 1px solid #b5b5b5;
 }
 
 .TwoButton_BookingCancel .number {
   padding: 0;
-  padding-top: 14px;
+  padding-top: 10px;
+
   width: 460px;
 
   border: none;

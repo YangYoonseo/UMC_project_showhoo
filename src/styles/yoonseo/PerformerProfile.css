@@ -92,18 +92,19 @@
   color: #0f0f0f;
 }
 
-.profile-card .members_img {
-  /* ion:people-outline */
+.profile-card .school_img {
+  /* ph:map-pin */
 
   position: absolute;
-  width: 27.93px;
-  height: 27.93px;
+  width: 28px;
+  height: 28px;
   left: 312px;
   top: 78.62px;
+  padding: 0;
 }
 
-.profile-card .members_p {
-  /* 전채운, 김심야, 김태형, 이기준, 고낭신, 수지후 */
+.profile-card .school_p {
+  /* 홍익대학교 소속 */
 
   position: absolute;
   width: 389px;
@@ -124,25 +125,24 @@
   color: #4f4f4f;
 }
 
-.profile-card .school_img {
-  /* ph:map-pin */
+.profile-card .call_img {
+  /* fluent:call-12-filled */
 
+  width: 27px;
+  height: 27px;
   position: absolute;
-  width: 28px;
-  height: 28px;
+  top: 116.5px;
   left: 312px;
-  top: 116px;
-  padding: 0;
 }
 
-.profile-card .school_p {
-  /* 홍익대학교 소속 */
-
+.profile-card .call_p {
+  /* 010-4389-2001 */
   position: absolute;
+  top: 116.5px;
+  left: 348px;
+
   width: 389px;
   height: 28px;
-  left: 348px;
-  top: 116px;
   margin: 0;
 
   font-family: "Pretendard";

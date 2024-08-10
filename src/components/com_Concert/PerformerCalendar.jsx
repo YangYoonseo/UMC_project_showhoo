@@ -7,7 +7,7 @@ import ConcertReceipt from "./ConcertReceipt";
 
 import ion_people_outline from "../../assets/img_Performer/ion_people_outline.png";
 import Frame22 from "../../assets/img_Performer/Frame22.png";
-import Line40 from "../../assets/img_Performer/Line40.png";
+import Line40 from "../../assets/img_Performer/Line40.svg";
 
 const PerformerCalendar = ({ profile, className }) => {
   const [ok, setOk] = useState(false);

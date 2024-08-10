@@ -3,7 +3,7 @@
 
   position: relative;
   width: 1440px;
-  height: 1216px;
+  height: 1316px;
 
   background: #ffffff;
   box-shadow: 0px 3px 6px rgba(18, 15, 40, 0.12);
@@ -170,40 +170,40 @@
   /* or 74% */
 }
 
-.profile-latest .members_img {
+.profile-latest .school_img {
   width: 26.02px;
   height: 26.02px;
-  top: 67.64px;
+  top: 77.64px;
   left: 248.7px;
   gap: 0px;
   opacity: 0px;
-}
-
-.profile-latest .members_p {
-  width: 228.21px;
-  height: 48.44px;
-  top: 71.72px;
-  left: 282.23px;
-  gap: 0px;
-  opacity: 0px;
-}
-
-.profile-latest .school_img {
-  width: 26.08px;
-  height: 26.08px;
-  gap: 0px;
-  opacity: 0px;
-  top: 131.34px;
-  left: 248.7px;
 }
 
 .profile-latest .school_p {
   width: 362.34px;
   height: 26.08px;
+  top: 77.64px;
+  left: 282.23px;
+  gap: 0px;
+  opacity: 0px;
+}
+
+.profile-latest .call_img {
+  width: 26.08px;
+  height: 26.08px;
+  gap: 0px;
+  opacity: 0px;
+  top: 121.34px;
+  left: 248.7px;
+}
+
+.profile-latest .call_p {
+  width: 362.34px;
+  height: 26.08px;
   gap: 0px;
   opacity: 0px;
 
-  top: 131.34px;
+  top: 121.34px;
   left: 282.23px;
 
   font-size: 18.63px;
@@ -224,7 +224,7 @@
 
   position: absolute;
   width: 950px;
-  height: 394px;
+  height: 454px;
   left: 246px;
   top: 594px;
 
@@ -256,13 +256,15 @@
   justify-content: center;
 
   position: absolute;
-  width: 950.08px;
+  width: 948.08px;
   height: 65px;
   left: 0px;
 }
 
 .choice button:nth-of-type(1) {
   top: 0px;
+  border-top-left-radius: 25px;
+  border-top-right-radius: 25px;
 }
 
 .choice button:nth-of-type(2) {
@@ -288,5 +290,6 @@
 .choice button:nth-of-type(7) {
   top: 390px;
 
-  border: none;
+  border-bottom-left-radius: 25px;
+  border-bottom-right-radius: 25px;
 }

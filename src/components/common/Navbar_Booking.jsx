@@ -37,7 +37,13 @@ const Navbar_Booking = () => {
         >
           역할 전환
         </button>
-        <img src={logo_mypage} alt="" />
+        <img
+          src={logo_mypage}
+          alt=""
+          onClick={() => {
+            nav("/mypage_booking");
+          }}
+        />
       </div>
       {popup && (
         <SwitchRoles

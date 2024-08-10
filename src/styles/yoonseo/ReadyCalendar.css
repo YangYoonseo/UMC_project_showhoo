@@ -4,7 +4,7 @@
   box-sizing: border-box;
 
   position: absolute;
-  width: 977px;
+  width: 975px;
   height: 905px;
   left: 233px;
   top: 202px;
@@ -85,18 +85,21 @@
   position: absolute;
   left: 0px;
   top: 50px;
+  width: 970px;
+  height: 700px;
 }
 
 .ReadyCalendar .react-calendar__tile {
   /* 각 날짜 타일 */
   justify-content: center;
   position: relative;
-  height: 140px; /* 날짜 타일의 높이 */
+  height: 180px; /* 날짜 타일의 높이 */
   width: 100px; /* 날짜 타일의 너비 */
   padding: 0;
 }
 
 .ReadyCalendar .react-calendar__month-view__days__day {
+  padding-top: 13px;
   padding-bottom: 80px;
   font-size: 18px;
 }
@@ -171,6 +174,7 @@
   text-align: center; /* 텍스트 중앙 정렬 */
   line-height: 0px; /* 타일의 높이와 맞추기 (필요 시 조정) */
   color: white;
+  padding-top: 8px;
 }
 
 .ReadyCalendar .PerformerCalendar_calendar {

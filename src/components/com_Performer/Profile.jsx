@@ -6,9 +6,9 @@ import { useState, useEffect } from "react";
 import Button from "../common/Button";
 import Frame21 from "../../assets/img_Performer/Frame21.png";
 
-const Profile = ({ profile }) => {
+const Profile = ({ profile = {} }) => {
   const nav = useNavigate();
-  const [team, setTeam] = useState(profile.team || "");
+  const [title, setTitle] = useState(profile.title || "");
   const [school, setSchool] = useState(profile.school || "");
   const [number, setNumber] = useState(profile.number || "");
   const [information, setInformation] = useState(profile.information || "");
@@ -17,7 +17,7 @@ const Profile = ({ profile }) => {
   useEffect(() => {
     setSchool(profile.school || "");
     setInformation(profile.information || "");
-    setTeam(profile.team || "");
+    setTitle(profile.title || "");
     setNumber(profile.number || "");
   }, [profile]);
 
@@ -39,18 +39,15 @@ const Profile = ({ profile }) => {
       >
         &lt;
       </p>
-      {(
-        <h3>
-          {profile.date} {profile.title}
-        </h3>
-      ) || "프로필"}
+      <h3>프로필</h3>
+
       <div className="main_profile">
         <textarea
-          className="team"
-          name="team"
+          className="title"
+          name="title"
           placeholder="공연자/팀 이름"
-          value={team}
-          onChange={handleChange(setTeam)}
+          value={title}
+          onChange={handleChange(setTitle)}
         />
         <textarea
           className="school"
@@ -104,7 +101,7 @@ const Profile = ({ profile }) => {
           text={"완료"}
           type={"green"}
           onClick={() => {
-            nav("/mypage");
+            nav("/mypage_performer");
           }}
         />
       </div>

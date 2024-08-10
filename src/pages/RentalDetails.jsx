@@ -19,7 +19,7 @@ import uil_calender from "../assets/img_Performer/uil_calender.png";
 import ion_people_outline from "../assets/img_Performer/ion_people_outline.png";
 import Frame22 from "../assets/img_Performer/Frame22.png";
 import bx_area from "../assets/img_Performer/bx_area.png";
-import Line40 from "../assets/img_Performer/Line40.png";
+import Line40 from "../assets/img_Performer/Line40.svg";
 import octicon_copy_16 from "../assets/img_Performer/octicon_copy_16.png";
 
 const RentalDetails = () => {

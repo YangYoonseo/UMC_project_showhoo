@@ -1,36 +1,36 @@
-import "../styles/yoonseo/Mypage.css";
+import "../styles/yoonseo/MypageBooking.css";
 
 import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { ProfileContext } from "../App";
+import { PamphletContext } from "../App";
 
 import Frame339 from "../assets/img_Performer/Frame339.png";
 
-import Navbar_Perforemr from "../components/common/Navbar_Performer";
-import PerformerProfile from "../components/com_Performer/PerformerProfile";
-import PerformerCancel from "../components/popup_Performer/PerformerCancel";
+import Navbar_Booking from "../components/common/Navbar_Booking";
+import BookingProfile from "../components/com_Booking/BookingProfile";
+import { FaLessThan } from "react-icons/fa6";
 import SwitchRoles from "../components/common/SwitchRoles";
 
-const Mypage = () => {
+const MypageBooking = () => {
   const nav = useNavigate();
-  const profiles = useContext(ProfileContext);
+  const { pamphlets } = useContext(PamphletContext);
   const [cancel, setCancel] = useState(false);
   const [popup, setPopup] = useState(false);
 
   return (
-    <div className="Mypage">
-      <Navbar_Perforemr />
-      <div className="Mypage_content">
-        <h3>마이페이지</h3>
+    <div className="MypageBooking">
+      <Navbar_Booking />
+      <div className="MypageBooking_content">
+        <h3 className="mypage_h3">마이페이지</h3>
         <img src={Frame339} alt="" className="profile_img" />
         <p className="name">홍길동</p>
-        <p className="latest">
-          길동님의<span>&nbsp;최근&nbsp;</span>프로필이에요
+        <p className="next">
+          길동님의<span>&nbsp;다음&nbsp;</span>공연이에요
         </p>
-        <PerformerProfile
-          key={0}
-          profile={profiles[0]}
-          className={"profile-card profile-latest"}
+        <BookingProfile
+          key={pamphlets[0].id} // key로 index 대신 pamphlet.id를 사용하는 것이 좋습니다
+          pamphlet={pamphlets[0]}
+          className={"pamphlet pamphlet_next"}
         />
 
         <div className="choice">
@@ -41,27 +41,15 @@ const Mypage = () => {
           >
             알림
           </button>
+
           <button
             onClick={() => {
-              nav("/performer_registration");
+              nav("/booking_history");
             }}
           >
-            공연자 등록
+            예매내역
           </button>
-          <button
-            onClick={() => {
-              nav("/rental_history");
-            }}
-          >
-            대관내역
-          </button>
-          <button
-            onClick={() => {
-              nav("/my_activity");
-            }}
-          >
-            내 활동
-          </button>
+
           <button
             onClick={() => {
               setPopup(true);
@@ -91,4 +79,4 @@ const Mypage = () => {
   );
 };
 
-export default Mypage;
+export default MypageBooking;
