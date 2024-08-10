@@ -1,5 +1,6 @@
 import "../../styles/yoonseo/PerformerCalendar.css";
 import Button from "../common/Button";
+import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import RentalApproval from "../popup_Concert/RentalApproval";
 import RentalRefuse from "../popup_Concert/RentalRefuse";
@@ -13,6 +14,7 @@ const PerformerCalendar = ({ profile, className }) => {
   const [ok, setOk] = useState(false);
   const [refuse, setRefuse] = useState(false);
   const [receipt, setReceipt] = useState(false);
+  const nav = useNavigate();
 
   const getClassName = () => {
     switch (profile.status) {
@@ -74,7 +76,7 @@ const PerformerCalendar = ({ profile, className }) => {
         )}
 
         {profile.status === "대관 완료" && (
-          <Button text={"준비 시작"} type={"black"} />
+          <Button text={"준비 시작"} type={"black"} onClick={()=>{nav("/con_ready")}}/>
         )}
       </div>
       {ok && (
