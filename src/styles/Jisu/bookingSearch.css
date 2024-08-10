@@ -71,7 +71,7 @@
     font-weight: 400;
 }
 
-.HOT {
+.concertText{
     font-size: 30px;
     font-weight: 600;
     margin-top: 92px;
@@ -79,9 +79,10 @@
     margin-left: 68px;
 }
 
-.HotConcertHallList {
+.ConcertHallList {
     width: 1330px;
     display: flex;
     justify-content: space-between;
     margin-left: 61px;
+    margin-bottom: 38px;
 }

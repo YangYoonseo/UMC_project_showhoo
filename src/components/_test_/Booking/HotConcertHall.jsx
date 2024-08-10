@@ -2,19 +2,26 @@ import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 import "../../../styles/Jisu/HotConcertHall.css"
+import LikeButton from "./LikeButton";
 
 const HotConcertHall = () => {
     const nav = useNavigate();
         
     return <div className="HotConcertHall">
-        <img className="ConcertHallImg"
-            src="src\assets\img_Booking\_test_\concert_hall_2.jpg">
-            </img>
+        <div className = "LikeAndImg">
+            <img
+                className="ConcertHallImg"
+                src="src/assets/img_Booking/_test_/concert_hall_2.jpg"
+                alt="Concert Hall"
+            />
+            <LikeButton className="LikeButtons" />
+        </div>
+        
         <div className="Info">
             <div className="TopInfo">
                 <div className="TopInfoText">
                     <div className="Name">리엠아트센터</div>
-                    <div className="Loacate">서울 강남구 학동로 2길 56</div>
+                    <div className="Location">서울 강남구 학동로 2길 56</div>
                 </div>
                 <div className="StarRate">★</div>
             </div>

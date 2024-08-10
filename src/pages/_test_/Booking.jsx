@@ -15,14 +15,35 @@ const Booking = () => {
           <Navbar_Perforemr/>
           <BookingInfoPoster />
           <BookingSearchBar />
-          <div className="HOT">
-            이번 달 HOT 공연장
+          
+          <div className="concertText">
+                이번 달 HOT 공연장</div>
+          <div className="ConcertHallList">
+            <HotConcertHall />
+            <HotConcertHall />
+            <HotConcertHall />
+            <HotConcertHall />
+          </div>
+          <div className="ConcertHallList">
+            <HotConcertHall />
+            <HotConcertHall />
+            <HotConcertHall />
+            <HotConcertHall />
         </div>
-        <div className="HotConcertHallList">
-          <HotConcertHall />
-          <HotConcertHall />
-          <HotConcertHall />
-          <HotConcertHall />
+        
+        <div className="concertText">
+          또 가고 싶은 공연장</div>
+        <div className="ConcertHallList">
+            <HotConcertHall />
+            <HotConcertHall />
+            <HotConcertHall />
+            <HotConcertHall />
+        </div>
+        <div className="ConcertHallList">
+            <HotConcertHall />
+            <HotConcertHall />
+            <HotConcertHall />
+            <HotConcertHall />
         </div>
         </div>
       </div>
