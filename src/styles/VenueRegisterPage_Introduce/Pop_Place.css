@@ -1,4 +1,6 @@
+/* Pop_Place.css */
 /* floating label 불필요한 코드 포함되어 있어 리팩토링 필요 */
+/* 기본적인 팝업 스타일 */
 .modal-overlay2 {
     position: fixed;
     top: 0;
@@ -14,7 +16,7 @@
   
 .modal-container2 {
     width: 698px;
-    height: 749px; /* 높이를 749px로 변경 */
+    height: 749px;
     background: white;
     border-radius: 25px;
     display: flex;
@@ -26,7 +28,7 @@
 
 h2 {
     font-size: 40px;
-    margin-bottom: -15px;
+    margin-bottom: -10px;
 }
 
 .p {
@@ -41,15 +43,9 @@ h2 {
     margin-top: 10px;
 }
 
-.input-container {
-    position: relative;
-    margin-bottom: 20px;
-}
-
 .modal-input2 {
-    width: 516px !important;
+    width: 515px !important;
     height: 68px !important;
-    border-radius: 0px !important;
     border: 1px solid #ccc;
     padding-left: 25px;
     font-size: 17px !important;
@@ -57,8 +53,9 @@ h2 {
 }
 
 .modal-input2::placeholder {
-    color: #b5b5b5;
+    color: #828282;
 }
+
 
 .floating-label {
     position: absolute;
@@ -76,11 +73,6 @@ h2 {
     top: -10px;
     font-size: 10px;
     color: #696969;
-}
-
-.modal-input2:focus {
-    outline: none;
-    border-color: #09f1b9;
 }
 
 .modal-buttons {
@@ -112,23 +104,22 @@ h2 {
 
 .form-floating {
     position: relative;
-  }
+}
   
-  .modal-input2 {
+.modal-input2 {
     height: calc(3.5rem + 2px); /* 부트스트랩 기본 높이 */
-    padding-top: 1.625rem; /* 라벨이 떠오를 공간 확보 */
+    padding-top: 2.3rem; /* 라벨이 떠오를 공간 확보 */
     padding-bottom: .625rem;
-    border-radius: 0px !important;
     border: 1px solid #ccc;
     font-size: 16px;
     box-sizing: border-box;
-  }
+}
   
-  .modal-input2::placeholder {
+.modal-input2::placeholder {
     color: transparent; /* placeholder 숨기기 */
-  }
+}
   
-  .form-floating > label {
+.form-floating > label {
     position: absolute;
     top: 0;
     left: 20px;
@@ -141,22 +132,16 @@ h2 {
     font-size: 16px;
     color: #b5b5b5;
     opacity: .65;
-  }
+}
   
-  .modal-input2:focus,
-  .modal-input2:not(:placeholder-shown) {
-    padding-top: 1.625rem; /* 라벨이 떠오를 공간 유지 */
-  }
+.modal-input2:focus,
+.modal-input2:not(:placeholder-shown) {
+    padding-top: 2.3rem; /* 라벨이 떠오를 공간 유지 */
+}
   
-  .modal-input2:focus + label,
-  .modal-input2:not(:placeholder-shown) + label {
+.modal-input2:focus + label,
+.modal-input2:not(:placeholder-shown) + label {
     opacity: 1;
     transform: scale(.85) translateY(-.5rem) translateX(.15rem);
     color: #696969;
-  }
-  
-  .modal-input2:focus {
-    outline: none;
-    border-color: #09f1b9;
-  }
-  
+}

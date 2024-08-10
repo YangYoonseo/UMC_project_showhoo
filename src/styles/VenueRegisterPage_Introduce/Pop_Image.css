@@ -1,0 +1,114 @@
+/* pop_image.css */
+/* image panel 중첩되어 있으니 수정 필요 -> 일단은 transparent로 가려놓음 */
+/* image panel 등록 로직에 대한 이해 매우 부족 ==> 겨우 구현해놓은 상태 건들면 안됨.. */
+.modal-overlay3 {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+  
+.modal-container3 {
+    width: 698px;
+    height: 964px;
+    background: white;
+    border-radius: 25px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-sizing: border-box;
+    padding: 20px 80px 70px 80px;
+}
+
+h2 {
+    font-size: 40px;
+}
+
+p {
+    font-size: 20px;
+    color: #696969;
+}
+
+.image-grid3 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 10px;
+    margin-top: 20px;
+}
+
+.image-panel33 {
+    width: 100%;
+    height: 180px;
+    border: none;
+    border-radius: 14px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    cursor: pointer;
+    background-color: transparent;
+    text-align: center;
+}
+
+.image-panel33 img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: cover;
+    border-radius: inherit;
+    cursor: pointer;
+}
+
+.upload-label {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: #888;
+    font-size: 14px;
+}
+
+.upload-label img {
+    margin-bottom: 10px;
+}
+
+.modal-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.cancel-button,
+.confirm-button {
+    width: 250px;
+    height: 50px;
+    border-radius: 12px;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+.cancel-button {
+    background: #e8e8e8;
+    border: none;
+}
+
+.confirm-button {
+    background: #09f1b9;
+    border: none;
+}
+
+.imagepanel1 img,
+.imagepanel2 img,
+.imagepanel3 img,
+.imagepanel4 img,
+.imagepanel5 img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* 패널 크기에 맞추기 */
+    border-radius: inherit; /* 패널의 border-radius와 동일하게 적용 */
+}
