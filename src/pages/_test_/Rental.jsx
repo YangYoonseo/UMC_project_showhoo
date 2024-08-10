@@ -8,7 +8,7 @@ import HotConcertHall from "../../components/_test_/Booking/HotConcertHall";
 
 // HOT 공연장 리스트 가져오기
 
-const Booking = () => {
+const Rental = () => {
   return (
       <div className="body">
         <div className="Booking">
@@ -50,4 +50,4 @@ const Booking = () => {
     );
   };
 
-export default Booking;
+export default Rental;
