@@ -2,7 +2,7 @@
 .venue-detail-page {
   position: relative;
   /* absol -> relat로 변경 */
-  height: 2075px;
+  height: 2220px;
   width:1441px;
   left: 0px;
   right: -1px;
@@ -313,6 +313,8 @@ color: #0F0F0F;
   left: 30px;
 }
 
+
+
 .sec-option {
 
   position: absolute;
@@ -504,6 +506,10 @@ flex-grow: 0;
 
 
 
+
+
+
+
 .venue-introduction,
 .facility-info,
 .venue-notice,
@@ -511,11 +517,9 @@ flex-grow: 0;
 .venue-reviews {
     max-width: 650px;
     width: 80%;
-    margin: 20px 20px;
-    padding: 20px;
+    margin: 0px 20px 20px 0px;
+    padding-left: 20px;
     background-color: transparent;
-    /*border: 1px gray solid;
-    border-radius:10px;*/
     position:absolute;
     width: 342px;
     height: 53px;
@@ -526,7 +530,9 @@ flex-grow: 0;
 
 }
 
-/* venue-introduction 컴포넌트 */
+
+
+/* 1번 : venue-introduction 컴포넌트 */
 .venue-introduction {
   position: absolute;
   width: 582px;
@@ -575,6 +581,33 @@ flex-grow: 0;
   color: #4F4F4F;
 }
 
+.venue-introduction .value-list {
+  font-family: 'Pretendard';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 36px;
+  color: #4F4F4F;
+
+  position: relative;
+  left:60px;
+  top:-55px;
+  margin-bottom: -30px;
+} 
+
+.venue-introduction .value-list2 {
+  font-family: 'Pretendard';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 36px;
+  color: #4F4F4F;
+
+  position: relative;
+  left:100px;
+  top:-55px;
+  margin-bottom: -30px;
+} 
 .venue-introduction .location {
   font-family: 'Pretendard';
   font-style: normal;
@@ -595,58 +628,49 @@ flex-grow: 0;
 }
 
 
-.facility-info {
-    background-color: #ffffff;
-    border-radius: 10px;
+
+
+/* 2번: 시설 안내 */
+.facility_download_container {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  gap: 0px;
 }
 
-.equipment-section {
-    margin-bottom: 50px;
+.facility_download_grid {
+  width:626px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px;
+  margin-top: 40px;
 }
 
-.equipment-section h3 {
-    margin-bottom: 20px;
-    font-size: 1.2em;
+.facility_download_item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  text-align: center;
 }
 
-.equipment-table {
-    width: 100%;
-    border-collapse: separate;
-    border-spacing: 0;
-    margin-bottom: 20px;
-    border-radius: 10px;
-    overflow: hidden;
+.facility_download_item img {
+  width: 184px;
+  height: 137px;
 }
 
-.equipment-table th,
-.equipment-table td {
-    border: 1px solid #dee1e6;
-    padding: 10px;
-    text-align: center;
-    font-size: 15px;
+.facility_download_item p {
+  margin-top: 10px;
+  font-size: 16px;
+  color: #696969;
 }
 
-.equipment-table th {
-    background-color: black;
-    color: #09f1b9;
-    text-align: center;
-}
 
-.equipment-table th:first-child {
-    border-top-left-radius: 10px;
-}
 
-.equipment-table th:last-child {
-    border-top-right-radius: 10px;
-}
 
-.equipment-table td:first-child {
-    border-bottom-left-radius: 10px;
-}
 
-.equipment-table td:last-child {
-    border-bottom-right-radius: 10px;
-}
+
+
 
 /* 3번 : 유의사항 notice */
 .venue-notice {
@@ -961,4 +985,13 @@ flex-grow: 0;
 .answer-timestamp {
   font-size: 0.9em;
   color: #999;
+}
+
+.map-image{
+  width: Fixed (618px)px;
+  height: Hug (402px)px;
+  top: 990px;
+  left: 20px;
+  opacity: 0px;
+
 }

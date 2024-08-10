@@ -1,4 +1,4 @@
-// VenueRegisterPage.jsx
+// VenueDetailPage.jsx
 import React, { useState } from 'react';
 import VenueInfo from '../components/VenueDetails/VenueInfo';
 import VenueInfo2 from '../components/VenueDetails/VenueInfo2';
@@ -10,6 +10,7 @@ import FacilityInfo from '../components/VenueDetails/FacilityInfo';
 import Notice from '../components/VenueDetails/Notice';
 import Schedule from '../components/VenueDetails/Schedule';
 import Reviews from '../components/VenueDetails/Reviews';
+import Navbar_Performer from '../components/common/Navbar_Performer';
 import '../components/VenueDetails/VenueDetails.css';
 
 const VenueDetailPage = () => {
@@ -22,7 +23,6 @@ const VenueDetailPage = () => {
     address: "서울특별시 강남구 도산대로99길 20",
     images: ["image1.jpg", "image2.jpg", "image3.jpg"],
     rentalFee: 700000,
-    hours: "10:00 - 22:00",
     capacity: 200,
     parking: "건물 내 주차 가능 (대형 밴드 포함 30대), 유료 발렛 파킹 서비스",
     description: {
@@ -30,8 +30,9 @@ const VenueDetailPage = () => {
       area: "198m²",
       capacity: "좌석 수 80석 내외 / 최대 수용 120명 내외",
       rentalTime: "14:00 - 22:00 (기본 대관 시간)",
-      rentalFee: "기본 대관료 700,000원",
-      additionalServices: "음향시설, 음향조명 스텝 (10만원 별도 추가)",
+      rentalFee: "월·화·수·목: 70만원(8, 11, 12월은 +10만원)<br>금·일·공휴일: 90만원(8, 11, 12월은 +10만원)<br>토 : 110만원(8, 11, 12월은 + 10만원)",
+      additionalServices: "프리미엄 영상(1~20곡)<br>MIDAS M32 디지털 콘솔<br>멀티트랙 음원 녹음<br>인이어 시스템 1채널<br>본공연 추가 30분",
+      tel: "음향감독 : 010-2345-1235<br>조명감독 : 010-1253-1236<br>공연장 관리자 : 010-8919-1920",
       location: "서울 마포구 와우산로18길 20"
     },
     refundPolicy: `계약금 입금과 동시에 대관예약이 확정되며 계약금은 어떠한 경우에도 환불되지 않으니 계약 전 신중한 예약 바랍니다.<br><br>이용 60일 - 당일: 100% 환불<br>이용 30 - 60일 전: 70% 환불<br>이용 15 - 29일 전: 30% 환불<br>이용 14일 - 당일: 환불 불가`,
@@ -49,7 +50,7 @@ const VenueDetailPage = () => {
         <div className="venue-main-content">
           <VenueTabs selectedTab={selectedTab} setSelectedTab={setSelectedTab} />
           {selectedTab === 'introduction' && <VenueIntroduction data={mockData.description} />}
-          {selectedTab === 'facility' && <FacilityInfo />}
+          {selectedTab === 'facility' && <FacilityInfo data={mockData.name}/>}
           {selectedTab === 'notice' && <Notice data={mockData} />}
           {selectedTab === 'schedule' && <Schedule />}
           {selectedTab === 'reviews' && <Reviews />}
