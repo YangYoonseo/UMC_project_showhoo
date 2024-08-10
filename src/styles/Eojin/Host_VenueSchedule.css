@@ -1,0 +1,34 @@
+body {
+    font-family: 'Pretendard';
+    font-style: normal;
+}
+
+.Host_VenueSchedule > h4 {
+    width: 342px;
+    height: 30px;
+    font-weight: 600;
+    font-size: 25px;
+    display: flex;
+    text-align: center;
+}
+
+.Host_VenueSchedule > p {
+    width: 995px;
+    height: 30px;
+    font-weight: 400;
+    font-size: 22px;
+    display: flex;
+    text-align: center;
+    color: #0F0F0F;
+    margin: 15px 0;
+}
+
+.highlight{
+    color: #F01569;
+}
+
+.calender {
+    width: 625px;
+    height: 581px;
+    margin: 20px 0;
+}

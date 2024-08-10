@@ -1,0 +1,17 @@
+body {
+    font-family: 'Pretendard';
+    font-style: normal;
+}
+
+.Host_VenueReviews > h4 {
+    width: 342px;
+    height: 30px;
+    font-weight: 600;
+    font-size: 25px;
+    display: flex;
+    text-align: center;
+}
+
+.hightlight {
+    color: #07c093;
+}

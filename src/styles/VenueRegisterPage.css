@@ -180,5 +180,6 @@
     position: absolute;
     top: 730px;
     left: 190px;
-    width: 100%;
+    width: 1050px;
+    box-sizing: border-box;
 }
