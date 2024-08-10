@@ -5,12 +5,6 @@ import { ProfileContext } from "../../App";
 import Frame21 from "../../assets/img_Performer/Frame21.png";
 
 const Addprofiles = () => {
-  const new_profile = {
-    date: "새 프로필",
-    title: "",
-    school: "",
-    information: "",
-  };
   const profiles = useContext(ProfileContext);
   const nav = useNavigate();
 
@@ -20,7 +14,7 @@ const Addprofiles = () => {
     <div
       key={index}
       className={`addProfiles addProfiles${index + 1}`}
-      onClick={() => nav("/performer_update", { state: new_profile })}
+      onClick={() => nav("/performer_update")}
     >
       <p>프로필을 더 추가하세요</p>
       <img src={Frame21} alt="" />

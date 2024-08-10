@@ -13,7 +13,7 @@ const PerformerUpdate = () => {
       {console.log(state)}
       <Navbar_Perforemr />
       <Footer />
-      <Profile profile={state} />
+      <Profile profile={state || null} />
     </div>
   );
 };

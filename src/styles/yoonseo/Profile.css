@@ -41,22 +41,35 @@
   text-align: left;
 }
 
-.Container117_update .school {
-  /* 선택 */
+.Container117_update .main_profile {
+  /* Frame 645 */
 
+  /* Auto layout */
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0px;
+  gap: 32px;
+
+  position: absolute;
+  width: 763px;
+  height: 1235.12px;
+  left: 330px;
+  top: 200px;
+}
+
+.Container117_update .main_profile textarea {
   box-sizing: border-box;
 
   position: absolute;
   width: 763px;
   height: 63px;
-  left: 330px;
-  top: 200px;
+  left: 0;
 
   background: #ffffff;
   border: 1px solid #b2b2b2;
   border-radius: 18px;
-
-  /* 소속 */
+  resize: none;
 
   padding-left: 31px;
   padding-top: 15px;
@@ -67,38 +80,31 @@
   font-size: 17px;
   line-height: 30px;
   /* or 176% */
-
-  color: #4f4f4f;
 }
 
-.Container117_update .content {
+.Container117_update .team {
   /* 선택 */
 
-  box-sizing: border-box;
+  top: 0px;
+}
 
-  position: absolute;
+.Container117_update .school {
+  /* 선택 */
+
+  top: 91px;
+}
+
+.Container117_update .number {
+  /* 선택 */
+
+  top: 182px;
+}
+
+.Container117_update .information {
+  /* 선택 */
   width: 763px;
-  height: 226px;
-  left: 330px;
-  top: 290px;
-
-  background: #ffffff;
-  border: 1px solid #b2b2b2;
-  border-radius: 18px;
-
-  /* 소개 */
-
-  padding-left: 31px;
-  padding-top: 15px;
-
-  font-family: "Pretendard";
-  font-style: normal;
-  font-weight: 400;
-  font-size: 17px;
-  line-height: 30px;
-  /* or 176% */
-
-  color: #4f4f4f;
+  height: 226px !important;
+  top: 273px;
 }
 
 .add_img1 {
@@ -109,7 +115,7 @@
   position: absolute;
   width: 368px;
   height: 258px;
-  left: 330px;
+  left: 0px;
   top: 543px;
 
   background: #ffffff;
@@ -174,7 +180,7 @@
   position: absolute;
   width: 368px;
   height: 258px;
-  left: 725px;
+  left: 395px;
   top: 542px;
 
   background: #ffffff;
@@ -190,7 +196,7 @@
   position: absolute;
   width: 368px;
   height: 258px;
-  left: 330px;
+  left: 0px;
   top: 828px;
 
   background: #ffffff;
@@ -206,7 +212,7 @@
   position: absolute;
   width: 368px;
   height: 258px;
-  left: 725px;
+  left: 395px;
   top: 828px;
 
   background: #ffffff;
@@ -224,14 +230,14 @@
   top: 109px;
 }
 
-.Container117_update .Button {
+.Container117_update .Button_green {
   /* Frame 31 */
 
   position: absolute;
   width: 167px;
   height: 51.12px;
-  left: 926px;
-  top: 1186px;
+  left: 596px;
+  top: 1184px;
 
   font-size: 18px;
   line-height: 26px;

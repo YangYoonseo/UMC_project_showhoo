@@ -2,6 +2,7 @@ import "../styles/yoonseo/RentalDetails.css";
 
 import { useContext, useState } from "react";
 import { VenueContext } from "../App";
+import { useNavigate } from "react-router-dom";
 
 import Navbar_Perforemr from "../components/common/Navbar_Performer";
 import Footer from "../components/common/Footer";
@@ -22,6 +23,7 @@ import Line40 from "../assets/img_Performer/Line40.png";
 import octicon_copy_16 from "../assets/img_Performer/octicon_copy_16.png";
 
 const RentalDetails = () => {
+  const nav = useNavigate();
   const { venues } = useContext(VenueContext);
   const [refundPopup, setRefundPopup] = useState(false);
   const [noticePopup, setNoticePopup] = useState(false);
@@ -42,7 +44,9 @@ const RentalDetails = () => {
       <Navbar_Perforemr />
       <Footer />
       <div className="RentalDetails_content">
-        <button className="detail_back_button">&lt;</button>
+        <button className="detail_back_button" onClick={() => nav(-1)}>
+          &lt;
+        </button>
         <h3 className="Product_title1">대관 신청하기</h3>
         <div className="information">
           <h4>신청 정보</h4>
