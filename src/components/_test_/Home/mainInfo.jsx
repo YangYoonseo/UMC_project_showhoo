@@ -1,14 +1,12 @@
+import home_1 from "../../../assets/images/img_Home/home_1.png"
+import home_2 from "../../../assets/images/img_Home/home_2.png"
+import home_3 from "../../../assets/images/img_Home/home_3.png"
+
 const MainInfo = () => {
     return <div>
-        <div>About</div>
-        <div>
-            <p>공연 복잡하게 준비하지 마세요!</p>
-            <p><div>ShowHoo</div>가 여러분의 가려운 곳을</p>
-            <p><div>Hoo~</div>하고 불어드립니다</p>
-        </div>
-        <div>
-            
-        </div>
+        <img src={home_1} ></img>
+        <img src={home_2} ></img>
+        <img src={home_3} ></img>
     </div>
 }
 
