@@ -1,0 +1,166 @@
+/* Pop_Service.css */
+.modal-overlay4 {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+}
+  
+.modal-container4 {
+    width: 698px;
+    height: 1350px;
+    background: white;
+    border-radius: 25px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    box-sizing: border-box;
+    padding: 20px 80px 40px 80px;
+    max-height: 90vh; 
+    overflow-y: auto;
+    z-index: 2001;
+}
+
+.h2-4 {
+    font-size: 40px;
+    margin-bottom: 15px;
+}
+
+.p-4 {
+    font-size: 19px;
+    color: #696969;
+    margin-bottom: 30px;
+    line-height: 30px;
+}
+
+.p-40 {
+    font-size: 19px;
+    color: #696969;
+    margin-bottom: 30px;
+    line-height: 30px;
+}
+
+.p-4.bold {
+    font-weight: bold;
+}
+
+.p-41 {
+    font-size: 20px;
+    color: black;
+    line-height: 30px;
+    margin-left: 20px;
+}
+
+.p-42 {
+    font-size: 15px;
+    color: #828282;
+    margin-bottom: 20px;
+    line-height: 30px;
+    margin-left: 20px;
+}
+
+.description-field4 {
+    width: 516px;
+    height: 200px;
+    border-radius: 14px;
+    border: 1px solid #9c9c9c;
+    padding: 20px;
+    box-sizing: border-box;
+    resize: none;
+    margin-bottom: 40px;
+    font-size: 16px;
+    flex-shrink: 0;
+}
+
+.description-placehold{
+    display: flex;
+    gap: 50px;
+}
+.service-options {
+    margin-bottom: 0px;
+}
+
+.service-option {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.service-input {
+    width: 225px !important;
+    height: 64px !important;
+    border-radius: 18px !important;
+    border: 1px solid #9c9c9c;
+    padding: 0 15px;
+    box-sizing: border-box;
+    font-size: 16px;
+}
+
+.price-container {
+    display: flex;
+    align-items: center;
+}
+
+.price-input {
+    width: 225px;
+    height: 64px;
+    border-radius: 18px;
+    border: 1px solid #9c9c9c;
+    padding: 0 50px 0px 30px;
+    box-sizing: border-box;
+    font-size: 16px;
+    text-align: left;
+}
+
+.price-container span {
+    font-size: 18px;
+    margin-left: 10px;
+    color: #363636;
+
+    position: relative;
+    left: -55px;
+}
+
+.add-service {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+.add-service-btn{
+    cursor: pointer;
+}
+
+
+.modal-buttons {
+    display: flex;
+    justify-content: space-between;
+}
+
+.cancel-button,
+.confirm-button {
+    width: 250px;
+    height: 50px;
+    border-radius: 12px;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+.cancel-button {
+    background: #e8e8e8;
+    border: none;
+}
+
+.confirm-button {
+    background: #09f1b9;
+    border: none;
+}
