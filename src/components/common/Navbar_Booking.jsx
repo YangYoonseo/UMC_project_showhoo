@@ -17,7 +17,14 @@ const Navbar_Booking = () => {
         <img src={logo_booking} alt="" />
         <div className="Frame127 booking_navbar">
           <button className="home">홈</button>
-          <button className="booking">공연 예매</button>
+          <button 
+            className="booking"
+            onClick={() => {
+              nav("/booking");
+            }}
+          >
+            공연 예매
+          </button>
           <button
             className="booking_history"
             onClick={() => {

@@ -18,7 +18,6 @@ import RentalHistory from "./pages/RentalHistory";
 import VenueDetailPage from "./pages/VenueDetailPage";
 import VenueRegisterPage from "./pages/VenueRegisterPage";
 import Navbar_Performer from "./components/common/Navbar_Performer";
-import Navbar_Performer_Host from "./components/common/Navbar_Performer_Host";
 import Footer from "./components/common/Footer";
 import LoginPage from "./pages/Loginpage";
 import Alarm from "./pages/Alarm";

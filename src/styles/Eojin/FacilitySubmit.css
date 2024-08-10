@@ -1,4 +1,4 @@
-.readySubmit {
+.facilitySubmit {
     box-sizing: border-box;
     width: 264px;
     height: 196px;
@@ -7,7 +7,7 @@
     border-radius: 14px;
 }
 
-.readySubmit > img {
+.facilitySubmit > img {
     margin: 30px auto;
     width: 72px;
     height: 80px;
@@ -15,7 +15,7 @@
     justify-content: center;
     filter: grayscale(100%) !important;
 }
-.readySubmit > p {
+.facilitySubmit > p {
     margin: 20px auto;
     display: flex;
     justify-content: center;
@@ -23,14 +23,14 @@
     color: #878686;
 }
 
-.readySubmit_true {
+.facilitySubmit_true {
     border-color: #07C093;
 }
 
-.readySubmit_true > img {
+.facilitySubmit_true > img {
     filter: grayscale(0%) !important;
 }
 
-.readySubmit_true > p {
+.facilitySubmit_true > p {
     color:#07C093;
 }
