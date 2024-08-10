@@ -215,9 +215,6 @@ const StyledCalendar = styled(Calendar)`
     left: 50%;
     width: 30px;
     height: 30px;
-    background-color: #09f1b9;
-    border-radius: 50%;
-    transform: translate(-50%, -50%);
     z-index: -1; /* 동그라미가 숫자 아래에 위치하도록 설정 */
   }
 
@@ -242,7 +239,7 @@ const Circle = styled.div`
   height: 30px;
   background-color: #09f1b9;
   border-radius: 50%;
-  transform: translate(-50%, -60%);
+  transform: translate(-50%, -75%);
   z-index: -1; /* 동그라미가 날짜 숫자 아래에 위치하도록 설정 */
 `;
 

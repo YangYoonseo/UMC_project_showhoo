@@ -1,4 +1,18 @@
 /* venuedetails.css */
+.navfot1{
+  /* 공연 준비 */
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  height: 2220px;
+  width: 1441px;
+  background: #0F0F0F;
+  box-shadow: 0px 3px 6px rgba(18, 15, 40, 0.12);
+  align-items: center;
+  padding-top: 20px;
+
+}
+
 .venue-detail-page {
   position: relative;
   /* absol -> relat로 변경 */

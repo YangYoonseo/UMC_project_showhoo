@@ -8,8 +8,6 @@ import poster from "./assets/img_Booking/poster.svg";
 
 // 페이지 가져오기
 import Home from "./pages/_test_/Home_seoya";
-import Rental from "./pages/_test_/Rental.jsx";
-import RentalAfter from "./pages/_test_/RentalAfter.jsx";
 import PerformerRegistration from "./pages/PerformerRegistration";
 import PerformerUpdate from "./pages/PerformerUpdate";
 import Mypage from "./pages/Mypage";
@@ -27,7 +25,6 @@ import ConcertReady from "./pages/ConcertReady.jsx";
 import BookingHistroy from "./pages/BookingHistory.jsx";
 import PerformerReady from "./pages/PerformerReady.jsx";
 import ConReady from "./pages/ConReady.jsx";
-import Booking from "./pages/Booking.jsx";
 
 const ex_profiles = [
   {
@@ -218,14 +215,13 @@ function App() {
                   <Route path="/rental_details" element={<RentalDetails />} />
                   <Route path="/rental_history" element={<RentalHistory />} />
                   <Route path="/venue_detail" element={<VenueDetailPage />} />  {/* 공연자 플로우 */}
-                  <Route path="/venue_register" element={<VenueRegisterPage />} />  {/* 공연장 플로우 */}
+                  <Route path="/venue_register" element={<VenueRegisterPage />} />  {/* 공연 플로우 */}
                   <Route path="alarm" element={<Alarm />} />
                   <Route path="/my_activity" element={<MyActivity />} />
                   <Route path="/concert_ready" element={<ConcertReady />} />
                   <Route path="/booking_history" element={<BookingHistroy />} />
                   <Route path="/performer_ready" element={<PerformerReady />} />
                   <Route path="/con_ready" element={<ConReady />} />
-                  <Route path="/booking" element={<Booking />} />
                 </Routes>
               </div>
             </PamphletContext.Provider>
