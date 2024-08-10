@@ -225,7 +225,7 @@ function App() {
                   <Route path="/booking_history" element={<BookingHistroy />} />
                   <Route path="/performer_ready" element={<PerformerReady />} />
                   <Route path="/con_ready" element={<ConReady />} />
-                  <Route path="/booking" element={<Booking />} />
+                  <Route path="/booking" element={<Booking />} /> 
                 </Routes>
               </div>
             </PamphletContext.Provider>

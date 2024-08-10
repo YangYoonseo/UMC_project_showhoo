@@ -3,6 +3,10 @@ body {
     font-style: normal;
 }
 
+img {
+    filter: none !important;
+}
+
 .Booking {
     display: flex;
     flex-direction: column;
@@ -17,11 +21,11 @@ body {
 .Booking_container {
     /* Container 117 */
     position: absolute;
-    height: 1507px;
+    margin: auto;
     left: 0px;
     right: 0px;
     top: 90px;
-    background: #FFF;
+    background: #FBFBFB;
     border-radius: 36px;
     padding: 40px;
 }
@@ -92,7 +96,8 @@ body {
     border-radius: 50%;
     display: flex;
     justify-content: center;
-    align-items: center
+    align-items: center;
+    filter: none !important;
 }
 
 .img > .search {
@@ -101,3 +106,10 @@ body {
     opacity: 1; /* 불투명도 설정 */
 }
 
+.Booking_content{
+    display: flex;
+    flex-wrap: wrap; /* 줄 바꿈을 허용하여 다음 줄로 넘어가게 함 */
+    justify-content: flex-start;
+    gap: 20px; /* 아이템들 간의 간격 */
+    margin: 100px 40px;
+}
