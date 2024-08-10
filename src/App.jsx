@@ -3,7 +3,7 @@ import "./App.css";
 import { Routes, Route } from "react-router-dom";
 import { createContext, useState, useReducer } from "react";
 
-import logo_performer from "./assets/images/logo_performer.png";
+import logo_performer from "./assets/images/logo_performer.svg";
 import poster from "./assets/img_Booking/poster.svg";
 
 // 페이지 가져오기
@@ -193,14 +193,14 @@ function App() {
                 <Routes>
                   <Route path="/" element={<Home />} />
                   <Route
-                    path="/performer_registraion"
+                    path="/performer_registration"
                     element={<PerformerRegistration />}
                   />
                   <Route
                     path="/performer_update"
                     element={<PerformerUpdate />}
                   />
-                  <Route path="/mypage" element={<Mypage />} />
+                  <Route path="/mypage_performer" element={<Mypage />} />
                   <Route path="/rental_details" element={<RentalDetails />} />
                   <Route path="/rental_history" element={<RentalHistory />} />
                   <Route path="/venue_detail" element={<VenueDetailPage />} />
