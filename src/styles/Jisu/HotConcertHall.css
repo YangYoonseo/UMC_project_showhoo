@@ -1,0 +1,11 @@
+.HotConcertHall {
+    border: solid;
+    border-color: #E8E8E8;
+    border-radius: 18px;
+    border-width: 1.5px;
+
+    padding-left: 7px;
+    padding-right: 7px;
+    padding-top: 7px;
+    padding-bottom: 17.64px;
+}

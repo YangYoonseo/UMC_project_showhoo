@@ -1,11 +1,22 @@
+.body {
+    background-color: rgb(255, 255, 255);
+}
+
+.ConcertHallImg {
+    width: 296px;
+    height: 236px;
+    border-radius: 11px;
+    object-fit: cover;
+}
+
 .BookingSearchBar {
-    position: absolute;
     width: 957px;
     height: 98px;
-    margin: 0;
+    margin: auto;
 
-    border: 1.5px;
-    border-color: Black;
+    border: 1px;
+    border-style: solid;
+    border-color: rgb(0, 0, 0);
     border-radius: 50px;
 
     font-family: "Pretendard";
@@ -14,7 +25,6 @@
     background-color: white;
 
     display: flex;
-    margin-right: 16.02px;
 }
 
 .topicDevide{
@@ -45,7 +55,7 @@
 .category {
     padding-left: 40px;
     padding-top:23px;
-    padding-right: 43.81px
+    padding-right: 43.81px;
 }
 
 .topic {
@@ -59,4 +69,19 @@
     font-size: 19.97px;
     color: #9C9C9C;
     font-weight: 400;
+}
+
+.HOT {
+    font-size: 30px;
+    font-weight: 600;
+    margin-top: 92px;
+    padding-bottom: 38px;
+    margin-left: 68px;
+}
+
+.HotConcertHallList {
+    width: 1330px;
+    display: flex;
+    justify-content: space-between;
+    margin-left: 61px;
 }
