@@ -17,6 +17,8 @@ import RentalDetails from "./pages/RentalDetails";
 import RentalHistory from "./pages/RentalHistory";
 import VenueDetailPage from "./pages/VenueDetailPage";
 import VenueRegisterPage from "./pages/VenueRegisterPage";
+import Navbar_Performer from "./components/common/Navbar_Performer";
+import Footer from "./components/common/Footer";
 import LoginPage from "./pages/Loginpage";
 import Alarm from "./pages/Alarm";
 import MyActivity from "./pages/MyActivity.jsx";
@@ -223,6 +225,7 @@ function App() {
                     element={<VenueRegisterPage />}
                   />{" "}
                   {/* 공연장 플로우 */}
+                  <Route path="/login" element={<LoginPage />} /> 
                   <Route path="alarm" element={<Alarm />} />
                   <Route path="/my_activity" element={<MyActivity />} />
                   <Route path="/concert_ready" element={<ConcertReady />} />

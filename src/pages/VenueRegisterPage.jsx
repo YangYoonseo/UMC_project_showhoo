@@ -1,5 +1,4 @@
 // VenueRegisterPage.jsx
-// VenueRegisterPage.jsx
 import React, { useState } from 'react';
 import Host_VenueTabs from '../components/VenueRegister_Introduce/Host_VenueTabs';
 import Host_VenueIntroduction from '../components/VenueRegister_Introduce/Host_VenueIntroduction';
@@ -14,6 +13,7 @@ import Pop_Place from '../components/VenueRegister_Introduce/Pop_Place';
 import Pop_Image from '../components/VenueRegister_Introduce/Pop_Image';
 import Footer from '../components/common/Footer';
 import Navbar_Concert from '../components/common/Navbar_Concert';
+import Navbar_Booking from '../components/common/Navbar_Booking';
 import '../styles/VenueRegisterPage.css';
 
 const VenueRegisterPage = () => {
@@ -53,7 +53,7 @@ const VenueRegisterPage = () => {
 
   return (
     <div className="navfot">
-      <Navbar_Concert />
+      <Navbar_Concert/>
       <Footer />
       <div className="venue-register-page">
         <div className="venue-name-wrapper">
