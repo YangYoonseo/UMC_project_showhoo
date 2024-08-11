@@ -3,8 +3,8 @@ import "../styles/yoonseo/MyActivity.css";
 import { useState } from "react";
 
 import Navbar_Perforemr from "../components/common/Navbar_Performer";
-import Review from "../components/_test_/Review";
-import Favorite from "../components/_test_/Favorite";
+import Review from "../components/com_Performer/Review";
+import Favorite from "../components/com_Performer/Favorite";
 
 const MyActivity = () => {
   const [tab, setTab] = useState("review");

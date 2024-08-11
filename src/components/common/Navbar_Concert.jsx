@@ -44,7 +44,13 @@ const Navbar_Concert = () => {
         >
           역할 전환
         </button>
-        <img src={logo_mypage} alt="" />
+        <img
+          src={logo_mypage}
+          alt=""
+          onClick={() => {
+            nav("/mypage_concert");
+          }}
+        />
       </div>
       {popup && (
         <SwitchRoles

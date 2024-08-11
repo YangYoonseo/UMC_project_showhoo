@@ -30,6 +30,11 @@ const RentalDetails = () => {
   const [applyPopup, setApplyPopup] = useState(false);
   const [completedPopup, setCompletedPopup] = useState(false);
 
+  // 체크박스 상태 관리
+  const [isAllChecked, setIsAllChecked] = useState(false);
+  const [refundChecked, setRefundChecked] = useState(false);
+  const [noticeChecked, setNoticeChecked] = useState(false);
+
   const CopyEvent = async (text) => {
     try {
       await navigator.clipboard.writeText(text);
@@ -37,6 +42,13 @@ const RentalDetails = () => {
     } catch (error) {
       alert("복사 실패");
     }
+  };
+
+  const handleAllCheckboxChange = (event) => {
+    const checked = event.target.checked;
+    setIsAllChecked(checked);
+    setRefundChecked(checked);
+    setNoticeChecked(checked);
   };
 
   return (
@@ -93,13 +105,21 @@ const RentalDetails = () => {
         </div>
         <ProfileProvide />
         <div className="checkbox1">
-          <input type="checkbox" />
+          <input
+            type="checkbox"
+            checked={isAllChecked}
+            onChange={handleAllCheckboxChange}
+          />
           <p>결제 내용 확인 및 동의</p>
         </div>
         <div className="checkbox2">
           <div className="checkbox2_1">
             <span>
-              <input type="checkbox" />
+              <input
+                type="checkbox"
+                checked={refundChecked}
+                onChange={() => setRefundChecked(!refundChecked)}
+              />
               <p>환불규정</p>
             </span>
             <p
@@ -113,7 +133,11 @@ const RentalDetails = () => {
           </div>
           <div className="checkbox2_2">
             <span>
-              <input type="checkbox" />
+              <input
+                type="checkbox"
+                checked={noticeChecked}
+                onChange={() => setNoticeChecked(!noticeChecked)}
+              />
               <p>유의사항</p>
             </span>
 

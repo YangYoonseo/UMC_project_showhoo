@@ -3,7 +3,7 @@
   top: 257px;
   left: 248px;
   width: 836px;
-  height: 10000px;
+  height: 1000px;
 }
 
 .Favorite .greenbar {
@@ -30,4 +30,11 @@
 
   background: #e8e8e8;
   border-radius: 7.01393px;
+}
+
+.Favorite .myFavorite {
+  position: absolute;
+  width: 835px;
+  height: 900px;
+  top: 30px;
 }

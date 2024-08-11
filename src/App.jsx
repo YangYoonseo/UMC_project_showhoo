@@ -17,8 +17,6 @@ import RentalDetails from "./pages/RentalDetails";
 import RentalHistory from "./pages/RentalHistory";
 import VenueDetailPage from "./pages/VenueDetailPage";
 import VenueRegisterPage from "./pages/VenueRegisterPage";
-import Navbar_Performer from "./components/common/Navbar_Performer";
-import Footer from "./components/common/Footer";
 import LoginPage from "./pages/Loginpage";
 import Alarm from "./pages/Alarm";
 import MyActivity from "./pages/MyActivity.jsx";
@@ -27,6 +25,9 @@ import BookingHistroy from "./pages/BookingHistory.jsx";
 import PerformerReady from "./pages/PerformerReady.jsx";
 import ConReady from "./pages/ConReady.jsx";
 import Booking from "./pages/Booking.jsx";
+import MypageBooking from "./pages/MypageBooking.jsx";
+import MypageConcert from "./pages/MypageConcert.jsx";
+import LikeBooking from "./pages/LikeBooking.jsx";
 
 const ex_profiles = [
   {
@@ -207,24 +208,31 @@ function App() {
                     path="/performer_update"
                     element={<PerformerUpdate />}
                   />
-
                   <Route path="/mypage_performer" element={<Mypage />} />
-
                   <Route path="/rental" element={<Rental />} />
                   <Route path="/rental_after" element={<RentalAfter />} />
-                  
-
                   <Route path="/rental_details" element={<RentalDetails />} />
                   <Route path="/rental_history" element={<RentalHistory />} />
-                  <Route path="/venue_detail" element={<VenueDetailPage />} />  {/* 공연자 플로우 */}
-                  <Route path="/venue_register" element={<VenueRegisterPage />} />  {/* 공연장 플로우 */}
+                  <Route
+                    path="/venue_detail"
+                    element={<VenueDetailPage />}
+                  />{" "}
+                  {/* 공연자 플로우 */}
+                  <Route
+                    path="/venue_register"
+                    element={<VenueRegisterPage />}
+                  />{" "}
+                  {/* 공연장 플로우 */}
                   <Route path="alarm" element={<Alarm />} />
                   <Route path="/my_activity" element={<MyActivity />} />
                   <Route path="/concert_ready" element={<ConcertReady />} />
                   <Route path="/booking_history" element={<BookingHistroy />} />
                   <Route path="/performer_ready" element={<PerformerReady />} />
                   <Route path="/con_ready" element={<ConReady />} />
-                  <Route path="/booking" element={<Booking />} /> 
+                  <Route path="/booking" element={<Booking />} />
+                  <Route path="/mypage_concert" element={<MypageConcert />} />
+                  <Route path="mypage_booking" element={<MypageBooking />} />
+                  <Route path="/like_booking" element={<LikeBooking />} />
                 </Routes>
               </div>
             </PamphletContext.Provider>

@@ -1,6 +1,6 @@
 import "../../styles/yoonseo/ProfileProvide.css";
 
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { ProfileContext } from "../../App";
 
 import PerformerProfile from "./PerformerProfile";
@@ -8,33 +8,28 @@ import Addprofiles from "./Addprofiles";
 
 const ProfileProvide = () => {
   const profiles = useContext(ProfileContext);
+  const [selectedProfile, setSelectedProfile] = useState(null);
+
+  const handleProfile = (index) => {
+    setSelectedProfile(index);
+  };
+
   return (
     <div className="ProfileProvide">
       <h4>공연장에게 프로필 제공하기</h4>
-      {profiles[0] && (
-        <PerformerProfile
-          profile={profiles[0]}
-          className={"profile-card profile-detail profile-detail1"}
-        />
-      )}{" "}
-      {profiles[1] && (
-        <PerformerProfile
-          profile={profiles[1]}
-          className={"profile-card profile-detail profile-detail2"}
-        />
-      )}{" "}
-      {profiles[2] && (
-        <PerformerProfile
-          profile={profiles[2]}
-          className={"profile-card profile-detail profile-detail3"}
-        />
-      )}{" "}
-      {profiles[3] && (
-        <PerformerProfile
-          profile={profiles[3]}
-          className={"profile-card profile-detail profile-detail4"}
-        />
-      )}
+      {profiles.map((profile, index) => (
+        <div
+          key={index} // 여기에 key prop을 추가
+          onClick={() => handleProfile(index)}
+        >
+          <PerformerProfile
+            profile={profile}
+            className={`profile-card profile-detail profile-detail${
+              index + 1
+            } ${selectedProfile === index ? "selected-profile" : ""}`}
+          />
+        </div>
+      ))}
       <Addprofiles />
     </div>
   );
