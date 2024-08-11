@@ -8,6 +8,8 @@ import poster from "./assets/img_Booking/poster.svg";
 
 // 페이지 가져오기
 import Home from "./pages/_test_/Home_seoya";
+import Rental from "./pages/_test_/Rental.jsx";
+import RentalAfter from "./pages/_test_/RentalAfter.jsx";
 import PerformerRegistration from "./pages/PerformerRegistration";
 import PerformerUpdate from "./pages/PerformerUpdate";
 import Mypage from "./pages/Mypage";
@@ -223,6 +225,7 @@ function App() {
                     element={<VenueRegisterPage />}
                   />{" "}
                   {/* 공연장 플로우 */}
+                  <Route path="/login" element={<LoginPage />} /> 
                   <Route path="alarm" element={<Alarm />} />
                   <Route path="/my_activity" element={<MyActivity />} />
                   <Route path="/concert_ready" element={<ConcertReady />} />

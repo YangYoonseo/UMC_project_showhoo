@@ -11,6 +11,7 @@ import Notice from '../components/VenueDetails/Notice';
 import Schedule from '../components/VenueDetails/Schedule';
 import Reviews from '../components/VenueDetails/Reviews';
 import Navbar_Concert from '../components/common/Navbar_Concert';
+import Navbar_Performer from '../components/common/Navbar_Performer';
 import Footer from '../components/common/Footer';
 import '../components/VenueDetails/VenueDetails.css';
 
@@ -44,7 +45,7 @@ const VenueDetailPage = () => {
 
   return (
     <div className="navfot1">
-      <Navbar_Concert/>
+      <Navbar_Performer/>
       <Footer />
     <div className="venue-detail-page">
       <VenueInfo data={mockData} />
