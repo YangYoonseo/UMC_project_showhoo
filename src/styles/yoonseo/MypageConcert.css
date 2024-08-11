@@ -1,0 +1,113 @@
+.MypageConcert {
+  /* 공연장 - 공연 준비 - 공연 준비 완료 */
+  position: relative;
+  width: 1440px;
+  height: 1200px;
+
+  background: #ffffff;
+  box-shadow: 0px 3px 6px rgba(18, 15, 40, 0.12);
+}
+
+.MypageConcert_content {
+  /* 예매 확인 */
+
+  position: absolute;
+  height: 100px;
+  left: 0px;
+  right: 0px;
+  top: 78px;
+
+  background: #fbfbfb;
+  border-radius: 36px 36px 0px 0px;
+}
+
+.MypageConcert_content h3 {
+  /* Group 36 */
+
+  position: absolute;
+  width: 173px;
+  height: 68px;
+  left: 246px;
+  top: 107px;
+  margin: 0;
+
+  /* Product title */
+
+  font-family: "Pretendard";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 40px;
+  line-height: 68px;
+  /* identical to box height, or 170% */
+
+  color: #171a1f;
+}
+
+.MypageConcert_content .profile_img {
+  /* Frame 339 */
+
+  position: absolute;
+  width: 67px;
+  height: 64.77px;
+  left: 246px;
+  top: 202px;
+  margin: 0;
+
+  background: #94bfe7;
+  border-radius: 50.25px;
+}
+
+.MypageConcert_content .name {
+  /* 홍길동 */
+
+  position: absolute;
+  width: 166px;
+  height: 34px;
+  left: 337px;
+  top: 215px;
+  margin: 0;
+
+  font-family: "Pretendard";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 26px;
+  line-height: 30px;
+  /* or 115% */
+  display: flex;
+  align-items: center;
+
+  color: #0f0f0f;
+}
+
+.MypageConcert_content .choice {
+  /* 선택 */
+
+  box-sizing: border-box;
+
+  position: absolute;
+  width: 950px;
+  height: 264px;
+  left: 246px;
+  top: 328px;
+
+  background: #ffffff;
+  border: 1px solid #e8e8e8;
+  border-radius: 25px;
+}
+
+.MypageConcert_content .choice button {
+  border: none;
+  border-bottom: 1px solid #e8e8e8;
+  width: 948px;
+}
+
+.MypageConcert_content .choice button:nth-of-type(1) {
+  border-top-left-radius: 25px;
+  border-top-right-radius: 25px;
+}
+
+.MypageConcert_content .choice button:nth-of-type(4) {
+  border: none;
+  border-bottom-left-radius: 25px;
+  border-bottom-right-radius: 25px;
+}

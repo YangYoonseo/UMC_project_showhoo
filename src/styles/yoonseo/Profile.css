@@ -230,6 +230,46 @@
   top: 109px;
 }
 
+.Container117_update .delete {
+  position: absolute;
+
+  /* Auto layout */
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-end;
+  padding: 5.98558px 6.98317px;
+  gap: 9.98px;
+
+  width: 40.9px;
+  height: 40.9px;
+
+  background: #ffffff;
+  border-radius: 20.4507px;
+}
+
+.Container117_update .delete_img1 {
+  /* Frame 83 */
+
+  top: 550px;
+  left: 302px;
+}
+
+.Container117_update .delete_img2 {
+  top: 550px;
+  left: 697px;
+}
+
+.Container117_update .delete_img3 {
+  top: 836px;
+  left: 302px;
+}
+
+.Container117_update .delete_img4 {
+  top: 836px;
+  left: 697px;
+}
+
 .Container117_update .Button_green {
   /* Frame 31 */
 
