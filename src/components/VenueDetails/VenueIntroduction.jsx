@@ -31,11 +31,14 @@ const VenueIntroduction = ({ data }) => {
       <ul className="value-list">
         {formatTextToList(data.tel)}</ul>
       <br />
-      <h2>위치</h2>
-      <br />
-      <p className="location">{data.location}</p>
-      <div className="map-image">
-        <img src={ex_map} alt="map" />
+      <div className="location-section2">
+        <h2>위치</h2>
+        <div className="location-header2">
+          <p className="location2">{data.location}</p>
+        </div>
+        <div className="map-image">
+          <img src={ex_map} className="ex_map2" alt="map image" />
+        </div>
       </div>
     </div>
   );

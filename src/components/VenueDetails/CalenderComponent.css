@@ -1,0 +1,110 @@
+body {
+    font-family: "Pretendard";
+    font-style: normal;
+}
+
+.Host_Calender .react-calendar {
+    /* 달력 */
+  
+    box-sizing: border-box;
+    width: 640px;
+    height: 650px;
+  
+    background: #ffffff;
+    border: 1px solid #b5b5b5;
+    border-radius: 25px;
+}
+  
+.Host_Calender .react-calendar__navigation {
+    padding: 20px 40px;
+    margin: 0;
+    height: 47px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-sizing: content-box;
+}
+  
+.Host_Calender .react-calendar__navigation button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+}
+
+.Host_Calender .react-calendar__navigation__arrow {
+    width: 30px;
+    height: 30px;
+    box-sizing: content-box;
+    font-size: 30px;
+    font-weight: lighter;
+}
+
+.Host_Calender .react-calendar__month-view__weekdays {
+    padding: 0 20px;
+    margin: 0 !important;
+    font-weight: 400;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: rgba(15, 15, 15, 0.5);
+}
+
+.Host_Calender .react-calendar__month-view__days {
+    padding: 0 20px;
+    padding-top: 10px;
+    height: 500px;
+}
+.react-calendar__month-view__days__day--weekend {
+    color: #d10000;
+}
+
+/* 날짜 타일에 대한 스타일 설정 */
+.react-calendar__tile {
+    display: flex;
+    flex-direction: column; /* 세로로 정렬 */
+    align-items: center; /* 수평 가운데 정렬 */
+    justify-content: flex-start; /* 날짜는 위쪽에 위치 */
+    width: 100px;
+    height: 110px; /* 타일의 높이 조정 */
+    position: relative;
+    padding: 5px; /* 내부 패딩 추가 */
+}
+
+/* 날짜 숫자는 위쪽에 가운데 정렬 */
+.react-calendar__tile span {
+    font-size: 1em;
+    margin-bottom: 5px; /* 날짜와 이벤트 사이에 간격 추가 */
+}
+
+/* 이벤트 텍스트 스타일 */
+.react-calendar__tile .event {
+    margin-top: 3px;
+    text-align: center;
+    padding: 2px 5px;
+    width: 83px; /* 이벤트 텍스트가 타일의 전체 너비를 차지하도록 */
+    height: 23px;
+    font-weight: 500;
+    font-size: 11px;
+    align-items: center;
+    text-align: center;
+    border-radius: 3px;
+}
+
+/* 라벨 설정 */
+.react-calendar__tile .event_holiday {
+    background: #F01569;
+    color: #FFFFFF;
+}
+
+.react-calendar__tile .event_complete {
+    background: #0F0F0F;
+    color: #09F1B9;
+}
+
+.react-calendar__tile .event_conference {
+    background: #09F1B9;
+    color: #0F0F0F;
+}
+

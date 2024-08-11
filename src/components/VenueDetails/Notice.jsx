@@ -1,18 +1,12 @@
 import React from 'react';
 import './VenueDetails.css';
 
-//** text -> red */
-const highlightText = (text) => {
-  const parts = text.split('**');
-  return parts.map((part, index) =>
-    index % 2 === 1 ? <span style={{ color: 'red' }} key={index}>{part}</span> : part
-  );
-};
-
+// 텍스트 자르는 함수 
+// but 백엔드로부터 받아오는 데이터에 따라서 수정해야 할 가능성 높음
 const renderTextWithLineBreaks = (text) => {
   const lines = text.split('<br><br>').map((line, index) =>
     <div key={index}>
-      {line.split('<br>').map((item, i) => <p key={i}>{highlightText(item)}</p>)}
+      {line.split('<br>').map((item, i) => <p key={i}>{item}</p>)}
       {index < text.split('<br><br>').length - 1 && <br />}
     </div>
   );
@@ -34,7 +28,7 @@ const Notice = ({ data }) => {
         <h3>3. 예약 시 주의사항</h3>
         <ul>
           {data.precautions.split('<br>').map((item, index) => (
-            <li key={index}>{highlightText(item)}</li>
+            <li key={index}>{item}</li>
           ))}
         </ul>
       </div>
@@ -42,7 +36,7 @@ const Notice = ({ data }) => {
         <h3>4. 주차, 화장실 및 대기실</h3>
         <ul>
           {data.amenities.split('<br>').map((item, index) => (
-            <li key={index}>{highlightText(item)}</li>
+            <li key={index}>{item}</li>
           ))}
         </ul>
       </div>

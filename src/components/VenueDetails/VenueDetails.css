@@ -6,7 +6,7 @@
   position: relative;
   height: 2220px;
   width: 1441px;
-  background: #0F0F0F;
+  background: #fbfbfb;
   box-shadow: 0px 3px 6px rgba(18, 15, 40, 0.12);
   align-items: center;
 
@@ -143,52 +143,75 @@
     margin-left: 20px;
 }
 
-.venue-images .main-image img {
 
+  /* 고정된 위치에 이미지 패널 배치 */
+.venue-imagepanel1 {
   position: absolute;
   width: 585px;
   height: 397px;
   left: 186px;
   top: 213px;
-  
-  background: url(001사진.jpg);
-  border-radius: 25px 0px 0px 25px;
-  
+  background: #E8E8E8;
+  border-radius: 25px 25px 25px 25px;
 }
-.venue-images .sub-image .sub1 {
+
+.venue-imagepanel2 {
   position: absolute;
   width: 233px;
   height: 189px;
   left: 791px;
   top: 215px;
-  
+  background: #E8E8E8;
 }
 
-.venue-images .sub-image .sub2 {
+.venue-imagepanel3 {
+  position: absolute;
+  width: 233px;
+  height: 189px;
+  left: 791px;
+  top: 421px;
+  background: #E8E8E8;
+}
+
+.venue-imagepanel4 {
   position: absolute;
   width: 233px;
   height: 189px;
   left: 1041px;
   top: 213px;
+  background: #E8E8E8;
   border-radius: 0px 25px 0px 0px;
 }
 
-.venue-images .sub-image .sub3 {
-position: absolute;
-width: 233px;
-height: 189px;
-left: 791px;
-top: 421px; 
-}
-
-.venue-images .sub-image .sub4 {
+.venue-imagepanel5 {
   position: absolute;
   width: 233px;
   height: 189px;
   left: 1041px;
   top: 421px;
+  background: #E8E8E8;
   border-radius: 0px 0px 25px 0px;
-  }
+}
+
+/* 이미지가 패널을 덮도록 설정 */
+.imagepanel-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: inherit; /* 패널의 border-radius와 동일하게 적용 */
+}
+
+.all_image_btn{/* Frame 32 */
+
+  position: absolute;
+  width: 108px;
+  height: 35px;
+  left: 1150px;
+  top: 555px;
+  z-index: 2;
+  cursor: pointer;
+}
+
 
 .venue-content {
     display: flex;
@@ -200,6 +223,9 @@ top: 421px;
     flex-grow: 1;
     margin-right: 20px;
 }
+
+
+
 
 
 
@@ -315,14 +341,17 @@ color: #0F0F0F;
   height: 43px;
   width:260px;
   padding-left:20px;
-
 }
+
+.booking-option.active {
+  border-color: #0f0f0f; /* 활성화된 상태에서 테두리 색상을 검정색으로 변경 */
+} 
 
 .first-option {
   border-top-left-radius: 25px;
   border-top-right-radius: 25px;
   position: absolute;
-  top: 90px;
+  top: 91px;
   left: 30px;
 }
 
@@ -346,6 +375,7 @@ color: #0F0F0F;
 
 .booking-option img {
   margin-right: 10px;
+  cursor: pointer;
 }
 
 .booking-option-label {
@@ -354,6 +384,50 @@ color: #0F0F0F;
   color: #4f4f4f;
 }
 
+/* 추가 드롭다운 스타일 */
+.service-dropdown {
+  position: absolute;
+  top: 283px;
+  left: -100px;
+  width: 400px;
+  height: 360px;
+  background: #fff;
+  border: none;
+  border-radius: 25px;
+  padding: 0px 10px;
+  z-index: 1;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.service-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 5px 15px;
+  cursor: pointer;
+  height:60px;
+}
+
+.service-item + .service-item {
+  border-top: 1px solid #E8E8E8;
+}
+
+.service-name {
+  flex-grow: 1;
+  font-size: 17px;
+  color: #4f4f4f;
+  margin-left: 10px;
+}
+
+.service-price {
+  font-size: 17px;
+  color: #4f4f4f;
+}
+
+.check-icon {
+  width: 32px;
+  height: 32px;
+}
 
 
 
@@ -376,6 +450,13 @@ color: #0F0F0F;
 
 .booking-form .booking-button:hover {
     background-color: #07d3a5;
+}
+
+/* 비활성화된 상태의 버튼 스타일 */
+.booking-form .booking-button:disabled {
+  background-color: #ccc; 
+  color: #666; 
+  cursor: not-allowed; 
 }
 
 .booking-form .additional-info {
@@ -517,17 +598,10 @@ flex-grow: 0;
 }
 
 
-
-
-
-
-
-
 .venue-introduction,
 .facility-info,
 .venue-notice,
-.venue-qna,
-.venue-reviews {
+.venue-qna{
     max-width: 650px;
     width: 80%;
     margin: 0px 20px 20px 0px;
@@ -621,24 +695,37 @@ flex-grow: 0;
   top:-55px;
   margin-bottom: -30px;
 } 
-.venue-introduction .location {
-  font-family: 'Pretendard';
-  font-style: normal;
-  font-weight: 400;
-  font-size: 20px;
-  line-height: 22px;
-  color: #9C9C9C;
+
+.location-section2 {
+  margin-top: 40px;
 }
 
-.map-image {
-  position: absolute;
-  width: 618px;
-  height: 303px;
-  left: 209px;
-  top: 1634px;
-  background: url('/path/to/your/map-image.png');
+.location-section2 h2 {
+  font-size: 25px;
+  margin-bottom: 20px;
+}
+
+.location-header2 {
+  display: flex;
+  align-items: center;
+}
+
+.location-header2 .location2 {
+  font-size: 20px;
+  color: #9c9c9c;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+} 
+
+.ex_map2 {
+  display: flex;
+  width:618px;
+  height:303px;
   border-radius: 14px;
 }
+
 
 
 
@@ -690,16 +777,18 @@ flex-grow: 0;
   position: relative;
   padding:0px;
   width:650px;
- height: 1000px; /* 필요한 경우 높이를 조정 */
+  height: 1300px; /* 필요한 경우 높이를 조정 */
   overflow-y: auto;
   overflow-x: hidden; /* 가로 스크롤 금지 */
   scrollbar-color: #B5B5B5 transparent; 
+  margin-left: 25px;
+  margin-top: -25px;
 
 }
 
 
 .notice-section {
-  margin-bottom: 100px;
+  margin-bottom: 70px;
   width:600px;
   overflow-y: auto;
 }
@@ -752,6 +841,8 @@ flex-grow: 0;
   position: relative;
   width: 100%;
   padding: 20px;
+  margin-left: 25px;
+  margin-top: -10px;
 }
 
 .venue-schedule .schedule-title {
@@ -770,16 +861,15 @@ flex-grow: 0;
   color: #0f0f0f;
 }
 
-.calendar {
-  position: absolute;
-  left: 209px;
-  top: 877px;
-  width: 625px !important; 
-  width: 580px !important; 
-  background: #ffffff !important;
-  border: 0.641026px solid #b5b5b5 !important;
-  border-radius: 16px !important;
-  padding: 15px !important;
+
+.calendar2 {
+  width: 625px;
+  height: 581px;
+  margin: 20px 0;
+
+  position: relative;
+  top:850px;
+  left:185px;
 }
 
 .react-calendar {
@@ -832,173 +922,30 @@ flex-grow: 0;
 
 
 
+
+
+
 /*5번 : 후기*/
-.venue-reviews {
-  width: 650px;
-  margin: 0 auto;
-}
-
-.reviews-header {
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 20px;
-}
-
-.reviews-title {
-  font-size: 1.5em;
-  margin-bottom: 10px;
-}
-
-.average-rating {
-  color: #07C093;
-}
-
-.rating-section {
-  display: flex;
-  align-items: center;
-  margin-bottom: 20px;
-}
-
-.rating-section img {
-  width: 25px;
-  height: 25px;
-  margin-right: 5px;
-}
-
-.rating-score {
-  font-size: 1.2em;
-  color: #07C093;
-  margin-left: 10px;
-}
-
-.review-input-container {
+.venue-reviews{
   position: relative;
+  top:785px;
+  left:220px;
 }
-
-.review-input {
-  width: 95%;
-  height: 100px;
-  padding: 20px;
-  margin-bottom: 20px;
-  border-radius: 14px;
-  border: 1px solid transparent; /* border 투명화 */
-  background: #f5f5f5; /* 배경색 설정 */
-  font-size: 15px; /* 기본 텍스트 크기 설정 */
-  line-height: 1.5; /* 줄간격을 1.5배로 설정 */
-}
-
-.submit-button {
-  position: absolute;
-  right: 0px;
-  bottom:35px;
-  width: 70px;
-  height: 42px;
-  background: rgba(9, 241, 185, 0.6);
-  border-radius: 11.4852px;
-  border: none;
-  cursor: pointer;
-  font-size: 13px;
-}
-
-.image-add-panel {
+.venue-reviews > h4 {
+  width: 342px;
+  height: 30px;
+  font-weight: 600;
+  font-size: 25px;
   display: flex;
-  align-items: center;
-  margin-bottom: 20px;
+  text-align: center;
 }
 
-.image-add-panel img {
-  width: 90px;
-  height: 90px;
-  margin-right: 10px;
+.hightlight {
+  color: #07c093;
 }
 
-.image-add-text {
-  font-size: 1em;
-  color: #b5b5b5;
-}
 
-.review-warning {
-  position: relative;
-  top:-110px;
-  left:20px;
 
-  font-size: 14px;
-  color: #696969;
-  text-align: right;
-  text-decoration: underline;
-}
-
-.review-item {
-  display: flex;
-  align-items: flex-start;
-  margin-bottom: 20px;
-}
-
-.profile-image {
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  margin-right: 15px;
-}
-
-.review-content {
-  flex: 1;
-}
-
-.review-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 5px;
-}
-
-.profile-name {
-  font-weight: bold;
-}
-
-.review-rating img {
-  width: 25px;
-  height: 25px;
-  margin-right: 5px;
-}
-
-.review-content p {
-  margin: 5px 0;
-  color: black;
-}
-
-.review-image {
-  width: 100%;
-  max-width: 300px;
-  margin: 10px 0;
-  border-radius: 10px;
-}
-
-.timestamp {
-  font-size: 0.9em;
-  color: #999;
-}
-
-.answer-content {
-  margin-top: 10px;
-  padding-left: 15px;
-  border-left: 3px solid #09f1b9;
-}
-
-.answer {
-  font-weight: bold;
-  color: #09f1b9;
-  margin-bottom: 5px;
-}
-
-.answer-content p {
-  margin: 5px 0;
-}
-
-.answer-timestamp {
-  font-size: 0.9em;
-  color: #999;
-}
 
 .map-image{
   width: Fixed (618px)px;
