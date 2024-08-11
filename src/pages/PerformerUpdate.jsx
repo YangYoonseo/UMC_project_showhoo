@@ -8,12 +8,13 @@ import Profile from "../components/com_Performer/Profile";
 
 const PerformerUpdate = () => {
   const { state } = useLocation();
+  const profileData = state || undefined;
   return (
     <div className="PerformerUpdate">
       {console.log(state)}
       <Navbar_Perforemr />
       <Footer />
-      <Profile profile={state || null} />
+      <Profile profile={profileData} />
     </div>
   );
 };

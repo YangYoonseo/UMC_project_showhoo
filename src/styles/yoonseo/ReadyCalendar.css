@@ -97,7 +97,8 @@
 }
 
 .ReadyCalendar .react-calendar__month-view__days__day {
-  padding-bottom: 80px;
+  padding-top: 30px;
+  padding-bottom: 110px;
   font-size: 18px;
 }
 

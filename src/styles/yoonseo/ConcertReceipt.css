@@ -4,23 +4,17 @@
   position: absolute;
   width: 698px;
   /* height: 1523px; */
-  height: 80%;
+  height: 1000px;
 
   left: 707px;
-  top: 95px;
+  top: 85px;
 
   background: #ffffff;
   border-radius: 25px;
-  overflow-y: auto;
-  /* 스크롤 가능 */
 }
 
-/* 스크롤 숨기기 */
-.ConcertReceipt::-webkit-scrollbar {
-  display: none; /* Chrome , Safari , Opera */
-}
-
-.ConcertReceipt h1 {
+.ConcertReceipt h1,
+.Receipt h1 {
   /* 고스락 23기 */
 
   position: absolute;
@@ -42,7 +36,8 @@
   color: #0f0f0f;
 }
 
-.ConcertReceipt .date {
+.ConcertReceipt .date,
+.Receipt .date {
   /* 2024-02-28에 공연장 대관을 신청했습니다 */
 
   position: absolute;
@@ -147,7 +142,7 @@
 
   position: absolute;
   width: 529px;
-  height: 186px;
+  height: 166px;
   left: 91px;
   top: 347px;
 
@@ -158,7 +153,7 @@
 
 .ConcertReceipt .image {
   position: absolute;
-  top: 550px;
+  top: 530px;
   left: 91px;
   width: 529px;
   height: 377px;
@@ -185,49 +180,70 @@
   border-radius: 18px;
 }
 
-.ConcertReceipt h3 {
-  /* 영수증 */
+.ConcertReceipt .Button_gray {
+  /* 예매하기 버튼 */
 
   position: absolute;
-  width: 374px;
-  height: 37px;
+  width: 242px;
+  height: 48px;
   left: 91px;
-  top: 988px;
-  margin: 0;
+  top: 898px;
 
-  font-family: "Pretendard";
-  font-style: normal;
-  font-weight: 400;
-  font-size: 24px;
-  line-height: 49px;
-  /* or 203% */
-  display: flex;
-  align-items: center;
-
-  color: #0f0f0f;
+  background: #e8e8e8;
+  border-radius: 14px;
 }
 
-.ConcertReceipt .price {
-  /* 가격 */
+.ConcertReceipt .Button_green {
+  /* 예매하기 버튼 */
 
   box-sizing: border-box;
-  padding: 0;
-  padding-top: 30px;
-  padding-left: 78px;
+
+  position: absolute;
+  width: 242px;
+  height: 48px;
+  left: 378px;
+  top: 898px;
+
+  background: #09f1b9;
+  border: 1px solid #09f1b9;
+  border-radius: 14px;
+}
+
+/* Receipt css */
+
+.Receipt {
+  /* 멤버 추가하기 */
+
+  position: absolute;
+  width: 698px;
+  height: 679px;
+  left: 707px;
+  top: 85px;
+
+  background: #ffffff;
+  border-radius: 25px;
+}
+
+.Receipt .price {
+  /* 소속 */
+
+  box-sizing: border-box;
 
   position: absolute;
   width: 529px;
   height: 298px;
-  left: 91px;
-  top: 1043px;
+  left: 84px;
+  top: 208px;
+
+  padding: 30px;
 
   background: #ffffff;
   border: 1px solid #e8e8e8;
   border-radius: 18px;
 }
 
-.ConcertReceipt .price p {
-  /* 대관료 */
+.Receipt .price p {
+  /* 멀티트랙 레코딩 */
 
   font-family: "Pretendard";
   font-style: normal;
@@ -241,24 +257,22 @@
   color: #363636;
 }
 
-.ConcertReceipt .Button_green {
-  /* 추가하기 */
-
-  box-sizing: border-box;
+.Receipt .Button_gray {
+  /* 예매하기 버튼 */
 
   position: absolute;
   width: 242px;
   height: 48px;
-  left: 235px;
-  top: 1425px;
-
-  font-size: 17px;
+  left: 84px;
+  top: 567px;
 }
 
-.ConcertReceipt .empty {
+.Receipt .Button_green {
+  /* 예매하기 버튼 */
+
   position: absolute;
   width: 242px;
-  height: 50px;
-  left: 235px;
-  top: 1473px;
+  height: 48px;
+  left: 371px;
+  top: 567px;
 }

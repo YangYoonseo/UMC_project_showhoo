@@ -170,40 +170,40 @@
   /* or 74% */
 }
 
-.profile-latest .members_img {
+.profile-latest .school_img {
   width: 26.02px;
-  height: 26.02px;
-  top: 67.64px;
+  height: 36.02px;
+  top: 71.72px;
   left: 248.7px;
   gap: 0px;
   opacity: 0px;
 }
 
-.profile-latest .members_p {
+.profile-latest .school_p {
   width: 228.21px;
-  height: 48.44px;
+  height: 36.02px;
   top: 71.72px;
   left: 282.23px;
   gap: 0px;
   opacity: 0px;
 }
 
-.profile-latest .school_img {
+.profile-latest .number_img {
   width: 26.08px;
   height: 26.08px;
   gap: 0px;
   opacity: 0px;
-  top: 131.34px;
+  top: 121.34px;
   left: 248.7px;
 }
 
-.profile-latest .school_p {
+.profile-latest .number_p {
   width: 362.34px;
   height: 26.08px;
   gap: 0px;
   opacity: 0px;
 
-  top: 131.34px;
+  top: 121.34px;
   left: 282.23px;
 
   font-size: 18.63px;
