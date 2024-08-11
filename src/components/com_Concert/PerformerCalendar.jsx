@@ -80,7 +80,13 @@ const PerformerCalendar = ({ profile, className }) => {
         )}
 
         {profile.status === "대관 완료" && (
-          <Button text={"준비 시작"} type={"black"} />
+          <Button
+            text={"준비 시작"}
+            type={"black"}
+            onClick={() => {
+              nav("/con_ready");
+            }}
+          />
         )}
       </div>
       {ok && (

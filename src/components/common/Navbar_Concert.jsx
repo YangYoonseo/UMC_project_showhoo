@@ -17,7 +17,14 @@ const Navbar_Concert = () => {
         <img src={logo_concert} alt="" />
         <div className="Frame127 concert_navbar">
           <button className="home">홈</button>
-          <button className="concert_register">공연장 등록</button>
+          <button 
+            className="concert_register"
+            onClick={() => {
+              nav("/venue_register");
+            }}
+          >
+            공연장 등록
+          </button>
           <button
             className="concert_ready"
             onClick={() => {

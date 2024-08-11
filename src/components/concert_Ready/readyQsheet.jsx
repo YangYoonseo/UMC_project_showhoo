@@ -69,7 +69,7 @@ const ReadyQsheet = ({ nextStep, check }) => {
                 </div>
             </div>
             <div className="Qsheet_button">
-                <Button text={"다음 단계"} type={"green"} onClick={checkQsheet}/>
+                <Button text={"다음 단계"} type={"green"} onClick={nextStep}/>
             </div>
         </div>
     )

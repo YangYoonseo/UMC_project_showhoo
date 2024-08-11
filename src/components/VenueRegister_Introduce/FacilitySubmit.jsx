@@ -1,4 +1,4 @@
-import "../../styles/Eojin/readySubmit.css";
+import "../../styles/Eojin/FacilitySubmit.css";
 import { useState } from 'react';
 import submit from "../../assets/img_Ready/submit.svg";
 import FacilityUploader from "./FacilityUploader";
@@ -24,7 +24,7 @@ const FacilitySubmit = ({ text, id, onCheck }) => {
     };
 
     return (
-        <div className={`readySubmit readySubmit_${complete}`} onClick={onClick}>
+        <div className={`facilitySubmit facilitySubmit_${complete}`} onClick={onClick}>
             <img src={submit} alt="download" />
             <p>{text}</p>
             {showUploader && <FacilityUploader onClose={closeModal} uploadSuc={uploadSuc} uploadFail={uploadFail} />}
