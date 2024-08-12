@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import RentalSearchButton from "./BookingSearchButton";
 import RoundButton from "./RoundButton";
-import Modal from "./Modal";
+import LocateModal from "./Modal/LocateModal";
 import "../../../styles/Jisu/BookingSearchBar.css";
 
 const RentalSearchBar = () => {
@@ -29,7 +29,6 @@ const RentalSearchBar = () => {
                 index={0}
                 isClicked={activeButton === 0}
                 onClick={handleButtonClick}
-                onOpenModal={() => openModal()}
                 style={{}} 
             />
 
@@ -68,7 +67,7 @@ const RentalSearchBar = () => {
 
             <RentalSearchButton />
 
-            <Modal
+            <LocateModal
                 isOpen={isModalOpen}
                 onClose={closeModal}
             />
