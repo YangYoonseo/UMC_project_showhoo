@@ -1,3 +1,5 @@
+import React from 'react';
+
 const RentalSearchFilter = () => {  
     return <div className="RentalSearchFilter"
         style={{
