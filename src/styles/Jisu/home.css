@@ -1,7 +1,7 @@
 .Home {
     position: relative;
     width: 1440px;
-    height: 1507px;
+    height: 4195px;
 
     background: #ffffff;
     box-shadow: 0px 3px 6px rgba(18, 15, 40, 0.12);
@@ -10,7 +10,7 @@
 .HomeContent {
     position: absolute;
     width: 1440px;
-    height: 1507px;
+    height: 4195px;
     left: 0px;
     right: 0px;
     top: 81px;
