@@ -1,0 +1,72 @@
+body {
+    font-family: 'Pretendard';
+    font-style: normal;
+}
+
+.Book_component {
+    box-sizing: border-box;
+    width: 279.5px;
+    height: 482.86px;
+
+    background: #FFFFFF;
+    border: 0.806344px solid #E8E8E8;
+    border-radius: 25.0448px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 10px;
+    position: relative;
+}
+
+.Book_component > img {
+    width: 257.46px;
+    height: 344px;
+    padding: 0;
+    margin: 0 auto;
+    display: block;
+}
+
+.Book_component > .img_true {
+    filter:grayscale(100%) !important;
+}
+
+.com_content {
+    padding: 5px;
+    box-sizing: border-box;
+    margin: 0 auto;
+}
+
+.com_content > p {
+    font-weight: 400;
+    font-size: 14.5142px;
+    display: flex;
+    align-items: center;
+    color: #0F0F0F;
+}
+
+.com_content > h4 {
+    width: 233.42px;
+    font-weight: 600;
+    font-size: 22.5776px;
+    display: flex;
+    align-items: center;
+    color: #0F0F0F;
+}
+
+.Book_component > .past{
+    width: 95.17px;
+    height: 39.38px;
+    position: absolute;
+    top: 50px;
+    left: 10px;
+    background: #E8E8E8;
+    border-radius: 0px 12.3065px 12.3065px 0px;
+    font-weight: 600;
+    font-size: 12.3065px;
+    display: flex;
+    align-items: center;
+    text-align: right;
+    justify-content: center;
+    color: #0F0F0F;
+}

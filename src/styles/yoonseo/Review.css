@@ -3,7 +3,7 @@
   top: 257px;
   left: 248px;
   width: 836px;
-  height: 10000px;
+  height: 1000px;
 }
 
 .Review .greenbar {
@@ -31,4 +31,10 @@
 
   background: #e8e8e8;
   border-radius: 7.01393px;
+}
+
+.Review .myReview .venue-reviews {
+  position: absolute;
+  top: 30px;
+  left: 27px;
 }

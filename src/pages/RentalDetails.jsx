@@ -2,6 +2,7 @@ import "../styles/yoonseo/RentalDetails.css";
 
 import { useContext, useState } from "react";
 import { VenueContext } from "../App";
+import { useNavigate } from "react-router-dom";
 
 import Navbar_Perforemr from "../components/common/Navbar_Performer";
 import Footer from "../components/common/Footer";
@@ -22,11 +23,17 @@ import Line40 from "../assets/img_Performer/Line40.png";
 import octicon_copy_16 from "../assets/img_Performer/octicon_copy_16.png";
 
 const RentalDetails = () => {
+  const nav = useNavigate();
   const { venues } = useContext(VenueContext);
   const [refundPopup, setRefundPopup] = useState(false);
   const [noticePopup, setNoticePopup] = useState(false);
   const [applyPopup, setApplyPopup] = useState(false);
   const [completedPopup, setCompletedPopup] = useState(false);
+
+  // 체크박스 상태 관리
+  const [isAllChecked, setIsAllChecked] = useState(false);
+  const [refundChecked, setRefundChecked] = useState(false);
+  const [noticeChecked, setNoticeChecked] = useState(false);
 
   const CopyEvent = async (text) => {
     try {
@@ -37,12 +44,21 @@ const RentalDetails = () => {
     }
   };
 
+  const handleAllCheckboxChange = (event) => {
+    const checked = event.target.checked;
+    setIsAllChecked(checked);
+    setRefundChecked(checked);
+    setNoticeChecked(checked);
+  };
+
   return (
     <div className="RentalDetails">
       <Navbar_Perforemr />
       <Footer />
       <div className="RentalDetails_content">
-        <button className="detail_back_button">&lt;</button>
+        <button className="detail_back_button" onClick={() => nav(-1)}>
+          &lt;
+        </button>
         <h3 className="Product_title1">대관 신청하기</h3>
         <div className="information">
           <h4>신청 정보</h4>
@@ -89,13 +105,21 @@ const RentalDetails = () => {
         </div>
         <ProfileProvide />
         <div className="checkbox1">
-          <input type="checkbox" />
+          <input
+            type="checkbox"
+            checked={isAllChecked}
+            onChange={handleAllCheckboxChange}
+          />
           <p>결제 내용 확인 및 동의</p>
         </div>
         <div className="checkbox2">
           <div className="checkbox2_1">
             <span>
-              <input type="checkbox" />
+              <input
+                type="checkbox"
+                checked={refundChecked}
+                onChange={() => setRefundChecked(!refundChecked)}
+              />
               <p>환불규정</p>
             </span>
             <p
@@ -109,7 +133,11 @@ const RentalDetails = () => {
           </div>
           <div className="checkbox2_2">
             <span>
-              <input type="checkbox" />
+              <input
+                type="checkbox"
+                checked={noticeChecked}
+                onChange={() => setNoticeChecked(!noticeChecked)}
+              />
               <p>유의사항</p>
             </span>
 

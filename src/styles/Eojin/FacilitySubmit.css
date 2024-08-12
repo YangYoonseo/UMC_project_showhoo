@@ -1,0 +1,36 @@
+.facilitySubmit {
+    box-sizing: border-box;
+    width: 264px;
+    height: 196px;
+    background: #FFFFFF;
+    border: 1.5px solid #E8E8E8;
+    border-radius: 14px;
+}
+
+.facilitySubmit > img {
+    margin: 30px auto;
+    width: 72px;
+    height: 80px;
+    display: flex;
+    justify-content: center;
+    filter: grayscale(100%) !important;
+}
+.facilitySubmit > p {
+    margin: 20px auto;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    color: #878686;
+}
+
+.facilitySubmit_true {
+    border-color: #07C093;
+}
+
+.facilitySubmit_true > img {
+    filter: grayscale(0%) !important;
+}
+
+.facilitySubmit_true > p {
+    color:#07C093;
+}

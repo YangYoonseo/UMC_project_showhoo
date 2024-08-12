@@ -1,7 +1,7 @@
 import "../../styles/yoonseo/ConcertReceipt.css";
 import Button from "../common/Button";
 
-const ConcertReceipt = ({ profile, onClose }) => {
+const ConcertReceipt = ({ profile, onClose, onNext }) => {
   return (
     <div className="backdrop">
       <div className="ConcertReceipt" onClick={(e) => e.stopPropagation()}>
@@ -9,6 +9,7 @@ const ConcertReceipt = ({ profile, onClose }) => {
         <h6 className="date">
           <strong>{profile.date}</strong>에 공연장 대관을 신청했습니다
         </h6>
+
         <div className="school">
           <p>소속</p>
           <p>{profile.school}</p>
@@ -24,12 +25,9 @@ const ConcertReceipt = ({ profile, onClose }) => {
         <div className="image">
           <img src={profile.image} alt="profile" />
         </div>
-        <h3>영수증</h3>
-        <div className="price">
-          <p>대관료...</p>
-        </div>
-        <Button text={"확인"} type={"green"} onClick={onClose} />
-        <div className="empty"></div>
+
+        <Button text={"뒤로 가기"} type={"gray"} onClick={onClose} />
+        <Button text={"다음"} type={"green"} onClick={onNext} />
       </div>
     </div>
   );

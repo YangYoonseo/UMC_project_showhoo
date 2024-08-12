@@ -12,50 +12,41 @@ const ReadyCalendar = () => {
   const [application, setApplication] = useState(false);
   const [completed, setCompleted] = useState(false);
 
-  const handleEventShow = () => {
-    setApplication(false);
-    setCompleted(false);
-    setShow(true);
-  };
+  const handleDateClick = (date) => {
+    const day = date.getDate();
 
-  const handleEventApplication = () => {
-    setCompleted(false);
-    setShow(false);
-    setApplication(true);
-  };
-
-  const handleEventCompleted = () => {
+    // Reset all states
     setShow(false);
     setApplication(false);
-    setCompleted(true);
+    setCompleted(false);
+
+    if (day === 1) {
+      setShow(true);
+    } else if (day === 13 || day === 16 || day === 28) {
+      setApplication(true);
+    } else if (day === 23) {
+      setCompleted(true);
+    }
   };
 
   const getTileContent = ({ date, view }) => {
     if (view === "month") {
-      if (date.getDate() === 1) {
-        return (
-          <div className="event event_show" onClick={handleEventShow}>
-            공연 완료
-          </div>
-        );
-      } else if (date.getDate() === 13) {
-        return (
-          <div
-            className="event event_application"
-            onClick={handleEventApplication}
-          >
-            대관 신청
-          </div>
-        );
-      } else if (date.getDate() === 23) {
-        return (
-          <div className="event event_completed" onClick={handleEventCompleted}>
-            대관 완료
-          </div>
-        );
-      } else if (date.getDate() === 16 || date.getDate() === 28) {
-        return <div className="event event_application">대관 신청</div>;
+      const day = date.getDate();
+      let className = "";
+      let text = "";
+
+      if (day === 1) {
+        className = "event event_show";
+        text = "공연 완료";
+      } else if (day === 13 || day === 16 || day === 28) {
+        className = "event event_application";
+        text = "대관 신청";
+      } else if (day === 23) {
+        className = "event event_completed";
+        text = "대관 완료";
       }
+
+      return <div className={className}>{text}</div>;
     }
     return null;
   };
@@ -71,6 +62,7 @@ const ReadyCalendar = () => {
         calendarType="gregory" // 시작 요일 일요일로 변경
         showNeighboringMonth={false} // 이웃달 안 보여줌
         tileContent={getTileContent}
+        onClickDay={handleDateClick} // 클릭된 날짜에 대한 핸들러 추가
       />
 
       {/* 공연완료 */}

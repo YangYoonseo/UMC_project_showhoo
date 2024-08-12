@@ -13,7 +13,7 @@
     height: 80px;
     display: flex;
     justify-content: center;
-    filter: grayscale(100%);
+    filter: grayscale(100%) !important;
 }
 .readySubmit > p {
     margin: 20px auto;
@@ -28,7 +28,7 @@
 }
 
 .readySubmit_true > img {
-    filter: grayscale(0%);
+    filter: grayscale(0%) !important;
 }
 
 .readySubmit_true > p {

@@ -3,7 +3,7 @@ import "./App.css";
 import { Routes, Route } from "react-router-dom";
 import { createContext, useState, useReducer } from "react";
 
-import logo_performer from "./assets/images/logo_performer.png";
+import logo_performer from "./assets/images/logo_performer.svg";
 import poster from "./assets/img_Booking/poster.svg";
 
 // 페이지 가져오기
@@ -18,7 +18,6 @@ import RentalHistory from "./pages/RentalHistory";
 import VenueDetailPage from "./pages/VenueDetailPage";
 import VenueRegisterPage from "./pages/VenueRegisterPage";
 import Navbar_Performer from "./components/common/Navbar_Performer";
-import Navbar_Performer_Host from "./components/common/Navbar_Performer_Host";
 import Footer from "./components/common/Footer";
 import LoginPage from "./pages/Loginpage";
 import Alarm from "./pages/Alarm";
@@ -28,6 +27,10 @@ import BookingHistroy from "./pages/BookingHistory.jsx";
 import PerformerReady from "./pages/PerformerReady.jsx";
 import ConReady from "./pages/ConReady.jsx";
 import Booking from "./pages/Booking.jsx";
+import MypageBooking from "./pages/MypageBooking.jsx";
+import MypageConcert from "./pages/MypageConcert.jsx";
+import LikeBooking from "./pages/LikeBooking.jsx";
+import Login from "./Login.jsx";
 
 const ex_profiles = [
   {
@@ -200,21 +203,32 @@ function App() {
               <div className="App">
                 <Routes>
                   <Route path="/" element={<Home />} />
+                  <Route path="/login/oauth2/code/kakao" element={<Login/>} />
                   <Route
-                    path="/performer_registraion"
+                    path="/performer_registration"
                     element={<PerformerRegistration />}
                   />
                   <Route
                     path="/performer_update"
                     element={<PerformerUpdate />}
                   />
+                  <Route path="/mypage_performer" element={<Mypage />} />
                   <Route path="/rental" element={<Rental />} />
                   <Route path="/rental_search" element={<RentalSearch />} />
                   <Route path="/mypage" element={<Mypage />} />
                   <Route path="/rental_details" element={<RentalDetails />} />
                   <Route path="/rental_history" element={<RentalHistory />} />
-                  <Route path="/venue_detail" element={<VenueDetailPage />} />  {/* 공연자 플로우 */}
-                  <Route path="/venue_register" element={<VenueRegisterPage />} />  {/* 공연장 플로우 */}
+                  <Route
+                    path="/venue_detail"
+                    element={<VenueDetailPage />}
+                  />{" "}
+                  {/* 공연자 플로우 */}
+                  <Route
+                    path="/venue_register"
+                    element={<VenueRegisterPage />}
+                  />{" "}
+                  {/* 공연장 플로우 */}
+                  <Route path="/login" element={<LoginPage />} /> 
                   <Route path="alarm" element={<Alarm />} />
                   <Route path="/my_activity" element={<MyActivity />} />
                   <Route path="/concert_ready" element={<ConcertReady />} />
@@ -222,6 +236,9 @@ function App() {
                   <Route path="/performer_ready" element={<PerformerReady />} />
                   <Route path="/con_ready" element={<ConReady />} />
                   <Route path="/booking" element={<Booking />} />
+                  <Route path="/mypage_concert" element={<MypageConcert />} />
+                  <Route path="mypage_booking" element={<MypageBooking />} />
+                  <Route path="/like_booking" element={<LikeBooking />} />
                 </Routes>
               </div>
             </PamphletContext.Provider>

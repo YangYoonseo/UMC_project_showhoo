@@ -1,0 +1,149 @@
+.x_button .x {
+  /* Icon Button 34 */
+
+  position: absolute;
+  width: 54.79px;
+  height: 54.79px;
+  right: 238.62px;
+  top: 128px;
+  padding: 0;
+  padding-bottom: 10px;
+
+  font-size: 40px;
+
+  background: #09f1b9;
+  border-radius: 27.3933px;
+  z-index: 10002;
+}
+
+.SwitchRoles {
+  /* 역할 전환 */
+
+  box-sizing: border-box;
+
+  position: absolute;
+  width: 945.46px;
+  height: 564.3px;
+  left: 235px;
+  top: 150.7px;
+
+  background: #0f0f0f;
+  border: 2px solid #09f1b9;
+  border-radius: 19.5667px;
+  z-index: 1001;
+}
+
+.SwitchRoles h1 {
+  /* 역할 전환하기 */
+
+  position: absolute;
+  width: 214.45px;
+  height: 66.53px;
+  left: 133.84px;
+  top: 56.35px;
+  margin: 0;
+
+  font-family: "Pretendard";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 37.568px;
+  line-height: 23px;
+  /* or 62% */
+  display: flex;
+  align-items: center;
+
+  color: #ffffff;
+}
+
+.SwitchRoles p {
+  /* 공연자, 관람객, 공연장 역할 페이지로 전환하세요 */
+
+  position: absolute;
+  width: 352.98px;
+  height: 23.48px;
+  left: 133.84px;
+  top: 129.14px;
+  margin: 0;
+
+  font-family: "Pretendard";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 17.2187px;
+  line-height: 23px;
+  /* identical to box height, or 136% */
+  display: flex;
+  align-items: center;
+
+  color: #e8e8e8;
+}
+
+.SwitchRoles img {
+  /* 로고: 공연자 */
+
+  position: absolute;
+  width: 212px;
+  height: 210.76px;
+}
+
+.SwitchRoles .performer img {
+  left: 97.83px;
+  top: 187.84px;
+}
+
+.SwitchRoles .booking img {
+  /* 로고: 관람자 */
+
+  left: 367.07px;
+  top: 187.84px;
+}
+
+.SwitchRoles .concert img {
+  /* 로고: 공연장 */
+
+  left: 636.31px;
+  top: 187.84px;
+}
+
+.SwitchRoles button {
+  /* Frame 31 */
+
+  box-sizing: border-box;
+
+  position: absolute;
+  width: 130.7px;
+  height: 40.01px;
+
+  background: rgba(255, 255, 255, 0.4);
+  border: 1px solid #ffffff;
+  border-radius: 9.33603px;
+
+  /* 공연자 */
+
+  font-family: "Pretendard";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14.088px;
+  line-height: 23px;
+  /* or 167% */
+
+  text-align: center;
+
+  color: #ffffff;
+}
+
+.SwitchRoles .performer button {
+  top: 445.34px;
+  left: 129.92px;
+}
+
+.SwitchRoles .booking button {
+  top: 445.34px;
+  left: 403.07px;
+}
+
+.SwitchRoles .concert button {
+  /* Frame 33 */
+
+  left: 674.66px;
+  top: 445.34px;
+}

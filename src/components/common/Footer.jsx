@@ -1,8 +1,8 @@
 import "./Footer.css";
-import logo_performer from "../../assets/images/logo_performer.png";
-import mdi_github from "../../assets/images/mdi_github.png";
-import ri_kakao_talk_fill from "../../assets/images/ri_kakao_talk_fill.png";
-import incide_instagram from "../../assets/images/lucide_instagram.png";
+import logo_performer from "../../assets/images/logo_performer.svg";
+import mdi_github from "../../assets/images/mdi_github.svg";
+import ri_kakao_talk_fill from "../../assets/images/ri_kakao_talk_fill.svg";
+import incide_instagram from "../../assets/images/lucide_instagram.svg";
 
 const Footer = () => {
   return (

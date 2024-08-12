@@ -9,11 +9,13 @@ import Frame339 from "../assets/img_Performer/Frame339.png";
 import Navbar_Perforemr from "../components/common/Navbar_Performer";
 import PerformerProfile from "../components/com_Performer/PerformerProfile";
 import PerformerCancel from "../components/popup_Performer/PerformerCancel";
+import SwitchRoles from "../components/common/SwitchRoles";
 
 const Mypage = () => {
   const nav = useNavigate();
   const profiles = useContext(ProfileContext);
   const [cancel, setCancel] = useState(false);
+  const [popup, setPopup] = useState(false);
 
   return (
     <div className="Mypage">
@@ -41,7 +43,7 @@ const Mypage = () => {
           </button>
           <button
             onClick={() => {
-              nav("/performer_registraion");
+              nav("/performer_registration");
             }}
           >
             공연자 등록
@@ -60,7 +62,13 @@ const Mypage = () => {
           >
             내 활동
           </button>
-          <button>역할 전환</button>
+          <button
+            onClick={() => {
+              setPopup(true);
+            }}
+          >
+            역할 전환
+          </button>
           <button>로그아웃</button>
           <button
             onClick={() => {
@@ -71,6 +79,13 @@ const Mypage = () => {
           </button>
         </div>
         {cancel && <PerformerCancel onClose={() => setCancel(false)} />}
+        {popup && (
+          <SwitchRoles
+            onClose={() => {
+              setPopup(false);
+            }}
+          />
+        )}
       </div>
     </div>
   );
