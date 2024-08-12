@@ -30,6 +30,7 @@ import Booking from "./pages/Booking.jsx";
 import MypageBooking from "./pages/MypageBooking.jsx";
 import MypageConcert from "./pages/MypageConcert.jsx";
 import LikeBooking from "./pages/LikeBooking.jsx";
+import Login from "./Login.jsx";
 
 const ex_profiles = [
   {
@@ -202,6 +203,7 @@ function App() {
               <div className="App">
                 <Routes>
                   <Route path="/" element={<Home />} />
+                  <Route path="/login/oauth2/code/kakao" element={<Login/>} />
                   <Route
                     path="/performer_registration"
                     element={<PerformerRegistration />}
