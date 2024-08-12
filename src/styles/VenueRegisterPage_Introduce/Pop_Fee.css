@@ -137,6 +137,9 @@ h3{
     font-size: 16px;
     box-sizing: border-box;
     margin-left: -30px !important;
+
+    position: relative;
+    left:-3.5px;
 }
 .account-info-row-input3{
     min-width: 599px;
@@ -170,4 +173,9 @@ h3{
 .confirm-button {
     background: #09f1b9;
     border: none;
+}
+
+.modal-buttons .confirm-button:disabled {
+    background: #ccc; 
+    cursor: not-allowed;
 }

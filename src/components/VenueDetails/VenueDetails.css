@@ -259,8 +259,8 @@
 
 .venue-tabs button:hover,
 .venue-tabs button.active {
-    background-color: #09F1B9;
     box-shadow: 5px 0 10px rgba(0, 0, 0, 0.15);
+    background-color: rgba(9, 241, 185, 0.6);
 }
 
 

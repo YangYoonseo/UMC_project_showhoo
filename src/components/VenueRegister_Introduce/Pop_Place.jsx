@@ -17,6 +17,8 @@ const Pop_Place = ({ isOpen, onClose, onConfirm }) => {
     onConfirm(fullAddress);
   };
 
+  const isFormValid = city.trim() !== '' && streetAddress.trim() !== ''; // 유효성 검사
+
   return (
     <div className="modal-overlay2">
       <div className="modal-container2">
@@ -100,7 +102,13 @@ const Pop_Place = ({ isOpen, onClose, onConfirm }) => {
 
         <div className="modal-buttons">
           <button className="cancel-button" onClick={onClose}>취소</button>
-          <button className="confirm-button" onClick={handleConfirm}>등록</button>
+          <button 
+            className="confirm-button" 
+            onClick={handleConfirm} 
+            disabled={!isFormValid} // 유효하지 않으면 버튼 비활성화
+          >
+            등록
+          </button>
         </div>
       </div>
     </div>
