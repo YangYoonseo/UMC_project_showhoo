@@ -1,31 +1,44 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import React from "react";
 import BookingSearchButton from "./BookingSearchButton";
+import "../../../styles/Jisu/BookingSearchBar.css"
 
-const BookingSearchBar = () => {  
+const BookingSearchBar = () => {
+  const [isClicked, setIsClicked] = useState(false);
+
+  const handleClick = () => {
+    setIsClicked(!isClicked); // 클릭할 때마다 상태 반전
+    };
+    
+    const RoundButton = ({topic, detail}) => {
+        return <button
+            className={`Concerthall ${isClicked ? 'clicked' : ''}`}
+            onClick={handleClick}>
+            <div className="topic">{topic}</div>
+            <div className="detail">{detail}</div>
+        </button>
+    }
+
     return (<div className="BookingSearchBar">
-        <div className="Concerthall">
-            <div className="topic">공연장</div>
-            <div className="detail">공연장 검색</div>
-        </div>
+        <RoundButton topic="공연장" detail="공연장 검색"/>
 
         <div className="topicDevide"></div>
-        <div className="Locate">
+        <button className="Locate">
             <div className="topic">지역</div>
             <div className="detail">지역 검색</div>
-        </div>
+        </button>
 
         <div className="topicDevide"></div>
-        <div className="Date">
+        <button className="Date">
             <div className="topic">날짜</div>
             <div className="detail">공연날짜 추가</div>
-        </div>
+        </button>
 
         <div className="topicDevide"></div>
-        <div className="category">
+        <button className="category">
             <div className="topic">유형</div>
             <div className="detail">공연장 유형 추가</div>
-        </div>
+        </button>
         <BookingSearchButton />
         </div>);
 };
