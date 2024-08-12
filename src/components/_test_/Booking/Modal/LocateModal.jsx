@@ -1,5 +1,5 @@
 import React from 'react';
-import "../../../styles/Jisu/LocateModal.css";
+import "../../../../styles/Jisu/LocateModal.css";
 
 const Modal = ({ isOpen, onClose }) => {
     if (!isOpen) return null;
