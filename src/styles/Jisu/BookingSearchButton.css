@@ -8,4 +8,9 @@
     margin-right: 16.22px;
     margin-top: 16px;
     margin-bottom: 16.02px;
+
+    position: absolute;
+    transform: translateX(870px);
+    z-index: 10;
+    /* BookingSearchBar 위에 겹쳐지도록 설정 */
 }

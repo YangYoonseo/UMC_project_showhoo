@@ -1,46 +1,79 @@
-import { useEffect, useState } from "react";
-import React from "react";
-import BookingSearchButton from "./BookingSearchButton";
-import "../../../styles/Jisu/BookingSearchBar.css"
+import React, { useState } from "react";
+import RentalSearchButton from "./BookingSearchButton";
+import RoundButton from "./RoundButton";
+import Modal from "./Modal";
+import "../../../styles/Jisu/BookingSearchBar.css";
 
-const BookingSearchBar = () => {
-  const [isClicked, setIsClicked] = useState(false);
+const RentalSearchBar = () => {
+    const [activeButton, setActiveButton] = useState(null);
+    const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const handleClick = () => {
-    setIsClicked(!isClicked); // 클릭할 때마다 상태 반전
+    const handleButtonClick = (index) => {
+        setActiveButton(index);
     };
-    
-    const RoundButton = ({topic, detail}) => {
-        return <button
-            className={`Concerthall ${isClicked ? 'clicked' : ''}`}
-            onClick={handleClick}>
-            <div className="topic">{topic}</div>
-            <div className="detail">{detail}</div>
-        </button>
-    }
 
-    return (<div className="BookingSearchBar">
-        <RoundButton topic="공연장" detail="공연장 검색"/>
+    const openModal = () => {
+        setIsModalOpen(true);
+    };
 
-        <div className="topicDevide"></div>
-        <button className="Locate">
-            <div className="topic">지역</div>
-            <div className="detail">지역 검색</div>
-        </button>
+    const closeModal = () => {
+        setIsModalOpen(false);
+        setModalContent(null);
+    };
 
-        <div className="topicDevide"></div>
-        <button className="Date">
-            <div className="topic">날짜</div>
-            <div className="detail">공연날짜 추가</div>
-        </button>
+    return (
+        <div className="BookingSearchBar">
+            <RoundButton 
+                topic="공연장"
+                detail="공연장 검색"
+                index={0}
+                isClicked={activeButton === 0}
+                onClick={handleButtonClick}
+                onOpenModal={() => openModal()}
+                style={{}} 
+            />
 
-        <div className="topicDevide"></div>
-        <button className="category">
-            <div className="topic">유형</div>
-            <div className="detail">공연장 유형 추가</div>
-        </button>
-        <BookingSearchButton />
-        </div>);
+            <div className="Divider"></div>
+            <RoundButton 
+                topic="지역"
+                detail="지역 검색"
+                index={1}
+                isClicked={activeButton === 1}
+                onClick={handleButtonClick}
+                onOpenModal={() => openModal()}
+                style={{padding: '0px 80px 0px 40px'}} 
+            />
+
+            <div className="Divider"></div>
+            <RoundButton 
+                topic="날짜"
+                detail="공연날짜 추가"
+                index={2}
+                isClicked={activeButton === 2}
+                onClick={handleButtonClick}
+                onOpenModal={() => openModal()}
+                style={{padding: '0px 60px 0px 40px'}} 
+            />
+
+            <div className="Divider"></div>
+            <RoundButton 
+                topic="유형"
+                detail="공연장 유형 추가"
+                index={3}
+                isClicked={activeButton === 3}
+                onClick={handleButtonClick}
+                onOpenModal={() => openModal()}
+                style={{padding: '0px 173px 0px 40px'}} 
+            />
+
+            <RentalSearchButton />
+
+            <Modal
+                isOpen={isModalOpen}
+                onClose={closeModal}
+            />
+        </div>
+    );
 };
 
-export default BookingSearchBar;
+export default RentalSearchBar;
