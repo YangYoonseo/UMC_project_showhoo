@@ -1,3 +1,15 @@
+.searchButton {
+    border: none;
+    width: 65.98px;
+    height: 65.98px;
+    border-radius: 48.61px;
+    background-color: black;
+    margin-left: auto;
+    margin-right: 16.22px;
+    margin-top: 16px;
+    margin-bottom: 16.02px;
+}
+
 .BookingSearchBar {
     width: 957px;
     height: 98px;
@@ -16,89 +28,9 @@
     display: flex;
 }
 
-.topicDevide {
+.Divider {
     margin-top: 27px;
     margin-bottom: 27px;
     width: 1.9px;
     background-color: #CFCFCF;
-}
-
-.Concerthall {
-    padding-left: 60px;
-    padding-right: 60px;
-    background-color: transparent;
-    border-style: none;
-
-    .topic{
-        font-size: 16px;
-        color: rgb(0, 0, 0);
-        font-weight: 500;
-        margin-bottom: 3px;
-    }
-
-    .detail {
-        font-size: 19.97px;
-        color: #9C9C9C;
-        font-weight: 400;
-    }
-}
-
-.Concerthall.clicked {
-    padding-left: 60px;
-    padding-right: 60px;
-    background-color: black;
-    border-style: none;
-
-    .topic {
-            font-size: 16px;
-            color: #ffffff;
-            font-weight: 500;
-            margin-bottom: 3px;
-    }
-
-    .detail {
-        font-size: 19.97px;
-        color: #09F1B9;
-        font-weight: 400;
-    }
-}
-
-.Locate {
-    padding-left: 40px;
-    padding-right: 40px;
-    background-color: transparent;
-    border-style: none;
-}
-
-.Date {
-    padding-left: 40px;
-    padding-right: 44.94px;
-    background-color: transparent;
-    border-style: none;
-}
-
-.category {
-    padding-left: 40px;
-    padding-right: 43.81px;
-    background-color: transparent;
-    border-style: none;
-}
-
-
-
-
-
-
-
-.topic {
-    font-size: 16px;
-    color: Black;
-    font-weight: 500;
-    margin-bottom: 3px;
-}
-
-.detail {
-    font-size: 19.97px;
-    color: #9C9C9C;
-    font-weight: 400;
 }
