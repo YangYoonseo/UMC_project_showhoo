@@ -1,0 +1,28 @@
+.FilterBox {
+    width: 200px;
+    height: 150px;
+    background-color: rgb(255, 255, 240);
+    border: 1px solid rgb(0, 0, 0);
+    box-sizing: border-box; /*부모 요소의 안쪽으로*/
+}
+
+.filterLabel{
+    color: rgb(184, 184, 184);
+}
+
+.CostArea {
+    background-color: rgb(255, 240, 223);
+}
+
+.InputCost {
+    align-items: center;
+    justify-content: center;
+    width: 158px !important;
+    height: 63px !important;
+    border: black !important;
+    border-radius: 11px !important;
+    border-width: 1px !important;
+    border-style: solid !important;
+    box-sizing: border-box !important;
+    font-size: 14px !important;
+}

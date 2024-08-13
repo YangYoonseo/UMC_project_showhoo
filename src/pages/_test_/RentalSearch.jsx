@@ -1,40 +1,34 @@
 import "../../styles/Jisu/rentalSearch.css";
-
 import PageImg from "../../assets/img_Booking/_test_/RentalSearchPage1.svg"
-// 임시 페이지 이미지
-
+import Footer from "../../components/common/Footer";
 import Navbar_Perforemr from "../../components/common/Navbar_Performer";
 import RentalSearchBar from "../../components/_test_/Booking/BookingSearchBar";
 import RentalSearchFilter from "../../components/rental/RentalSearchFilter.jsx"
 
-// HOT 공연장 리스트 가져오기
-
+// 검색 결과창
 const RentalSearch = () => {
   return (
-      <div className="rentalSearchBody">
+      <div className="RentalSearch">
         <Navbar_Perforemr />
-        <div className="gap130"></div>
-      
-        <div className="BarAndFilter">
-          <RentalSearchBar />
-          <RentalSearchFilter />
-      </div>
-      
-      <div className="gap58"></div>
-      <img src={PageImg}></img>
-      {/* 
-      <div className="ConcertHallAndMap">
-        <div className="ConcertHall">
-
+        <Footer />
+      <div className="RentalSearchContent">
+          <div className="BarAndFilter">
+            <RentalSearchBar />
+            <RentalSearchFilter />
+          </div>
+          {
+          <div className="ConcertHallAndMap">
+            <div className="ConcertHall">
+              d232323
+            </div>
+            <div className="Map">
+              d25345
+            </div>
         </div>
-        <div className="Map">
-
-        </div>
+        }
       </div>
-      */}
-
-      </div>
-    );
-  };
+    </div>
+  );
+};
 
 export default RentalSearch;

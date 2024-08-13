@@ -12,16 +12,17 @@ const Rental = () => {
         <Navbar_Perforemr />
         <Footer />
         <div className="RentalContent">
-            <BookingInfoPoster />
+          <BookingInfoPoster />
+          <div className="RentalSearchBar"> 
             <RentalSearchBar />
-            
-            <div className="concertText">
-                  이번 달 HOT 공연장</div>
-            <div className="ConcertHallList">
-              <HotConcertHall />
-              <HotConcertHall />
-              <HotConcertHall />
-              <HotConcertHall />
+          </div>
+          <div className="concertText">
+                이번 달 HOT 공연장</div>
+          <div className="ConcertHallList">
+            <HotConcertHall />
+            <HotConcertHall />
+            <HotConcertHall />
+            <HotConcertHall />
             </div>
             <div className="ConcertHallList">
               <HotConcertHall />
