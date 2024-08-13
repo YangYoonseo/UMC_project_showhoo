@@ -1,0 +1,60 @@
+.FilterPriceSlide {
+    position: relative;
+    height: 4px;
+    width: 650px;
+    border-radius: 10px;
+    background-color: #dddddd;
+}
+
+.FilterPriceSlideInner {
+    position: absolute;
+    height: 4px;
+    border-radius: 10px;
+    background-color: #e64242;
+    transition: all 0.3s ease;
+    /* 부드러운 전환 효과 */
+}
+
+.FilterPriceRangeWrap {
+    position: relative;
+    width: 650px;
+    /* 너비는 FilterPriceSlide와 동일하게 설정 */
+    height: 40px;
+    /* 높이는 적당히 설정 */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 10px;
+    background-color: aliceblue;
+    /* 필요한 경우 여백 추가 */
+}
+
+.FilterPriceRangeMin,
+.FilterPriceRangeMax {
+    /* absolute로 2개의 range를 합쳐진거 처럼 보이게 만든다.
+    (현재는 우측 range만 움직임) */
+    position: absolute;
+    top: -9px;
+    width: 100%;
+    height: 7px;
+    cursor: pointer;
+    -webkit-appearance: none;
+    background: none;
+    pointer-events: none;
+}
+
+.FilterPriceRangeMin {
+    top: -30px;
+    background-color: transparent;
+}
+
+::-webkit-slider-thumb {
+    /* 버튼 디자인 */
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+    border: 2px solid #b0b0b0;
+    background-color: white;
+    -webkit-appearance: none;
+    pointer-events: auto;
+}
