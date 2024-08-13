@@ -20,15 +20,56 @@
     top: 155px;
     left: 581px;
     display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding-top: 57px;
+    padding-bottom: 57px;
+    align-items: center;
     box-sizing: border-box;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .RentalSearchFilterModalBody {
     display: flex;
-    flex: auto;
     flex-direction: column;
     justify-content: space-between;
-    margin: 57px 72px 57px 72px;
-    background-color: rgb(219, 219, 219);
+    gap:18px;
+    margin: 0px 72px 0px 72px;
+}
+
+.Cost {
+    font-size: 31px;
+    font-weight: 600;
+}
+
+.Capacity {
+    font-size: 15.85px;
+    font-weight: 400;
+    color: #4F4F4F;
+}
+
+.FilterBoxes {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.FilterPriceSlide {
+    margin-top: 10px;
+}
+
+.border31px{
+    width: 31px;
+    height: 1px;
+    background-color: #B5B5B5;
+}
+
+.twoButtons {
+    margin-top: 35px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 25px;
+    align-items: center;
 }

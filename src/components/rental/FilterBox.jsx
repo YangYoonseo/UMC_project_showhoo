@@ -13,17 +13,17 @@ const FilterBox = ({ rangeText = "", rangeStartValue = 0 }) => {
 
     return (
         <div className='FilterBox'>
-            <label className='filterLabel'>
+            <div className='filterLabel'>
                 {rangeText}
-            </label>
+            </div>
             <div className='CostArea'>
-                <div>₩</div>
+                <div className='₩'>₩</div>
                 <input
                     className='InputCost'
                     type="text"
                     value={inputValue}
                     onChange={handleInputChange}
-                    placeholder="0"
+                    placeholder={rangeStartValue}
                 />
             </div>
         </div>
