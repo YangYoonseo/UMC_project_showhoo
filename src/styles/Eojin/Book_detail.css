@@ -156,6 +156,7 @@ img {
 
 .detail_price > h5 {
     width: 100%;
+    margin: 0;
     margin-top: 20px;
     font-weight: 500;
     font-size: 30px;

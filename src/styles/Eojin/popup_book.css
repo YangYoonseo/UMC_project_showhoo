@@ -1,0 +1,120 @@
+body {
+    font-family: "Pretendard";
+    font-style: normal;
+}
+
+.popup_backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1000; /* 다른 요소들보다 위에 표시되도록 함 */
+}
+
+.popup_backdrop > .popup_book {
+    position: absolute;
+    width: 698px;
+    height: 489px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  
+    background: #ffffff;
+    border-radius: 25px;
+    
+    box-sizing: border-box;
+    padding: 40px 80px;
+    z-index: 1001; /* 백드롭보다 위에 표시되도록 함 */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.popup_backdrop > .popup_book > h5 {
+    margin: 0;
+    padding: 0;
+    font-weight: 600;
+    font-size: 40px;
+    align-items: center;
+    color: #0F0F0F;
+    margin: 20px 0;
+}
+
+.popup_backdrop > .popup_book > p {
+    margin: 0;
+    padding: 0;
+    font-weight: 400;
+    font-size: 22px;
+    align-items: center;
+    color: #0F0F0F;
+    margin: 20px 0;
+}
+
+.popup_book > p > .color {
+    color: #07C093;
+}
+
+.popup_backdrop > .popup_book > .book_input {
+    padding: 0;
+    box-sizing: border-box;
+    width: 100%;
+    height: 128px;
+    margin: 30px 0;
+}
+
+.popup_book > .book_input > .book {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    width: 100%;
+    height: 64px;
+    padding: 10px;
+    border: 1px solid #B2B2B2;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.popup_book > .book_input > .book > img {
+    display: flex;
+    padding: 0;
+    margin: 0;
+    width: 25px;
+    height: 25px;
+    margin: 0 10px;
+}
+
+.popup_book > .book_input > .book > input {
+    margin: 0;
+    padding: 0 5px;
+    height: 55px;
+    font-weight: 400;
+    font-size: 17px;
+    border: none;
+    align-items: center;
+    outline: none;
+}
+
+.popup_book > .book_input > .book_name {
+    border-top-left-radius: 18px;
+    border-top-right-radius: 18px;
+}
+
+.popup_book > .book_input > .book_phone {
+    border-bottom-left-radius: 18px;
+    border-bottom-right-radius: 18px;
+}
+
+.popup_book > .book_button {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0;
+    margin: 0;
+    margin-top: 50px;
+}
+
+.popup_book > .book_button > Button {
+    width: 242px;
+    height: 48px;
+}
