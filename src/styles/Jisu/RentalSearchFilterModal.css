@@ -27,6 +27,8 @@
 .RentalSearchFilterModalBody {
     display: flex;
     flex: auto;
+    flex-direction: column;
+    justify-content: space-between;
     margin: 57px 72px 57px 72px;
     background-color: rgb(219, 219, 219);
 }

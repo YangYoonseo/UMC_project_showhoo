@@ -1,6 +1,7 @@
 import React from 'react';
 import "../../styles/Jisu/RentalSearchFilterModal.css";
 import FilterBox from './FilterBox';
+import FilterPriceSlide from './FilterPriceSlide'
 
 const RentalSearchFilterModal = ({ isOpen, onClose }) => {
     if (!isOpen) return null;
@@ -13,13 +14,12 @@ const RentalSearchFilterModal = ({ isOpen, onClose }) => {
                         가격
                     </div>
                     <div className='Capacity'>
-                        Capacity
-                        {/* 가격 검색의 최소단위는 10000원입니다 */}
+                        가격 검색의 최소단위는 10000원입니다
                     </div>
                     <FilterBox
-                        rangeText="최저"
-                        rangeStartValue={0}
+                        rangeText="최저" rangeStartValue={0}
                     />
+                    <FilterPriceSlide/>
                 </div>
             </div>
         </div>
