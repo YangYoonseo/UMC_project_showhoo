@@ -14,7 +14,10 @@ import Pop_Image from '../components/VenueRegister_Introduce/Pop_Image';
 import Footer from '../components/common/Footer';
 import Navbar_Concert from '../components/common/Navbar_Concert';
 import Navbar_Booking from '../components/common/Navbar_Booking';
+import Popup_register from '../components/VenueRegister_Introduce/popup_register';
+import Popup_complete from '../components/VenueRegister_Introduce/popup_complete';
 import '../styles/VenueRegisterPage.css';
+
 
 const VenueRegisterPage = () => {
   const [selectedTab, setSelectedTab] = useState('introduction');
@@ -24,6 +27,8 @@ const VenueRegisterPage = () => {
   const [venueName, setVenueName] = useState('공연장 이름');
   const [venueLocation, setVenueLocation] = useState('공연장 위치');
   const [uploadedImages, setUploadedImages] = useState([]); // 추가: 업로드된 이미지들
+  const [isRegister, setIsRegister] = useState(false);
+  const [isComplete, setComplete] = useState(false);
 
   const openNameModal = () => setIsNameModalOpen(true);
   const closeNameModal = () => setIsNameModalOpen(false);
@@ -51,6 +56,20 @@ const VenueRegisterPage = () => {
     setUploadedImages(images.slice(0, 5)); // 최대 5개 이미지로 제한
   };
 
+  const onRegister = () => {
+    setIsRegister(true);
+  };
+
+  const onComplete = () => {
+    setIsRegister(false);
+    setComplete(true);
+  };
+
+  const closePopup = () => {
+    setIsRegister(false);
+    setComplete(false);
+  };
+
   return (
     <div className="navfot">
       <Navbar_Concert/>
@@ -61,7 +80,9 @@ const VenueRegisterPage = () => {
           <img src={edit_icon} className="name_edit_icon" onClick={openNameModal} />
         </div>
         <p className="venue-location">{venueLocation}</p>
-        <button className="registerbtn">등록하기</button>
+        <button className="registerbtn" onClick={onRegister}>등록하기</button>
+        {isRegister && <Popup_register prev={closePopup} next={onComplete} />}
+        {isComplete && <Popup_complete check={closePopup} />}
 
         {/* 이미지 패널들 */}
         <div className="imagepanel1">
