@@ -21,7 +21,7 @@ const SwitchRoles = ({ onClose }) => {
           <img src={logo_performer} alt="" />
           <button
             onClick={() => {
-              nav("/performer_registration");
+              nav("/");
             }}
           >
             공연자
@@ -31,7 +31,7 @@ const SwitchRoles = ({ onClose }) => {
           <img src={logo_booking} alt="" />
           <button
             onClick={() => {
-              nav("/booking_history");
+              nav("/home_booking");
             }}
           >
             관람객
@@ -41,7 +41,7 @@ const SwitchRoles = ({ onClose }) => {
           <img src={logo_concert} alt="" />
           <button
             onClick={() => {
-              nav("/concert_ready");
+              nav("/home_concert");
             }}
           >
             공연장

@@ -7,7 +7,9 @@ import logo_performer from "./assets/images/logo_performer.svg";
 import poster from "./assets/img_Booking/poster.svg";
 
 // 페이지 가져오기
-import Home from "./pages/_test_/Home";
+import Home_Booking from "./pages/Home_Booking.jsx";
+import Home_Concert from "./pages/Home_Concert.jsx";
+import Home_Performer from "./pages/Home_Performer.jsx";
 import Rental from "./pages/_test_/Rental.jsx";
 import RentalSearch from "./pages/_test_/RentalSearch.jsx";
 import PerformerRegistration from "./pages/PerformerRegistration";
@@ -202,7 +204,9 @@ function App() {
             >
               <div className="App">
                 <Routes>
-                  <Route path="/" element={<Home />} />
+                  <Route path="/" element={<Home_Performer />} />
+                  <Route path="/home_concert" element={<Home_Concert />} />
+                  <Route path="/home_booking" element={<Home_Booking />} />
                   <Route path="/login/oauth2/code/kakao" element={<Login/>} />
                   <Route
                     path="/performer_registration"
