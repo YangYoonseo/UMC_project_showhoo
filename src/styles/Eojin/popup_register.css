@@ -13,7 +13,7 @@ body {
     z-index: 1000; /* 다른 요소들보다 위에 표시되도록 함 */
 }
 
-.popup_backdrop > .popup_complete {
+.popup_backdrop > .popup_register {
     position: absolute;
     width: 698px;
     height: 318px;
@@ -30,7 +30,7 @@ body {
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
-.popup_complete > h5 {
+.popup_register > h5 {
     margin: 20px 0;
     padding: 0;
     font-weight: 600;
@@ -40,29 +40,33 @@ body {
     color: #0F0F0F;
 }
 
-.popup_complete > p {
+.popup_register > p {
     margin: 20px 0;
     padding: 0;
-    font-weight: 400;
+    font-weight: 500;
     font-size: 22px;
     display: flex;
     align-items: center;
     color: #696969;
 }
 
-.popup_complete > .complete_button {
+.popup_register > p > span {
+    color: #F01569;
+}
+
+.popup_register > .register_button {
     width: 100%;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     margin: 0;
     padding: 0;
-    margin-top: 60px;
+    margin-top: 50px;
 }
 
-.popup_complete > .complete_button > Button {
-    margin: 0;
-    padding: 0;
+.popup_register > .register_button > Button {
     width: 242px;
     height: 48px;
+    margin: 0;
+    padding: 0;
 }
