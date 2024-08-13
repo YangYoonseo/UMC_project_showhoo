@@ -1,0 +1,35 @@
+.RoundButton {
+    padding: 0 60px;
+    background-color: transparent;
+    border: none;
+    border-radius: 50px;
+    white-space: nowrap;
+    /* 텍스트를 한 줄로 유지 */
+    text-align: left;
+    display: inline-block;
+
+    .topic {
+        font-size: 16px;
+        color: rgb(0, 0, 0);
+        font-weight: 500;
+        margin-bottom: 3px;
+    }
+
+    .detail {
+        font-size: 19.97px;
+        color: #9C9C9C;
+        font-weight: 400;
+    }
+}
+
+.RoundButton.clicked {
+    background-color: black;
+
+    .topic {
+        color: #ffffff;
+    }
+
+    .detail {
+        color: #09F1B9;
+    }
+}

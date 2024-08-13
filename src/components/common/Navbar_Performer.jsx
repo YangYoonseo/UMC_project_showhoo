@@ -18,8 +18,11 @@ const Navbar_Perforemr = () => {
       <div className="Frame128">
         <img src={logo_performer} alt="" />
         <div className="Frame127">
-          <button className="Button47">홈</button>
-          <button className="Button48">공연장 대관</button>
+          <button className="Button47"
+            onClick={() => {nav("/")}}
+          >홈</button>
+          <button className="Button48"
+            onClick={() => { nav("/rental") }}>공연장 대관</button>
           <button
             className="Button49"
             onClick={() => {

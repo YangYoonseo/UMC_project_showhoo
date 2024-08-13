@@ -7,7 +7,7 @@ import logo_performer from "./assets/images/logo_performer.svg";
 import poster from "./assets/img_Booking/poster.svg";
 
 // 페이지 가져오기
-import Home from "./pages/_test_/Home_seoya";
+import Home from "./pages/_test_/Home";
 import Rental from "./pages/_test_/Rental.jsx";
 import RentalSearch from "./pages/_test_/RentalSearch.jsx";
 import PerformerRegistration from "./pages/PerformerRegistration";

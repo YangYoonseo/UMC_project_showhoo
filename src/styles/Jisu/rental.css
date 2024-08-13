@@ -1,0 +1,43 @@
+.Rental {
+    position: relative;
+    width: 1440px;
+    height: 3116px;
+
+    background: #ffffff;
+    box-shadow: 0px 3px 6px rgba(18, 15, 40, 0.12);
+}
+
+.RentalContent {
+    position: absolute;
+    width: 1440px;
+    height: 3116px;
+    left: 0px;
+    right: 0px;
+    top: 81px;
+
+    background: #f8f8f8;
+    border-radius: 36px;
+}
+
+.ConcertHallImg {
+    width: 296px;
+    height: 236px;
+    border-radius: 11px;
+    object-fit: cover;
+}
+
+.concertText {
+    font-size: 30px;
+    font-weight: 600;
+    margin-top: 92px;
+    padding-bottom: 38px;
+    margin-left: 68px;
+}
+
+.ConcertHallList {
+    width: 1330px;
+    display: flex;
+    justify-content: space-between;
+    margin-left: 61px;
+    margin-bottom: 38px;
+}
