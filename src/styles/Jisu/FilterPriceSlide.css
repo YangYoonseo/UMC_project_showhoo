@@ -1,40 +1,39 @@
+/* 전체 영역 */
 .FilterPriceSlide {
+    display: flex;
+    flex-direction: column;align-items: center;
+        justify-content: center;
+    height: 2px;
     position: relative;
-    height: 4px;
-    width: 650px;
-    border-radius: 10px;
-    background-color: #dddddd;
+    width: 375px;
+    background-color: none;
 }
 
+/* 선택된 영역 */
 .FilterPriceSlideInner {
     position: absolute;
-    height: 4px;
+    height: 2px;
     border-radius: 10px;
-    background-color: #e64242;
-    transition: all 0.3s ease;
-    /* 부드러운 전환 효과 */
+    background-color: #07C093;
 }
 
+/* 슬라이드 겹치는 영역 */
 .FilterPriceRangeWrap {
     position: relative;
-    width: 650px;
-    /* 너비는 FilterPriceSlide와 동일하게 설정 */
-    height: 40px;
-    /* 높이는 적당히 설정 */
+    width: 375px; /* FilterPriceSlide 동일 */
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-top: 10px;
-    background-color: aliceblue;
-    /* 필요한 경우 여백 추가 */
+    margin-top: 7px;
 }
 
+/* 최솟값, 최댓값 지정 슬라이드 */
 .FilterPriceRangeMin,
 .FilterPriceRangeMax {
-    /* absolute로 2개의 range를 합쳐진거 처럼 보이게 만든다.
-    (현재는 우측 range만 움직임) */
+    background-color: transparent;
     position: absolute;
-    top: -9px;
+    top: -11px;
+    left: -2px;
     width: 100%;
     height: 7px;
     cursor: pointer;
@@ -43,18 +42,14 @@
     pointer-events: none;
 }
 
-.FilterPriceRangeMin {
-    top: -30px;
-    background-color: transparent;
-}
-
 ::-webkit-slider-thumb {
     /* 버튼 디자인 */
-    height: 30px;
-    width: 30px;
+    height: 33px;
+    width: 33px;
     border-radius: 50%;
-    border: 2px solid #b0b0b0;
+    border: 0.79px solid #CFCFCF;
     background-color: white;
     -webkit-appearance: none;
     pointer-events: auto;
+    box-shadow: 0px 4px 9px 0px #0000001A;
 }
