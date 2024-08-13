@@ -1,7 +1,7 @@
 import React from 'react';
 import "../../../../styles/Jisu/LocateModal.css";
 
-const Modal = ({ isOpen, onClose }) => {
+const LocateModal = ({ isOpen, onClose }) => {
     if (!isOpen) return null;
 
     return (
@@ -19,4 +19,4 @@ const Modal = ({ isOpen, onClose }) => {
     );
 };
 
-export default Modal;
+export default LocateModal;

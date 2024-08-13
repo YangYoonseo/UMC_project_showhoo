@@ -1,18 +1,21 @@
+// RentalSearchBar.jsx
 import React, { useState } from "react";
 import RentalSearchButton from "./BookingSearchButton";
 import RoundButton from "./RoundButton";
-import LocateModal from "./Modal/LocateModal";
+import RenderModal from "./Modal/RenderModal";
 import "../../../styles/Jisu/BookingSearchBar.css";
 
 const RentalSearchBar = () => {
     const [activeButton, setActiveButton] = useState(null);
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const [modalContent, setModalContent] = useState(null); // 추가: 모달 내용 상태
 
     const handleButtonClick = (index) => {
         setActiveButton(index);
     };
 
-    const openModal = () => {
+    const openModal = (index) => {
+        setModalContent(index);
         setIsModalOpen(true);
     };
 
@@ -29,6 +32,7 @@ const RentalSearchBar = () => {
                 index={0}
                 isClicked={activeButton === 0}
                 onClick={handleButtonClick}
+                onOpenModal={() => openModal(0)} // 다른 모달 내용 전달
                 style={{}} 
             />
 
@@ -39,7 +43,7 @@ const RentalSearchBar = () => {
                 index={1}
                 isClicked={activeButton === 1}
                 onClick={handleButtonClick}
-                onOpenModal={() => openModal()}
+                onOpenModal={() => openModal(1)}
                 style={{padding: '0px 80px 0px 40px'}} 
             />
 
@@ -50,7 +54,7 @@ const RentalSearchBar = () => {
                 index={2}
                 isClicked={activeButton === 2}
                 onClick={handleButtonClick}
-                onOpenModal={() => openModal()}
+                onOpenModal={() => openModal(2)} // 다른 모달 내용 전달
                 style={{padding: '0px 60px 0px 40px'}} 
             />
 
@@ -61,15 +65,16 @@ const RentalSearchBar = () => {
                 index={3}
                 isClicked={activeButton === 3}
                 onClick={handleButtonClick}
-                onOpenModal={() => openModal()}
+                onOpenModal={() => openModal(3)} // 다른 모달 내용 전달
                 style={{padding: '0px 173px 0px 40px'}} 
             />
 
             <RentalSearchButton />
 
-            <LocateModal className="Modal"
+            <RenderModal className="Modal"
                 isOpen={isModalOpen}
                 onClose={closeModal}
+                index={modalContent}
             />
         </div>
     );
