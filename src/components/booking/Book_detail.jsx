@@ -4,6 +4,9 @@ import { useState } from "react";
 import priceIcon from "../../assets/img_Booking/Booking/priceIcon.svg";
 import arrow from "../../assets/img_Ready/arrow.svg";
 import Button from "../common/Button";
+import Popup_book from "./popup_book";
+import Popup_payment from "./popup_payment";
+import Popup_complete from "./popup_complete";
 
 const Book_detail = ({ id, name, img, place, date, runningtime, host, cancel, concert_inf, sell_inf, price, amount }) => {
     const [isConcert, setIsConcert] = useState(true);
@@ -11,6 +14,9 @@ const Book_detail = ({ id, name, img, place, date, runningtime, host, cancel, co
     const [text, setText] = useState("매수");
     const [count, setCount] = useState(1);
     const [isInput, setIsInput] = useState(false);
+    const [isBook, setIsBook] = useState(false);
+    const [isPayment, setIsPayment] = useState(false);
+    const [isComplete, setIsComplete] = useState(false);
 
     const onClick = (select) => {
         if (select === "concert") {
@@ -72,6 +78,36 @@ const Book_detail = ({ id, name, img, place, date, runningtime, host, cancel, co
         }
     };
 
+    const closePopup = () => {
+        setIsComplete(false);
+        setIsPayment(false);
+        setIsBook(false);
+    };
+
+    const onPopupBook = () => {
+        setIsComplete(false);
+        setIsPayment(false);
+        setIsBook(true);
+    };
+
+    const onPopupPayment = () => {
+        setIsComplete(false);
+        setIsBook(false);
+        setIsPayment(true);
+    }
+
+    const onPopupComplete = () => {
+        setIsBook(false);
+        setIsPayment(false);
+        setIsComplete(true);
+    }
+
+    const onComplete = () => {
+        setIsComplete(false);
+        setIsBook(false);
+        setIsPayment(false);
+    }
+
     return (
         <div className="Book_detail">
             <div className="detail_container">
@@ -132,7 +168,10 @@ const Book_detail = ({ id, name, img, place, date, runningtime, host, cancel, co
                         </div>
                     </div>
                 }
-                <Button text={"예매하기"} type={"green"} />
+                <Button text={"예매하기"} type={"green"} onClick={onPopupBook}/>
+                {isBook && <Popup_book name={name} count={count} prev={closePopup} next={onPopupPayment} />}
+                {isPayment && <Popup_payment name={name} count={count} prev={onPopupBook} next={onPopupComplete} />}
+                {isComplete && <Popup_complete check={onComplete} />}
             </div>
         </div>
     );

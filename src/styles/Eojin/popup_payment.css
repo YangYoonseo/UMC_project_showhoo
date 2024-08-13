@@ -1,0 +1,307 @@
+body {
+    font-family: "Pretendard";
+    font-style: normal;
+}
+
+/* 전체 화면 */
+.payment_backdrop {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1000; /* 다른 요소들보다 위에 표시되도록 함 */
+}
+
+/* 팝업창 */
+.payment_backdrop > .popup_payment {
+    position: absolute;
+    width: 698px;
+    height: 1010px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  
+    background: #ffffff;
+    border-radius: 30px;
+    
+    box-sizing: border-box;
+    z-index: 1001; /* 백드롭보다 위에 표시되도록 함 */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.popup_payment > .part_book {
+    padding: 0;
+    margin: 40px 80px;
+    margin-top: 50px;
+}
+
+.popup_payment > .part_book > h5 {
+    margin: 0;
+    padding: 0;
+    font-weight: 600;
+    font-size: 40px;
+    align-items: center;
+    color: #0F0F0F;
+    margin: 20px 0;
+}
+
+.popup_payment > .part_book > p {
+    margin: 0;
+    padding: 0;
+    font-weight: 400;
+    font-size: 22px;
+    align-items: center;
+    color: #0F0F0F;
+    margin: 20px 0;
+}
+
+.popup_payment > .part_book > p > .color {
+    color: #07C093;
+}
+
+.popup_payment > .part_book > .book_input {
+    padding: 0;
+    box-sizing: border-box;
+    width: 100%;
+    height: 128px;
+    margin: 30px 0;
+}
+
+.part_book > .book_input > .book {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    width: 100%;
+    height: 64px;
+    padding: 10px;
+    border: 1px solid #B2B2B2;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.part_book > .book_input > .book > img {
+    display: flex;
+    padding: 0;
+    margin: 0;
+    width: 25px;
+    height: 25px;
+    margin: 0 10px;
+}
+
+.part_book > .book_input > .book > input {
+    margin: 0;
+    padding: 0 5px;
+    height: 55px;
+    font-weight: 400;
+    font-size: 17px;
+    border: none;
+    align-items: center;
+    outline: none;
+}
+
+.part_book > .book_input > .book_name {
+    border-top-left-radius: 18px;
+    border-top-right-radius: 18px;
+}
+
+.part_book > .book_input > .book_phone {
+    border-bottom-left-radius: 18px;
+    border-bottom-right-radius: 18px;
+}
+
+.popup_payment > .total_container {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 30px 80px;
+}
+
+.total_container > .total_content {
+    padding: 0;
+    margin: 10px 0;
+    width: 100%;
+    border-bottom: 1.00199px solid #E8E8E8;
+}
+
+.total_container > .total_content > h5 {
+    padding: 0;
+    margin: 10px 0;
+    font-weight: 500;
+    font-size: 22.0438px;
+    display: flex;
+    align-items: center;
+    color: #0F0F0F;
+}
+
+.total_container > .total_content > .total {
+    width: 100%;
+    margin: 5px 0;
+    padding: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.total_container > .total_content > .total > p {
+    font-weight: 400;
+    font-size: 17.0338px;
+    display: flex;
+    align-items: center;
+    color: #0F0F0F;
+}
+
+.total_container > .total_payment {
+    width: 100%;
+    margin: 10px 0;
+    padding: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.total_container > .total_payment > p {
+    font-weight: 500;
+    font-size: 22.0438px;
+    display: flex;
+    align-items: center;
+    color: #058F6F;
+}
+
+.popup_payment > .payment_inf {
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    border-top: 14.0279px solid #E8E8E8;
+    border-bottom: 14.0279px solid #E8E8E8;
+}
+
+.payment_inf > .payment_content {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 30px 80px;
+}
+
+.payment_inf > .payment_content > h5 {
+    margin: 10px 0;
+    padding: 0;
+    font-weight: 500;
+    font-size: 22.0438px;
+    display: flex;
+    align-items: center;
+    color: #0F0F0F;
+}
+
+.payment_inf > .payment_content > p {
+    margin: 10px 0;
+    padding: 0;
+    font-weight: 400;
+    font-size: 17.0338px;
+    display: flex;
+    align-items: center;
+    color: #4F4F4F;
+}
+
+.payment_inf > .payment_content > .inf_account {
+    width: 100%;
+    margin: 5px 0;
+    padding: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.payment_inf > .payment_content > .inf_account > p {
+    font-weight: 400;
+    font-size: 17.0338px;
+    display: flex;
+    align-items: center;
+    color: #0F0F0F;
+}
+
+.popup_payment > .agreement_container {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 20px 80px;
+    gap: 5px;
+}
+
+.agreement_container > .agreement_complete {
+    width: 100%;
+    height: 26px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 0;
+}
+
+.agreement_container > .agreement_complete > img {
+    width: 25.05px;
+    height: 25.05px;
+    margin: 0;
+    padding: 0;
+}
+
+.agreement_container > .agreement_complete > h5 {
+    font-weight: 400;
+    font-size: 17.0338px;
+    display: flex;
+    align-items: center;
+    color: #0F0F0F;
+}
+
+.agreement_container > .agreement_content {
+    padding: 0;
+    margin: 5px 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.agreement_container > .agreement_content > .agreement_check {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.agreement_content > .agreement_check > img {
+    padding: 0;
+    margin: 0;
+    margin-left: 5px;
+    width: 15.12px;
+    height: 17.28px;
+}
+
+.agreement_content > p {
+    font-weight: 500;
+    font-size: 16.0319px;
+    display: flex;
+    align-items: center;
+    color: #363636;
+}
+
+.agreement_content > .agreement_check > p {
+    font-weight: 400;
+    font-size: 16.0319px;
+    display: flex;
+    align-items: center;
+    color: #696969;
+}
+
+.popup_payment > .payment_button {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 40px 80px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 50px;
+}
+.popup_payment > .payment_button > Button {
+    margin: 0;
+    padding: 0;
+    width: 242px;
+    height: 48px;
+}

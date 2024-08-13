@@ -2,7 +2,7 @@ import "../../styles/Eojin/HostReview.css";
 import scoreStar from "../../assets/images/venueregisterpage_introduce/scoreStar.svg";
 import HostAnswer from "./HostAnswer";
 
-const HostReview = ({ key, id, profile, name, review, review_img, score, date }) => {
+const HostReview = ({ id, profile, name, review, review_img, score, date }) => {
     // 날짜 포맷팅 함수
     const formatDate = (date) => {
         const year = date.getFullYear();
