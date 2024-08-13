@@ -1,0 +1,27 @@
+.DoButton {
+    width: 100%; /* 부모 크기에 맞게 */
+    height: 49px;
+    display: block;
+    
+    border-radius: 0px;
+    background-color: rgb(255, 255, 255);
+
+    border-color: #B5B5B5;
+    border-style: solid;
+    border-width: 0px 0px 1px 0px; /* 아래만 */
+    flex: auto;
+}
+
+.topButton {
+    border-radius: 18px 18px 0px 0px;
+}
+
+.bottomButton {
+    border-radius: 0px 0px 18px 18px;
+}
+
+.clicked { /*수정해야됨! 마지막 bottom이 bordercolor 적용안됨*/
+    border-width: 1px;
+    border-color: #07C093;
+    background-color: aliceblue;
+}

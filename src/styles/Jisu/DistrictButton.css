@@ -1,15 +1,17 @@
-.AdministrativeButton {
-    width: 100%; /* 부모 크기에 맞게 */
+.DistrictButton {
+    width: 100%;
+    /* 부모 크기에 맞게 */
     height: 49px;
     display: block;
-    
+
     border-width: 0px 0px 1px 0px;
     border-radius: 1px;
     background-color: rgb(255, 255, 255);
 
     border-color: #B5B5B5;
     border-style: solid;
-    border-width: 0px 0px 1px 0px; /* 아래만 */
+    border-width: 0px 0px 1px 0px;
+    /* 아래만 */
     padding: 0px;
     flex: auto;
 }
@@ -23,7 +25,7 @@
     border-radius: 0px 0px 18px 18px;
 }
 
-.AdministrativeButton .onClicked {
+.DistrictButton .onClicked {
     border-width: 1px;
     border-radius: 18px 18px 18px 18px;
     border-color: #07C093;

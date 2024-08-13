@@ -36,8 +36,7 @@
     margin-right: 48px;
 }
 
-.Administrative,
-.City {
+.Gu, .Do {
     overflow-y: auto;
     max-height: 539px;
     flex-direction: column;
@@ -51,26 +50,11 @@
 }
 
 /* 스크롤바의 전체 트랙 스타일 */
-.Administrative::-webkit-scrollbar {
-    width: 4px;
-    /* 스크롤바의 너비 */
+.Gu::-webkit-scrollbar {
+    width: 0px;
 }
 
-/* 스크롤바의 트랙 스타일 */
-.Administrative::-webkit-scrollbar-track {
-    background: transparent
-    /* 트랙 배경색 */
-}
-
-/* 스크롤바 핸들 스타일 */
-.Administrative::-webkit-scrollbar-thumb {
-    background: #888;
-    border-radius: 20px;
-    height: 5px;
-    width: 5px;
-}
-
-/* 핸들이 호버 상태일 때의 스타일 */
-.Administrative::-webkit-scrollbar-thumb:hover {
-    background: #1eeecb;
+/* 스크롤바의 전체 트랙 스타일 */
+.Do::-webkit-scrollbar {
+    width: 0px;
 }
