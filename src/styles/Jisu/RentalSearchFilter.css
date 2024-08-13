@@ -1,0 +1,26 @@
+.RentalSearchFilter {
+    background-color: white;
+    width: 128.42px;
+    height: 72.59px;
+    padding: 0;
+
+    border-radius: 47.86px;
+    border-color: #E8E8E8;
+    border-style: solid;
+    border-width: 1px;
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    cursor: pointer;
+}
+
+.FilterIcon {
+    margin-right: 7px;
+}
+
+.FilterFont {
+    font-weight: 200;
+    font-size: 16px;
+}
