@@ -16,7 +16,9 @@ const Navbar_Booking = () => {
       <div className="Frame128 booking_img">
         <img src={logo_booking} alt="" />
         <div className="Frame127 booking_navbar">
-          <button className="home">홈</button>
+          <button className="Button47"
+            onClick={() => {nav("/")}}
+          >홈</button>
           <button 
             className="booking"
             onClick={() => {

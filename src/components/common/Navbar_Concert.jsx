@@ -16,7 +16,9 @@ const Navbar_Concert = () => {
       <div className="Frame128 concert_img">
         <img src={logo_concert} alt="" />
         <div className="Frame127 concert_navbar">
-          <button className="home">홈</button>
+          <button className="Button47"
+            onClick={() => {nav("/")}}
+          >홈</button>
           <button 
             className="concert_register"
             onClick={() => {

@@ -67,7 +67,7 @@ const RentalSearchBar = () => {
 
             <RentalSearchButton />
 
-            <LocateModal
+            <LocateModal className="Modal"
                 isOpen={isModalOpen}
                 onClose={closeModal}
             />
