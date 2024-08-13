@@ -19,10 +19,10 @@ const RentalSearch = () => {
           {
           <div className="ConcertHallAndMap">
             <div className="ConcertHall">
-              d232323
+              ConcertHall
             </div>
             <div className="Map">
-              d25345
+              Map
             </div>
         </div>
         }
