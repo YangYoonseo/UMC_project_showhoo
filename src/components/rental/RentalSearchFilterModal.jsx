@@ -19,7 +19,9 @@ const RentalSearchFilterModal = ({ isOpen, onClose }) => {
                     <FilterBox
                         rangeText="최저" rangeStartValue={0}
                     />
-                    <FilterPriceSlide/>
+                    <FilterPriceSlide
+                        minPrice= {0} fixedMaxPrice = {3000000} priceGap = {100000}
+                    />
                 </div>
             </div>
         </div>
