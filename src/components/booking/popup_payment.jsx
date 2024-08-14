@@ -1,5 +1,5 @@
 import "../../styles/Eojin/popup_payment.css";
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 
 import personIcon from "../../assets/img_Booking/Booking/personIcon.svg";
 import phoneIcon from "../../assets/img_Booking/Booking/phoneIcon.svg";
@@ -7,6 +7,7 @@ import checkbox from "../../assets/img_Ready/checkbox.svg";
 import check from "../../assets/img_Ready/check.svg";
 import checkIcon from "../../assets/img_Booking/Booking/checkIcon.svg";
 import nonCheckIcon from "../../assets/img_Booking/Booking/nonCheckIcon.svg";
+import copyIcon from "../../assets/img_Booking/Booking/copyIcon.svg";
 
 import Button from "../common/Button";
 
@@ -14,6 +15,16 @@ const Popup_payment = ({name, count, person, phone, prev, next}) => {
     const [complete, setComplete] = useState(false);
     const [agreeNote, setAgreeNote] = useState(false);
     const [agreeRefund, setAgreeRefund] = useState(false);
+
+    const accountInfo = "우리은행 1002061254000";
+
+    const copyToClipboard = () => {
+        navigator.clipboard.writeText(accountInfo).then(() => {
+            alert("계좌 정보가 복사되었습니다!");
+        }).catch(err => {
+            console.error('복사 실패: ', err);
+        });
+    };
 
     const onNote = () => {
         setAgreeNote(!agreeNote);
@@ -84,8 +95,11 @@ const Popup_payment = ({name, count, person, phone, prev, next}) => {
                             <p>(예금주) 쇼호</p>
                         </div>
                         <div className="inf_account">
-                            <p>우리은행 1002061254000</p>
-                            <p>계좌 복사하기</p>
+                            <p>{accountInfo}</p>
+                            <p className="copy" onClick={copyToClipboard} style={{ cursor: 'pointer', color: '#058F6F' }}>
+                                <img src={copyIcon} alt="복사하기" />
+                                계좌 복사하기
+                            </p>
                         </div>
                     </div>
                 </div>
