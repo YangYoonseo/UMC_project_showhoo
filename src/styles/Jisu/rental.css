@@ -15,15 +15,8 @@
     right: 0px;
     top: 81px;
 
-    background: #f8f8f8;
+    background: #FBFBFB;
     border-radius: 36px;
-}
-
-.ConcertHallImg {
-    width: 296px;
-    height: 236px;
-    border-radius: 11px;
-    object-fit: cover;
 }
 
 .concertText {

@@ -4,7 +4,12 @@ import MainInfo from "../../components/_test_/Home/mainInfo";
 import Footer from "../../components/common/Footer";
 import "../../styles/Jisu/home.css";
 
-// Home 이미지 대체
+// 사용하지 않는 페이지입니다!!
+
+
+
+
+
 const Home = () => {
   return (
     <div className="Home">

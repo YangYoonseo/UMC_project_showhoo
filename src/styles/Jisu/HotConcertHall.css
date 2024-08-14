@@ -1,43 +1,55 @@
 .HotConcertHall {
-    border: solid;
-    border-color: #E8E8E8;
+    width: 310px;
+    height: 413px;
+    border: 2px solid #E8E8E8;
     border-radius: 18px;
-    border-width: 1.5px;
-
-    padding-left: 7px;
-    padding-right: 7px;
-    padding-top: 7px;
-    padding-bottom: 17.64px;
-}
-
-.LikeButtons {
-    margin: 0px;
-    padding: 0px;
-    position: absolute;
-    z-index: 2;
-    /* z-index 값을 낮게 설정하여 다른 요소가 위로 올라오도록 함 */
+    padding: 6px;
+    padding: auto;
+    background-color: #FFFFFF;
+    box-sizing: border-box;
 }
 
 .LikeAndImg {
+    width: 296px;
+    height: 236px;
     position: relative;
-    /* 자식 요소인 LikeButton이 절대 위치할 수 있도록 설정 */
 }
 
-.ConcertHallImg {
+.LikeButton {
+    position: absolute;
+    left: 250px;
+    top: 12px;
+}
+
+.ConcertHallImg {box-sizing: border-box;
+    position: absolute;
     display: block;
+    width: 296px;
+    height: 236px;
+    border-radius: 11px;
+    object-fit: cover;
+}
+
+.Info {
+    display: flex;
+    height: 140px;
+    flex-direction: column;
+    margin-top: 12px;
+    margin-left: 10px;
+    margin-right: 10px;
 }
 
 .TopInfo {
     display: flex;
-    flex-direction: row;
     align-items: flex-start;
     margin-bottom: 20px;
 }
 
 .TopInfoText {
     display: flex;
+    flex: auto;
     flex-direction: column;
-    gap: 1px;
+    gap: 2px;
 }
 
 .Name {
@@ -51,30 +63,47 @@
     color: #4F4F4F;
 }
 
-.BottomInfo{
+.StarRate {
+    justify-content: space-between;
     display: flex;
+    flex-direction: row;
+    width: 56px;
+    height: 28px;
+}
+
+.StarRatePoint{
+    font-weight: 600;
+    font-size: 20px;
+    color: #07C093;
+}
+
+.BottomInfo {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
     margin-bottom: 16px;
 }
 
-.People{
-    color: #363636;
-    font-size: 12.5px;
-    margin-right: 12px;
+.Icon{
+    display: flex;
+    align-items: center;
+    margin-right: 3px;
 }
 
-.Size {
-    color: #363636;
-    font-size: 12.5px;
-    margin-right: 9px;
-}
-
+.People,
+.Size,
 .Detail {
+    display: flex;
+    align-items: center;
+    flex: auto;
     color: #363636;
     font-size: 12.5px;
+    white-space: nowrap;
 }
-
 .Price {
-    padding: 8px;
     font-size: 20px;
     border-top: 1.5px solid #E8E8E8;
+    text-align: right;
+    padding-top: 8px;
 }

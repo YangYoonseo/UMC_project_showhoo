@@ -16,6 +16,7 @@ function LikeButton() {
                     display: "flex", // Flexbox를 사용하여 자식 요소를 가운데 정렬
                     alignItems: "center", // 수직 가운데 정렬
                     justifyContent: "center", // 수평 가운데 정렬
+                    position: "absolute"
                 }}
                 onClick={() => {
                     setLiked(!liked);
