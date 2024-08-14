@@ -38,13 +38,14 @@ const Rental = () => {
               <HotConcertHall />
               <HotConcertHall />
               <HotConcertHall />
+              
           </div>
           <div className="ConcertHallList">
               <HotConcertHall />
               <HotConcertHall />
               <HotConcertHall />
               <HotConcertHall />
-          </div>
+        </div>
         </div>
       </div>
     );
