@@ -70,3 +70,12 @@ body {
     justify-content: center;
     color: #0F0F0F;
 }
+
+.Book_component > .likeIcon {
+    width: 35px;
+    height: 35px;
+    position: absolute;
+    top: 25px;
+    left: 220px;
+    z-index: 11;
+}
