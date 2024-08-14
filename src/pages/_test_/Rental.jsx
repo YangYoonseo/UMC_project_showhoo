@@ -2,7 +2,7 @@ import "../../styles/Jisu/rental.css";
 
 import Navbar_Perforemr from "../../components/common/Navbar_Performer";
 import BookingInfoPoster from "../../components/_test_/Booking/BookingInfoPoster";
-import RentalSearchBar from "../../components/_test_/Booking/BookingSearchBar";
+import RentalSearchBar from "../../components/_test_/Booking/RentalSearchBar";
 import HotConcertHall from "../../components/_test_/Booking/HotConcertHall";
 import Footer from "../../components/common/Footer";
 
