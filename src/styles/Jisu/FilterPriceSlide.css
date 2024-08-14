@@ -1,0 +1,56 @@
+/* 전체 영역 */
+.FilterPriceSlide {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 2px;
+    position: relative;
+    width: 375px;
+    background-color: none;
+}
+
+/* 선택된 영역 */
+.FilterPriceSlideInner {
+    position: absolute;
+    height: 2px;
+    border-radius: 10px;
+    background-color: #07C093;
+}
+
+/* 슬라이드 겹치는 영역 */
+.FilterPriceRangeWrap {
+    position: relative;
+    width: 375px; /* FilterPriceSlide 동일 */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 7px;
+}
+
+/* 최솟값, 최댓값 지정 슬라이드 */
+.FilterPriceRangeMin,
+.FilterPriceRangeMax {
+    background-color: transparent;
+    position: absolute;
+    top: -11px;
+    left: -2px;
+    width: 100%;
+    height: 7px;
+    cursor: pointer;
+    -webkit-appearance: none;
+    background: none;
+    pointer-events: none;
+}
+
+::-webkit-slider-thumb {
+    /* 버튼 디자인 */
+    height: 33px;
+    width: 33px;
+    border-radius: 50%;
+    border: 0.79px solid #CFCFCF;
+    background-color: white;
+    -webkit-appearance: none;
+    pointer-events: auto;
+    box-shadow: 0px 4px 9px 0px #0000001A;
+}

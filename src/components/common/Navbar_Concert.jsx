@@ -17,7 +17,7 @@ const Navbar_Concert = () => {
         <img src={logo_concert} alt="" />
         <div className="Frame127 concert_navbar">
           <button className="Button47"
-            onClick={() => {nav("/")}}
+            onClick={() => {nav("/home_concert")}}
           >홈</button>
           <button 
             className="concert_register"
