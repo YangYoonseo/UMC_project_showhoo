@@ -2,7 +2,7 @@ import "../../styles/Jisu/rentalSearch.css";
 import PageImg from "../../assets/img_Booking/_test_/RentalSearchPage1.svg"
 import Footer from "../../components/common/Footer";
 import Navbar_Perforemr from "../../components/common/Navbar_Performer";
-import RentalSearchBar from "../../components/_test_/Booking/BookingSearchBar";
+import RentalSearchBar_2 from "../../components/rental/RentalSearchBar_2.jsx";
 import RentalSearchFilter from "../../components/rental/RentalSearchFilter.jsx"
 
 // 검색 결과창
@@ -13,7 +13,7 @@ const RentalSearch = () => {
         <Footer />
       <div className="RentalSearchContent">
           <div className="BarAndFilter">
-            <RentalSearchBar />
+            <RentalSearchBar_2 />
             <RentalSearchFilter />
           </div>
           {
