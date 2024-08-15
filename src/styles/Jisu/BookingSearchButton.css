@@ -1,16 +1,24 @@
-.searchButton {
+.RentalSearchButton {
     border: none;
+    border-radius: 50%;
+    background-color: rgb(0, 0, 0);
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.RentalSearchButton.size65 {
     width: 65.98px;
     height: 65.98px;
-    border-radius: 48.61px;
-    background-color: black;
-    margin-left: auto;
-    margin-right: 16.22px;
     margin-top: 16px;
-    margin-bottom: 16.02px;
+    margin-left: 870px;
+}
 
-    position: absolute;
-    transform: translateX(870px);
-    z-index: 10;
-    /* BookingSearchBar 위에 겹쳐지도록 설정 */
+.RentalSearchButton.size46 {
+    width: 46px;
+    height: 46px;
+    margin-top: 14px;
+    margin-left: 575px;
 }

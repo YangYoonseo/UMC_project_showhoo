@@ -1,9 +1,8 @@
-// RentalSearchBar.jsx
 import React, { useState } from "react";
 import RentalSearchButton from "./BookingSearchButton";
 import RoundButton from "./RoundButton";
 import RenderModal from "./Modal/RenderModal";
-import "../../../styles/Jisu/BookingSearchBar.css";
+import "../../../styles/Jisu/RentalSearchBar.css";
 
 const RentalSearchBar = () => {
     const [activeButton, setActiveButton] = useState(null);
@@ -69,7 +68,7 @@ const RentalSearchBar = () => {
                 style={{padding: '0px 173px 0px 40px'}} 
             />
 
-            <RentalSearchButton />
+            <RentalSearchButton size="size65" />
 
             <RenderModal className="Modal"
                 isOpen={isModalOpen}
