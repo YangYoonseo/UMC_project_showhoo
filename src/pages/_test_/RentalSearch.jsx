@@ -18,8 +18,20 @@ const RentalSearch = () => {
           </div>
           {
           <div className="ConcertHallAndMap">
-            <div className="ConcertHall">
-              ConcertHall
+            <div className="ConcertHallBody">
+              <div className="FindText">
+                홍대 콘서트홀 54{ }개 발견
+              </div>
+              <div className="ConcertHalls">
+                <div>○</div>
+                <div>○</div>
+                <div>○</div>
+                <div>○</div>
+                <div>○</div>
+              </div>
+              <div className="Pagination">
+                1 2 3 4
+              </div>
             </div>
             <div className="Map">
               Map
