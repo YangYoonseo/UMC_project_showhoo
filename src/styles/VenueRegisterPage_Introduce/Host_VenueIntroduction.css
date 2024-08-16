@@ -35,7 +35,9 @@ body {
     padding: 20px;
     box-sizing: border-box;
   }
-  
+  .venue-description:focus{
+    border:1px solid #9c9c9c !important;
+  }
   .input-group {
     display: flex;
     flex-direction: column;
@@ -62,7 +64,7 @@ label{
     align-items: center;
   }
   
-  input[type="text"] {
+  .input-type-1{    
     width: 112px;
     height: 41px;
     border: 1px solid #9c9c9c;;
@@ -72,6 +74,19 @@ label{
     padding: 20px;
     box-sizing: border-box;
     font-size: 18px;
+
+  }
+  .input-type-2{
+    width: 140px;
+    height: 41px;
+    border: 1px solid #9c9c9c;;
+    border-radius: 10px;
+    margin-right: 5px;
+    margin-left:10px;
+    padding: 20px;
+    box-sizing: border-box;
+    font-size: 18px;
+    margin-right: 10px;
   }
   .time-field{
     width: 626px;
@@ -87,12 +102,17 @@ label{
     font-size: 18px;
   }
 
+  .time-field:focus{
+    border:1px solid #9c9c9c !important;
+  }
+
   textarea {
     width: 100%;
     padding: 10px;
-    border: 1px solid #9c9c9c;;
+    border: 1px solid #9c9c9c;
     border-radius: 4px;
   }
+
   
   .input-with-unit span {
     font-size: 21px;
@@ -126,8 +146,20 @@ label{
     border-radius: 10px;
     font-size: 16px;
     cursor: pointer;
-    right: 0; /* 부모 요소의 오른쪽 끝으로 이동 */
-    top: 230px; /* 버튼이 필드 상단에 위치하도록 설정 */
+    
+    position: relative; /* 부모 요소에 상대적인 위치를 사용 */
+    right: -500px; /* 현재 위치에서 300px만큼 오른쪽으로 이동 */
+  }
+
+  .register-button23 {
+    width: 120px;
+    height: 41px;
+    background-color: #e8e8e8;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    cursor: pointer;
+
   }
   
   .location-section {
@@ -176,6 +208,10 @@ label[for="service"] {
     font-size: 18px;
 }
 
+.fee-field:focus{
+  border:1px solid #9c9c9c !important;
+}
+
 .service-field{
     width: 626px;
     height: 158px;
@@ -188,6 +224,10 @@ label[for="service"] {
     padding: 20px;
     box-sizing: border-box;
     font-size: 18px;
+}
+
+.service-field:focus{
+  border:1px solid #9c9c9c !important;
 }
 
 .location-header {

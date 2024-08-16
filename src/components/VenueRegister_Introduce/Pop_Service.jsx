@@ -84,7 +84,7 @@ const Pop_Service = ({ isOpen, onClose, onConfirm }) => {
         </div>
 
         <div className="modal-buttons">
-          <button className="cancel-button" onClick={onClose}>뒤로 가기</button>
+          <button className="cancel-button" onClick={onClose}>취소</button>
           <button className="confirm-button" onClick={handleConfirm}>등록</button>
         </div>
       </div>

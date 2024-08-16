@@ -13,7 +13,7 @@ body {
 }
 
 .profile {
-    margin : 15px;
+    margin: 15px;
 }
 
 .profile img {
@@ -62,12 +62,12 @@ body {
     margin: 15px 0;
 }
 
-.review_answer{
+.review_answer {
     margin: 20px 0;
 }
 
-.Myanswer{
-    max-width:570px;
+.Myanswer {
+    max-width: 570px;
 }
 
 .Myanswer > h4 {
@@ -94,4 +94,147 @@ body {
     font-size: 12px;
     align-items: center;
     color: #9C9C9C;
+}
+
+/* 추가된 스타일 */
+.review-input-section {
+    width: 650px;
+    height: 250px;
+    margin: 20px 0;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 0px;
+}
+
+.review-stars {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.review-stars .star {
+    cursor: pointer;
+    margin-right: 5px;
+    width: 25px;
+    height: 25px;
+}
+
+.review-stars span {
+    margin-left: 10px;
+    font-size: 22px;
+    color: #b5b5b5;
+}
+
+.review-stars .star.selected,
+.review-stars span.selected {
+    color: #07C093;
+}
+
+.review-textarea {
+    width: 625px;
+    height: 108px;
+    padding: 20px;
+    padding-left: 30px;
+    padding-right: 100px;
+    box-sizing: border-box;
+    border-radius: 10px;
+    border: none;
+    resize: none;
+    margin-bottom: 10px;
+    background: #F5F5F5;
+    font-size: 15px;
+    line-height: 30px;
+    margin-left: -10px;
+}
+
+.submit-review-button {
+    padding: 10px 20px;
+    border-radius: 10px;
+    border: none;
+    background: #09F1B966;
+    cursor: pointer;
+
+    position: relative;
+    top: -155px;
+    left: 540px;
+}
+
+.review-submit-message {
+    margin-top: 10px;
+    color: #07c093;
+    font-size: 14px;
+}
+
+.review-add-panel {
+    position: relative;
+    left: -70px;
+    cursor: pointer;
+}
+
+.notice-review {
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 30px;
+    text-align: right;
+    color: #696969;
+    text-decoration: underline;
+    cursor: pointer;
+
+    position: relative;
+    top: -110px;
+    left: 405px;
+    width:200px;
+}
+
+/* 유의사항 팝업 스타일 */
+.popup-overlay32 {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.popup-container32 {
+    width: 698px;
+    height: 593px;
+    background: white;
+    border-radius: 25px;
+    padding: 40px 80px 40px 80px;
+    box-sizing: border-box;
+}
+
+.popup-container32 h2 {
+    margin-bottom: 20px;
+    font-size: 40px;
+}
+
+.popup-container32 p {
+    text-align: left;
+    margin-bottom: 40px;
+    font-size: 19px;
+    line-height: 35px;
+    color:black;
+    text-align: left;
+
+}
+
+.popup-close-button32 {
+    width: 200px;
+    height: 48px;
+    padding: 13px 81px 13px 80px;
+    border-radius: 15px; 
+    background: #09F1B9;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+
+    position: relative;
+    left:180px;
 }

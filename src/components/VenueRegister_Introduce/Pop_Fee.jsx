@@ -1,5 +1,5 @@
 //Pop_Fee.jsx
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import '../../styles/VenueRegisterPage_Introduce/Pop_Fee.css';
 
 const Pop_Fee = ({ isOpen, onClose, onConfirm }) => {
@@ -8,6 +8,27 @@ const Pop_Fee = ({ isOpen, onClose, onConfirm }) => {
   const [accountInfo, setAccountInfo] = useState({ bank: '', holder: '', accountNumber: '' });
   const [selectedOffDays, setSelectedOffDays] = useState([]);
   const [selectedPeakDays, setSelectedPeakDays] = useState([]);
+  const [offSeasonSaved, setOffSeasonSaved] = useState({});
+  const [peakSeasonSaved, setPeakSeasonSaved] = useState({});
+  const [message, setMessage] = useState('');
+  const [messageType, setMessageType] = useState(''); // 추가: 메시지 타입 (off-season, peak-season)
+
+  useEffect(() => {
+    if (message !== '') {
+      const messageElement = document.querySelector('.save-message');
+      if (messageElement) {
+        messageElement.classList.add('show');
+      }
+      const timer = setTimeout(() => {
+        setMessage('');
+        if (messageElement) {
+          messageElement.classList.remove('show');
+        }
+      }, 3000);
+
+      return () => clearTimeout(timer);
+    }
+  }, [message]);
 
   const handleDayClick = (season, day) => {
     if (season === 'offSeason') {
@@ -29,34 +50,57 @@ const Pop_Fee = ({ isOpen, onClose, onConfirm }) => {
     }
   };
 
+  const handleSave = (season) => {
+    if (season === 'offSeason') {
+      const isDuplicate = selectedOffDays.some(day => offSeasonSaved[day]);
+      if (isDuplicate) {
+        setMessageType('off-season'); // 메시지 타입 설정
+        setMessage('다른 요일이랑 중복 설정된 가격입니다!');
+      } else {
+        const newSaved = { ...offSeasonSaved };
+        selectedOffDays.forEach(day => {
+          newSaved[day] = fees.offSeason;
+        });
+        setOffSeasonSaved(newSaved);
+        setSelectedOffDays([]); // 저장 버튼 누를 시 -> 선택된 요일 초기화
+        setMessageType('off-season'); // 메시지 타입 설정
+        setMessage('저장되었습니다.');
+        console.log("비성수기 요일별 대관료 저장됨:", newSaved);
+      }
+    } else {
+      const isDuplicate = selectedPeakDays.some(day => peakSeasonSaved[day]);
+      if (isDuplicate) {
+        setMessageType('peak-season'); // 메시지 타입 설정
+        setMessage('다른 요일이랑 중복 설정된 가격입니다');
+      } else {
+        const newSaved = { ...peakSeasonSaved };
+        selectedPeakDays.forEach(day => {
+          newSaved[day] = fees.peakSeason;
+        });
+        setPeakSeasonSaved(newSaved);
+        setSelectedOffDays([]); // 저장 버튼 누를 시 -> 선택된 요일 초기화
+        setMessageType('peak-season'); // 메시지 타입 설정
+        setMessage('저장되었습니다.');
+        console.log("성수기 요일별 대관료 저장됨:", newSaved);
+      }
+    }
+  };
+
   const handleConfirm = () => {
-    // 요일별 대관료 설정 정보
-    const offSeasonFees = selectedOffDays.reduce((acc, day) => {
-      acc[day] = fees.offSeason;
-      return acc;
-    }, {});
-
-    const peakSeasonFees = selectedPeakDays.reduce((acc, day) => {
-      acc[day] = fees.peakSeason;
-      return acc;
-    }, {});
-
-    // 계좌 정보
+    const offSeasonFees = { ...offSeasonSaved };
+    const peakSeasonFees = { ...peakSeasonSaved };
     const accountDetails = {
       bank: accountInfo.bank,
       holder: accountInfo.holder,
       accountNumber: accountInfo.accountNumber,
     };
 
-    // 데이터 확인용 콘솔 출력
     console.log("대관료 설명:", description);
     console.log("비성수기 요일별 대관료:", offSeasonFees);
     console.log("성수기 요일별 대관료:", peakSeasonFees);
     console.log("계좌 정보:", accountDetails);
 
-    // 부모 컴포넌트로 데이터 전달
     onConfirm(description, offSeasonFees, peakSeasonFees, accountDetails);
-    
     onClose();
   };
 
@@ -86,31 +130,32 @@ const Pop_Fee = ({ isOpen, onClose, onConfirm }) => {
           <p className="sub-description">모든 요일의 가격을 <span style={{ color: '#F01569' }}>반드시 설정</span>해야 합니다.</p>
           <div className="days-container">
             {['월', '화', '수', '목', '금', '토', '일'].map((day, index, array) => (
-                <button
+              <button
                 key={day}
                 className={`day-button ${selectedOffDays.includes(day) ? 'selected' : ''}`}
                 onClick={() => handleDayClick('offSeason', day)}
                 style={{
-                    borderRadius:
+                  borderRadius:
                     index === 0
-                        ? '18px 0px 0px 18px' // 첫 번째 요소
-                        : index === array.length - 1
-                        ? '0px 18px 18px 0px' // 마지막 요소
-                        : '0px', // 다른 요소들
+                      ? '18px 0px 0px 18px' // 첫 번째 요소
+                      : index === array.length - 1
+                      ? '0px 18px 18px 0px' // 마지막 요소
+                      : '0px', // 다른 요소들
                 }}
-                >
+              >
                 {day}
-                </button>
+              </button>
             ))}
-            </div>
+          </div>
           <input
             type="text"
             className="fee-input"
-            placeholder="500,000"
+            placeholder="숫자만 입력해 주세요 !"
             value={fees.offSeason}
             onChange={(e) => setFees({ ...fees, offSeason: e.target.value })}
           />
           <span className="currency-unit">원</span>
+          <button className="fee-save-button" onClick={() => handleSave('offSeason')}>저장</button>
         </div>
 
         <div className="fee-setting">
@@ -118,65 +163,68 @@ const Pop_Fee = ({ isOpen, onClose, onConfirm }) => {
           <p className="sub-description">모든 요일의 가격을 <span style={{ color: '#F01569' }}>반드시 설정</span>해야 합니다.</p>
           <div className="days-container">
             {['월', '화', '수', '목', '금', '토', '일'].map((day, index, array) => (
-                <button
+              <button
                 key={day}
                 className={`day-button ${selectedPeakDays.includes(day) ? 'selected' : ''}`}
                 onClick={() => handleDayClick('peakSeason', day)}
                 style={{
-                    borderRadius:
+                  borderRadius:
                     index === 0
-                        ? '18px 0px 0px 18px' // 첫 번째 요소
-                        : index === array.length - 1
-                        ? '0px 18px 18px 0px' // 마지막 요소
-                        : '0px', // 다른 요소들
+                      ? '18px 0px 0px 18px' // 첫 번째 요소
+                      : index === array.length - 1
+                      ? '0px 18px 18px 0px' // 마지막 요소
+                      : '0px', // 다른 요소들
                 }}
-                >
+              >
                 {day}
-                </button>
+              </button>
             ))}
-            </div>
+          </div>
 
           <input
             type="text"
             className="fee-input"
-            placeholder="500,000"
+            placeholder="숫자만 입력해 주세요 !"
             value={fees.peakSeason}
             onChange={(e) => setFees({ ...fees, peakSeason: e.target.value })}
           />
           <span className="currency-unit">원</span>
+          <button className="fee-save-button" onClick={() => handleSave('peakSeason')}>저장</button>
         </div>
+
+        <p className={`save-message ${messageType}`}>{message}</p> {/* 메시지 타입에 따라 위치 변경 */}
 
         <h2 className="h2-fee">계좌번호 입력</h2>
         <p className="p-fee">예약금을 입금받을 계좌 정보를 입력해주세요.</p>
         <div className="account-info">
-            <div className="account-info-row">
-                <input 
-                type="text" 
-                placeholder="은행명" 
-                value={accountInfo.bank} 
-                onChange={(e) => setAccountInfo({ ...accountInfo, bank: e.target.value })} 
-                />
-                <input 
-                className='account-info-row-input2'
-                type="text" 
-                placeholder="예금주" 
-                value={accountInfo.holder} 
-                onChange={(e) => setAccountInfo({ ...accountInfo, holder: e.target.value })} 
-                />
-            </div>
-            <div className="account-info-row">
-                <input 
-                className='account-info-row-input3'
-                type="text" 
-                placeholder="계좌번호" 
-                value={accountInfo.accountNumber} 
-                onChange={(e) => setAccountInfo({ ...accountInfo, accountNumber: e.target.value })} 
-                />
-            </div>
-            </div>
+          <div className="account-info-row">
+            <input 
+              type="text" 
+              placeholder="은행명" 
+              value={accountInfo.bank} 
+              onChange={(e) => setAccountInfo({ ...accountInfo, bank: e.target.value })} 
+            />
+            <input 
+              className='account-info-row-input2'
+              type="text" 
+              placeholder="예금주" 
+              value={accountInfo.holder} 
+              onChange={(e) => setAccountInfo({ ...accountInfo, holder: e.target.value })} 
+            />
+          </div>
+          <div className="account-info-row">
+            <input 
+              className='account-info-row-input3'
+              type="text" 
+              placeholder="계좌번호" 
+              value={accountInfo.accountNumber} 
+              onChange={(e) => setAccountInfo({ ...accountInfo, accountNumber: e.target.value })} 
+            />
+          </div>
+        </div>
 
         <div className="modal-buttons">
-          <button className="cancel-button" onClick={onClose}>뒤로 가기</button>
+          <button className="cancel-button" onClick={onClose}>취소</button>
           <button className="confirm-button" onClick={handleConfirm}>등록</button>
         </div>
       </div>
