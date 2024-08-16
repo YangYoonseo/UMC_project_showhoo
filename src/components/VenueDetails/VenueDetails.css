@@ -930,6 +930,10 @@ flex-grow: 0;
   position: relative;
   top:785px;
   left:220px;
+  width: 700px;
+  max-height: 1300px;
+  overflow-y: scroll;
+  overflow-x: hidden;
 }
 .venue-reviews > h4 {
   width: 342px;

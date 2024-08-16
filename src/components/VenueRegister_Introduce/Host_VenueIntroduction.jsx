@@ -5,43 +5,47 @@ import edit_icon from '../../assets/images/venueregisterpage_introduce/edit_icon
 import ex_map from '../../assets/images/venueregisterpage_introduce/ex_map.svg';
 import Pop_Service from './Pop_Service';
 import Pop_Fee from './Pop_Fee';
+import Pop_Category from './Pop_Category'; // 새로운 팝업 파일 추가
 
 const Host_VenueIntroduction = ({ openPlaceModal }) => {
   const [isServiceModalOpen, setIsServiceModalOpen] = useState(false);
   const [serviceDescription, setServiceDescription] = useState('');
-  const [serviceOptions, setServiceOptions] = useState([]); // 옵션 필드 데이터 저장
-  const [isFeeModalOpen, setIsFeeModalOpen] = useState(false); // 대관료 모달 상태 추가
+  const [serviceOptions, setServiceOptions] = useState([]);
+  const [isFeeModalOpen, setIsFeeModalOpen] = useState(false);
   const [feeDescription, setFeeDescription] = useState('');
   const [offSeasonFees, setOffSeasonFees] = useState({});
   const [peakSeasonFees, setPeakSeasonFees] = useState({});
   const [accountDetails, setAccountDetails] = useState({});
+  
+  const [isCategoryModalOpen, setIsCategoryModalOpen] = useState(false); // 새로운 상태 추가
+  const [selectedCategory, setSelectedCategory] = useState(''); // 선택된 유형
 
-  const openServiceModal = () => setIsServiceModalOpen(true); // 추가서비스 모달
+  const openServiceModal = () => setIsServiceModalOpen(true);
   const closeServiceModal = () => setIsServiceModalOpen(false);
 
-  const openFeeModal = () => setIsFeeModalOpen(true); // 대관료 모달
+  const openFeeModal = () => setIsFeeModalOpen(true);
   const closeFeeModal = () => setIsFeeModalOpen(false);
 
-  // Pop_Service에서 받아온 데이터를 처리하는 함수
+  const openCategoryModal = () => setIsCategoryModalOpen(true); // 카테고리 모달 열기
+  const closeCategoryModal = () => setIsCategoryModalOpen(false); // 카테고리 모달 닫기
+
   const handleServiceConfirm = (description, options) => {
     setServiceDescription(description);
-    setServiceOptions(options); // 옵션 필드 데이터 저장
+    setServiceOptions(options);
     closeServiceModal();
   };
 
-  // Pop_Fee에서 받아온 데이터를 처리하는 함수
   const handleFeeConfirm = (description, offSeason, peakSeason, accountInfo) => {
     setFeeDescription(description);
     setOffSeasonFees(offSeason);
     setPeakSeasonFees(peakSeason);
     setAccountDetails(accountInfo);
-
-    // 데이터 확인용 콘솔 출력
-    console.log("비성수기 요일별 대관료:", offSeason);
-    console.log("성수기 요일별 대관료:", peakSeason);
-    console.log("계좌 정보:", accountInfo);
-
     closeFeeModal();
+  };
+
+  const handleCategoryConfirm = (category) => {
+    setSelectedCategory(category);
+    closeCategoryModal();
   };
 
   return (
@@ -54,24 +58,32 @@ const Host_VenueIntroduction = ({ openPlaceModal }) => {
       
       <div className="input-group">
         <div className="input-container">
-          <label htmlFor="area">공연장</label>
-          <div className="input-with-unit">
-            <input type="text" id="area" name="area" />
-            <span></span>
-          </div>
-        </div>
-        <div className="input-container">
           <label htmlFor="area">면적</label>
           <div className="input-with-unit">
-            <input type="text" id="area" name="area" />
+            <input type="text" id="area" name="area" className='input-type-1'/>
             <span>m²</span>
           </div>
         </div>
         <div className="input-container">
           <label htmlFor="capacity">인원</label>
           <div className="input-with-unit">
-            <input type="text" id="capacity" name="capacity" />
+            <input type="text" id="capacity" name="capacity" className='input-type-1' />
             <span>명</span>
+          </div>
+        </div>
+        <div className="input-container">
+          <label htmlFor="venuecategory">유형</label>
+          <div className="input-with-unit">
+            <input 
+              type="text" 
+              id="venuecategory" 
+              name="venuecategory"
+              className="input-type-2"
+              value={selectedCategory}
+              readOnly
+              onClick={openCategoryModal}
+            />
+            <button className="register-button23" onClick={openCategoryModal}>수정하기</button>
           </div>
         </div>
       </div>
@@ -87,9 +99,9 @@ const Host_VenueIntroduction = ({ openPlaceModal }) => {
           className="fee-field"
           value={feeDescription
             .split('\n')
-            .filter(line => line.trim() !== '') // 빈 줄은 필터링
+            .filter(line => line.trim() !== '')
             .map(line => `- ${line}`)
-            .join('\n')} // 리스트 형식으로 변환
+            .join('\n')}
           readOnly
           onClick={openFeeModal}
         ></textarea>
@@ -102,9 +114,9 @@ const Host_VenueIntroduction = ({ openPlaceModal }) => {
           className="service-field"
           defaultValue={serviceDescription
             .split('\n')
-            .filter(line => line.trim() !== '') // 빈 줄은 필터링
+            .filter(line => line.trim() !== '')
             .map(line => `- ${line}`)
-            .join('\n')} // 리스트 형식으로 변환
+            .join('\n')}
           onClick={openServiceModal}
         ></textarea>
         <button className="register-button" onClick={openServiceModal}>등록하기</button>
@@ -124,15 +136,21 @@ const Host_VenueIntroduction = ({ openPlaceModal }) => {
       <Pop_Service 
         isOpen={isServiceModalOpen} 
         onClose={closeServiceModal} 
-        onConfirm={handleServiceConfirm} // Pop_Service에서 데이터를 받아옴
+        onConfirm={handleServiceConfirm}
       />
       <Pop_Fee 
         isOpen={isFeeModalOpen} 
         onClose={closeFeeModal} 
-        onConfirm={handleFeeConfirm} // Pop_Fee에서 데이터를 받아옴
+        onConfirm={handleFeeConfirm}
+      />
+      <Pop_Category 
+        isOpen={isCategoryModalOpen} 
+        onClose={closeCategoryModal} 
+        onConfirm={handleCategoryConfirm}
       />
     </div>
   );
 };
 
 export default Host_VenueIntroduction;
+

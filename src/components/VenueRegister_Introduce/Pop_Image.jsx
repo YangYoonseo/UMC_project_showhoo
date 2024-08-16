@@ -52,7 +52,7 @@ const Pop_Image = ({ isOpen, onClose, onConfirm }) => {
   return (
     <div className="modal-overlay3">
       <div className="modal-container3">
-        <h2>사진 등록하기</h2>
+        <h2 style={{margin:'30px 20px 15px 0px'}}>사진 등록하기</h2>
         <p className='p'>사진은 최소 6개 등록해주세요</p>
         
         <div className="image-grid3">

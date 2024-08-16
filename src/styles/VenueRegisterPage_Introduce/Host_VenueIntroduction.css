@@ -64,7 +64,7 @@ label{
     align-items: center;
   }
   
-  input[type="text"] {
+  .input-type-1{    
     width: 112px;
     height: 41px;
     border: 1px solid #9c9c9c;;
@@ -74,6 +74,19 @@ label{
     padding: 20px;
     box-sizing: border-box;
     font-size: 18px;
+
+  }
+  .input-type-2{
+    width: 140px;
+    height: 41px;
+    border: 1px solid #9c9c9c;;
+    border-radius: 10px;
+    margin-right: 5px;
+    margin-left:10px;
+    padding: 20px;
+    box-sizing: border-box;
+    font-size: 18px;
+    margin-right: 10px;
   }
   .time-field{
     width: 626px;
@@ -136,6 +149,17 @@ label{
     
     position: relative; /* 부모 요소에 상대적인 위치를 사용 */
     right: -500px; /* 현재 위치에서 300px만큼 오른쪽으로 이동 */
+  }
+
+  .register-button23 {
+    width: 120px;
+    height: 41px;
+    background-color: #e8e8e8;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    cursor: pointer;
+
   }
   
   .location-section {
