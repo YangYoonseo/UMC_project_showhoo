@@ -36,7 +36,7 @@ const MypageBooking = () => {
         <div className="choice">
           <button
             onClick={() => {
-              nav("/alarm");
+              nav("/alarm_booking");
             }}
           >
             알림

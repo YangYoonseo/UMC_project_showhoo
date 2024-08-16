@@ -5,18 +5,18 @@ import { useEffect, useState } from "react";
 
 import AlarmDelete from "../api/AlarmDelete";
 
-import Navbar_Perforemr from "../components/common/Navbar_Performer";
+import Navbar_Booking from "../components/common/Navbar_Booking";
 import AlarmDetail from "../components/com_Performer/AlarmDetail";
 
-const Alarm = () => {
+const AlarmBooking = () => {
   const [alarmResult, setAlarmResult] = useState([]);
-  const token = sessionStorage.getItem("accessToken");
 
   useEffect(() => {
-    const PerformerAlarmCheck = async () => {
+    const BookingAlarmCheck = async () => {
+      const token = sessionStorage.getItem("accessToken");
       try {
         const response = await axios.get(
-          "http://ec2-3-34-248-63.ap-northeast-2.compute.amazonaws.com:8081/notifications/PERFORMER/1",
+          "http://ec2-3-34-248-63.ap-northeast-2.compute.amazonaws.com:8081/notifications/AUDIENCE/1",
           {
             headers: {
               Authorization: `Bearer ${token}`,
@@ -29,12 +29,14 @@ const Alarm = () => {
         console.error("알림 데이터를 가져오는데 실패했습니다:", error);
       }
     };
-    PerformerAlarmCheck();
+    BookingAlarmCheck();
   }, []);
+
+  // 알림 배열을 만들어서 하나씩 넣기
 
   return (
     <div className="Alarm">
-      <Navbar_Perforemr />
+      <Navbar_Booking />
       {console.log(alarmResult)}
 
       <div className="Alarm_content">
@@ -56,4 +58,4 @@ const Alarm = () => {
   );
 };
 
-export default Alarm;
+export default AlarmBooking;

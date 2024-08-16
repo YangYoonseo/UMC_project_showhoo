@@ -2,16 +2,19 @@ import "../../styles/yoonseo/AlarmDetail.css";
 
 import Line42 from "../../assets/img_Performer/Line42.png";
 
-import { FaKey, FaTicketAlt } from "react-icons/fa"; // 예시 아이콘
+import { FaKey, FaTicketAlt } from "react-icons/fa";
+import { GiGuitar } from "react-icons/gi"; // 예시 아이콘
 // npm install react-icons
 
-const AlarmDetail = ({ type, message, timestamp }) => {
+const AlarmDetail = ({ id, type, message, timestamp, AlarmDelete }) => {
   const getIcon = (type) => {
     switch (type) {
-      case "comment":
+      case "PERFORMER":
         return <FaKey className="icon" />;
-      case "ticket":
+      case "SPACEUSER":
         return <FaTicketAlt className="icon" />;
+      case "AUDIENCE":
+        return <GiGuitar className="icon" />;
       default:
         return <FaKey className="icon" />;
     }
@@ -24,7 +27,14 @@ const AlarmDetail = ({ type, message, timestamp }) => {
         <p>{message}</p>
         <span>{timestamp}</span>
       </div>
-      <button className="close">X</button>
+      <button
+        className="close"
+        onClick={() => {
+          AlarmDelete(id);
+        }}
+      >
+        X
+      </button>
       <img src={Line42} alt="" />
     </div>
   );

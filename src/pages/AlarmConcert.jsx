@@ -3,20 +3,20 @@ import "../styles/yoonseo/Alarm.css";
 import axios from "axios";
 import { useEffect, useState } from "react";
 
-import AlarmDelete from "../api/AlarmDelete";
-
-import Navbar_Perforemr from "../components/common/Navbar_Performer";
+import Navbar_Concert from "../components/common/Navbar_Concert";
 import AlarmDetail from "../components/com_Performer/AlarmDetail";
 
-const Alarm = () => {
+import AlarmDelete from "../api/AlarmDelete";
+
+const AlarmConcert = () => {
   const [alarmResult, setAlarmResult] = useState([]);
-  const token = sessionStorage.getItem("accessToken");
 
   useEffect(() => {
-    const PerformerAlarmCheck = async () => {
+    const ConcertAlarmCheck = async () => {
+      const token = sessionStorage.getItem("accessToken");
       try {
         const response = await axios.get(
-          "http://ec2-3-34-248-63.ap-northeast-2.compute.amazonaws.com:8081/notifications/PERFORMER/1",
+          "http://ec2-3-34-248-63.ap-northeast-2.compute.amazonaws.com:8081/notifications/SPACEUSER/1",
           {
             headers: {
               Authorization: `Bearer ${token}`,
@@ -29,13 +29,14 @@ const Alarm = () => {
         console.error("알림 데이터를 가져오는데 실패했습니다:", error);
       }
     };
-    PerformerAlarmCheck();
+    ConcertAlarmCheck();
   }, []);
+
+  // 알림 배열을 만들어서 하나씩 넣기
 
   return (
     <div className="Alarm">
-      <Navbar_Perforemr />
-      {console.log(alarmResult)}
+      <Navbar_Concert />
 
       <div className="Alarm_content">
         <h1>알림</h1>
@@ -56,4 +57,4 @@ const Alarm = () => {
   );
 };
 
-export default Alarm;
+export default AlarmConcert;
