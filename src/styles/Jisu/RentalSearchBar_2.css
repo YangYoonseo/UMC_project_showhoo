@@ -1,0 +1,23 @@
+.BookingSearchBar2 {
+    width: 635px;
+    height: 73px;
+
+    border: 1px;
+    border-style: solid;
+    border-color: #E8E8E8;
+    border-radius: 50px;
+
+    font-family: "Pretendard";
+    font-weight: 500;
+    color: Black;
+    background-color: white;
+
+    display: flex;
+}
+
+.Divider {
+    margin-top: 27px;
+    margin-bottom: 27px;
+    width: 1.9px;
+    background-color: #CFCFCF;
+}

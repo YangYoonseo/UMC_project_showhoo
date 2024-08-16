@@ -9,9 +9,9 @@ const Home_Booking = () => {
     <div className="Home">
       <Navbar_Booking />
       <Footer />
-      <div className="HomeContent">
-      <HomeImage />
-      <MainInfo />
+        <div className="HomeContent">
+        <HomeImage />
+        <MainInfo />
       </div>
     </div>
   );

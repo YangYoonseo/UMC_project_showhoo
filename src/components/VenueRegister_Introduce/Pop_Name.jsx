@@ -8,14 +8,16 @@ const Pop_Name = ({ isOpen, onClose, onConfirm }) => {
   if (!isOpen) return null;
 
   const handleConfirm = () => {
-    onConfirm(inputValue); // 부모 컴포넌트로 값 전달
+    if (inputValue.trim() !== '') {
+      onConfirm(inputValue); // 부모 컴포넌트로 값 전달
+    }
   };
 
   return (
     <div className="modal-overlay">
       <div className="modal-container">
         <h2>공연장 이름</h2>
-        <p className="p">개성적인 공연장 이름을 지어주세요!</p>
+        <p className="p">공연장 이름을 20자 이하로 작성해주세요</p>
         <input 
           type="text" 
           placeholder="공연장 이름" 
@@ -25,7 +27,13 @@ const Pop_Name = ({ isOpen, onClose, onConfirm }) => {
         />
         <div className="modal-buttons">
           <button className="cancel-button" onClick={onClose}>취소</button>
-          <button className="confirm-button" onClick={handleConfirm}>등록</button>
+          <button 
+            className="confirm-button" 
+            onClick={handleConfirm} 
+            disabled={inputValue.trim() === ''} // 입력값이 공백일 경우 버튼 비활성화
+          >
+            등록
+          </button>
         </div>
       </div>
     </div>

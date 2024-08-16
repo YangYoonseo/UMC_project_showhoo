@@ -1,0 +1,17 @@
+.like-button {
+    width: 31.27px;
+    height: 31.27px;
+    border-radius: 50%;
+    border: none;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    cursor: pointer;
+}
+
+.like-button img {
+    width: 20px;
+    height: 20px;
+}

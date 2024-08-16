@@ -1,35 +1,44 @@
+/* Container for the entire card */
 .HotConcertHall {
-    border: solid;
-    border-color: #E8E8E8;
+    width: 310px;
+    height: 413px;
+    border: 2px solid #E8E8E8;
     border-radius: 18px;
-    border-width: 1.5px;
-
-    padding-left: 7px;
-    padding-right: 7px;
-    padding-top: 7px;
-    padding-bottom: 17.64px;
+    background-color: #FFFFFF;
+    box-sizing: border-box;
+    padding: 6px;
 }
-
-.LikeButtons {
-    margin: 0px;
-    padding: 0px;
-    position: absolute;
-    z-index: 2;
-    /* z-index 값을 낮게 설정하여 다른 요소가 위로 올라오도록 함 */
-}
-
 .LikeAndImg {
+    width: 100%;
+    height: 236px;
     position: relative;
-    /* 자식 요소인 LikeButton이 절대 위치할 수 있도록 설정 */
+}
+
+.LikeButton {
+    position: absolute;
+    top: 12px;
+    right: 45px;
 }
 
 .ConcertHallImg {
-    display: block;
+    width: 100%;
+    height: 100%;
+    border-radius: 11px;
+    object-fit: cover;
+}
+
+.ConcertHallBody {
+    display: flex;
+    flex-direction: column;
+    height: calc(100% - 236px);
+    /* Adjusts based on image height */
+    margin-top: 12px;
+    padding: 0 10px;
 }
 
 .TopInfo {
     display: flex;
-    flex-direction: row;
+    justify-content: space-between;
     align-items: flex-start;
     margin-bottom: 20px;
 }
@@ -37,9 +46,8 @@
 .TopInfoText {
     display: flex;
     flex-direction: column;
-    gap: 1px;
+    gap: 2px;
 }
-
 .Name {
     font-size: 20px;
     font-weight: 500;
@@ -47,34 +55,45 @@
 
 .Location {
     font-size: 14px;
-    font-weight: 400;
     color: #4F4F4F;
 }
 
-.BottomInfo{
+.StarRate {
     display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.StarRatePoint {
+    font-size: 20px;
+    font-weight: 600;
+    color: #07C093;
+}
+
+.BottomInfo {
+    display: flex;
+    justify-content: space-between;
     margin-bottom: 16px;
 }
 
-.People{
-    color: #363636;
-    font-size: 12.5px;
-    margin-right: 12px;
+.InfoItem {
+    display: flex;
+    align-items: center;
+    gap: 4px;
 }
 
-.Size {
-    color: #363636;
-    font-size: 12.5px;
-    margin-right: 9px;
+.InfoText {
+    font-size: 12px;
 }
 
-.Detail {
-    color: #363636;
-    font-size: 12.5px;
+.Icon {
+    width: 20px;
+    height: 20px;
 }
 
 .Price {
-    padding: 8px;
     font-size: 20px;
-    border-top: 1.5px solid #E8E8E8;
+    border-top: 2px solid #E8E8E8;
+    padding-top: 10px;
+    text-align: right;
 }

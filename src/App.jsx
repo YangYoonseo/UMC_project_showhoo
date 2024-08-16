@@ -232,7 +232,7 @@ function App() {
                 <Route path="/rental_history" element={<RentalHistory />} />
                 <Route
                   path="/venue_detail"
-                  element={<VenueDetailPage />}
+                  element={<VenueDetailPage data={{ spaceId: 1 }} />}
                 />{" "}
                 {/* 공연자 플로우 */}
                 <Route

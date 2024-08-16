@@ -34,3 +34,8 @@
 .BarAndFilter {
     display: flex;
 }
+
+.ConcertHallBody {
+    width: 877px;
+    background-color: aqua; 
+}
