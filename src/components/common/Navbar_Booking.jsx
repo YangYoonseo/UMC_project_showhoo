@@ -64,6 +64,7 @@ const Navbar_Booking = () => {
           역할 전환
         </button>
         <img
+          className="mypageImg"
           src={logo_mypage}
           alt=""
           onClick={() => {

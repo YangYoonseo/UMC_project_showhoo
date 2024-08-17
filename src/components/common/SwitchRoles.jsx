@@ -5,8 +5,6 @@ import logo_concert from "../../assets/images/logo_concert.svg";
 
 import { useNavigate } from "react-router-dom";
 
-// 제가 홈화면 페이지가 없어서 일단 제 페이지로 nav 연결 해놨습니다. 다시 연결 부탁드립니다!!
-
 const SwitchRoles = ({ onClose }) => {
   const nav = useNavigate();
   return (

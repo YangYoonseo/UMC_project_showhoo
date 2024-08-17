@@ -106,16 +106,19 @@
 }
 
 .Button47 {
+  cursor: pointer;
   width: 34px;
 }
 
 .Button48 {
   width: 109px;
+  cursor: pointer;
 }
 
 .Button49,
 .Button50 {
   width: 87px;
+  cursor: pointer;
 }
 
 .number_of_alarm {
