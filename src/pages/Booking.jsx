@@ -4,7 +4,7 @@ import { useState } from "react";
 import Navbar_Booking from "../components/common/Navbar_Booking";
 import Footer from "../components/common/Footer";
 import Book_component from "../components/booking/Book_component";
-import Mockdata from "../components/booking/mockdata";
+import Mockdata from "../components/booking/Mockdata";
 
 import Star1 from "../assets/img_Ready/Star1.svg";
 import Star2 from "../assets/img_Ready/Star2.svg";

@@ -26,7 +26,6 @@ const RentalSearchBar = () => {
     return (
         <div className="BookingSearchBar">
             <RoundButton 
-                className="searchHall"
                 topic="공연장"
                 detail="공연장 검색"
                 index={0}
@@ -38,7 +37,6 @@ const RentalSearchBar = () => {
 
             <div className="Divider"></div>
             <RoundButton 
-                className="searchLocation"
                 topic="지역"
                 detail="지역 검색"
                 index={1}
@@ -50,7 +48,6 @@ const RentalSearchBar = () => {
 
             <div className="Divider"></div>
             <RoundButton 
-                className="searchDate"
                 topic="날짜"
                 detail="공연날짜 추가"
                 index={2}
@@ -61,8 +58,7 @@ const RentalSearchBar = () => {
             />
 
             <div className="Divider"></div>
-            <RoundButton
-                className="searchType"
+            <RoundButton 
                 topic="유형"
                 detail="공연장 유형 추가"
                 index={3}
