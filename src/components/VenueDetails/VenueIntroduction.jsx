@@ -1,40 +1,86 @@
 //VenueIntroduction.jsx
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 import './VenueDetails.css';
 import ex_map from '../../assets/images/venueregisterpage_introduce/ex_map.svg';
 
-const VenueIntroduction = ({ data }) => {
-  
-  // <br> 태그를 기준으로 데이터를 나누어 리스트로 변환하는 함수
+const VenueIntroduction = () => {
+  const [descriptionData, setDescriptionData] = useState(null);
+  const spaceId = 1; // Use the actual spaceId as needed
+  const yourAccessToken = "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIzNjYxNTg0NzU5IiwiZXhwIjoxNzIzODQwMDY5fQ.iwSGIGd1oftRla2Q7O9hw92TYTROYKhHnm1cyt1hQe_q3C3lM0wD_VsUs2nluBM5tuBuba5FkBjWvDiaVC3W3A";
+
+  useEffect(() => {
+    const fetchVenueDescription = async () => {
+      try {
+        console.log("그냥 테스트꺅꺅꺅");
+        const response = await axios.get(
+          `http://ec2-3-34-248-63.ap-northeast-2.compute.amazonaws.com:8081/spaces/${spaceId}/description`,
+          {
+            headers: {
+              Authorization: `Bearer ${yourAccessToken}`,
+            },
+          }
+        );
+        console.log("그냥 테스트");
+        console.log("API 전체 응답 조회:", response.data);  // API 응답 전체를 로그로 확인
+        if (response.data.isSuccess) {
+          console.log("API 결과 조회:", response.data.result);  // 응답의 result 부분을 로그로 확인
+
+          // 데이터를 검증하여 undefined나 null 값이 있는지 확인
+          const data = response.data.result;
+          if (!data.rentalFee) data.rentalFee = '일단 이거라도';  // rentalFee가 없으면 빈 문자열로 초기화
+          if (!data.additionalServices) data.additionalServices = [];  // additionalServices가 없으면 빈 배열로 초기화
+
+          setDescriptionData(response.data.result);
+        }else {
+          console.warn("API call was not successful:", response.data.message);  // 성공 여부가 false인 경우
+        }
+      } catch (error) {
+        console.error("[실패]Failed to fetch venue description:", error);
+      }
+    };
+
+    fetchVenueDescription();
+  }, [spaceId]);
+
+  // Function to split and format text as a list
   const formatTextToList = (text) => {
+    if (!text) return null; // text가 undefined나 null인 경우 처리
     return text.split('<br>').map((item, index) => (
       <li key={index}>{item.trim()}</li>
     ));
   };
 
+  if (!descriptionData) {
+    return <div>no description data...</div>;
+  }
+
   return (
     <div className="venue-introduction">
-      <h2>001 클럽에 대하여</h2>
+      <h2>{descriptionData.name}에 대하여</h2>
       <br />
-      <p>{data.about}</p>
+      <p>{descriptionData.description}</p>
       <br />
-      <p><span className="label">면적 </span> <span className="value">{data.area}</span></p>
-      <p><span className="label">인원 </span> <span className="value">{data.capacity}</span></p>
-      <p><span className="label">대관시간 </span> <span className="value">{data.rentalTime} </span></p>
+      <p><span className="label">면적 </span> <span className="value">{descriptionData.area}</span></p>
+      <p><span className="label">인원 </span> <span className="value">{`좌석: 약 ${descriptionData.seatingCapacity}석 내외 / 입석: 약 ${descriptionData.standingCapacity}명 내외`}</span></p>
+      <p><span className="label">대관시간 </span> <span className="value">{descriptionData.rentalHours}</span></p>
       <p><span className="label">대관료 </span></p>
       <ul className="value-list">
-        {formatTextToList(data.rentalFee)}</ul>
+        {formatTextToList(descriptionData.rentalFee)}
+      </ul>
       <p><span className="label">추가 서비스 </span></p>
       <ul className="value-list2">
-        {formatTextToList(data.additionalServices)}</ul>
-      <p><span className="label">연락처 </span></p>
+        {formatTextToList(descriptionData.additionalServices.map(service => `${service.title}`).join('<br>'))}
+      </ul>
+      {/* <p><span className="label">연락처 </span></p>
       <ul className="value-list">
-        {formatTextToList(data.tel)}</ul>
+        {formatTextToList(descriptionData.tel)}
+      </ul> */}
       <br />
       <div className="location-section2">
         <h2>위치</h2>
         <div className="location-header2">
-          <p className="location2">{data.location}</p>
+          <p className="location2">{descriptionData.location}</p>
         </div>
         <div className="map-image">
           <img src={ex_map} className="ex_map2" alt="map image" />
