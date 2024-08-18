@@ -41,21 +41,21 @@ const BookingProfile = ({ pamphlet, className }) => {
         <img src={ticket_show} alt="" className="pamphlet_ticket_show" />
       )}
 
-      <img src={pamphlet.image} alt="" className="pamphlet_image" />
+      <img src={pamphlet.poster} alt="" className="pamphlet_image" />
       {name !== "status_cancel" && (
         <p className={`status ${getClassName()}`}>{pamphlet.status}</p>
       )}
 
       <div className={`pamphlet_div pamphlet_${name}`}>
-        <p className="pamphlet_id">ID &nbsp;{pamphlet.id}</p>
-        <h3 className="pamphlet_title">{pamphlet.title}</h3>
+        <p className="pamphlet_id">ID &nbsp;{pamphlet.bookId}</p>
+        <h3 className="pamphlet_title">{pamphlet.name}</h3>
         <div>
           <div className="pamphlet_div1">
-            <p className="pamphlet_location">{pamphlet.location}</p>
+            <p className="pamphlet_performer">{pamphlet.performer}</p>
             <p className="pamphlet_date">{pamphlet.date}</p>
           </div>
           <div className="pamphlet_div2">
-            <p className="pamphlet_club">{pamphlet.club}</p>
+            <p className="pamphlet_place">{pamphlet.place}</p>
             <p className="pamphlet_time">{pamphlet.time}</p>
           </div>
         </div>

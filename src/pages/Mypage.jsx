@@ -33,14 +33,30 @@ const Mypage = () => {
         console.log("마이프로필", response.data.result);
         setMyprofile(response.data.result);
 
-        setLatestProfile({
-          id: response.data.result.profileDTO.id,
-          introduction: response.data.result.profileDTO.introduction,
-          name: response.data.result.profileDTO.name,
-          phoneNumber: response.data.result.profileDTO.phoneNumber,
-          profileImages: response.data.result.profileDTO.profileImages,
-          team: response.data.result.profileDTO.team,
-        });
+        const profileDTO = response.data.result.profileDTO;
+
+        if (profileDTO) {
+          setLatestProfile({
+            id: profileDTO.id || "",
+            introduction: profileDTO.introduction || "",
+            name: profileDTO.name || "",
+            phoneNumber: profileDTO.phoneNumber || "",
+            profileImages: profileDTO.profileImages || [],
+            team: profileDTO.team || "",
+            date: profileDTO.createdAt.split("T")[0] || "",
+          });
+        } else {
+          // Handle the case where profileDTO is not available
+          setLatestProfile({
+            id: "",
+            introduction: "No introduction available",
+            name: "No name available",
+            phoneNumber: "No phone number available",
+            profileImages: [],
+            team: "No team available",
+            date: "no date",
+          });
+        }
       } catch (error) {
         console.error("프로필 정보를 불러오는데 실패했습니다:", error);
       }
@@ -65,6 +81,7 @@ const Mypage = () => {
         <p className="latest">
           {name}님의<span>&nbsp;최근&nbsp;</span>프로필이에요
         </p>
+        {console.log("제일 최근", latestProfile)}
         <PerformerProfile
           key={latestProfile.id}
           profile={latestProfile}

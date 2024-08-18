@@ -1,37 +1,11 @@
 import "../../styles/yoonseo/Profile.css";
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
-
 import axios from "axios";
+
 import Button from "../common/Button";
 import Frame21 from "../../assets/img_Performer/Frame21.svg";
 import TrashIcon from "../../assets/img_Performer/TrashIcon.svg";
-
-// 이미지 불러오기 기능, 이미지 추가 기능 구현 필요!
-
-const uploadImage = async (imageFile) => {
-  const token = sessionStorage.getItem("accessToken");
-  const formData = new FormData();
-  formData.append("profileImages", imageFile);
-
-  try {
-    const response = await axios.post(
-      "http://ec2-3-34-248-63.ap-northeast-2.compute.amazonaws.com:8081/profileImage/upload",
-      formData,
-      {
-        headers: {
-          "Content-Type": "multipart/form-data",
-          Authorization: `Bearer ${token}`,
-        },
-      }
-    );
-    console.log("Upload response:", response.data.result);
-    return response.data.result[0];
-  } catch (error) {
-    console.error("Image upload failed:", error);
-    throw error;
-  }
-};
 
 const Profile = ({ profile = {} }) => {
   const nav = useNavigate();
@@ -40,60 +14,175 @@ const Profile = ({ profile = {} }) => {
   const [number, setNumber] = useState(profile.phoneNumber || "");
   const [information, setInformation] = useState(profile.introduction || "");
   const [uploadedImages, setUploadedImages] = useState([]);
+  const [existingImages, setExistingImages] = useState(
+    profile.profileImages || []
+  );
 
   useEffect(() => {
-    setSchool(profile.name || "");
+    setSchool(profile.team || "");
     setInformation(profile.introduction || "");
-    setTitle(profile.team || "");
+    setTitle(profile.name || "");
     setNumber(profile.phoneNumber || "");
+    setExistingImages(profile.profileImages || []);
   }, []);
 
   const handleChange = (setter) => (e) => {
     setter(e.target.value);
   };
 
+  // 이미지 등록
   const updateImages = (e) => {
     const files = Array.from(e.target.files);
-    if (files.length + uploadedImages.length > 4) {
+    if (files.length + uploadedImages.length + existingImages.length > 4) {
       alert("최대 4개의 이미지만 업로드할 수 있습니다.");
       return;
     }
-    setUploadedImages((prevImages) => [...prevImages, ...files].slice(0, 4));
-  };
-
-  const removeImages = (index) => {
-    setUploadedImages((prevImages) =>
-      prevImages.filter((_, imgIndex) => imgIndex !== index)
+    const newUploadedImages = [...uploadedImages, ...files].slice(
+      0,
+      4 - existingImages.length
     );
+    console.log("New Uploaded Images:", newUploadedImages); // 디버깅 로그
+    setUploadedImages(newUploadedImages);
   };
 
+  // 이미지 삭제_API
+  const deleteImage = async (imageUrl) => {
+    const token = sessionStorage.getItem("accessToken");
+    try {
+      await axios.delete(
+        "http://ec2-3-34-248-63.ap-northeast-2.compute.amazonaws.com:8081/profile/profileImage",
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json",
+          },
+          data: {
+            profileImageUrl: imageUrl,
+          },
+        }
+      );
+    } catch (error) {
+      console.error("Error deleting image:", error);
+    }
+  };
+
+  // 이미지 등록_API
+  const uploadImage = async (imageFile) => {
+    const token = sessionStorage.getItem("accessToken");
+    const formData = new FormData();
+    formData.append("profileImages", imageFile);
+
+    try {
+      const response = await axios.post(
+        "http://ec2-3-34-248-63.ap-northeast-2.compute.amazonaws.com:8081/profileImage/upload",
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      console.log("Upload response:", response.data.result);
+      return response.data.result[0];
+    } catch (error) {
+      console.error("Image upload failed:", error);
+      throw error;
+    }
+  };
+
+  // 수정 시 이미지 등록
+  const updateImage = async (imageFile) => {
+    const token = sessionStorage.getItem("accessToken");
+    const profileId = profile.id; // 프로필 ID를 가져와야 합니다
+
+    if (!profileId) {
+      throw new Error("Profile ID is required for image update");
+    }
+
+    const formData = new FormData();
+    formData.append("profileImage", imageFile); // 'profileImage' 키에 파일 추가
+
+    try {
+      const response = await axios.post(
+        `http://ec2-3-34-248-63.ap-northeast-2.compute.amazonaws.com:8081/profile/1/${profileId}/profileImage`,
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      console.log("Image update response:", response.data);
+      return response.data; // 필요한 데이터가 무엇인지 확인하여 반환값을 설정합니다
+    } catch (error) {
+      console.error("Image update failed:", error);
+      throw error;
+    }
+  };
+
+  const removeImages = async (index) => {
+    if (index < existingImages.length) {
+      const imageUrl = existingImages[index].profileImageUrl;
+      await deleteImage(imageUrl); // 서버에서 이미지 삭제
+      setExistingImages((prevImages) =>
+        prevImages.filter((_, i) => i !== index)
+      );
+    } else {
+      const newIndex = index - existingImages.length;
+      setUploadedImages((prevImages) =>
+        prevImages.filter((_, i) => i !== newIndex)
+      );
+    }
+  };
+
+  // 제출_API
   const submitProfile = async () => {
     const token = sessionStorage.getItem("accessToken");
     const profileId = profile.id;
 
     try {
-      // 이미지 업로드 및 URL 추출
-      const imagePromises = uploadedImages.map(
-        (image) => uploadImage(image) // 이미지 파일을 업로드하고 URL을 받음
-      );
+      let newImageUrls = [];
 
-      const imageUrls = await Promise.all(imagePromises);
+      if (profileId) {
+        // 프로필이 존재하는 경우, 새로 업로드된 이미지를 업데이트합니다.
+        const updatePromises = uploadedImages.map((image) =>
+          updateImage(image)
+        );
+        newImageUrls = await Promise.all(updatePromises);
+      } else {
+        // 새 프로필인 경우, 이미지를 업로드하고 URL을 가져옵니다.
+        const uploadPromises = uploadedImages.map((image) =>
+          uploadImage(image)
+        );
+        newImageUrls = await Promise.all(uploadPromises);
+      }
 
+      // 기존 이미지와 새로 업로드된 이미지 URL을 합칩니다.
+      const allImageUrls = [
+        ...existingImages.map((img) => img.profileImageUrl),
+        ...newImageUrls,
+      ];
+
+      // 프로필 데이터 객체 생성
       const data = {
-        team: title,
-        name: school,
+        name: title,
+        team: school,
         introduction: information,
         phoneNumber: number,
-        profileImageUrls: imageUrls, // 프로필 이미지 URL로 수정
+        profileImageUrls: allImageUrls,
       };
 
+      // 프로필 ID가 있는 경우 PUT 요청, 없는 경우 POST 요청
       const url = profileId
         ? `http://ec2-3-34-248-63.ap-northeast-2.compute.amazonaws.com:8081/profile/1/${profileId}/text`
         : "http://ec2-3-34-248-63.ap-northeast-2.compute.amazonaws.com:8081/profile/1";
 
       const method = profileId ? "put" : "post";
 
-      const response = await axios({
+      // 프로필 데이터 전송
+      await axios({
         method,
         url,
         data,
@@ -103,8 +192,7 @@ const Profile = ({ profile = {} }) => {
         },
       });
 
-      console.log("Profile successfully registered:", response.data);
-      // addProfile(response.data);
+      // 성공적으로 제출한 후, 페이지 이동
       nav("/mypage_performer");
     } catch (error) {
       console.error("Error:", error);
@@ -112,26 +200,43 @@ const Profile = ({ profile = {} }) => {
   };
 
   const renderImagePreview = (index) => {
+    let imageUrl;
+    if (index < existingImages.length) {
+      imageUrl = existingImages[index].profileImageUrl; // 기존 이미지 URL 사용
+    } else {
+      const newIndex = index - existingImages.length;
+      const file = uploadedImages[newIndex];
+      imageUrl = file ? URL.createObjectURL(file) : ""; // 새로 업로드된 이미지에 대해 createObjectURL 사용
+    }
+
     return (
       <div key={index}>
-        {!uploadedImages[index] ? (
-          <div className={`add_img${index + 1}`}>
-            <label htmlFor="imageUpload">
-              <img src={Frame21} alt={`프레임 이미지 ${index + 1}`} />
-            </label>
-          </div>
-        ) : (
+        {imageUrl ? (
           <div>
             <img
-              src={URL.createObjectURL(uploadedImages[index])}
+              src={imageUrl}
               alt={`uploaded ${index + 1}`}
               className={`add_img${index + 1}`}
+              onError={(e) => (e.target.src = Frame21)} // 이미지 로드 오류 시 기본 이미지로 대체
             />
             <img
               src={TrashIcon}
               alt="delete"
               className={`delete delete_img${index + 1}`}
               onClick={() => removeImages(index)}
+            />
+          </div>
+        ) : (
+          <div className={`add_img${index + 1}`}>
+            <label htmlFor={`imageUpload${index}`}>
+              <img src={Frame21} alt={`프레임 이미지 ${index + 1}`} />
+            </label>
+            <input
+              type="file"
+              accept="image/*"
+              id={`imageUpload${index}`}
+              style={{ display: "none" }}
+              onChange={(e) => updateImages(e)}
             />
           </div>
         )}
@@ -182,7 +287,7 @@ const Profile = ({ profile = {} }) => {
 
         {/* 첫 번째 이미지 업로드 */}
         <div className="add_img">
-          {!uploadedImages[0] ? (
+          {existingImages.length === 0 && uploadedImages.length === 0 ? (
             <div className="add_img1">
               <p>포스터를 추가하세요</p>
               <label htmlFor="imageUpload">
@@ -190,19 +295,7 @@ const Profile = ({ profile = {} }) => {
               </label>
             </div>
           ) : (
-            <div>
-              <img
-                src={URL.createObjectURL(uploadedImages[0])}
-                alt="uploaded 1"
-                className="add_img1"
-              />
-              <img
-                src={TrashIcon}
-                alt="delete"
-                className="delete delete_img1"
-                onClick={() => removeImages(0)}
-              />
-            </div>
+            renderImagePreview(0)
           )}
         </div>
 
@@ -212,7 +305,7 @@ const Profile = ({ profile = {} }) => {
           accept="image/*"
           id="imageUpload"
           style={{ display: "none" }}
-          onChange={updateImages}
+          onChange={(e) => updateImages(e)}
         />
 
         {/* 나머지 이미지들 */}

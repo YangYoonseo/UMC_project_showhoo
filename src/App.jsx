@@ -39,39 +39,6 @@ import Mockdata from "./components/booking/mockdata.jsx";
 
 const token = sessionStorage.getItem("accessToken");
 
-const ex_profiles = [
-  {
-    date: "2024-07-10",
-    title: "고스락 23기",
-    members: ["전재윤", "김시아", "김태형", "이기준", "고남신", "수지후"],
-    school: "홍익대학교 소속",
-    image: logo_performer,
-    information: "설명1",
-    status: "대관 신청",
-    number: "010-0000-0000",
-  },
-  {
-    date: "2023-11-23",
-    title: "고스락 22기",
-    members: ["전재윤", "김시아", "김태형", "이기준", "고남신", "수지후"],
-    school: "홍익대학교 소속",
-    image: logo_performer,
-    information: "설명2",
-    status: "공연 완료",
-    number: "010-0000-0000",
-  },
-  {
-    date: "2023-09-12",
-    title: "BUZZY",
-    members: ["전재윤", "김시아", "김태형", "이기준", "고남신", "수지후"],
-    school: "홍익대학교 소속",
-    image: logo_performer,
-    information: "설명3",
-    status: "대관 완료",
-    number: "010-0000-0000",
-  },
-];
-
 const ex_venues = [
   {
     id: "18508080132",
