@@ -141,7 +141,7 @@
 
   position: absolute;
   left: 0px;
-  top: 23px;
+  top: 0px;
 
   color: #0f0f0f;
 
@@ -162,7 +162,7 @@
 
   position: absolute;
   left: 0px;
-  top: 90.18px;
+  top: 80.18px;
 
   font-family: "Pretendard";
   font-style: normal;
@@ -221,7 +221,7 @@
 
   position: absolute;
   left: 370px;
-  top: 90.18px;
+  top: 80.18px;
 
   font-family: "Pretendard";
   font-style: normal;
@@ -463,6 +463,21 @@
   color: #09f1b9;
 }
 
+.venue_button_-2 {
+  width: 229px;
+  height: 42px;
+  left: 290px;
+}
+
+.venue_button .past_last_button {
+  /* Frame 521 */
+
+  width: 136px;
+  height: 42px;
+
+  background: #e8e8e8;
+}
+
 .venue_div .Line41_1 {
   /* Line 41 */
 
@@ -470,7 +485,7 @@
   height: 0px;
 
   position: absolute;
-  top: 83px;
+  top: 60px;
   left: 0px;
 
   border: 2.43713px solid #dee1e6;
