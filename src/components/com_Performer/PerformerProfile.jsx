@@ -38,8 +38,8 @@ const PerformerProfile = ({ profile, className }) => {
   const updatePerformer = async () => {
     try {
       const data = {
-        team: title,
-        name: school,
+        name: title,
+        team: school,
         introduction: information,
         phoneNumber: number,
       };
@@ -77,10 +77,10 @@ const PerformerProfile = ({ profile, className }) => {
             <div>No Image Available</div> // 이미지가 없을 때를 대비한 처리
           )}
         </div>
-        <h3>{profile.team}</h3>
+        <h3>{profile.name}</h3>
 
         <img src={map_pin} alt="" className="school_img" />
-        <p className="school_p">{profile.name}</p>
+        <p className="school_p">{profile.team}</p>
 
         <img src={call} alt="" className="number_img" />
         <p className="number_p">{profile.phoneNumber}</p>

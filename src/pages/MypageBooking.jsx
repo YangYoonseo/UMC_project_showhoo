@@ -1,21 +1,61 @@
 import "../styles/yoonseo/MypageBooking.css";
 
-import { useContext, useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { PamphletContext } from "../App";
+
+import axios from "axios";
 
 import Frame339 from "../assets/img_Performer/Frame339.png";
 
 import Navbar_Booking from "../components/common/Navbar_Booking";
 import BookingProfile from "../components/com_Booking/BookingProfile";
-import { FaLessThan } from "react-icons/fa6";
 import SwitchRoles from "../components/common/SwitchRoles";
 
 const MypageBooking = () => {
+  const fullName = sessionStorage.getItem("name");
+  const name = fullName.substring(1);
   const nav = useNavigate();
-  const { pamphlets } = useContext(PamphletContext);
+
   const [cancel, setCancel] = useState(false);
   const [popup, setPopup] = useState(false);
+  const [nextShow, setNextShow] = useState({});
+
+  useEffect(() => {
+    const MypageView = async () => {
+      const token = sessionStorage.getItem("accessToken");
+      try {
+        const response = await axios.get(
+          `http://ec2-3-34-248-63.ap-northeast-2.compute.amazonaws.com:8081/book/1/next`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+        console.log("마이프로필", response.data.result);
+
+        const nextResult = response.data.result;
+
+        // 임시용 데이터
+        setNextShow({
+          bookId: nextResult.bookId || "",
+          showsId: nextResult.showsId || "",
+          poster: nextResult.poster || "포스터 없음",
+          name: nextResult.name || "이름 없음",
+          date: nextResult.date || "날짜 없음",
+          time: nextResult.time || "시간 없음",
+          place: nextResult.place || "장소 없음",
+          performer: nextResult.perforemr || "공연자 없음",
+          status: nextResult.status || "상태 없음",
+          detail: nextResult.detail || "디테일 없음",
+          isCancellable: nextResult.isCancellable || "취소 여부 없음",
+        });
+      } catch (error) {
+        console.error("프로필 정보를 불러오는데 실패했습니다:", error);
+      }
+    };
+    MypageView();
+  }, []);
 
   return (
     <div className="MypageBooking">
@@ -23,13 +63,13 @@ const MypageBooking = () => {
       <div className="MypageBooking_content">
         <h3 className="mypage_h3">마이페이지</h3>
         <img src={Frame339} alt="" className="profile_img" />
-        <p className="name">홍길동</p>
+        <p className="name">{fullName}</p>
         <p className="next">
-          길동님의<span>&nbsp;다음&nbsp;</span>공연이에요
+          {name}님의<span>&nbsp;다음&nbsp;</span>공연이에요
         </p>
         <BookingProfile
-          key={pamphlets[0].id} // key로 index 대신 pamphlet.id를 사용하는 것이 좋습니다
-          pamphlet={pamphlets[0]}
+          key={nextShow.bookId} // key로 index 대신 pamphlet.id를 사용하는 것이 좋습니다
+          pamphlet={nextShow}
           className={"pamphlet pamphlet_next"}
         />
 

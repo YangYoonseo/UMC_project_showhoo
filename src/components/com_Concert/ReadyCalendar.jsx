@@ -88,6 +88,8 @@ const ReadyCalendar = () => {
           className={"PerformerCalendar PerformerCalendar_calendar"}
         />
       )}
+
+      {/* profiles를 import하는게 아니라 api 연결 후 state 를 배포해야 함 추후 수정 필요 */}
     </div>
   );
 };
