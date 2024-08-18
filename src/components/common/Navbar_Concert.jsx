@@ -1,25 +1,42 @@
 import "./Navbar_Concert.css";
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import logo_concert from "../../assets/images/logo_concert.svg";
 import logo_mypage from "../../assets/images/logo_mypage.svg";
 
 import SwitchRoles from "./SwitchRoles";
+import AlarmNumber from "../../api/AlarmNumber";
 
 const Navbar_Concert = () => {
   const [popup, setPopup] = useState(false);
+  const [numberOfAlarm, setNumberOfAlarm] = useState();
   const nav = useNavigate();
+
+  useEffect(() => {
+    const fetchAlarmNumber = async () => {
+      const data = await AlarmNumber("SPACEUSER");
+      if (data) {
+        setNumberOfAlarm(data.result);
+      }
+    };
+    fetchAlarmNumber();
+  }, []);
 
   return (
     <div className="Container113">
       <div className="Frame128 concert_img">
         <img src={logo_concert} alt="" />
         <div className="Frame127 concert_navbar">
-          <button className="Button47"
-            onClick={() => {nav("/home_concert")}}
-          >홈</button>
-          <button 
+          <button
+            className="Button47"
+            onClick={() => {
+              nav("/home_concert");
+            }}
+          >
+            홈
+          </button>
+          <button
             className="concert_register"
             onClick={() => {
               nav("/venue_register");
@@ -47,12 +64,16 @@ const Navbar_Concert = () => {
           역할 전환
         </button>
         <img
+          className="mypageImg"
           src={logo_mypage}
           alt=""
           onClick={() => {
             nav("/mypage_concert");
           }}
         />
+        <h6 className={numberOfAlarm === 0 ? "no_alarm" : "number_of_alarm"}>
+          {numberOfAlarm}
+        </h6>
       </div>
       {popup && (
         <SwitchRoles

@@ -134,11 +134,13 @@
 .SwitchRoles .performer button {
   top: 445.34px;
   left: 129.92px;
+  cursor: pointer;
 }
 
 .SwitchRoles .booking button {
   top: 445.34px;
   left: 403.07px;
+  cursor: pointer;
 }
 
 .SwitchRoles .concert button {
@@ -146,4 +148,5 @@
 
   left: 674.66px;
   top: 445.34px;
+  cursor: pointer;
 }

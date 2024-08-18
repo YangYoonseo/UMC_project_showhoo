@@ -40,3 +40,20 @@
 
   color: #0f0f0f;
 }
+
+.LikeBooking_content .LikeBooking_map {
+  /* Frame 705 */
+
+  /* Auto layout */
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 0px;
+  gap: 30px;
+
+  position: absolute;
+  width: 696.22px;
+  height: 366.38px;
+  left: 246px;
+  top: 203px;
+}

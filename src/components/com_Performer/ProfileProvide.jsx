@@ -17,11 +17,9 @@ const ProfileProvide = () => {
   return (
     <div className="ProfileProvide">
       <h4>공연장에게 프로필 제공하기</h4>
+
       {profiles.map((profile, index) => (
-        <div
-          key={index} // 여기에 key prop을 추가
-          onClick={() => handleProfile(index)}
-        >
+        <div key={index} onClick={() => handleProfile(index)}>
           <PerformerProfile
             profile={profile}
             className={`profile-card profile-detail profile-detail${

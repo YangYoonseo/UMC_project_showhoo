@@ -106,14 +106,45 @@
 }
 
 .Button47 {
+  cursor: pointer;
   width: 34px;
 }
 
 .Button48 {
   width: 109px;
+  cursor: pointer;
 }
 
 .Button49,
 .Button50 {
   width: 87px;
+  cursor: pointer;
+}
+
+.number_of_alarm {
+  /* Group 68 */
+
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  left: 140px;
+  top: -35px;
+  background: #09f1b9;
+
+  font-family: "Pretendard";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12.5px;
+  line-height: 20px;
+  /* or 300% */
+
+  text-align: center;
+
+  color: #0f0f0f;
+  border: none;
+  border-radius: 100%;
+}
+
+.no_alarm {
+  display: none;
 }
