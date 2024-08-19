@@ -19,7 +19,7 @@ const SpaceLike = async (spaceId, performerId) => {
                 "Content-Type": "application/json",
                 /* 타입 이거 왜 넣는거임? */
             },
-            }
+        }
             /* Headers: 요청의 헤더에 Authorization: Bearer ${token}을 추가하여
             인증 정보를 함께 보냅니다. */
         );
