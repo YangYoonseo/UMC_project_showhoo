@@ -20,6 +20,8 @@
         color: #9C9C9C;
         font-weight: 400;
     }
+
+    cursor: pointer;
 }
 
 .RoundButton.clicked {
