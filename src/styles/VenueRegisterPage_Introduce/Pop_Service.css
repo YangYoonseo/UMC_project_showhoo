@@ -14,7 +14,7 @@
   
 .modal-container4 {
     width: 698px;
-    height: 1350px;
+    height: 1550px !important;
     background: white;
     border-radius: 25px;
     display: flex;

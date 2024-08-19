@@ -307,10 +307,10 @@ border-radius: 25px;
 }
 
 .booking-form .price-unit {
-position: absolute;
+position: relative;
 width: 38px;
 height: 23px;
-left: 192px;
+left: 50px;
 top: 41px;
 
 font-family: 'Pretendard';
@@ -526,6 +526,70 @@ color: #0F0F0F;
 
 }
 
+.booking-form .additional-info-row3 {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 0px;
+  gap: 100px;
+  
+  position: absolute;
+  width: 262px;
+  height: 28px;
+  left: 41px;
+  top: 410px; 
+}
+
+.booking-form .additional-info-row3 .feetext {
+
+  width: 79px;
+  height: 28px;
+  
+  font-family: 'Pretendard';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 17px;
+  line-height: 30px;
+  /* or 176% */
+  display: flex;
+  align-items: center;
+  
+  color: #4F4F4F;
+  
+  
+  /* Inside auto layout */
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+  
+}
+
+.booking-form .additional-info-row3 .additional-fee{
+
+  width: 116px;
+  height: 28px;
+  
+  font-family: 'Pretendard';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 17px;
+  line-height: 30px;
+  /* or 176% */
+  display: flex;
+  align-items: center;
+  text-align: right;
+  
+  color: #4F4F4F;
+  
+  
+  /* Inside auto layout */
+  flex: none;
+  order: 1;
+  flex-grow: 0;
+  
+
+}
+
 .booking-form .additional-info-row2 {
 
   /* Auto layout */
@@ -535,11 +599,11 @@ color: #0F0F0F;
   padding: 0px;
   gap: 100px;
   
-  position: absolute;
+  position: relative;
   width: 265px;
   height: 28px;
   left: 40px;
-  top: 428px;
+  top: 370px;
 }
 
 
@@ -589,11 +653,13 @@ flex-grow: 0;
 }
 
 .divider-line {
-  position: absolute;
+  position: relative;
+  left:0px;
+  top:360px;
+
   width: 265px;
   height: 0px;
-  left: 38px;
-  top: 405px;
+
   border: 1.5px solid #E8E8E8;
 }
 

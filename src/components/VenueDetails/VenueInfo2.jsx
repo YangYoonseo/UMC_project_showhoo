@@ -1,3 +1,4 @@
+//VenuInfo2.jsx
 import React, { useState } from 'react';
 import './VenueDetails.css';
 import linkimage from "../../assets/images/venuedetailpage/lucide_link.png";
