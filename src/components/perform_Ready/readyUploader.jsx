@@ -36,7 +36,7 @@ const ReadyUploader = ({ onClose, uploadSuc, uploadFail, uploadName }) => {
         reader.readAsDataURL(selectedFile);
     };
 
-    const showId = 1;
+    const showId = 6;
 
     const uploadData = async () => {
         const token = sessionStorage.getItem("accessToken");
@@ -54,6 +54,7 @@ const ReadyUploader = ({ onClose, uploadSuc, uploadFail, uploadName }) => {
                 formData,
                 {
                     headers: {
+                        "Content-Type": "multipart/form-data",
                         Authorization: `Bearer ${token}`,
                     },
                 }

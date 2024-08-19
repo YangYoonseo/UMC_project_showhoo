@@ -25,7 +25,7 @@ const ReadyQsheet = ({ nextStep, check }) => {
         addOrderForm: ''
     });
 
-    const showId = 1;
+    const showId = 6;
 
     async function getDownloadData() {
         const token = sessionStorage.getItem("accessToken");
@@ -49,6 +49,10 @@ const ReadyQsheet = ({ nextStep, check }) => {
     useEffect(() => {
         getDownloadData();
     }, []);
+
+    useEffect(() => {
+        console.log(urls)
+    }, [urls]);
 
     const onCheck = (id) => {
         setQsheet(prevState => {

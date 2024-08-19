@@ -1,11 +1,12 @@
 import "../../styles/Eojin/readyQsheet.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Button from "../common/Button";
 import ReadySubmit from "./readySubmit";
 import ReadyDownload from "./readyDownload";
 import setList from "../../assets/img_Ready/setList.svg";
 import rentalTime from "../../assets/img_Ready/rentalTime.svg";
 import plus from "../../assets/img_Ready/plus.svg";
+import axios from "axios";
 
 const ReadyQsheet = ({ nextStep, check }) => {
     const [ qsheet, setQsheet ] = useState ([
@@ -15,6 +16,12 @@ const ReadyQsheet = ({ nextStep, check }) => {
             plus: false,
         }
     ]);
+
+    const [urls, setUrls] = useState({
+        setList: '',
+        rentalTime: '',
+        addOrder: ''
+    });
 
     const onCheck = (id) => {
         setQsheet(prevState => {
@@ -48,6 +55,35 @@ const ReadyQsheet = ({ nextStep, check }) => {
         }
     };
 
+    const showId = 6;
+
+    async function getDownloadData() {
+        const token = sessionStorage.getItem("accessToken");
+        try {
+            const res = await axios.get(
+                `http://ec2-3-34-248-63.ap-northeast-2.compute.amazonaws.com:8081/space/${showId}/prepare`,
+                {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    },           
+                }
+            );
+            const { setList, rentalTime, addOrder } = res.data.result;
+            setUrls({ setList, rentalTime, addOrder });
+            console.log("다운로드 양식 보기", res.data);
+        } catch (error) {
+            console.log("Error:", error);
+        }
+    };
+
+    useEffect(() => {
+        getDownloadData();
+    }, []);
+
+    useEffect(() => {
+        console.log(urls)
+    }, [urls]);
+
     return (
         <div className="ReadyQsheet">
             <div className="Qsheet_submit">
@@ -63,9 +99,9 @@ const ReadyQsheet = ({ nextStep, check }) => {
                 <h4>다운받기</h4>
                 <p>공연자가 제출한 서류들입니다. 클릭하여 다운받아주세요.</p>
                 <div className="download_container">
-                    <ReadyDownload text={"공연 셋리스트 양식"} id={"setList"} img={setList} />
-                    <ReadyDownload text={"대관 시간 양식"} id={"rentalTime"} img={rentalTime} />
-                    <ReadyDownload text={"추가 주문 양식"} id={"plus"} img={plus} />
+                    <ReadyDownload text={"공연 셋리스트 양식"} id={"setList"} img={setList} url={urls.setList} />
+                    <ReadyDownload text={"대관 시간 양식"} id={"rentalTime"} img={rentalTime} url={urls.rentalTime} />
+                    <ReadyDownload text={"추가 주문 양식"} id={"plus"} img={plus} url={urls.addOrder} />
                 </div>
             </div>
             <div className="Qsheet_button">
