@@ -1,9 +1,9 @@
 import "../../styles/Eojin/readyUploader.css";
 import Button from "../common/Button";
 import React, { useState } from 'react';
-/// import axios from 'axios';
+import axios from 'axios';
 
-const ReadyUploader = ({ onClose, uploadSuc, uploadFail }) => {
+const ReadyUploader = ({ onClose, uploadSuc, uploadFail, uploadName }) => {
     const [selectedFile, setSelectedFile] = useState(null);
     const [fileName, setFileName] = useState('선택된 파일 없음');
 
@@ -25,6 +25,7 @@ const ReadyUploader = ({ onClose, uploadSuc, uploadFail }) => {
         reader.onload = (e) => {
             // 파일이 성공적으로 로드되었을 때 처리
             console.log('File read successfully:', e.target.result);
+            uploadData();
             uploadSuc();
             onClose();
         };
@@ -34,6 +35,36 @@ const ReadyUploader = ({ onClose, uploadSuc, uploadFail }) => {
         };
         reader.readAsDataURL(selectedFile);
     };
+
+    const showId = 1;
+
+    const uploadData = async () => {
+        const token = sessionStorage.getItem("accessToken");
+
+        try {
+            const formData = new FormData();
+            formData.append('file', selectedFile);  // 'file'은 서버에서 받을 파일의 key입니다.
+            formData.append('fileName', fileName);  // 파일 이름도 함께 전송
+    
+            // 부모 컴포넌트에서 받아온 uploadName을 동적으로 키로 사용
+            formData.append(uploadName, formData);
+    
+            const res = await axios.post(
+                `http://ec2-3-34-248-63.ap-northeast-2.compute.amazonaws.com:8081/performer/${showId}/prepare`,
+                formData,
+                {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    },
+                }
+            );
+            console.log("업로드 성공:", res.data);
+        } catch (error) {
+            console.error("업로드 실패:", error);
+        }
+    };
+    
+
 
   return (
     <div className="backdrop">
