@@ -2,8 +2,6 @@ import "../styles/yoonseo/Mypage.css";
 
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { IdContext } from "../App";
-import { useContext } from "react";
 
 import axios from "axios";
 
@@ -13,21 +11,18 @@ import PerformerCancel from "../components/popup_Performer/PerformerCancel";
 import SwitchRoles from "../components/common/SwitchRoles";
 
 const Mypage = () => {
-  const nav = useNavigate();
-  const id = useContext(IdContext);
-  console.log("아이디!!", id);
-
+  const id = sessionStorage.getItem("performerId");
   const [cancel, setCancel] = useState(false);
   const [popup, setPopup] = useState(false);
   const [myprofile, setMyprofile] = useState();
   const [latestProfile, setLatestProfile] = useState({});
 
   useEffect(() => {
-    const MypageView = async () => {
+    const MypageView = async (id) => {
       const token = sessionStorage.getItem("accessToken");
       try {
         const response = await axios.get(
-          `http://ec2-3-34-248-63.ap-northeast-2.compute.amazonaws.com:8081/performer/mypage/1`,
+          `http://ec2-3-34-248-63.ap-northeast-2.compute.amazonaws.com:8081/performer/mypage/${id}`,
           {
             headers: {
               Authorization: `Bearer ${token}`,
@@ -67,7 +62,7 @@ const Mypage = () => {
         console.error("최근 프로필 정보를 불러오는데 실패했습니다:", error);
       }
     };
-    MypageView();
+    MypageView(id);
   }, []);
 
   if (!myprofile) {
