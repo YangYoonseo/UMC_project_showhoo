@@ -1,0 +1,132 @@
+.DateSearchCalender .react-calendar {
+    /* 달력 전체 컨테이너 */
+    box-sizing: border-box;
+    position: absolute;
+    width: 440px;
+    height: 440px;
+    background: #ffe9e9;
+    border: 1px solid #b5b5b5;
+    border-radius: 25px;
+}
+
+.DateSearchCalender .react-calendar__navigation {
+    /* 달력 네비게이션(이전/다음 월 이동 및 현재 월 표시) */
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 0px;
+    margin: 0;
+    position: absolute;
+}
+
+.DateSearchCalender .react-calendar__navigation__label__labelText {
+    /* 네비게이션에서 현재 월 표시 텍스트 */
+    font-family: "Pretendard";
+    font-style: normal;
+    font-weight: 500;
+    font-size: 23px;
+    line-height: 38px;
+    color: #0f0f0f;
+}
+
+.DateSearchCalender .react-calendar__navigation__arrow {
+    /* 네비게이션 화살표 (이전/다음 달 이동) */
+    padding: 0;
+    font-size: 50px;
+}
+
+.DateSearchCalender .react-calendar__viewContainer {
+    /* 달력 뷰 컨테이너 (날짜와 요일 표시 부분) */
+    position: absolute;
+    width: 440px;
+    height: 440px;
+    left: 0px;
+    top: 146px;
+    font-size: 16px;
+}
+
+.DateSearchCalender .react-calendar__month-view__weekdays {
+    /* 요일 헤더 (일월화수목금토) */
+    position: absolute;
+    width: 440px;
+    height: 440px;
+    left: 0px;
+    top: 0px;
+    font-size: 18px;
+    border-bottom: 1.19px solid #b5b5b5;
+}
+
+.react-calendar__month-view__weekdays abbr {
+    /* 요일 헤더에서 축약형 텍스트 (일, 월 등) */
+    text-decoration: none;
+}
+
+.DateSearchCalender .react-calendar__month-view__days {
+    /* 날짜 타일들이 위치하는 컨테이너 */
+    position: absolute;
+    left: 0px;
+    top: 50px;
+}
+
+.DateSearchCalender .react-calendar__tile {
+    /* 각 날짜 타일 */
+    justify-content: center;
+    position: relative;
+    height: 40px;
+    /* 날짜 타일의 높이 */
+    width: 10px;
+    /* 날짜 타일의 너비 */
+    padding: 0;
+}
+
+.DateSearchCalender .react-calendar__month-view__days__day {
+    /* 각 날짜의 텍스트 스타일 */
+    padding-top: 0px;
+    padding-bottom: 0px;
+    font-size: 19px;
+}
+
+.DateSearchCalender .react-calendar__tile--now {
+    /* 오늘 날짜 타일의 스타일 */
+    background: none;
+    color: #000;
+}
+
+.DateSearchCalender .react-calendar__tile--active {
+    /* 선택된 날짜 타일의 스타일 */
+    position: relative;
+    background-color: white !important;
+}
+
+.DateSearchCalender .react-calendar__tile--active::before {
+    /* 선택된 날짜 타일의 전경 원형 강조 표시 */
+    content: "";
+    position: absolute;
+    top: 30%;
+    /* 타일 상단 근처에 위치 */
+    left: 50%;
+    transform: translate(-50%, -20%);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: black;
+    z-index: 2;
+}
+
+.DateSearchCalender .PerformerCalendar_calendar {
+    /* PerformerCalendar 컴포넌트의 스타일 */
+    position: absolute;
+    width: 879px;
+    height: 282px;
+    left: calc(50% - 879px / 2 - 0.5px);
+    top: 1173px;
+    background: #fa9292;
+    border: 1px solid #e8e8e8;
+    border-radius: 25px;
+}
+
+.DateSearchCalender .PerformerCalendar_calendar:hover {
+    /* PerformerCalendar 컴포넌트의 hover 상태 스타일 */
+    border: 2px solid #07c093;
+}
