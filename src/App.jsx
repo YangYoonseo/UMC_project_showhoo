@@ -1,3 +1,4 @@
+//App.jsx
 import "./App.css";
 
 import { Routes, Route } from "react-router-dom";
@@ -197,16 +198,8 @@ function App() {
                 <Route path="/mypage" element={<Mypage />} />
                 <Route path="/rental_details" element={<RentalDetails />} />
                 <Route path="/rental_history" element={<RentalHistory />} />
-                <Route
-                  path="/venue_detail"
-                  element={<VenueDetailPage data={{ spaceId: 1 }} />}
-                />{" "}
-                {/* 공연자 플로우 */}
-                <Route
-                  path="/venue_register"
-                  element={<VenueRegisterPage />}
-                />{" "}
-                {/* 공연장 플로우 */}
+                <Route path="/venue_detail" element={<VenueDetailPage />}/>
+                <Route path="/venue_register" element={<VenueRegisterPage />}/>
                 <Route path="/login" element={<LoginPage />} />
                 <Route path="alarm" element={<Alarm />} />
                 <Route path="/my_activity" element={<MyActivity />} />
