@@ -6,7 +6,7 @@ import ex_map from '../../assets/images/venueregisterpage_introduce/ex_map.svg';
 
 const VenueIntroduction = () => {
   const [descriptionData, setDescriptionData] = useState(null);
-  const spaceId = 1; // Use the actual spaceId as needed
+  const spaceId = 2; // Use the actual spaceId as needed
   const yourAccessToken = sessionStorage.getItem("accessToken");
 
   useEffect(() => {

@@ -10,7 +10,7 @@ const CalenderComponent = () => {
     const [scheduleData, setScheduleData] = useState([]);
     const [holidayData, setHolidayData] = useState([]);
     const [date, setDate] = useState(new Date());
-    const spaceId = 1; // 실제 spaceId로 교체 가능
+    const spaceId = 2; // 실제 spaceId로 교체 가능
 
     useEffect(() => {
         fetchScheduleData();

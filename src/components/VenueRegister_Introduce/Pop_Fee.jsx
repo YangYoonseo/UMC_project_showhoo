@@ -14,6 +14,7 @@ const Pop_Fee = ({ isOpen, onClose, onConfirm, initialDescription, initialOffSea
   const [messageType, setMessageType] = useState('');
   const [isButtonDisabled, setIsButtonDisabled] = useState(true);
 
+  //'MONDAY', 'TUESDAY', 'WEDNESDAY', 'THURSDAY', 'FRIDAY', 'SATURDAY', 'SUNDAY'
 
   useEffect(() => {
     const allOffDaysFilled = ['월', '화', '수', '목', '금', '토', '일'].every(day => offSeasonSaved[day]);
