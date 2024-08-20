@@ -36,10 +36,10 @@ const Pop_Category = ({ isOpen, onClose, onConfirm }) => {
             </div>
           ))}
         </div>
-        <div className="modal-buttons-category">
-          <button className="cancel-button" onClick={onClose}>뒤로 가기</button>
+        <div className="modal-buttons-category33">
+          <button className="cancel-button333" onClick={onClose}>뒤로 가기</button>
           <button 
-            className="confirm-button" 
+            className="confirm-button333" 
             onClick={handleConfirm} 
             disabled={!selectedCategory} // 선택된 유형이 없으면 버튼 비활성화
           >
