@@ -35,7 +35,6 @@ import MypageBooking from "./pages/MypageBooking.jsx";
 import MypageConcert from "./pages/MypageConcert.jsx";
 import LikeBooking from "./pages/LikeBooking.jsx";
 import Login from "./Login.jsx";
-import Mockdata from "./components/booking/mockdata.jsx";
 
 const token = sessionStorage.getItem("accessToken");
 

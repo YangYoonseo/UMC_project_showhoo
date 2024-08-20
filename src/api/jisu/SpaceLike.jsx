@@ -1,5 +1,7 @@
 import axios from "axios";
 
+/* 공연장 찜 등록 API */
+
 const SpaceLike = async (spaceId, performerId) => {
     /* 엑세스 토큰 가져오기 */
     const token = sessionStorage.getItem("accessToken");
@@ -24,7 +26,7 @@ const SpaceLike = async (spaceId, performerId) => {
             인증 정보를 함께 보냅니다. */
         );
     /* 디버깅 */
-    console.log("공연장 찜 등록", response.data.result);
+    console.log("공연장", spaceId, "찜 등록", response.data.result);
     return response.data;
 } catch (error) {
     console.error("공연장 찜 등록에 실패했습니다:", error);

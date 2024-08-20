@@ -1,5 +1,7 @@
 import axios from "axios";
 
+/* 공연장 찜 유무 조회 API */
+
 const CheckSpaceLike = async (spaceId, performerId) => {
     const token = sessionStorage.getItem("accessToken");
 
@@ -13,7 +15,7 @@ const CheckSpaceLike = async (spaceId, performerId) => {
         }
         );
     /* 디버깅 */
-    console.log("공연장 찜 조회", response.data.result);
+    console.log("[시작 렌더링]", spaceId, "번 공연장 찜 조회", response.data.result);
     return response.data;
 } catch (error) {
     console.error("공연장 찜 조회에 실패했습니다:", error);
