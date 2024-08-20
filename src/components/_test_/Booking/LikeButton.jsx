@@ -18,8 +18,7 @@ function LikeButton({ spaceId, performerId }) {
                 if (response && response.result) {
                     setLiked(true); // 서버에서 받아온 찜 상태로 설정
                     setSpacePreferId(response.result.spacePreferId); // 서버에서 받아온 찜 ID 저장
-                    console.log(response.result);
-                    console.log(response.result.spacePreferId);
+                    // console.log( "spacePreferId: ",response.result.spacePreferId);
                 }
             } catch (error) {
                 console.error("초기 찜 상태 조회 실패:", error);
