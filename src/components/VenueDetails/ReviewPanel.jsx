@@ -12,8 +12,8 @@ const ReviewPanel = ({ reviews, setReviews, fetchReviews, profileImage, name, co
     const [newGrade, setNewGrade] = useState(0);
     const [selectedStars, setSelectedStars] = useState(0);
     const [showPopup, setShowPopup] = useState(false);
-    const spaceId = 1;
-    const performerId = 1; // 실제 performerId로 교체 필요
+    const spaceId = 2;
+    const performerId = 3; // 실제 performerId로 교체 필요
     const yourAccessToken = sessionStorage.getItem("accessToken");
 
     // 이미지 미리보기를 위해 URL.createObjectURL(file)을 사용하면서도, 서버에 업로드될 때는 실제 File 객체를 사용

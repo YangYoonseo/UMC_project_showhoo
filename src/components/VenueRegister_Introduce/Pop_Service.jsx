@@ -24,7 +24,7 @@ const Pop_Service = ({ isOpen, onClose, onConfirm, initialDescription, initialOp
   // 공백인 것만 콘솔에 출력!!!
   const handleConfirm = () => {
     const filteredServices = services.filter(service => service.name.trim() !== '' || service.price.trim() !== '');
-    // console.log("추가 서비스 옵션:", filteredServices);
+    console.log("추가 서비스 옵션:", filteredServices);
     onConfirm(description, filteredServices); // 텍스트 필드와 옵션 필드(공백은 걸러진!)
   };
 

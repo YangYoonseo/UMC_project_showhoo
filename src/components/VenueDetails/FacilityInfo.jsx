@@ -18,7 +18,7 @@ import seating_chart_hovered from '../../assets/images/venuedetailpage/seating_c
 const FacilityInfo = ({ name }) => {
   const [hovered, setHovered] = useState('');
   const [facilityData, setFacilityData] = useState({});
-  const spaceId = 1;
+  const spaceId = 3;
   const yourAccessToken = sessionStorage.getItem("accessToken");
 
   useEffect(() => {

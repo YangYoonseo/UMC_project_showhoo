@@ -19,7 +19,7 @@ const renderTextWithLineBreaks = (text) => {
   const Notice = () => {
     const [noticeData, setNoticeData] = useState(null);
     const [isLoading, setIsLoading] = useState(true);
-    const spaceId = 1; //실제 id로 교체 필요
+    const spaceId = 2; //실제 id로 교체 필요
     const yourAccessToken = sessionStorage.getItem("accessToken");
   
     useEffect(() => {

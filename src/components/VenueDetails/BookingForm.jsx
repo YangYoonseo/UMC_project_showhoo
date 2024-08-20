@@ -33,7 +33,7 @@ const BookingForm = () => {
   const [totalPrice, setTotalPrice] = useState(0);
   const [additionalServices1, setAdditionalServices1] = useState([]); 
   const navigate = useNavigate();
-  const spaceId = 1; // 실제 spaceId 값으로 교체 필요
+  const spaceId = 2; // 실제 spaceId 값으로 교체 필요
   const performerId = 1; // 실제 performerId 값으로 교체 필요
 
   useEffect(() => {

@@ -8,7 +8,7 @@ import default_profile_image from "../../assets/images/venuedetailpage/default_p
 const Reviews = () => {
   const [reviews, setReviews] = useState([]);
   const [averageScore, setAverageScore] = useState(0);
-  const spaceId = 1; // Replace with the actual spaceId
+  const spaceId = 2; // Replace with the actual spaceId
   const yourAccessToken = sessionStorage.getItem("accessToken");
 
   const fetchReviews = async () => {

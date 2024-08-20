@@ -57,7 +57,7 @@ const VenueDetailPage = () => {
   const [isPopupOpen, setIsPopupOpen] = useState(false); // 팝업 상태 관리
   const [venueData, setVenueData] = useState(null);
   const [images, setImages] = useState([]);
-  const spaceId = 1; // 실제 spaceId 값으로 교체 필요
+  const spaceId = 2; // 실제 spaceId 값으로 교체 필요
   const yourAccessToken = sessionStorage.getItem("accessToken");
 
 
