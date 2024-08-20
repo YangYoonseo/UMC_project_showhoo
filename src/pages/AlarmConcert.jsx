@@ -10,13 +10,14 @@ import AlarmDelete from "../api/AlarmDelete";
 
 const AlarmConcert = () => {
   const [alarmResult, setAlarmResult] = useState([]);
+  const spaceUserId = sessionStorage.getItem("spaceUserId");
 
   useEffect(() => {
     const ConcertAlarmCheck = async () => {
       const token = sessionStorage.getItem("accessToken");
       try {
         const response = await axios.get(
-          "http://ec2-3-34-248-63.ap-northeast-2.compute.amazonaws.com:8081/notifications/SPACEUSER/1",
+          `http://ec2-3-34-248-63.ap-northeast-2.compute.amazonaws.com:8081/notifications/SPACEUSER/${spaceUserId}`,
           {
             headers: {
               Authorization: `Bearer ${token}`,

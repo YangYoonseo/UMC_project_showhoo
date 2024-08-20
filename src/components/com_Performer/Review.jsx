@@ -15,11 +15,12 @@ const Review = () => {
   const [deleteId, setDeleteId] = useState();
   const [reviews, setReviews] = useState([]);
   const token = sessionStorage.getItem("accessToken");
+  const performerId = sessionStorage.getItem("performerId");
 
   const myReview = async () => {
     try {
       const response = await axios.get(
-        "http://ec2-3-34-248-63.ap-northeast-2.compute.amazonaws.com:8081/review/performer/1",
+        `http://ec2-3-34-248-63.ap-northeast-2.compute.amazonaws.com:8081/review/performer/${performerId}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -27,7 +28,7 @@ const Review = () => {
         }
       );
       setReviews(response.data.result);
-      console.log("리뷰 보기", response.data);
+      console.log("리뷰 보기", response.data.result);
     } catch (error) {
       console.error("Error:", error);
     }
@@ -71,9 +72,14 @@ const Review = () => {
                   ))}
               </div>
             </div>
+            <p className="review_content">{review.content}</p>
+
+            {review.imageUrls && review.imageUrls[0] !== "string" && (
+              <img src={review.imageUrls} />
+            )}
 
             <div className="content_button">
-              <p className="review_content">{review.content}</p>
+              <p className="updatedAt">{review.updatedAt}</p>
               <button
                 onClick={() => {
                   setDeleteId(review.id);
@@ -83,16 +89,17 @@ const Review = () => {
                 삭제
               </button>
             </div>
-            <div className="answers">
-              {review.answers
-                ? review.answers.map((answer, id) => (
-                    <>
-                      <h3 key={id}>공연장 답글</h3>
-                      <p key={id}>{answer.content}</p>
-                    </>
-                  ))
-                : null}
-            </div>
+
+            {review.answers
+              ? review.answers.map((answer) => (
+                  <div className="answers" key={answer.id}>
+                    <h3>공연장 답글</h3>
+                    <p className="content">{answer.content}</p>
+                    <p className="updatedAt">{answer.updatedAt}</p>
+                  </div>
+                ))
+              : null}
+
             <img className="Line42" src={Line42} alt="" />
           </div>
         ))}

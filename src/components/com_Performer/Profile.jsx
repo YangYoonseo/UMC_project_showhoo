@@ -8,6 +8,9 @@ import Frame21 from "../../assets/img_Performer/Frame21.svg";
 import TrashIcon from "../../assets/img_Performer/TrashIcon.svg";
 
 const Profile = ({ profile = {} }) => {
+  const token = sessionStorage.getItem("accessToken");
+  const performerId = sessionStorage.getItem("performerId");
+
   const nav = useNavigate();
   const [title, setTitle] = useState(profile.team || "");
   const [school, setSchool] = useState(profile.name || "");
@@ -47,7 +50,6 @@ const Profile = ({ profile = {} }) => {
 
   // 이미지 삭제_API
   const deleteImage = async (imageUrl) => {
-    const token = sessionStorage.getItem("accessToken");
     try {
       await axios.delete(
         "http://ec2-3-34-248-63.ap-northeast-2.compute.amazonaws.com:8081/profile/profileImage",
@@ -68,7 +70,6 @@ const Profile = ({ profile = {} }) => {
 
   // 이미지 등록_API
   const uploadImage = async (imageFile) => {
-    const token = sessionStorage.getItem("accessToken");
     const formData = new FormData();
     formData.append("profileImages", imageFile);
 
@@ -93,7 +94,6 @@ const Profile = ({ profile = {} }) => {
 
   // 수정 시 이미지 등록
   const updateImage = async (imageFile) => {
-    const token = sessionStorage.getItem("accessToken");
     const profileId = profile.id; // 프로필 ID를 가져와야 합니다
 
     if (!profileId) {
@@ -105,7 +105,7 @@ const Profile = ({ profile = {} }) => {
 
     try {
       const response = await axios.post(
-        `http://ec2-3-34-248-63.ap-northeast-2.compute.amazonaws.com:8081/profile/1/${profileId}/profileImage`,
+        `http://ec2-3-34-248-63.ap-northeast-2.compute.amazonaws.com:8081/profile/${performerId}/${profileId}/profileImage`,
         formData,
         {
           headers: {
@@ -139,7 +139,6 @@ const Profile = ({ profile = {} }) => {
 
   // 제출_API
   const submitProfile = async () => {
-    const token = sessionStorage.getItem("accessToken");
     const profileId = profile.id;
 
     try {
@@ -176,8 +175,8 @@ const Profile = ({ profile = {} }) => {
 
       // 프로필 ID가 있는 경우 PUT 요청, 없는 경우 POST 요청
       const url = profileId
-        ? `http://ec2-3-34-248-63.ap-northeast-2.compute.amazonaws.com:8081/profile/1/${profileId}/text`
-        : "http://ec2-3-34-248-63.ap-northeast-2.compute.amazonaws.com:8081/profile/1";
+        ? `http://ec2-3-34-248-63.ap-northeast-2.compute.amazonaws.com:8081/profile/${performerId}/${profileId}/text`
+        : `http://ec2-3-34-248-63.ap-northeast-2.compute.amazonaws.com:8081/profile/${performerId}`;
 
       const method = profileId ? "put" : "post";
 

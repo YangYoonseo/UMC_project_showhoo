@@ -9,13 +9,15 @@ import axios from "axios";
 import BookingProfile from "./BookingProfile";
 
 const Check = () => {
-  const [booking, setBooking] = useState([]);
+  const audienceId = sessionStorage.getItem("audienceId");
+  // 일단 임시로 page 0
+  const page = 0;
+  const [booking, setBooking] = useState();
 
   useEffect(() => {
     const WatchedList = async (id) => {
       try {
         const token = sessionStorage.getItem("accessToken");
-
         const response = await axios.put(
           `http://ec2-3-34-248-63.ap-northeast-2.compute.amazonaws.com:8081/book/${id}/watched`,
           {
@@ -33,7 +35,7 @@ const Check = () => {
       try {
         const token = sessionStorage.getItem("accessToken");
         const response = await axios.get(
-          "http://ec2-3-34-248-63.ap-northeast-2.compute.amazonaws.com:8081/book/1/ticket?page=0",
+          `http://ec2-3-34-248-63.ap-northeast-2.compute.amazonaws.com:8081/book/${audienceId}/ticket?page=${page}`,
           {
             headers: {
               Authorization: `Bearer ${token}`,
@@ -69,13 +71,17 @@ const Check = () => {
       <img src={Rectangle19} alt="" className="greenbar" />
       <img src={Rectangle16} alt="" className="graybar" />
 
-      {booking.map((pamphlet, index) => (
-        <BookingProfile
-          key={pamphlet.bookId} // key로 index 대신 pamphlet.id를 사용하는 것이 좋습니다
-          pamphlet={pamphlet}
-          className={`pamphlet pamphlet-${index + 1}`}
-        />
-      ))}
+      {booking && Array.isArray(booking) ? (
+        booking.map((pamphlet, index) => (
+          <BookingProfile
+            key={pamphlet.bookId}
+            pamphlet={pamphlet}
+            className={`pamphlet pamphlet-${index + 1}`}
+          />
+        ))
+      ) : (
+        <div></div>
+      )}
     </div>
   );
 };

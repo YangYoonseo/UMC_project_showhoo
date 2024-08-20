@@ -128,7 +128,7 @@
   color: #07c093;
 }
 
-.Review .myReview .review-item .answers p {
+.Review .myReview .review-item .answers .content {
   /* 안녕하세요 길동님. 저희 001 클럽에서 만족스러운 시간 보내셨길 바랍니다. 이용해주셔서 감사합니다. */
 
   width: 535px;
@@ -150,4 +150,21 @@
   height: 0px;
 
   border: 1.5px solid #e8e8e8;
+}
+
+.Review .myReview .updatedAt {
+  /* 2024.08.23 14:43:60 */
+
+  width: 582px;
+  height: 20px;
+  left: 274px;
+  top: 373px;
+
+  font-family: "Pretendard";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 36px;
+
+  color: #9c9c9c;
 }

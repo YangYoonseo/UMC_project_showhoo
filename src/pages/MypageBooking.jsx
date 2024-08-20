@@ -10,7 +10,7 @@ import BookingProfile from "../components/com_Booking/BookingProfile";
 import SwitchRoles from "../components/common/SwitchRoles";
 
 const MypageBooking = () => {
-  const id = sessionStorage.getItem("audienceId");
+  const audienceId = sessionStorage.getItem("audienceId");
   const fullName = sessionStorage.getItem("name");
   const name = fullName.substring(1);
   const nav = useNavigate();
@@ -25,7 +25,7 @@ const MypageBooking = () => {
       const token = sessionStorage.getItem("accessToken");
       try {
         const response = await axios.get(
-          `http://ec2-3-34-248-63.ap-northeast-2.compute.amazonaws.com:8081/book/1/next`,
+          `http://ec2-3-34-248-63.ap-northeast-2.compute.amazonaws.com:8081/book/${audienceId}/next`,
           {
             headers: {
               Authorization: `Bearer ${token}`,

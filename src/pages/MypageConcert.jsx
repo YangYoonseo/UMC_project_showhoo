@@ -10,6 +10,7 @@ import PerformerCancel from "../components/popup_Performer/PerformerCancel";
 import SwitchRoles from "../components/common/SwitchRoles";
 
 const MypageConcert = () => {
+  const spaceUserId = sessionStorage.getItem("audienceId");
   const nav = useNavigate();
   const [cancel, setCancel] = useState(false);
   const [popup, setPopup] = useState(false);
@@ -20,7 +21,7 @@ const MypageConcert = () => {
       const token = sessionStorage.getItem("accessToken");
       try {
         const response = await axios.get(
-          `http://ec2-3-34-248-63.ap-northeast-2.compute.amazonaws.com:8081/space-user/mypage/1`,
+          `http://ec2-3-34-248-63.ap-northeast-2.compute.amazonaws.com:8081/space-user/mypage/${spaceUserId}`,
           {
             headers: {
               Authorization: `Bearer ${token}`,
