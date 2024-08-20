@@ -67,8 +67,9 @@ const VenueRegisterPage = () => {
   };
 
   // 이미지 업데이트 함수
-  const updateUploadedImages = (images) => {
-    setUploadedImages(images.slice(0, 5)); // 최대 5개 이미지로 제한
+  const updateUploadedImages = (imageUrls) => {
+    setUploadedImages(imageUrls);
+    console.log("이미지 URL 배열 전달 확인:", imageUrls); 
   };
 
   const onRegister = () => {
