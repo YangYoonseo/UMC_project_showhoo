@@ -1,14 +1,17 @@
 import "../../styles/Eojin/readyQsheet.css";
 import { useState, useEffect } from "react";
+import axios from "axios";
+
 import Button from "../common/Button";
 import ReadySubmit from "./readySubmit";
 import ReadyDownload from "./readyDownload";
+
 import setList from "../../assets/img_Ready/setList.svg";
 import rentalTime from "../../assets/img_Ready/rentalTime.svg";
 import plus from "../../assets/img_Ready/plus.svg";
-import axios from "axios";
 
 const ReadyQsheet = ({ nextStep, check }) => {
+    // 큐시트 form 업로드 확인 
     const [ qsheet, setQsheet ] = useState ([
         {
             setList: false,
@@ -16,13 +19,14 @@ const ReadyQsheet = ({ nextStep, check }) => {
             plus: false,
         }
     ]);
-
+    // 작성된 큐시트 url 
     const [urls, setUrls] = useState({
         setList: '',
         rentalTime: '',
         addOrder: ''
     });
 
+    // 큐시트 form 업로드 체크 
     const onCheck = (id) => {
         setQsheet(prevState => {
             // 이전 상태의 복사본을 만듭니다.
@@ -37,6 +41,7 @@ const ReadyQsheet = ({ nextStep, check }) => {
         });
     };
 
+    // 큐시트 업로드 전체 확인 
     const allValuesTrue = () => {
         // qsheet 배열의 첫 번째 객체를 가져옵니다.
         const sheet = qsheet[0];
@@ -55,6 +60,7 @@ const ReadyQsheet = ({ nextStep, check }) => {
         }
     };
 
+    // 작성된 큐시트 다운 받기 
     const showId = 6;
 
     async function getDownloadData() {
