@@ -37,9 +37,11 @@ import MypageConcert from "./pages/MypageConcert.jsx";
 import LikeBooking from "./pages/LikeBooking.jsx";
 import Login from "./Login.jsx";
 import Mockdata from "./components/booking/mockdata.jsx";
+import { ProfileIdProvider } from "./components/com_Performer/ProfileProvider.jsx";
 
 const token = sessionStorage.getItem("accessToken");
 const uid = sessionStorage.getItem("uid");
+const performerId = sessionStorage.getItem("performerId");
 
 const ex_venues = [
   {
@@ -131,14 +133,13 @@ function App() {
   const [venues, setVenues] = useState(ex_venues);
   const [profiles, dispatch] = useReducer(reducer, []);
   const [pamphlets, setPamphlets] = useState(ex_pamphlets);
-  const [id, setId] = useState();
 
   // API에서 프로필 데이터를 가져오는 함수
   useEffect(() => {
     const fetchProfiles = async () => {
       try {
         const response = await axios.get(
-          "http://ec2-3-34-248-63.ap-northeast-2.compute.amazonaws.com:8081/profile/1",
+          `http://ec2-3-34-248-63.ap-northeast-2.compute.amazonaws.com:8081/profile/${performerId}`,
           {
             headers: {
               Authorization: `Bearer ${token}`,
@@ -204,56 +205,61 @@ function App() {
 
   return (
     <>
-      <ProfileContext.Provider value={profiles}>
-        <VenueContext.Provider value={{ venues, setVenues }}>
-          <PamphletContext.Provider
-            value={{ pamphlets, setPamphlets, cancelPamphlet }}
-          >
-            <div className="App">
-              <Routes>
-                <Route path="/" element={<Home_Performer />} />
-                <Route path="/home_concert" element={<Home_Concert />} />
-                <Route path="/home_booking" element={<Home_Booking />} />
-                <Route path="/login/oauth2/code/kakao" element={<Login />} />
-                <Route
-                  path="/performer_registration"
-                  element={<PerformerRegistration />}
-                />
-                <Route path="/performer_update" element={<PerformerUpdate />} />
-                <Route path="/mypage_performer" element={<Mypage />} />
-                <Route path="/rental" element={<Rental />} />
-                <Route path="/rental_search" element={<RentalSearch />} />
-                <Route path="/mypage" element={<Mypage />} />
-                <Route path="/rental_details" element={<RentalDetails />} />
-                <Route path="/rental_history" element={<RentalHistory />} />
-                <Route
-                  path="/venue_detail"
-                  element={<VenueDetailPage data={{ spaceId: 1 }} />}
-                />{" "}
-                {/* 공연자 플로우 */}
-                <Route
-                  path="/venue_register"
-                  element={<VenueRegisterPage />}
-                />{" "}
-                {/* 공연장 플로우 */}
-                <Route path="/login" element={<LoginPage />} />
-                <Route path="alarm" element={<Alarm />} />
-                <Route path="/my_activity" element={<MyActivity />} />
-                <Route path="/concert_ready" element={<ConcertReady />} />
-                <Route path="/booking_history" element={<BookingHistroy />} />
-                <Route path="/performer_ready" element={<PerformerReady />} />
-                <Route path="/con_ready" element={<ConReady />} />
-                <Route path="/booking" element={<Booking />} />
-                <Route path="/mypage_concert" element={<MypageConcert />} />
-                <Route path="mypage_booking" element={<MypageBooking />} />
-                <Route path="/like_booking" element={<LikeBooking />} />
-                <Route path="/alarm_booking" element={<AlarmBooking />} />
-                <Route path="/alarm_concert" element={<AlarmConcert />} />
-              </Routes>
-            </div>
-          </PamphletContext.Provider>
-        </VenueContext.Provider>
-      </ProfileContext.Provider>
+      <ProfileIdProvider>
+        <ProfileContext.Provider value={profiles}>
+          <VenueContext.Provider value={{ venues, setVenues }}>
+            <PamphletContext.Provider
+              value={{ pamphlets, setPamphlets, cancelPamphlet }}
+            >
+              <div className="App">
+                <Routes>
+                  <Route path="/" element={<Home_Performer />} />
+                  <Route path="/home_concert" element={<Home_Concert />} />
+                  <Route path="/home_booking" element={<Home_Booking />} />
+                  <Route path="/login/oauth2/code/kakao" element={<Login />} />
+                  <Route
+                    path="/performer_registration"
+                    element={<PerformerRegistration />}
+                  />
+                  <Route
+                    path="/performer_update"
+                    element={<PerformerUpdate />}
+                  />
+                  <Route path="/mypage_performer" element={<Mypage />} />
+                  <Route path="/rental" element={<Rental />} />
+                  <Route path="/rental_search" element={<RentalSearch />} />
+                  <Route path="/mypage" element={<Mypage />} />
+                  <Route path="/rental_details" element={<RentalDetails />} />
+                  <Route path="/rental_history" element={<RentalHistory />} />
+                  <Route
+                    path="/venue_detail"
+                    element={<VenueDetailPage data={{ spaceId: 1 }} />}
+                  />{" "}
+                  {/* 공연자 플로우 */}
+                  <Route
+                    path="/venue_register"
+                    element={<VenueRegisterPage />}
+                  />{" "}
+                  {/* 공연장 플로우 */}
+                  <Route path="/login" element={<LoginPage />} />
+                  <Route path="alarm" element={<Alarm />} />
+                  <Route path="/my_activity" element={<MyActivity />} />
+                  <Route path="/concert_ready" element={<ConcertReady />} />
+                  <Route path="/booking_history" element={<BookingHistroy />} />
+                  <Route path="/performer_ready" element={<PerformerReady />} />
+                  <Route path="/con_ready" element={<ConReady />} />
+                  <Route path="/booking" element={<Booking />} />
+                  <Route path="/mypage_concert" element={<MypageConcert />} />
+                  <Route path="mypage_booking" element={<MypageBooking />} />
+                  <Route path="/like_booking" element={<LikeBooking />} />
+                  <Route path="/alarm_booking" element={<AlarmBooking />} />
+                  <Route path="/alarm_concert" element={<AlarmConcert />} />
+                </Routes>
+              </div>
+            </PamphletContext.Provider>
+          </VenueContext.Provider>
+        </ProfileContext.Provider>
+      </ProfileIdProvider>
     </>
   );
 }

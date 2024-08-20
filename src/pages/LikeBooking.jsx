@@ -9,13 +9,15 @@ import BookPrefer from "../components/com_Booking/BookPrefer";
 const LikeBooking = () => {
   const [prefer, setPrefer] = useState([]);
   const token = sessionStorage.getItem("accessToken");
+  const page = 0;
+  const audienceId = sessionStorage.getItem("audienceId");
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const getPrefer = async () => {
       try {
         const response = await axios.get(
-          "http://ec2-3-34-248-63.ap-northeast-2.compute.amazonaws.com:8081/shows-prefer/1?page=0",
+          `http://ec2-3-34-248-63.ap-northeast-2.compute.amazonaws.com:8081/shows-prefer/${audienceId}?page=${page}`,
           // 페이지 우선 0으로 고정. 추후 수정 예정
           {
             headers: {

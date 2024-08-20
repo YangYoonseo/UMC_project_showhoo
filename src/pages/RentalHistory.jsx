@@ -9,13 +9,14 @@ import Concerthall from "../components/com_Performer/Concerthall";
 
 const RentalHistory = () => {
   const [rental, setRental] = useState([]);
+  const performerId = sessionStorage.getItem("performerId");
 
   useEffect(() => {
     const SpaceRental = async () => {
       const token = sessionStorage.getItem("accessToken");
       try {
         const response = await axios.get(
-          "http://ec2-3-34-248-63.ap-northeast-2.compute.amazonaws.com:8081/spaces/spaceApply/1",
+          `http://ec2-3-34-248-63.ap-northeast-2.compute.amazonaws.com:8081/spaces/spaceApply/${performerId}`,
           {
             headers: {
               Authorization: `Bearer ${token}`,
@@ -50,17 +51,15 @@ const RentalHistory = () => {
       <Footer />
       <div className="RentalHistory_content">
         <h1>대관 내역</h1>
-        {rental.length > 0 ? (
-          rental.map((venue, index) => (
-            <Concerthall
-              key={index}
-              venue={venue}
-              className={`venue-card venue-${index + 1}`}
-            />
-          ))
-        ) : (
-          <p>대관 내역이 없습니다.</p>
-        )}
+        {rental.length > 0
+          ? rental.map((venue, index) => (
+              <Concerthall
+                key={index}
+                venue={venue}
+                className={`venue-card venue-${index + 1}`}
+              />
+            ))
+          : null}
       </div>
     </div>
   );

@@ -1,3 +1,12 @@
+.TwoButton_RentalApply {
+  height: 473px;
+}
+
 .TwoButton_RentalApply .content span {
   color: #f01569;
+}
+
+.TwoButton_RentalApply button:nth-of-type(1),
+.TwoButton_RentalApply button:nth-of-type(2) {
+  top: 364px;
 }

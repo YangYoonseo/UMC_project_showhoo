@@ -2,6 +2,7 @@ import axios from "axios";
 
 const AlarmDelete = async (id) => {
   const token = sessionStorage.getItem("accessToken");
+
   try {
     const response = await axios.delete(
       `http://ec2-3-34-248-63.ap-northeast-2.compute.amazonaws.com:8081/notifications/${id}`,
