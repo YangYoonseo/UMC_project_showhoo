@@ -1,5 +1,6 @@
 // VenueRegisterPage.jsx
-import React, { useState } from 'react';
+// 탭 바꿔도 정보 사라지지 않게 하는 코드 추가
+import React, { useState, useEffect } from 'react';
 import Host_VenueTabs from '../components/VenueRegister_Introduce/Host_VenueTabs';
 import Host_VenueIntroduction from '../components/VenueRegister_Introduce/Host_VenueIntroduction';
 import Host_VenueFacility from '../components/VenueRegister_Introduce/Host_VenueFacility';
@@ -13,7 +14,6 @@ import Pop_Place from '../components/VenueRegister_Introduce/Pop_Place';
 import Pop_Image from '../components/VenueRegister_Introduce/Pop_Image';
 import Footer from '../components/common/Footer';
 import Navbar_Concert from '../components/common/Navbar_Concert';
-import Navbar_Booking from '../components/common/Navbar_Booking';
 import Popup_register from '../components/VenueRegister_Introduce/popup_register';
 import Popup_complete from '../components/VenueRegister_Introduce/popup_complete';
 import '../styles/VenueRegisterPage.css';
@@ -29,6 +29,21 @@ const VenueRegisterPage = () => {
   const [uploadedImages, setUploadedImages] = useState([]); // 추가: 업로드된 이미지들
   const [isRegister, setIsRegister] = useState(false);
   const [isComplete, setComplete] = useState(false);
+
+
+  // 공연장 소개 탭과 관련한 정보들 
+  const [introductionDescription, setIntroductionDescription] = useState('');
+  const [venueArea, setVenueArea] = useState('');
+  const [venueCapacity, setVenueCapacity] = useState('');
+  const [Category, setCategory] = useState('');
+  const [rentalTime, setRentalTime] = useState('');
+  const [feeDescriptiontest, setFeeDescriptiontest] = useState('');
+  const [offSeasonFeestest, setOffSeasonFeestest] = useState({});
+  const [peakSeasonFeestest, setPeakSeasonFeestest] = useState({});
+  const [accountDetailstest, setAccountDetailstest] = useState({});
+  const [serviceDescriptiontest, setServiceDescriptiontest] = useState('');
+  const [serviceOptionstest, setServiceOptionstest] = useState([]);
+
 
   const openNameModal = () => setIsNameModalOpen(true);
   const closeNameModal = () => setIsNameModalOpen(false);
@@ -52,8 +67,9 @@ const VenueRegisterPage = () => {
   };
 
   // 이미지 업데이트 함수
-  const updateUploadedImages = (images) => {
-    setUploadedImages(images.slice(0, 5)); // 최대 5개 이미지로 제한
+  const updateUploadedImages = (imageUrls) => {
+    setUploadedImages(imageUrls);
+    console.log("이미지 URL 배열 전달 확인:", imageUrls); 
   };
 
   const onRegister = () => {
@@ -69,6 +85,15 @@ const VenueRegisterPage = () => {
     setIsRegister(false);
     setComplete(false);
   };
+
+  // (노출되지 않는 정보 확인용) 탭 변경 시 콘솔 로그로 상태 출력
+  useEffect(() => {
+    console.log("<!!탭 변경!!>");
+    console.log("비성수기 대관료:", offSeasonFeestest);
+    console.log("성수기 대관료:", peakSeasonFeestest);
+    console.log("계좌정보:", accountDetailstest);
+    console.log("추가서비스 옵션:", serviceOptionstest);
+  }, [selectedTab]);
 
   return (
     <div className="navfot">
@@ -107,7 +132,32 @@ const VenueRegisterPage = () => {
             <Host_VenueTabs selectedTab={selectedTab} setSelectedTab={setSelectedTab} />
             <div className="main-content">
               {selectedTab === 'introduction' && (
-                <Host_VenueIntroduction openPlaceModal={openPlaceModal} />
+                <Host_VenueIntroduction 
+                  openPlaceModal={openPlaceModal} 
+                  venueLocation={venueLocation}
+                  introductionDescription={introductionDescription}
+                  setIntroductionDescription={setIntroductionDescription}
+                  venueArea={venueArea}
+                  setVenueArea={setVenueArea}
+                  venueCapacity={venueCapacity}
+                  setVenueCapacity={setVenueCapacity}
+                  Category={Category}
+                  setCategory={setCategory}
+                  rentalTime={rentalTime}
+                  setRentalTime={setRentalTime}
+                  feeDescriptiontest={feeDescriptiontest}
+                  setFeeDescriptiontest={setFeeDescriptiontest}
+                  offSeasonFeestest={offSeasonFeestest}
+                  setOffSeasonFeestest={setOffSeasonFeestest}
+                  peakSeasonFeestest={peakSeasonFeestest}
+                  setPeakSeasonFeestest={setPeakSeasonFeestest}
+                  accountDetailstest={accountDetailstest}
+                  setAccountDetailstest={setAccountDetailstest}
+                  serviceDescriptiontest={serviceDescriptiontest}
+                  setServiceDescriptiontest={setServiceDescriptiontest}
+                  serviceOptiontests={serviceOptionstest}
+                  setServiceOptionstest={setServiceOptionstest}
+                  />
               )}
               {selectedTab === 'facility' && (
                 <Host_VenueFacility openPlaceModal={openPlaceModal} />

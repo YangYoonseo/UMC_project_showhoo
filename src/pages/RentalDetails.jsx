@@ -3,6 +3,7 @@ import "../styles/yoonseo/RentalDetails.css";
 import { useContext, useState } from "react";
 import { VenueContext } from "../App";
 import { useNavigate } from "react-router-dom";
+import { useLocation } from 'react-router-dom';
 
 import Navbar_Perforemr from "../components/common/Navbar_Performer";
 import Footer from "../components/common/Footer";
@@ -34,6 +35,24 @@ const RentalDetails = () => {
   const [isAllChecked, setIsAllChecked] = useState(false);
   const [refundChecked, setRefundChecked] = useState(false);
   const [noticeChecked, setNoticeChecked] = useState(false);
+
+  // [채원] 전 페이지로부터 정보 전달 받는 부분
+  const location = useLocation();
+  const {
+    selectedDate,
+    expectedAudienceMin,
+    expectedAudienceMax,
+    rentalFee,
+    rentalSum,
+    selectedAdditionalServices
+  } = location.state || {};
+  console.log("정보 연동 완료");
+  console.log({selectedDate});
+  console.log({expectedAudienceMin});
+  console.log({expectedAudienceMax});
+  console.log({rentalFee});
+  console.log({rentalSum});
+  console.log({selectedAdditionalServices});
 
   const CopyEvent = async (text) => {
     try {

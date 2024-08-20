@@ -12,16 +12,19 @@ const ReviewPanel = ({ reviews, setReviews, fetchReviews, profileImage, name, co
     const [newGrade, setNewGrade] = useState(0);
     const [selectedStars, setSelectedStars] = useState(0);
     const [showPopup, setShowPopup] = useState(false);
-    const [uploadedImage, setUploadedImage] = useState(null);
     const spaceId = 1;
     const performerId = 1; // 실제 performerId로 교체 필요
     const yourAccessToken = sessionStorage.getItem("accessToken");
+
+    // 이미지 미리보기를 위해 URL.createObjectURL(file)을 사용하면서도, 서버에 업로드될 때는 실제 File 객체를 사용
+    const [uploadedImage, setUploadedImage] = useState(null);  // 미리보기용 URL
+    const [fileForUpload, setFileForUpload] = useState(null);  // 실제 업로드용 파일
 
     const formatDate = (date) => {
         if (!date) return 'Invalid date'; // date가 null 또는 undefined이면 빈 문자열 반환
         const parsedDate = typeof date === 'string' ? new Date(date) : date;
         
-        console.log("Formatting date:", parsedDate);
+        // console.log("Formatting date:", parsedDate);
     
         return `${parsedDate.getFullYear()}.${(parsedDate.getMonth() + 1)
             .toString()
@@ -57,13 +60,12 @@ const ReviewPanel = ({ reviews, setReviews, fetchReviews, profileImage, name, co
     const handleReviewSubmit = async () => {
         if (newContext.trim() !== '') {
             let uploadedImageUrl = null;
-
-            if (uploadedImage) {
+    
+            if (fileForUpload) {  // 실제 업로드할 파일이 있는지 확인
                 try {
                     const formData = new FormData();
-                    console.log("테스트1");
-                    formData.append('reviewImages', uploadedImage);
-                    console.log("테스트2");
+                    formData.append('reviewImages', fileForUpload);  // 실제 파일 업로드
+    
                     const uploadResponse = await axios.post(
                         'http://ec2-3-34-248-63.ap-northeast-2.compute.amazonaws.com:8081/reviewImage/upload',
                         formData,
@@ -74,10 +76,9 @@ const ReviewPanel = ({ reviews, setReviews, fetchReviews, profileImage, name, co
                             },
                         }
                     );
-                    console.log("테스트");
-
+    
                     if (uploadResponse.data.isSuccess) {
-                        uploadedImageUrl = uploadResponse.data.result;
+                        uploadedImageUrl = uploadResponse.data.result[0];
                     } else {
                         console.warn("이미지 업로드에 실패했습니다:", uploadResponse.data.message);
                     }
@@ -85,7 +86,7 @@ const ReviewPanel = ({ reviews, setReviews, fetchReviews, profileImage, name, co
                     console.error("이미지 업로드 api 호출에 실패했습니다:", error);
                 }
             }
-
+    
             try {
                 const reviewResponse = await axios.post(
                     `http://ec2-3-34-248-63.ap-northeast-2.compute.amazonaws.com:8081/spaces/${spaceId}/review/${performerId}`,
@@ -101,14 +102,14 @@ const ReviewPanel = ({ reviews, setReviews, fetchReviews, profileImage, name, co
                         },
                     }
                 );
-
+    
                 if (reviewResponse.data.isSuccess) {
                     fetchReviews();  // 리뷰 목록을 다시 불러와 최신 상태를 반영
                     setNewContext('');
                     setNewGrade(0);
                     setSelectedStars(0);
                     setUploadedImage(null);
-                    
+                    setFileForUpload(null);  // 업로드 후 파일 초기화
                 } else {
                     console.warn("리뷰 제출에 실패했습니다:", reviewResponse.data.message);
                 }
@@ -121,11 +122,8 @@ const ReviewPanel = ({ reviews, setReviews, fetchReviews, profileImage, name, co
     const handleImageUpload = (e) => {
         const file = e.target.files[0];
         if (file) {
-            const reader = new FileReader();
-            reader.onload = (event) => {
-                setUploadedImage(event.target.result);
-            };
-            reader.readAsDataURL(file);
+            setUploadedImage(URL.createObjectURL(file));  // 미리보기용 URL 설정
+            setFileForUpload(file);  // 실제 업로드용 파일 설정
         }
     };
 

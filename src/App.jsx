@@ -1,3 +1,4 @@
+//App.jsx
 import "./App.css";
 
 import { Routes, Route } from "react-router-dom";
@@ -198,6 +199,7 @@ function App() {
 
   return (
     <>
+<<<<<<< HEAD
       <IdContext.Provider value={id}>
         <ProfileContext.Provider value={profiles}>
           <VenueContext.Provider value={{ venues, setVenues }}>
@@ -253,6 +255,51 @@ function App() {
           </VenueContext.Provider>
         </ProfileContext.Provider>
       </IdContext.Provider>
+=======
+      {console.log("현재 프로필", profiles)}
+      <ProfileContext.Provider value={profiles}>
+        <VenueContext.Provider value={{ venues, setVenues }}>
+          <PamphletContext.Provider
+            value={{ pamphlets, setPamphlets, cancelPamphlet }}
+          >
+            <div className="App">
+              <Routes>
+                <Route path="/" element={<Home_Performer />} />
+                <Route path="/home_concert" element={<Home_Concert />} />
+                <Route path="/home_booking" element={<Home_Booking />} />
+                <Route path="/login/oauth2/code/kakao" element={<Login />} />
+                <Route
+                  path="/performer_registration"
+                  element={<PerformerRegistration />}
+                />
+                <Route path="/performer_update" element={<PerformerUpdate />} />
+                <Route path="/mypage_performer" element={<Mypage />} />
+                <Route path="/rental" element={<Rental />} />
+                <Route path="/rental_search" element={<RentalSearch />} />
+                <Route path="/mypage" element={<Mypage />} />
+                <Route path="/rental_details" element={<RentalDetails />} />
+                <Route path="/rental_history" element={<RentalHistory />} />
+                <Route path="/venue_detail" element={<VenueDetailPage />}/>
+                <Route path="/venue_register" element={<VenueRegisterPage />}/>
+                <Route path="/login" element={<LoginPage />} />
+                <Route path="alarm" element={<Alarm />} />
+                <Route path="/my_activity" element={<MyActivity />} />
+                <Route path="/concert_ready" element={<ConcertReady />} />
+                <Route path="/booking_history" element={<BookingHistroy />} />
+                <Route path="/performer_ready" element={<PerformerReady />} />
+                <Route path="/con_ready" element={<ConReady />} />
+                <Route path="/booking" element={<Booking />} />
+                <Route path="/mypage_concert" element={<MypageConcert />} />
+                <Route path="mypage_booking" element={<MypageBooking />} />
+                <Route path="/like_booking" element={<LikeBooking />} />
+                <Route path="/alarm_booking" element={<AlarmBooking />} />
+                <Route path="/alarm_concert" element={<AlarmConcert />} />
+              </Routes>
+            </div>
+          </PamphletContext.Provider>
+        </VenueContext.Provider>
+      </ProfileContext.Provider>
+>>>>>>> 737724bc180e278022e230bb93a27eac6200861a
     </>
   );
 }
