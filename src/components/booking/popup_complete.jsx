@@ -2,11 +2,11 @@ import "../../styles/Eojin/popup_complete.css";
 import { useNavigate } from "react-router-dom";
 import Button from "../common/Button";
 
-const Popup_complete = ({ check }) => {
+const Popup_complete = ({ complete }) => {
     const nav = useNavigate();
 
     const onClick = () => {
-        check();
+        complete();
         nav("/booking_history");
     }
 

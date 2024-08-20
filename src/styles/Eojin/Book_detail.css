@@ -132,6 +132,13 @@ img {
     color: #0F0F0F;
 }
 
+.concert-info > img {
+    margin: 20px 0;
+    padding: 0;
+    width: 230px;
+    height: 340px;
+}
+
 .bar_inf strong {
     padding: 20px 0;
     font-weight: 600;

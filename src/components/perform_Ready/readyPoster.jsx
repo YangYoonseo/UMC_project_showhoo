@@ -1,10 +1,13 @@
 import "../../styles/Eojin/readyPoster.css";
 import React, { useState, useEffect } from "react";
+import { format } from "date-fns"; // 날짜 포맷팅을 위해 가져오기
+import axios from "axios";
+
 import Button from "../common/Button";
 import Editor from "./Editor/Editor";
 import SelectCalender from "./Datepicker/calender";
+
 import arrow from "../../assets/img_Ready/arrow.svg";
-import { format } from "date-fns"; // 날짜 포맷팅을 위해 가져오기
 
 const ReadyPoster = ({ preStep, nextStep, check }) => {
   const [image, setImage] = useState(null);
