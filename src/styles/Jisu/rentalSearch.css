@@ -69,3 +69,37 @@
 .Map {
     background-color: #fff3f3;
 }
+
+.toggleButton {
+    margin: 10px;
+    padding: 10px 20px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.toggleButton:hover {
+    background-color: #0056b3;
+}
+
+.Pagination button {
+    margin: 0 9px;
+    font-size: 14px;
+    width: 36px;
+    height: 36px;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    border-radius: 50%;
+}
+
+.Pagination button.active {
+    background-color: black;
+    color: white;
+}
+
+.Pagination button:hover {
+    background-color: #eeeeee;
+}
