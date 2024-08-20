@@ -2,42 +2,78 @@ import Calendar from "react-calendar";
 import "../../styles/yoonseo/ReadyCalendar.css";
 import "react-calendar/dist/Calendar.css";
 import { useState, useContext, useEffect } from "react";
+import axios from "axios";
 import { ProfileContext } from "../../App";
 import PerformerCalendar from "./PerformerCalendar";
-import SpaceRental from "../../api/yoonseo/SpaceRental";
 
 const ReadyCalendar = () => {
   const profiles = useContext(ProfileContext);
   const [date, setDate] = useState(new Date());
-
   const [show, setShow] = useState(false);
   const [application, setApplication] = useState(false);
   const [completed, setCompleted] = useState(false);
   const [rental, setRental] = useState([]);
+  const [selectedProfile, setSelectedProfile] = useState(null);
 
-  useEffect(() => {
-    const fetchSpaceRental = async () => {
-      const data = await SpaceRental();
-      if (data) {
-        setRental(data);
+  const fetchSpaceApplyList = async (selectedDay) => {
+    try {
+      const token = sessionStorage.getItem("accessToken");
+      const response = await axios.get(
+        `http://ec2-3-34-248-63.ap-northeast-2.compute.amazonaws.com:8081/spaces/1/spaceApply/info/${selectedDay}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      if (response.data.result) {
+        console.log(selectedDay, "에 대관요청", response.data.result);
+        setRental(response.data.result);
+      } else {
+        console.log("없음");
       }
-    };
-    fetchSpaceRental();
-  }, []);
-
-  console.log("rental", rental);
+    } catch (error) {
+      console.log("날짜에 따른 공연자 확인 에러", error);
+    }
+  };
 
   const handleDateClick = (selectedDate) => {
-    const selectedDay = selectedDate.toISOString().split("T")[0]; // 날짜를 "YYYY-MM-DD" 포맷으로 변환
+    const selectedDay = new Date(
+      selectedDate.getFullYear(),
+      selectedDate.getMonth(),
+      selectedDate.getDate() + 1
+    )
+      .toISOString()
+      .split("T")[0]; // 날짜를 "YYYY-MM-DD" 포맷으로 변환
 
     // Reset all states
     setShow(false);
     setApplication(false);
     setCompleted(false);
+    setSelectedProfile();
+    console.log("현재 선택한 날짜", selectedDate);
+    console.log("현재 선택 날짜 변환", selectedDay);
+    fetchSpaceApplyList(selectedDay);
+  };
 
-    // rental 배열을 순회하면서 날짜와 상태를 체크
-    rental.forEach((rentalItem) => {
-      if (rentalItem.date === selectedDay) {
+  useEffect(() => {
+    if (rental.length > 0) {
+      const selectedDay = new Date(
+        date.getFullYear(),
+        date.getMonth(),
+        date.getDate() + 1
+      )
+        .toISOString()
+        .split("T")[0];
+
+      if (rental.date === selectedDay) {
+        const matchedProfile = profiles.find(
+          (profile) => profile.id === 34
+          // 임시로 34해놓음 추후에 performerProfileId로 바꿔야 함
+        );
+
+        setSelectedProfile(matchedProfile);
+
         switch (rentalItem.status) {
           case -2:
             setShow(true);
@@ -52,17 +88,21 @@ const ReadyCalendar = () => {
             break;
         }
       }
-    });
-  };
+    }
+  }, [rental, date, profiles]);
 
   const getTileContent = ({ date, view }) => {
     if (view === "month") {
-      const day = date.toISOString().split("T")[0];
+      const day = new Date(date);
+      const formattedDate = `${day.getFullYear()}-${(day.getMonth() + 1)
+        .toString()
+        .padStart(2, "0")}-${day.getDate().toString().padStart(2, "0")}`;
+
       let className = "";
       let text = "";
 
       rental.forEach((rentalItem) => {
-        if (rentalItem.date === day) {
+        if (rentalItem.date === formattedDate) {
           switch (rentalItem.status) {
             case -2:
               className = "event event_show";
@@ -101,26 +141,13 @@ const ReadyCalendar = () => {
         onClickDay={handleDateClick} // 클릭된 날짜에 대한 핸들러 추가
       />
 
-      {/* 공연완료 */}
-      {show && (
-        <PerformerCalendar
-          profile={profiles[0]}
-          className={"PerformerCalendar PerformerCalendar_calendar"}
-        />
-      )}
+      {console.log("프로필", selectedProfile)}
+      {console.log("렌트", rental)}
 
-      {/* 대관 완료 */}
-      {completed && (
+      {(show || completed || application) && (
         <PerformerCalendar
-          profile={profiles[0]}
-          className={"PerformerCalendar PerformerCalendar_calendar"}
-        />
-      )}
-
-      {/* 대관 신청 */}
-      {application && (
-        <PerformerCalendar
-          profile={profiles[0]}
+          profile={selectedProfile}
+          rental={rental}
           className={"PerformerCalendar PerformerCalendar_calendar"}
         />
       )}

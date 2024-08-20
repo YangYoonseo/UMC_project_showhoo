@@ -38,7 +38,7 @@ const BookingProfile = ({ pamphlet, className }) => {
       case "CONFIRMED":
         return "예매 완료";
       case "CANCELLING":
-        return "취소 대기중";
+        return "취소 대기";
       case "CANCELED":
         return "취소 완료";
       default:
