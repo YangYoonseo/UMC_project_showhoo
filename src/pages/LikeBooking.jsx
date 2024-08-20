@@ -4,8 +4,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 
 import Navbar_Booking from "../components/common/Navbar_Booking";
-import Book_component from "../components/booking/Book_component";
-import { components } from "react-select";
+import BookPrefer from "../components/com_Booking/BookPrefer";
 
 const LikeBooking = () => {
   const [prefer, setPrefer] = useState([]);
@@ -52,9 +51,16 @@ const LikeBooking = () => {
           {prefer.length === 0 ? (
             <p>관심 목록이 없습니다.</p> // 빈 상태 메시지
           ) : (
-            prefer.map((item) => (
-              <h3 key={item.showsId}>{item.name}</h3>
-              // <Book_component key={item.id} prefer={prefer} />
+            prefer.map((concert) => (
+              <BookPrefer
+                key={concert.showsId}
+                id={concert.showsId}
+                img={concert.poster}
+                name={concert.name}
+                date={concert.date}
+                time={concert.time}
+                isComplete={concert.isComplete}
+              />
             ))
           )}
         </div>

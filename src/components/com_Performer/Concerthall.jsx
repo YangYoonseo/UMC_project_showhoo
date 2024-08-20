@@ -1,8 +1,8 @@
 import "../../styles/yoonseo/Concerthall.css";
 
-import ion_people_outline from "../../assets/img_Performer/ion_people_outline.png";
-import uil_calender from "../../assets/img_Performer/uil_calender.png";
-import Line40 from "../../assets/img_Performer/Line40.png";
+import ion_people_outline from "../../assets/img_Performer/ion_people_outline.svg";
+import uil_calender from "../../assets/img_Performer/uil_calender.svg";
+import Line40 from "../../assets/img_Performer/Line40.svg";
 import { useNavigate } from "react-router-dom";
 
 const Concerthall = ({ venue, className }) => {
