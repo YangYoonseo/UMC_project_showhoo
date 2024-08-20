@@ -123,6 +123,10 @@
   width: 21.54px;
  height: 25.3px;
   margin-left: 3px;
+
+  position: relative;
+  top:3px;
+  left:-2px;
 }
 
 .venue-info .venue-rating .reviews {
