@@ -3,7 +3,6 @@ import axios from "axios";
 /* 공연장 찜 등록 API */
 
 const SpaceLike = async (spaceId, performerId) => {
-    /* 엑세스 토큰 가져오기 */
     const token = sessionStorage.getItem("accessToken");
 
     try {
