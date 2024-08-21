@@ -65,12 +65,6 @@ const Editor = ({ onContentChange, setImgData }) => {
                     const data = editor.getData();
                     onContentChange(data);
                 }}
-                onBlur={(event, editor) => {
-                    console.log('Blur event', editor.getData());
-                }}
-                onFocus={(event, editor) => {
-                    console.log('Focus event', editor.getData());
-                }}
             />
         </div>
     );

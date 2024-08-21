@@ -1,0 +1,17 @@
+nav {
+    width: 600px;
+    margin: 20px 0;
+    padding: 0;
+}
+
+ul {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    list-style: none;
+}
+
+ul > li > button {
+    background: none;
+    border: none;
+}

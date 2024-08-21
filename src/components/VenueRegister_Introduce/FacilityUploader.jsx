@@ -26,7 +26,7 @@ const FacilityUploader = ({ onClose, uploadSuc, uploadFail, updateData }) => {
             const fileContent = e.target.result.split(',')[1]; // Base64 인코딩된 문자열만 가져옴
             updateData(fileContent);
 
-            console.log('File read successfully:', e.target.result);
+            console.log('File read successfully');
             uploadSuc();
             onClose();
         };

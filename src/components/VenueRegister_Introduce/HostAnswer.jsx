@@ -1,17 +1,19 @@
 import "../../styles/Eojin/HostAnswer.css";
 import { useState, useEffect } from "react";
 
-const HostAnswer = ({ index }) => {
+const HostAnswer = ({ spaceId, index }) => {
     const [answer, setAnswer] = useState("");
     const [inputValue, setInputValue] = useState("");
     const [date, setDate] = useState(new Date());
     const [isOpen, setIsOpen] = useState(false);
 
-    const data = {
-        answer: answer
-    };
 
+    // 리뷰 답변 보내기 API 연결 
     async function uploadAnswer(index) {
+        const data = {
+            answer: answer
+        };
+        
         const token = sessionStorage.getItem("accessToken");
         try {
             const res = await axios.post(
@@ -25,13 +27,14 @@ const HostAnswer = ({ index }) => {
                 }
             );
             console.log("업로드 성공:", res.data);
+            setAnswer("");
         } catch (error) {
             console.log("Error:", error);
         }
     };
 
     useEffect(() => {
-        console.log("Updated Data:", data);
+        console.log("Updated Data:", answer);
     }, [answer, index]); // `answer`와 `index`가 변경될 때마다 실행
 
     const onClick = () => {

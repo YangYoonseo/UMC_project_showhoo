@@ -4,7 +4,7 @@
 // 어진 : 한 api(공연장 등록 API) 사용하여 여러탭의 정보가 넘어가므로, 최종적으로 모든 data 이 페이지로 모아주면 됨
 // 유의사항 탭, 대관일정 탭의 정보 125, 126번째 줄(holidays, notice ; 현재는 초기화해놓음)에 넣어주면 됨!
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import Host_VenueTabs from '../components/VenueRegister_Introduce/Host_VenueTabs';
 import Host_VenueIntroduction from '../components/VenueRegister_Introduce/Host_VenueIntroduction';
@@ -21,7 +21,9 @@ import Footer from '../components/common/Footer';
 import Navbar_Concert from '../components/common/Navbar_Concert';
 import Popup_register from '../components/VenueRegister_Introduce/popup_register';
 import Popup_complete from '../components/VenueRegister_Introduce/popup_complete';
+
 import '../styles/VenueRegisterPage.css';
+import { FacilityContext } from '../components/VenueRegister_Introduce/FacilityContext';
 
 
 const VenueRegisterPage = () => {
@@ -48,13 +50,19 @@ const VenueRegisterPage = () => {
   const [serviceOptionstest, setServiceOptionstest] = useState([]);
   const [holidays, setHolidays] = useState();
   const [notice, setNotice] = useState("");
-  // 시설 자료 업로드 
-  const [soundEquipment, setSoundEquipment] = useState('');
-  const [lightingEquipment, setLightingEquipment] = useState('');
-  const [stageMachinery, setStageMachinery] = useState('');
-  const [spaceDrawing, setSpaceDrawing] = useState('');
-  const [spacestaff, setSpacestaff] = useState('');
-  const [spaceSeat, setSpaceSeat] = useState('');
+
+  // spaceId => useContext 사용해서 따로 빼야하지 않나 싶음 
+  const [spaceId, setSpaceId] = useState(0);
+
+  // 시설 안내 데이터 context에서 가져오기 
+  const {
+    soundEquipment,
+    lightingEquipment,
+    stageMachinery,
+    spaceDrawing,
+    spacestaff,
+    spaceSeat,
+  } = useContext(FacilityContext); 
   
   //spaceUserId 연결
   const spaceUserId = sessionStorage.getItem("spaceUserId");
@@ -89,49 +97,13 @@ const VenueRegisterPage = () => {
   // 유의사항 업데이트 함수 
   const updateNotice = (notice) => {
     setNotice(notice);
-    console.log("유의사항 전달 확인:", notice)
   };
 
   // holiday 업데이트 함수 
   const updateHoliday = (date) => {
     // 변환된 날짜 배열을 holidays 상태로 설정
     setHolidays(date);
-    // 업데이트된 holidays 배열을 콘솔에 출력
-    console.log("휴무일:", holidays);
   };
-  // 시설 자료 업데이트 함수 
-  const updateStageMachinery = (data) => {
-    setStageMachinery(data);
-  };
-
-  const updateSoundEquipment = (data) => {
-    setSoundEquipment(data);
-  };
-
-  const updateLightingEquipment = (data) => {
-    setLightingEquipment(data);
-  };
-
-  const updateSpaceDrawing = (data) => {
-    setSpaceDrawing(data);
-  };
-
-  const updateSpacestaff = (data) => {
-    setSpacestaff(data);
-  };
-
-  const updateSpaceSeat = (data) => {
-    setSpaceSeat(data);
-  };
-
-  useEffect(() => {
-    console.log("soundEquipment:",soundEquipment);
-    console.log("lightingEquipment:",lightingEquipment);
-    console.log("stageMachinery:",stageMachinery);
-    console.log("spaceDrawing:",spaceDrawing);
-    console.log("spacestaff:",spacestaff);
-    console.log("spaceSeat:",spaceSeat);
-  }, [soundEquipment, lightingEquipment, stageMachinery, spaceDrawing, spacestaff, spaceSeat])
 
   // 날짜 맵핑 함수
   const dayOfWeekMapping = {
@@ -215,6 +187,7 @@ const VenueRegisterPage = () => {
       });
 
       console.log('등록 결과:', response.data);
+      setSpaceId(response.data.result.spaceId);
       alert('공연장 등록이 성공적으로 완료되었습니다.');
     } catch (error) {
       console.error('공연장 등록 실패:', error);
@@ -311,26 +284,18 @@ const VenueRegisterPage = () => {
                   setServiceOptionstest={setServiceOptionstest}
                   />
               )}
-              {selectedTab === 'facility' && (
-                <Host_VenueFacility 
-                  openPlaceModal={openPlaceModal}
-                  updateStageMachinery={updateStageMachinery}
-                  updateSoundEquipment={updateSoundEquipment} 
-                  updateLightingEquipment={updateLightingEquipment} 
-                  updateSpaceDrawing={updateSpaceDrawing} 
-                  updateSpacestaff={updateSpacestaff} 
-                  updateSpaceSeat={updateSpaceSeat} 
-                  />
-              )}
-              {selectedTab === 'notice' && (
+              <div style={{ display: selectedTab === 'facility' ? 'block' : 'none' }}>
+                <Host_VenueFacility openPlaceModal={openPlaceModal} />
+              </div>
+              <div style={{ display: selectedTab === 'notice' ? 'block' : 'none' }}>
                 <Host_VenueNotice openPlaceModal={openPlaceModal} updateNotice={updateNotice} />
-              )}
-              {selectedTab === 'schedule' && (
+              </div>
+              <div style={{ display: selectedTab === 'schedule' ? 'block' : 'none' }}>
                 <Host_VenueSchedule openPlaceModal={openPlaceModal} updateHoliday={updateHoliday} />
-              )}
-              {selectedTab === 'reviews' && (
-                <Host_VenueReviews openPlaceModal={openPlaceModal} />
-              )}
+              </div>
+              <div style={{ display: selectedTab === 'reviews' ? 'block' : 'none' }}>
+                <Host_VenueReviews openPlaceModal={openPlaceModal} spaceId={spaceId}/>
+              </div>
             </div>
           </div>
         </div>

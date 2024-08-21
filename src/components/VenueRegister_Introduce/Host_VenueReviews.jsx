@@ -1,17 +1,16 @@
-import "../../styles/Eojin/Host_VenueReviews.css";
-import { useState, useEffect } from "react";
-
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import HostReview from "./HostReview";
-
-// import profile from "../../assets/images/venueregisterpage_introduce/profile.svg";
-// import review_img1 from "../../assets/images/venueregisterpage_introduce/review_img1.svg";
-// import review_img2 from "../../assets/images/venueregisterpage_introduce/review_img2.svg";
+import Pagination from "./Pagination";
+import "../../styles/Eojin/Host_VenueReviews.css";
 
 const Host_VenueReviews = () => {
     const [data, setData] = useState([]);
-
-    const spaceId = 1; 
-
+    const [currentPage, setCurrentPage] = useState(1);
+    const reviewsPerPage = 4; // 한 페이지당 리뷰 수
+    // spaceId 변경 해줘야 함 ! 
+    const spaceId = 4;
+    // 리뷰 가져오기 API 연결
     async function getDownloadData() {
         const token = sessionStorage.getItem("accessToken");
         try {
@@ -23,12 +22,12 @@ const Host_VenueReviews = () => {
                     },           
                 }
             );
-            const data = res.data.result;
+            setData(res.data.result);
             console.log("다운로드 양식 보기", res.data);
         } catch (error) {
             console.log("Error:", error);
         }
-    };
+    }
 
     useEffect(() => {
         getDownloadData();
@@ -40,11 +39,19 @@ const Host_VenueReviews = () => {
     // 평균 평점 계산
     const averageScore = (data.reduce((acc, curr) => acc + curr.grade, 0) / reviewCount).toFixed(1);
 
+    // 현재 페이지에 해당하는 리뷰 데이터 계산
+    const indexOfLastReview = currentPage * reviewsPerPage;
+    const indexOfFirstReview = indexOfLastReview - reviewsPerPage;
+    const currentReviews = data.slice(indexOfFirstReview, indexOfLastReview);
+
+    // 페이지 번호 클릭 시 호출되는 함수
+    const paginate = (pageNumber) => setCurrentPage(pageNumber);
+
     return (
         <div className="Host_VenueReviews">
             <h4>후기 {reviewCount}개<span className="hightlight">&nbsp;•&nbsp;</span>평균 평점<span className="hightlight">&nbsp;{averageScore}</span></h4>
             <div className="reviews-container">
-                {data.map((review) => (
+                {currentReviews.map((review) => (
                     <HostReview
                         key={review.id}
                         id={review.id}
@@ -56,9 +63,16 @@ const Host_VenueReviews = () => {
                         date={review.updatedAt}
                     />
                 ))}
+                <Pagination
+                    reviewsPerPage={reviewsPerPage}
+                    totalReviews={reviewCount}
+                    paginate={paginate}
+                    currentPage={currentPage}
+                />
             </div>
         </div>
     );
 }
 
 export default Host_VenueReviews;
+
