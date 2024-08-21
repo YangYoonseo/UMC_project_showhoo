@@ -8,9 +8,7 @@ const DateModal = ({ isOpen, onClose }) => {
     return (
         <div className="DateModalBackdrop" onClick={onClose}>
             <div className="DateModalContent" onClick={(e) => e.stopPropagation()}>
-                <div className='DateModalBody'>
                     <DateSearchCalender></DateSearchCalender>
-                </div>
             </div>
         </div>
     );

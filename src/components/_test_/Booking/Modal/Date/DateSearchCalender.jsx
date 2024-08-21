@@ -1,19 +1,18 @@
 import Calendar from "react-calendar";
 import "../../../../../styles/Jisu/DateSearchCalender.css";
 import "react-calendar/dist/Calendar.css";
-import { useState, useContext, useEffect } from "react";
-import { ProfileContext } from "../../../../../App";
-import PerformerCalendar from "../../../../com_Concert/PerformerCalendar";
+import { useState, useEffect } from "react";
 import SpaceRental from "../../../../../api/yoonseo/SpaceRental";
 
 const DateSearchCalender = () => {
-  const profiles = useContext(ProfileContext);
   const [date, setDate] = useState(new Date());
-
-  const [show, setShow] = useState(false);
-  const [application, setApplication] = useState(false);
-  const [completed, setCompleted] = useState(false);
   const [rental, setRental] = useState([]);
+
+  const [status, setStatus] = useState({
+    show: false,
+    application: false,
+    completed: false,
+  });
 
   useEffect(() => {
     const fetchSpaceRental = async () => {
@@ -25,33 +24,31 @@ const DateSearchCalender = () => {
     fetchSpaceRental();
   }, []);
 
-  console.log("rental", rental);
+  const resetStatus = () => {
+    setStatus({
+      show: false,
+      application: false,
+      completed: false,
+    });
+  };
 
-    const handleDateClick = (selectedDate) => {
+  const handleDateClick = (selectedDate) => {
     const selectedDay = selectedDate.toISOString().split("T")[0]; // 날짜를 "YYYY-MM-DD" 포맷으로 변환
+    setDate(selectedDate);
 
-    // Reset all states
-    setShow(false);
-    setApplication(false);
-    setCompleted(false);
+    resetStatus();
 
-    // rental 배열을 순회하면서 날짜와 상태를 체크
-    rental.forEach((rentalItem) => {
-      if (rentalItem.date === selectedDay) {
-        switch (rentalItem.status) {
-          case -2:
-            setShow(true);
-            break;
-          case 0:
-            setApplication(true);
-            break;
-          case 1:
-            setCompleted(true);
-            break;
-          default:
-            break;
-        }
-      }
+    const rentalItem = rental.find((item) => item.date === selectedDay);
+    if (rentalItem) {
+      updateStatus(rentalItem.status);
+    }
+  };
+
+  const updateStatus = (status) => {
+    setStatus({
+      show: status === -2,
+      application: status === 0,
+      completed: status === 1,
     });
   };
 

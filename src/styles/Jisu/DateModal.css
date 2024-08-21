@@ -28,11 +28,5 @@
 
 .DateModalBody {
     display: flex;
-    justify-content: space-between;
-    gap: 26px;
     flex: 1;
-    margin-top: 35px;
-    margin-bottom: 35px;
-    margin-left: 48px;
-    margin-right: 48px;
 }
