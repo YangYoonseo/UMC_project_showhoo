@@ -1,28 +1,31 @@
-import "../styles/yoonseo/RentalDetails.css";
-
+import { useProfileId } from "../components/com_Performer/ProfileProvider";
 import { useContext, useState } from "react";
 import { VenueContext } from "../App";
 import { useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
+
+import "../styles/yoonseo/RentalDetails.css";
+import axios from "axios";
 
 import Navbar_Perforemr from "../components/common/Navbar_Performer";
 import Footer from "../components/common/Footer";
 import ProfileProvide from "../components/com_Performer/ProfileProvide";
 import Button from "../components/common/Button";
 
-// 팝업창
 import RefundPolicy from "../components/popup_Performer/RefundPolicy";
 import Notice from "../components/popup_Performer/Notice";
 import RentalApply from "../components/popup_Performer/RentalApply";
 import RentalCompleted from "../components/popup_Performer/RentalCompleted";
 
-import uil_calender from "../assets/img_Performer/uil_calender.png";
-import ion_people_outline from "../assets/img_Performer/ion_people_outline.png";
-import Frame22 from "../assets/img_Performer/Frame22.png";
-import bx_area from "../assets/img_Performer/bx_area.png";
-import Line40 from "../assets/img_Performer/Line40.png";
+import uil_calender from "../assets/img_Performer/uil_calender.svg";
+import ion_people_outline from "../assets/img_Performer/ion_people_outline.svg";
+import Frame22 from "../assets/img_Performer/Frame22.svg";
+import bx_area from "../assets/img_Performer/bx_area.svg";
+import Line40 from "../assets/img_Performer/Line40.svg";
 import octicon_copy_16 from "../assets/img_Performer/octicon_copy_16.png";
 
 const RentalDetails = () => {
+  const { selectedProfileId } = useProfileId();
   const nav = useNavigate();
   const { venues } = useContext(VenueContext);
   const [refundPopup, setRefundPopup] = useState(false);
@@ -30,15 +33,35 @@ const RentalDetails = () => {
   const [applyPopup, setApplyPopup] = useState(false);
   const [completedPopup, setCompletedPopup] = useState(false);
 
-  // 체크박스 상태 관리
   const [isAllChecked, setIsAllChecked] = useState(false);
   const [refundChecked, setRefundChecked] = useState(false);
   const [noticeChecked, setNoticeChecked] = useState(false);
 
+  const location = useLocation();
+  const spaceId = 1;
+
+  const {
+    selectedDate = "2024-08-23",
+    expectedAudienceMin = "10",
+    expectedAudienceMax = "40",
+    rentalFee = "200000",
+    rentalSum = "300000",
+    selectedAdditionalServices = "0",
+  } = location.state || {};
+  console.log("정보 연동 완료");
+  console.log({ selectedDate });
+  console.log({ expectedAudienceMin });
+  console.log({ expectedAudienceMax });
+  console.log({ rentalFee });
+  console.log({ rentalSum });
+  console.log({ selectedAdditionalServices });
+  console.log({ spaceId });
+  console.log("선택된 프로필 ID:", selectedProfileId); // 선택된 프로필 ID 출력
+
   const CopyEvent = async (text) => {
     try {
       await navigator.clipboard.writeText(text);
-      alert("복사성공");
+      alert("복사");
     } catch (error) {
       alert("복사 실패");
     }
@@ -49,6 +72,37 @@ const RentalDetails = () => {
     setIsAllChecked(checked);
     setRefundChecked(checked);
     setNoticeChecked(checked);
+  };
+
+  const ApplyForRental = async () => {
+    try {
+      const token = sessionStorage.getItem("accessToken");
+      const performerId = sessionStorage.getItem("performerId");
+      const data = {
+        date: selectedDate,
+        audienceMin: expectedAudienceMin,
+        audienceMax: expectedAudienceMax,
+        performerProfileId: selectedProfileId,
+        rentalFee: rentalFee,
+        rentalSum: rentalSum,
+        // 이건 나중에 수정 필요
+        selectedAdditionalServices: [selectedAdditionalServices],
+      };
+      const response = await axios.post(
+        `http://ec2-3-34-248-63.ap-northeast-2.compute.amazonaws.com:8081/spaces/${spaceId}/spaceApply/${performerId}`,
+        data,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      console.log("대관 신청 성공", response.data);
+      nav("/mypage");
+    } catch (error) {
+      console.log("대관 신청 에러", error);
+    }
   };
 
   return (
@@ -65,21 +119,23 @@ const RentalDetails = () => {
           <div className="information_date">
             <div className="Frame256">
               <img src={uil_calender} alt="" />
-              <p>2024-06-21</p>
+              <p>{selectedDate}</p>
             </div>
           </div>
 
           <div className="information_poeple">
             <div className="Frame257">
               <img src={ion_people_outline} alt="" />
-              <p>최대 100명</p>
+              <p>
+                {expectedAudienceMin} ~ {expectedAudienceMax}명
+              </p>
             </div>
           </div>
 
           <div className="information_video">
             <div className="Frame258">
               <img src={Frame22} alt="" />
-              <p>공연 영상 제공</p>
+              <p>{selectedAdditionalServices}</p>
             </div>
           </div>
         </div>
@@ -104,6 +160,7 @@ const RentalDetails = () => {
           </div>
         </div>
         <ProfileProvide />
+        {/* {console.log("내가 누른 프로필", selectedProfileId)} */}
         <div className="checkbox1">
           <input
             type="checkbox"
@@ -181,6 +238,7 @@ const RentalDetails = () => {
               setApplyPopup(false);
             }}
             onCompletedOpen={() => {
+              ApplyForRental();
               setApplyPopup(false);
               setCompletedPopup(true);
             }}
@@ -214,16 +272,16 @@ const RentalDetails = () => {
           <div className="rental_price">
             <h3>대관비용</h3>
             <p>대관료</p>
-            <p>₩700,000</p>
-            <p>추가비</p>
-            <p>₩100,000</p>
+            <p>₩{rentalFee}</p>
+            <p>추가 서비스</p>
+            <p>₩{parseFloat(rentalSum) - parseFloat(rentalFee)}</p>
             <img src={Line40} alt="" className="Line41" />
             <p>총 합계</p>
-            <p>₩805,000</p>
+            <p>₩{rentalSum}</p>
             <img src={Line40} alt="" className="Line43" />
             <p>예약금</p>
             <p>₩200,000</p>
-            <p>* 총 대관비를 반드시 확인하고 예약금을 지불하세요</p>
+            <p>* 추가 서비스비는 공연 준비를 진행하면서 수정될 수 있습니다</p>
           </div>
         </div>
       </div>

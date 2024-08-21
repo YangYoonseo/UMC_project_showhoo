@@ -33,8 +33,138 @@
   border-radius: 7.01393px;
 }
 
-.Review .myReview .venue-reviews {
-  position: absolute;
-  top: 30px;
-  left: 27px;
+.Review .myReview {
+  width: 582px;
+  margin: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.Review .myReview .review-item {
+  width: 582px;
+}
+
+.Review .myReview .review-item .my {
+  width: 582px;
+  height: 30px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.Review .myReview .review-item .my h3 {
+  margin: 0;
+  /* 내 후기 */
+
+  font-family: "Pretendard";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 22px;
+  line-height: 30px;
+
+  color: #0f0f0f;
+}
+
+.Review .myReview .review-item .content_button {
+  width: 582px;
+  height: 30px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.Review .myReview .review-item .review_content {
+  /* 사장님 심보가 고약하십니다. 공연장은 좋네요. */
+
+  width: 500px;
+
+  font-family: "Pretendard";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 36px;
+  margin-top: 8px;
+
+  color: #0f0f0f;
+
+  margin: 0;
+}
+
+.Review .myReview .review-item button {
+  /* 삭제 */
+
+  width: 50px;
+  height: 26px;
+
+  font-family: "Pretendard";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 36px;
+  /* or 240% */
+  text-decoration-line: underline;
+
+  border: none;
+  background-color: #fbfbfb;
+  color: #4f4f4f;
+}
+
+.Review .myReview .review-item .answers {
+  width: 582px;
+  margin-top: 20px;
+  /* 공연장 답글 */
+}
+
+.Review .myReview .review-item .answers h3 {
+  width: 535px;
+  height: 30px;
+  margin: 0;
+
+  font-family: "Pretendard";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 22px;
+  line-height: 30px;
+
+  color: #07c093;
+}
+
+.Review .myReview .review-item .answers .content {
+  /* 안녕하세요 길동님. 저희 001 클럽에서 만족스러운 시간 보내셨길 바랍니다. 이용해주셔서 감사합니다. */
+
+  width: 535px;
+  margin: 0;
+
+  font-family: "Pretendard";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 36px;
+
+  color: #0f0f0f;
+}
+
+.Review .myReview .review-item .Line42 {
+  /* Line 42 */
+
+  width: 790px;
+  height: 0px;
+
+  border: 1.5px solid #e8e8e8;
+}
+
+.Review .myReview .updatedAt {
+  /* 2024.08.23 14:43:60 */
+
+  width: 582px;
+  height: 20px;
+  left: 274px;
+  top: 373px;
+
+  font-family: "Pretendard";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 36px;
+
+  color: #9c9c9c;
 }

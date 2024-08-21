@@ -1,77 +1,129 @@
 // reviewpanel.jsx
-// 최대 이미지 크기 설정 하는 부분 -> inline style로
 import React, { useState } from "react";
+import axios from "axios";
 import "./ReviewPanel.css";
 import scoreStar from "../../assets/images/venueregisterpage_introduce/scoreStar.svg";
 import nonscoredStar from "../../assets/images/venueregisterpage_introduce/nonscoredStar.svg";
 import review_add_panel from "../../assets/images/venuedetailpage/review_add_image.svg";
-import basic_profileimage from "../../assets/images/venuedetailpage/profileimage.png";
+import default_profile_image from "../../assets/images/venuedetailpage/default_profile_image.svg";
 
-const ReviewPanel = ({ reviews, setReviews, profileImage, name, context, reviewImage, grade, date, answer, dateAnswer }) => {
-    // 날짜 포맷팅 함수
-    const formatDate = (date) => {
-        const year = date.getFullYear();
-        const month = String(date.getMonth() + 1).padStart(2, '0');
-        const day = String(date.getDate()).padStart(2, '0');
-        const hours = String(date.getHours()).padStart(2, '0');
-        const minutes = String(date.getMinutes()).padStart(2, '0');
-        const seconds = String(date.getSeconds()).padStart(2, '0');
-
-        return `${year}.${month}.${day} ${hours}:${minutes}:${seconds}`;
-    };
-
-    const formatDateAnswer = (dateAnswer) => {
-        const year = dateAnswer.getFullYear();
-        const month = String(dateAnswer.getMonth() + 1).padStart(2, '0');
-        const day = String(dateAnswer.getDate()).padStart(2, '0');
-        const hours = String(dateAnswer.getHours()).padStart(2, '0');
-        const minutes = String(dateAnswer.getMinutes()).padStart(2, '0');
-        const seconds = String(dateAnswer.getSeconds()).padStart(2, '0');
-
-        return `${year}.${month}.${day} ${hours}:${minutes}:${seconds}`;
-    };
-
-    // 후기 작성 기능 추가
+const ReviewPanel = ({ reviews, setReviews, fetchReviews, profileImage, name, context, reviewImage, grade, date, answer, dateAnswer }) => {
     const [newContext, setNewContext] = useState('');
     const [newGrade, setNewGrade] = useState(0);
     const [selectedStars, setSelectedStars] = useState(0);
-    const [showPopup, setShowPopup] = useState(false); // 유의사항 팝업 표시 상태
-    const [uploadedImage, setUploadedImage] = useState(null); // 업로드된 이미지 상태
+    const [showPopup, setShowPopup] = useState(false);
+    const spaceId = 2;
+    const performerId = 3; // 실제 performerId로 교체 필요
+    const yourAccessToken = sessionStorage.getItem("accessToken");
 
+    // 이미지 미리보기를 위해 URL.createObjectURL(file)을 사용하면서도, 서버에 업로드될 때는 실제 File 객체를 사용
+    const [uploadedImage, setUploadedImage] = useState(null);  // 미리보기용 URL
+    const [fileForUpload, setFileForUpload] = useState(null);  // 실제 업로드용 파일
+
+    const formatDate = (date) => {
+        if (!date) return 'Invalid date'; // date가 null 또는 undefined이면 빈 문자열 반환
+        const parsedDate = typeof date === 'string' ? new Date(date) : date;
+        
+        // console.log("Formatting date:", parsedDate);
+    
+        return `${parsedDate.getFullYear()}.${(parsedDate.getMonth() + 1)
+            .toString()
+            .padStart(2, '0')}.${parsedDate.getDate()
+            .toString()
+            .padStart(2, '0')} ${parsedDate.getHours()
+            .toString()
+            .padStart(2, '0')}:${parsedDate.getMinutes()
+            .toString()
+            .padStart(2, '0')}:${parsedDate.getSeconds().toString().padStart(2, '0')}`;
+    };
+
+    const formatDateAnswer = (dateAnswer) => {
+        if (!dateAnswer) return '답글 없음'; // dateAnswer가 null 또는 undefined이면 기본 메시지 반환
+        const parsedDate = new Date(dateAnswer); // dateAnswer가 문자열이든 Date 객체이든 Date 객체로 변환
+        return `${parsedDate.getFullYear()}.${(parsedDate.getMonth() + 1)
+            .toString()
+            .padStart(2, '0')}.${parsedDate.getDate()
+            .toString()
+            .padStart(2, '0')} ${parsedDate.getHours()
+            .toString()
+            .padStart(2, '0')}:${parsedDate.getMinutes()
+            .toString()
+            .padStart(2, '0')}:${parsedDate.getSeconds().toString().padStart(2, '0')}`;
+    };
+    
+    
     const handleStarClick = (starIndex) => {
         setNewGrade(starIndex);
         setSelectedStars(starIndex);
     };
 
-    const handleReviewSubmit = () => {
+    const handleReviewSubmit = async () => {
         if (newContext.trim() !== '') {
-            const newReview = {
-                id: reviews.length + 1,
-                profileImage: profileImage || basic_profileimage,  // 추후에 유저 프로필 이미지 연동
-                name: name || "사용자",  // 추후에 유저 이름 연동
-                grade: newGrade,
-                context: newContext,
-                date: new Date(),
-                reviewImage: uploadedImage ? [uploadedImage] : [],
-                answer: null,
-                dateAnswer: null,
-            };
-            setReviews([newReview, ...reviews]);
-            setNewContext('');
-            setNewGrade(0);
-            setSelectedStars(0);
-            setUploadedImage(null); // 업로드된 이미지 초기화 >> 별점란 초기화
+            let uploadedImageUrl = null;
+    
+            if (fileForUpload) {  // 실제 업로드할 파일이 있는지 확인
+                try {
+                    const formData = new FormData();
+                    formData.append('reviewImages', fileForUpload);  // 실제 파일 업로드
+    
+                    const uploadResponse = await axios.post(
+                        'http://ec2-3-34-248-63.ap-northeast-2.compute.amazonaws.com:8081/reviewImage/upload',
+                        formData,
+                        {
+                            headers: {
+                                Authorization: `Bearer ${yourAccessToken}`,
+                                'Content-Type': 'multipart/form-data',
+                            },
+                        }
+                    );
+    
+                    if (uploadResponse.data.isSuccess) {
+                        uploadedImageUrl = uploadResponse.data.result[0];
+                    } else {
+                        console.warn("이미지 업로드에 실패했습니다:", uploadResponse.data.message);
+                    }
+                } catch (error) {
+                    console.error("이미지 업로드 api 호출에 실패했습니다:", error);
+                }
+            }
+    
+            try {
+                const reviewResponse = await axios.post(
+                    `http://ec2-3-34-248-63.ap-northeast-2.compute.amazonaws.com:8081/spaces/${spaceId}/review/${performerId}`,
+                    {
+                        grade: newGrade,
+                        content: newContext,
+                        imageUrls: uploadedImageUrl ? [uploadedImageUrl] : [],
+                    },
+                    {
+                        headers: {
+                            Authorization: `Bearer ${yourAccessToken}`,
+                            'Content-Type': 'application/json',
+                        },
+                    }
+                );
+    
+                if (reviewResponse.data.isSuccess) {
+                    fetchReviews();  // 리뷰 목록을 다시 불러와 최신 상태를 반영
+                    setNewContext('');
+                    setNewGrade(0);
+                    setSelectedStars(0);
+                    setUploadedImage(null);
+                    setFileForUpload(null);  // 업로드 후 파일 초기화
+                } else {
+                    console.warn("리뷰 제출에 실패했습니다:", reviewResponse.data.message);
+                }
+            } catch (error) {
+                console.error("리뷰 제출에 실패했습니다:", error);
+            }
         }
     };
 
     const handleImageUpload = (e) => {
         const file = e.target.files[0];
         if (file) {
-            const reader = new FileReader();
-            reader.onload = (event) => {
-                setUploadedImage(event.target.result);
-            };
-            reader.readAsDataURL(file);
+            setUploadedImage(URL.createObjectURL(file));  // 미리보기용 URL 설정
+            setFileForUpload(file);  // 실제 업로드용 파일 설정
         }
     };
 
@@ -179,3 +231,4 @@ const ReviewPanel = ({ reviews, setReviews, profileImage, name, context, reviewI
 };
 
 export default ReviewPanel;
+

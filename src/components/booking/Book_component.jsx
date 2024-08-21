@@ -7,18 +7,18 @@ const Book_component = ({ id, img, name, date, isPreferred, onClick }) => {
     const [past, setPast] = useState(false);
     const [like, setLike] = useState(true);
 
-    const isPast = (date) => {
-        const now = new Date();
-        return date <= now;
-    };
+  const isPast = (date) => {
+    const now = new Date();
+    return date <= now;
+  };
 
     const onLike = () => {
          setLike(!like);
     };
 
-    useEffect(() => {
-        setPast(isPast(date));
-    }, [date]);
+  useEffect(() => {
+    setPast(isPast(date));
+  }, [date]);
 
     return (
         <div className="Book_component" onClick={onClick}>

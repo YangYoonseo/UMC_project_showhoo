@@ -54,7 +54,8 @@ const RentalSearchFilterModal = ({ isOpen, onClose }) => {
                             borderRadius: "11.09px",
                             backgroundColor: "#E8E8E8",
                             borderWidth: "1px",
-                            borderColor: "transparent"
+                            borderColor: "transparent",
+                            cursor: "pointer"
                         }}
                     >초기화
                     </button>
@@ -65,7 +66,8 @@ const RentalSearchFilterModal = ({ isOpen, onClose }) => {
                             borderRadius: "11.09px",
                             backgroundColor: "#09F1B9",
                             borderWidth: "1px",
-                            borderColor: "transparent"
+                            borderColor: "transparent",
+                            cursor: "pointer"
                         }}
                     >필터 적용하기
                     </button>

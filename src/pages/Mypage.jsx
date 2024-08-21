@@ -12,7 +12,7 @@ import SwitchRoles from "../components/common/SwitchRoles";
 
 const Mypage = () => {
   const nav = useNavigate();
-
+  const performerId = sessionStorage.getItem("performerId");
   const [cancel, setCancel] = useState(false);
   const [popup, setPopup] = useState(false);
   const [myprofile, setMyprofile] = useState();
@@ -23,7 +23,7 @@ const Mypage = () => {
       const token = sessionStorage.getItem("accessToken");
       try {
         const response = await axios.get(
-          `http://ec2-3-34-248-63.ap-northeast-2.compute.amazonaws.com:8081/performer/mypage/1`,
+          `http://ec2-3-34-248-63.ap-northeast-2.compute.amazonaws.com:8081/performer/mypage/${performerId}`,
           {
             headers: {
               Authorization: `Bearer ${token}`,
@@ -31,7 +31,9 @@ const Mypage = () => {
           }
         );
         console.log("마이프로필", response.data.result);
-        setMyprofile(response.data.result);
+        {
+          response.data.result && setMyprofile(response.data.result);
+        }
 
         const profileDTO = response.data.result.profileDTO;
 
@@ -58,7 +60,7 @@ const Mypage = () => {
           });
         }
       } catch (error) {
-        console.error("프로필 정보를 불러오는데 실패했습니다:", error);
+        console.error("최근 프로필 정보를 불러오는데 실패했습니다:", error);
       }
     };
     MypageView();
@@ -68,8 +70,8 @@ const Mypage = () => {
     return <div>Loading...</div>;
   }
 
-  const fullName = myprofile.name;
-  const name = fullName.substring(1);
+  const fullName = myprofile.name || "";
+  const name = fullName.substring(1) || "";
 
   return (
     <div className="Mypage">
@@ -82,11 +84,13 @@ const Mypage = () => {
           {name}님의<span>&nbsp;최근&nbsp;</span>프로필이에요
         </p>
         {console.log("제일 최근", latestProfile)}
-        <PerformerProfile
-          key={latestProfile.id}
-          profile={latestProfile}
-          className={"profile-card profile-latest"}
-        />
+        {latestProfile && (
+          <PerformerProfile
+            key={latestProfile.id}
+            profile={latestProfile}
+            className={"profile-card profile-latest"}
+          />
+        )}
 
         <div className="choice">
           <button

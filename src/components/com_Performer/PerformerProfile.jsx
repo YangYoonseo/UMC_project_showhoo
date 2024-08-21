@@ -12,16 +12,16 @@ import call from "../../assets/img_Performer/call.svg";
 import map_pin from "../../assets/img_Performer/map_pin.svg";
 import Line40 from "../../assets/img_Performer/Line40.svg";
 
-// 추후에 Id로 바꾸기? 추후 수정 해야함
 const PerformerProfile = ({ profile, className }) => {
   const nav = useNavigate();
   const [popup, setPopup] = useState(false);
   const token = sessionStorage.getItem("accessToken");
+  const performerId = sessionStorage.getItem("performerId");
 
   const deletePerformer = async () => {
     try {
       const response = await axios.delete(
-        `http://ec2-3-34-248-63.ap-northeast-2.compute.amazonaws.com:8081/profile/1/${profile.id}`,
+        `http://ec2-3-34-248-63.ap-northeast-2.compute.amazonaws.com:8081/profile/${performerId}/${profile.id}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -30,6 +30,7 @@ const PerformerProfile = ({ profile, className }) => {
       );
 
       console.log("삭제해보기", response.data);
+      window.location.reload();
     } catch (error) {
       console.error("Error:", error);
     }
@@ -45,7 +46,7 @@ const PerformerProfile = ({ profile, className }) => {
       };
 
       const response = await axios.put(
-        `http://ec2-3-34-248-63.ap-northeast-2.compute.amazonaws.com:8081/profile/1/${profile.id}/text`,
+        `http://ec2-3-34-248-63.ap-northeast-2.compute.amazonaws.com:8081/profile/${performerId}/${profile.id}/text`,
         data,
         {
           headers: {
@@ -55,6 +56,7 @@ const PerformerProfile = ({ profile, className }) => {
         }
       );
       console.log("수정", response.data);
+      window.location.reload();
     } catch (error) {
       console.error("Error:", error);
     }

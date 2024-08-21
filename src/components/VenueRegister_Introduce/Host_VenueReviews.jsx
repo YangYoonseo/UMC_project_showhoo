@@ -1,70 +1,59 @@
 import "../../styles/Eojin/Host_VenueReviews.css";
-import profile from "../../assets/images/venueregisterpage_introduce/profile.svg";
-import review_img1 from "../../assets/images/venueregisterpage_introduce/review_img1.svg";
-import review_img2 from "../../assets/images/venueregisterpage_introduce/review_img2.svg";
+import { useState, useEffect } from "react";
 
 import HostReview from "./HostReview";
 
-const mockdata = [
-    {
-        id: 0,
-        profile: [profile],
-        name: "김철수",
-        review: "매우 깨끗하고 위치도 좋아요.",
-        review_img: [],
-        date: new Date('2024-08-10T10:30:00'),
-        score: 5,
-    },
-    {
-        id: 1,
-        profile: [profile],
-        name: "이영희",
-        review: "좋은 경험이었지만 밤에 좀 시끄러웠어요.",
-        review_img: [],
-        date: new Date('2024-08-09T16:15:00'),
-        score: 3,
-    },
-    {
-        id: 2,
-        profile: [profile],
-        name: "박민수",
-        review: "편안한 숙박이었고 직원들이 친절했어요.",
-        review_img: [review_img1, review_img2],
-        date: new Date('2024-08-08T14:45:00'),
-        score: 4,
-    },
-    {
-        id: 3,
-        profile: [profile],
-        name: "최지영",
-        review: "기대했던 것만큼 좋지는 않았어요.",
-        review_img: [],
-        date: new Date('2024-08-07T11:00:00'),
-        score: 2,
-    }
-];
+// import profile from "../../assets/images/venueregisterpage_introduce/profile.svg";
+// import review_img1 from "../../assets/images/venueregisterpage_introduce/review_img1.svg";
+// import review_img2 from "../../assets/images/venueregisterpage_introduce/review_img2.svg";
 
 const Host_VenueReviews = () => {
+    const [data, setData] = useState([]);
+
+    const spaceId = 1; 
+
+    async function getDownloadData() {
+        const token = sessionStorage.getItem("accessToken");
+        try {
+            const res = await axios.get(
+                `http://ec2-3-34-248-63.ap-northeast-2.compute.amazonaws.com:8081/review/space/${spaceId}`,
+                {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    },           
+                }
+            );
+            const data = res.data.result;
+            console.log("다운로드 양식 보기", res.data);
+        } catch (error) {
+            console.log("Error:", error);
+        }
+    };
+
+    useEffect(() => {
+        getDownloadData();
+    }, []);
+
     // 리뷰 개수
-    const reviewCount = mockdata.length;
+    const reviewCount = data.length;
 
     // 평균 평점 계산
-    const averageScore = (mockdata.reduce((acc, curr) => acc + curr.score, 0) / reviewCount).toFixed(1);
+    const averageScore = (data.reduce((acc, curr) => acc + curr.grade, 0) / reviewCount).toFixed(1);
 
     return (
         <div className="Host_VenueReviews">
             <h4>후기 {reviewCount}개<span className="hightlight">&nbsp;•&nbsp;</span>평균 평점<span className="hightlight">&nbsp;{averageScore}</span></h4>
             <div className="reviews-container">
-                {mockdata.map((review) => (
+                {data.map((review) => (
                     <HostReview
                         key={review.id}
                         id={review.id}
-                        profile={review.profile}
-                        name={review.name}
-                        review={review.review}
-                        review_img={review.review_img}
-                        score={review.score}
-                        date={review.date}
+                        profile={review.memberUrl}
+                        name={review.memberName}
+                        review={review.content}
+                        review_img={review.imageUrls}
+                        score={review.grade}
+                        date={review.updatedAt}
                     />
                 ))}
             </div>

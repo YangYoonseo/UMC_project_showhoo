@@ -1,62 +1,65 @@
 //reviews.jsx
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import './VenueDetails.css';
-
-import reviewimage1 from '../../assets/images/venuedetailpage/reviewimage1.png';
-import profileimage from "../../assets/images/venuedetailpage/profileimage.png";
 import ReviewPanel from './ReviewPanel';
-
-const mockdata = [
-  {
-    id: 0,
-    profileImage: [profileimage], // 프로필 이미지 파일 경로
-    name: '홍길동',
-    grade: 4,
-    context: '사장님이 심보가 고약하십니다. 공연장은 좋네요.',
-    date: new Date('2024-08-10T10:30:00'),
-    reviewImage: [],
-    answer: '안녕하세요 소울님. 저희 001 클럽에서 만족스러운 시간 보내셨길 바랍니다. 이용해주셔서 감사합니다.',
-    dateAnswer: new Date('2024-08-23T14:43:54'),
-  },
-  {
-    id: 1,
-    profileImage: [profileimage],
-    name: '김지서',
-    grade: 4,
-    context: '사장님이 살짝 불친절하셨지만 공연장 시설은 좋았습니다. 시설 괜찮은 소규모 공연장 찾기 힘든데 만족스럽습니다.',
-    date: new Date('2024-08-09T16:15:00'),
-    reviewImage: [reviewimage1], // 후기 이미지 파일
-    answer: '안녕하세요 지서님. 저희 001 클럽에서 만족스러운 시간 보내셨길 바랍니다. 이용해주셔서 감사합니다.',
-    dateAnswer: new Date('2024-08-21T13:43:54'),
-  }
-];
+import default_profile_image from "../../assets/images/venuedetailpage/default_profile_image.svg";
 
 const Reviews = () => {
-  const [reviews, setReviews] = useState(mockdata);
+  const [reviews, setReviews] = useState([]);
+  const [averageScore, setAverageScore] = useState(0);
+  const spaceId = 2; // Replace with the actual spaceId
+  const yourAccessToken = sessionStorage.getItem("accessToken");
 
-  const reviewCount = reviews.length;
-  const averageScore = (reviews.reduce((acc, curr) => acc + curr.grade, 0) / reviewCount).toFixed(1);
+  const fetchReviews = async () => {
+    try {
+      const response = await axios.get(
+        `http://ec2-3-34-248-63.ap-northeast-2.compute.amazonaws.com:8081/review/space/${spaceId}`,
+        {
+          headers: {
+            Authorization: `Bearer ${yourAccessToken}`,
+          },
+        }
+      );
+
+      if (response.data.isSuccess) {
+        const reviewsData = response.data.result;
+        setReviews(reviewsData);
+        setAverageScore(
+          (reviewsData.reduce((acc, curr) => acc + curr.grade, 0) / reviewsData.length).toFixed(1)
+        );
+      } else {
+        console.warn("Failed to fetch reviews:", response.data.message);
+      }
+    } catch (error) {
+      console.error("Failed to fetch reviews:", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchReviews();
+  }, [spaceId]);
 
   return (
     <div className="venue-reviews">            
-      <h4>후기 {reviewCount}개<span className="hightlight">&nbsp;•&nbsp;</span>평균 평점<span className="hightlight">&nbsp;{averageScore}</span></h4>
+      <h4>후기 {reviews.length}개<span className="hightlight">&nbsp;•&nbsp;</span>평균 평점<span className="hightlight">&nbsp;{averageScore}</span></h4>
       
-      {/* 후기 작성란 추가 */}
-      <ReviewPanel reviews={reviews} setReviews={setReviews} />
+      <ReviewPanel reviews={reviews} setReviews={setReviews} fetchReviews={fetchReviews} />
 
       <div className="reviews-container">
           {reviews.map((review) => (
               <ReviewPanel
                   key={review.id}
                   id={review.id}
-                  profileImage={review.profileImage}
-                  name={review.name}
-                  context={review.context}
-                  reviewImage={review.reviewImage}
+                  // 프로필 이미지와 사용자 이름, 이미지의 경우 일단 기본설정을 해놓음
+                  profileImage={review.profileImage || default_profile_image}
+                  name={review.name || '사용자'}
+                  context={review.content}
+                  reviewImage={review.imageUrls || []}
                   grade={review.grade}
-                  date={review.date}
-                  answer={review.answer}
-                  dateAnswer={review.dateAnswer}
+                  date={new Date(review.date)} // 날짜를 Date 객체로 변환하여 전달
+                  answer={review.answers && review.answers[0] ? review.answers[0].content : ''}
+                  dateAnswer={new Date(review.date)} // 날짜를 Date 객체로 변환하여 전달
               />
           ))}
       </div>

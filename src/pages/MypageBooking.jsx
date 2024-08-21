@@ -5,16 +5,16 @@ import { useNavigate } from "react-router-dom";
 
 import axios from "axios";
 
-import Frame339 from "../assets/img_Performer/Frame339.png";
-
 import Navbar_Booking from "../components/common/Navbar_Booking";
 import BookingProfile from "../components/com_Booking/BookingProfile";
 import SwitchRoles from "../components/common/SwitchRoles";
 
 const MypageBooking = () => {
+  const audienceId = sessionStorage.getItem("audienceId");
   const fullName = sessionStorage.getItem("name");
   const name = fullName.substring(1);
   const nav = useNavigate();
+  const poster = sessionStorage.getItem("poster");
 
   const [cancel, setCancel] = useState(false);
   const [popup, setPopup] = useState(false);
@@ -25,7 +25,7 @@ const MypageBooking = () => {
       const token = sessionStorage.getItem("accessToken");
       try {
         const response = await axios.get(
-          `http://ec2-3-34-248-63.ap-northeast-2.compute.amazonaws.com:8081/book/1/next`,
+          `http://ec2-3-34-248-63.ap-northeast-2.compute.amazonaws.com:8081/book/${audienceId}/next`,
           {
             headers: {
               Authorization: `Bearer ${token}`,
@@ -62,7 +62,7 @@ const MypageBooking = () => {
       <Navbar_Booking />
       <div className="MypageBooking_content">
         <h3 className="mypage_h3">마이페이지</h3>
-        <img src={Frame339} alt="" className="profile_img" />
+        <img src={poster} alt="" className="profile_img" />
         <p className="name">{fullName}</p>
         <p className="next">
           {name}님의<span>&nbsp;다음&nbsp;</span>공연이에요

@@ -1,0 +1,43 @@
+.TwoButton_ReviewDelete {
+  /* 예매하기 */
+
+  position: absolute;
+  width: 697px;
+  height: 377px;
+  left: 371px;
+  top: 250px;
+
+  background: #ffffff;
+  border-radius: 25px;
+
+  padding: 0;
+}
+
+.TwoButton_ReviewDelete h1 {
+  /* 대관 신청하시겠습니까? */
+
+  width: 547px;
+  height: 48px;
+  margin: 0;
+
+  position: absolute;
+  left: 91px;
+  top: 61px;
+
+  font-family: "Pretendard";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 40px;
+  line-height: 30px;
+  /* or 75% */
+  display: flex;
+  align-items: center;
+
+  color: #0f0f0f;
+
+  /* Inside auto layout */
+  flex: none;
+  order: 0;
+  align-self: stretch;
+  flex-grow: 0;
+}

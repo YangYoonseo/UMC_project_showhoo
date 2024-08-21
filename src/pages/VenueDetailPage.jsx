@@ -20,13 +20,12 @@ import '../components/VenueDetails/VenueDetails.css';
 import all_image_btn from '../assets/images/venuedetailpage/all_image_btn.svg';
 
 // mockData 주석 처리
-/*
 const mockData = {
   name: "001 클럽",
   rating: 4.0,
   reviews: 15,
   address: "서울특별시 강남구 도산대로99길 20",
-  images: [venue_image1, venue_image2, venue_image3, venue_image4, venue_image5, venue_image6, venue_image7, venue_image8],
+  // images: [venue_image1, venue_image2, venue_image3, venue_image4, venue_image5, venue_image6, venue_image7, venue_image8],
   rentalFee: 700000,
   capacity: 200,
   parking: "건물 내 주차 가능 (대형 밴드 포함 30대), 유료 발렛 파킹 서비스",
@@ -52,19 +51,19 @@ const mockData = {
     { name: "추가 1시간", price: 100000 }
   ]
 };
-*/
 
 const VenueDetailPage = () => {
   const [selectedTab, setSelectedTab] = useState('introduction');
   const [isPopupOpen, setIsPopupOpen] = useState(false); // 팝업 상태 관리
   const [venueData, setVenueData] = useState(null);
   const [images, setImages] = useState([]);
-  const spaceId = 1; // 실제 spaceId 값으로 교체 필요
-  const yourAccessToken = "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIzNjYxNTg0NzU5IiwiZXhwIjoxNzIzODQxMDU1fQ.I6xy6SreNIN6HTsV7DjxPPMhVOumFruEtcC_4_AvMTsnzb2uOXvcaCmGSsVVGFj0WAH1WUTBJcWeEQ-37BP1IA";
+  const spaceId = 2; // 실제 spaceId 값으로 교체 필요
+  const yourAccessToken = sessionStorage.getItem("accessToken");
+
 
   // useEffect : 컴포넌트가 마운트될 때 2개의 api 호출하여 데이터 가져옴
   useEffect(() => {
-    // Venue 정보 가져오기
+    // VenueInfo API
     const fetchVenueInfo = async () => {
       try {
         const response = await axios.get(`http://ec2-3-34-248-63.ap-northeast-2.compute.amazonaws.com:8081/spaces/${spaceId}/description`, {
@@ -144,12 +143,12 @@ const VenueDetailPage = () => {
           <div className="venue-main-content">
             <VenueTabs selectedTab={selectedTab} setSelectedTab={setSelectedTab} />
             {selectedTab === 'introduction' && <VenueIntroduction />}
-            {/* {selectedTab === 'facility' && <FacilityInfo data={venueData.name} />} */}
-            {/* {selectedTab === 'notice' && <Notice data={venueData} />} */}
-            {/* {selectedTab === 'schedule' && <Schedule />} */}
-            {/* {selectedTab === 'reviews' && <Reviews />} */}
+            {selectedTab === 'facility' && <FacilityInfo name={venueData.name}/>}
+            {selectedTab === 'notice' && <Notice />}
+            {selectedTab === 'schedule' && <Schedule />}
+            {selectedTab === 'reviews' && <Reviews />}
           </div>
-          {/* <BookingForm rentalFee={venueData.rentalFee} additionalServices1={venueData.additionalServices1 || []} /> */}
+          <BookingForm />
         </div>
       </div>
       {/* {isPopupOpen && (

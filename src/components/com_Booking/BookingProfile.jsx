@@ -1,36 +1,51 @@
 import "../../styles/yoonseo/BookingProfile.css";
-import ticket from "../../assets/img_Booking/ticket.svg";
-import ticket_show from "../../assets/img_Booking/ticket_show.svg";
-import Button from "../common/Button";
-import BookingCancel from "../popup_Booking/BookingCancel";
 
 import { useState } from "react";
-import { useContext } from "react";
-import { PamphletContext } from "../../App";
+import axios from "axios";
+
+import ticket from "../../assets/img_Booking/ticket.svg";
+import ticket_show from "../../assets/img_Booking/ticket_show.svg";
+import BookingCancel from "../popup_Booking/BookingCancel";
+import Button from "../common/Button";
 
 const BookingProfile = ({ pamphlet, className }) => {
-  const [cancel, setCancel] = useState(false);
-  const { cancelPamphlet } = useContext(PamphletContext);
-
-  const onChangePamphlet = () => {
-    cancelPamphlet(pamphlet.id);
-  };
+  const [cancelPopup, setCancelPopup] = useState(false);
 
   const getClassName = () => {
-    switch (pamphlet.status) {
-      case "공연 완료":
+    switch (pamphlet.detail) {
+      case "WATCHED":
         return "status_show";
-      case "승인 예정":
+      case "CONFIRMING":
         return "status_schedule";
-      case "예매 완료":
+      case "CONFIRMED":
         return "status_completed";
-      case "취소":
+      case "CANCELLING":
+        return "status_canceling";
+      case "CANCELED":
         return "status_cancel";
       default:
         return "";
     }
   };
   const name = getClassName();
+
+  const getStatus = () => {
+    switch (pamphlet.detail) {
+      case "WATCHED":
+        return "공연 완료";
+      case "CONFIRMING":
+        return "승인 예정";
+      case "CONFIRMED":
+        return "예매 완료";
+      case "CANCELLING":
+        return "취소 대기";
+      case "CANCELED":
+        return "취소 완료";
+      default:
+        return "";
+    }
+  };
+  const status = getStatus();
 
   return (
     <div className={className}>
@@ -43,7 +58,7 @@ const BookingProfile = ({ pamphlet, className }) => {
 
       <img src={pamphlet.poster} alt="" className="pamphlet_image" />
       {name !== "status_cancel" && (
-        <p className={`status ${getClassName()}`}>{pamphlet.status}</p>
+        <p className={`status ${getClassName()}`}>{status}</p>
       )}
 
       <div className={`pamphlet_div pamphlet_${name}`}>
@@ -60,28 +75,26 @@ const BookingProfile = ({ pamphlet, className }) => {
           </div>
         </div>
       </div>
-      {name !== "status_show" && name !== "status_cancel" && (
-        <div className="pamphlet_button">
-          <Button text={"더 보기"} type={"white"} onClick={() => {}} />
-          <Button
-            text={"취소"}
-            type={"green"}
-            onClick={() => {
-              setCancel(true);
-            }}
-          />
-        </div>
-      )}
-      {cancel && (
+      {name !== "status_show" &&
+        name !== "status_canceling" &&
+        name !== "status_cancel" && (
+          <div className="pamphlet_button">
+            <Button text={"더 보기"} type={"white"} onClick={() => {}} />
+            <Button
+              text={"취소"}
+              type={"green"}
+              onClick={() => {
+                setCancelPopup(true);
+              }}
+            />
+          </div>
+        )}
+      {cancelPopup && (
         <BookingCancel
           onClose={() => {
-            setCancel(false);
+            setCancelPopup(false);
           }}
-          onNext={() => {
-            setCancel(false);
-            onChangePamphlet();
-            console.log(pamphlet);
-          }}
+          id={pamphlet.bookId}
         />
       )}
     </div>

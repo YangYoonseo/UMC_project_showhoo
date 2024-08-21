@@ -1,3 +1,4 @@
+//App.jsx
 import "./App.css";
 
 import { Routes, Route } from "react-router-dom";
@@ -35,9 +36,11 @@ import MypageBooking from "./pages/MypageBooking.jsx";
 import MypageConcert from "./pages/MypageConcert.jsx";
 import LikeBooking from "./pages/LikeBooking.jsx";
 import Login from "./Login.jsx";
-// import Mockdata from "./components/booking/Mockdata.jsx";
+import { ProfileIdProvider } from "./components/com_Performer/ProfileProvider.jsx";
 
 const token = sessionStorage.getItem("accessToken");
+const uid = sessionStorage.getItem("uid");
+const performerId = sessionStorage.getItem("performerId");
 
 const ex_venues = [
   {
@@ -122,6 +125,7 @@ function reducer(state, action) {
 export const ProfileContext = createContext();
 export const VenueContext = createContext();
 export const PamphletContext = createContext();
+export const IdContext = createContext();
 
 function App() {
   // 공연장, 관람자는 useState, 프로필은 useReducer로 했음
@@ -134,14 +138,14 @@ function App() {
     const fetchProfiles = async () => {
       try {
         const response = await axios.get(
-          "http://ec2-3-34-248-63.ap-northeast-2.compute.amazonaws.com:8081/profile/1",
+          `http://ec2-3-34-248-63.ap-northeast-2.compute.amazonaws.com:8081/profile/${performerId}`,
           {
             headers: {
               Authorization: `Bearer ${token}`,
             },
           }
         );
-        console.log("API Response:", response.data.result);
+        console.log("프로필 데이터 가져오기", response.data.result);
 
         const profile = response.data.result;
 
@@ -164,6 +168,32 @@ function App() {
     fetchProfiles();
   }, []);
 
+  // uid로 아이디 받아오기
+  useEffect(() => {
+    const MemberId = async (uid) => {
+      try {
+        const response = await axios.get(
+          `http://ec2-3-34-248-63.ap-northeast-2.compute.amazonaws.com:8081/member_info/${uid}`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+        console.log("아이디", response.data.result);
+        const id = response.data.result;
+
+        sessionStorage.setItem("performerId", id.performerId);
+        sessionStorage.setItem("spaceUserId", id.spaceUserId);
+        sessionStorage.setItem("audienceId", id.audienceId);
+        sessionStorage.setItem("poster", id.profile_url);
+      } catch (error) {
+        console.log("아이디 받아오기 실패", error);
+      }
+    };
+    MemberId(uid);
+  }, []);
+
   const cancelPamphlet = (id) => {
     setPamphlets(
       pamphlets.map((pamphlet) =>
@@ -174,57 +204,61 @@ function App() {
 
   return (
     <>
-      {console.log("현재 프로필", profiles)}
-      <ProfileContext.Provider value={profiles}>
-        <VenueContext.Provider value={{ venues, setVenues }}>
-          <PamphletContext.Provider
-            value={{ pamphlets, setPamphlets, cancelPamphlet }}
-          >
-            <div className="App">
-              <Routes>
-                <Route path="/" element={<Home_Performer />} />
-                <Route path="/home_concert" element={<Home_Concert />} />
-                <Route path="/home_booking" element={<Home_Booking />} />
-                <Route path="/login/oauth2/code/kakao" element={<Login />} />
-                <Route
-                  path="/performer_registration"
-                  element={<PerformerRegistration />}
-                />
-                <Route path="/performer_update" element={<PerformerUpdate />} />
-                <Route path="/mypage_performer" element={<Mypage />} />
-                <Route path="/rental" element={<Rental />} />
-                <Route path="/rental_search" element={<RentalSearch />} />
-                <Route path="/mypage" element={<Mypage />} />
-                <Route path="/rental_details" element={<RentalDetails />} />
-                <Route path="/rental_history" element={<RentalHistory />} />
-                <Route
-                  path="/venue_detail"
-                  element={<VenueDetailPage data={{ spaceId: 1 }} />}
-                />{" "}
-                {/* 공연자 플로우 */}
-                <Route
-                  path="/venue_register"
-                  element={<VenueRegisterPage />}
-                />{" "}
-                {/* 공연장 플로우 */}
-                <Route path="/login" element={<LoginPage />} />
-                <Route path="alarm" element={<Alarm />} />
-                <Route path="/my_activity" element={<MyActivity />} />
-                <Route path="/concert_ready" element={<ConcertReady />} />
-                <Route path="/booking_history" element={<BookingHistroy />} />
-                <Route path="/performer_ready" element={<PerformerReady />} />
-                <Route path="/con_ready" element={<ConReady />} />
-                <Route path="/booking" element={<Booking />} />
-                <Route path="/mypage_concert" element={<MypageConcert />} />
-                <Route path="mypage_booking" element={<MypageBooking />} />
-                <Route path="/like_booking" element={<LikeBooking />} />
-                <Route path="/alarm_booking" element={<AlarmBooking />} />
-                <Route path="/alarm_concert" element={<AlarmConcert />} />
-              </Routes>
-            </div>
-          </PamphletContext.Provider>
-        </VenueContext.Provider>
-      </ProfileContext.Provider>
+      <ProfileIdProvider>
+        <ProfileContext.Provider value={profiles}>
+          <VenueContext.Provider value={{ venues, setVenues }}>
+            <PamphletContext.Provider
+              value={{ pamphlets, setPamphlets, cancelPamphlet }}
+            >
+              <div className="App">
+                <Routes>
+                  <Route path="/" element={<Home_Performer />} />
+                  <Route path="/home_concert" element={<Home_Concert />} />
+                  <Route path="/home_booking" element={<Home_Booking />} />
+                  <Route path="/login/oauth2/code/kakao" element={<Login />} />
+                  <Route
+                    path="/performer_registration"
+                    element={<PerformerRegistration />}
+                  />
+                  <Route
+                    path="/performer_update"
+                    element={<PerformerUpdate />}
+                  />
+                  <Route path="/mypage_performer" element={<Mypage />} />
+                  <Route path="/rental" element={<Rental />} />
+                  <Route path="/rental_search" element={<RentalSearch />} />
+                  <Route path="/mypage" element={<Mypage />} />
+                  <Route path="/rental_details" element={<RentalDetails />} />
+                  <Route path="/rental_history" element={<RentalHistory />} />
+                  <Route
+                    path="/venue_detail"
+                    element={<VenueDetailPage data={{ spaceId: 1 }} />}
+                  />{" "}
+                  {/* 공연자 플로우 */}
+                  <Route
+                    path="/venue_register"
+                    element={<VenueRegisterPage />}
+                  />{" "}
+                  {/* 공연장 플로우 */}
+                  <Route path="/login" element={<LoginPage />} />
+                  <Route path="alarm" element={<Alarm />} />
+                  <Route path="/my_activity" element={<MyActivity />} />
+                  <Route path="/concert_ready" element={<ConcertReady />} />
+                  <Route path="/booking_history" element={<BookingHistroy />} />
+                  <Route path="/performer_ready" element={<PerformerReady />} />
+                  <Route path="/con_ready" element={<ConReady />} />
+                  <Route path="/booking" element={<Booking />} />
+                  <Route path="/mypage_concert" element={<MypageConcert />} />
+                  <Route path="mypage_booking" element={<MypageBooking />} />
+                  <Route path="/like_booking" element={<LikeBooking />} />
+                  <Route path="/alarm_booking" element={<AlarmBooking />} />
+                  <Route path="/alarm_concert" element={<AlarmConcert />} />
+                </Routes>
+              </div>
+            </PamphletContext.Provider>
+          </VenueContext.Provider>
+        </ProfileContext.Provider>
+      </ProfileIdProvider>
     </>
   );
 }

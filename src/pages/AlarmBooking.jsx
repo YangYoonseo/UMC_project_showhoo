@@ -10,13 +10,14 @@ import AlarmDetail from "../components/com_Performer/AlarmDetail";
 
 const AlarmBooking = () => {
   const [alarmResult, setAlarmResult] = useState([]);
+  const audienceId = sessionStorage.getItem("audienceId");
 
   useEffect(() => {
     const BookingAlarmCheck = async () => {
       const token = sessionStorage.getItem("accessToken");
       try {
         const response = await axios.get(
-          "http://ec2-3-34-248-63.ap-northeast-2.compute.amazonaws.com:8081/notifications/AUDIENCE/1",
+          `http://ec2-3-34-248-63.ap-northeast-2.compute.amazonaws.com:8081/notifications/AUDIENCE/${audienceId}`,
           {
             headers: {
               Authorization: `Bearer ${token}`,

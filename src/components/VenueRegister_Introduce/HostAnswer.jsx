@@ -7,12 +7,28 @@ const HostAnswer = ({ index }) => {
     const [date, setDate] = useState(new Date());
     const [isOpen, setIsOpen] = useState(false);
 
-    const data = [
-        {
-            id: index,
-            answer: answer
+    const data = {
+        answer: answer
+    };
+
+    async function uploadAnswer(index) {
+        const token = sessionStorage.getItem("accessToken");
+        try {
+            const res = await axios.post(
+                `http://ec2-3-34-248-63.ap-northeast-2.compute.amazonaws.com:8081/space/${spaceId}/review/${index}/reviewAnswer`,
+                data,
+                {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                        "Content-Type": "application/json",
+                    },           
+                }
+            );
+            console.log("업로드 성공:", res.data);
+        } catch (error) {
+            console.log("Error:", error);
         }
-    ];
+    };
 
     useEffect(() => {
         console.log("Updated Data:", data);
@@ -23,6 +39,7 @@ const HostAnswer = ({ index }) => {
         setDate(new Date());
         setIsOpen(true);
         setInputValue(""); // 입력 후 input 필드를 비웁니다.
+        uploadAnswer(index);
     };
 
     const onChange = (e) => {
