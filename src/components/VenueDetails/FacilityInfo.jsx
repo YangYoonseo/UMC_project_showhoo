@@ -19,26 +19,17 @@ const FacilityInfo = ({ name }) => {
   const [hovered, setHovered] = useState('');
   const [facilityData, setFacilityData] = useState({});
   const spaceId = 7;
-  const yourAccessToken = sessionStorage.getItem("accessToken");
 
   useEffect(() => {
     const fetchFacilityData = async () => {
       try {
         const response = await axios.get(
-          `https://showhoo.site/spaces/${spaceId}/file`,
-          {
-            headers: {
-              Authorization: `Bearer ${yourAccessToken}`,
-            },
-          }
-        );
-  
-        // 1. API 호출 성공한 경우 -> 전체 응답 조회
-        console.log("API 호출 성공:", response.data);
+          `https://showhoo.site/spaces/${spaceId}/file`);
+
 
         // 1-1. API 호출 성공 + 결과도 제대로 나온 경우 -> result 부분 확인
         if (response.data.isSuccess) {
-          console.log("API 결과 조회 성공:", response.data.result); 
+          // console.log("API 결과 조회 성공"); 
 
           const data = response.data.result;
         
@@ -78,6 +69,7 @@ const FacilityInfo = ({ name }) => {
     const link = document.createElement('a');
     link.href = fileUrl;
     link.download = fileName;
+    link.target = '_blank'; // 필요 시 추가: 새 탭에서 파일을 열지 않고 바로 다운로드하도록 설정
     document.body.appendChild(link); // 링크를 DOM에 추가
     link.click();
     document.body.removeChild(link); // 클릭 후 링크를 DOM에서 제거

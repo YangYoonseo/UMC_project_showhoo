@@ -12,7 +12,7 @@ const ReviewPanel = ({ reviews, setReviews, fetchReviews, profileImage, name, co
     const [newGrade, setNewGrade] = useState(0);
     const [selectedStars, setSelectedStars] = useState(0);
     const [showPopup, setShowPopup] = useState(false);
-    const spaceId = 2;
+    const spaceId = 1;
     const performerId = 3; // 실제 performerId로 교체 필요
     const yourAccessToken = sessionStorage.getItem("accessToken");
 
@@ -67,7 +67,7 @@ const ReviewPanel = ({ reviews, setReviews, fetchReviews, profileImage, name, co
                     formData.append('reviewImages', fileForUpload);  // 실제 파일 업로드
     
                     const uploadResponse = await axios.post(
-                        'http://ec2-3-34-248-63.ap-northeast-2.compute.amazonaws.com:8081/reviewImage/upload',
+                        'https://showhoo.site/reviewImage/upload',
                         formData,
                         {
                             headers: {
@@ -89,7 +89,7 @@ const ReviewPanel = ({ reviews, setReviews, fetchReviews, profileImage, name, co
     
             try {
                 const reviewResponse = await axios.post(
-                    `http://ec2-3-34-248-63.ap-northeast-2.compute.amazonaws.com:8081/spaces/${spaceId}/review/${performerId}`,
+                    `https://showhoo.site/spaces/${spaceId}/review/${performerId}`,
                     {
                         grade: newGrade,
                         content: newContext,
@@ -193,7 +193,14 @@ const ReviewPanel = ({ reviews, setReviews, fetchReviews, profileImage, name, co
 
     return (
         <div className="HostReview">
-            <div className="profile"><img src={profileImage} alt="profile" /></div>
+            <div className="profile">
+                <img 
+                    src={profileImage} 
+                    alt="profile" 
+                    style={{ 
+                        borderRadius: '50%',  // 원형으로
+                        objectFit: 'cover'     // 이미지가 원 안에 꼭 맞게
+                      }}/></div>
             <div className="review_container">
                 <div className="name_score">
                     <h4>{name}</h4>
