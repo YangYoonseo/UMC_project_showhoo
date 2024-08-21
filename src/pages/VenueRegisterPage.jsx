@@ -46,6 +46,15 @@ const VenueRegisterPage = () => {
   const [accountDetailstest, setAccountDetailstest] = useState({});
   const [serviceDescriptiontest, setServiceDescriptiontest] = useState('');
   const [serviceOptionstest, setServiceOptionstest] = useState([]);
+  const [holidays, setHolidays] = useState();
+  const [notice, setNotice] = useState("");
+  // 시설 자료 업로드 
+  const [soundEquipment, setSoundEquipment] = useState('');
+  const [lightingEquipment, setLightingEquipment] = useState('');
+  const [stageMachinery, setStageMachinery] = useState('');
+  const [spaceDrawing, setSpaceDrawing] = useState('');
+  const [spacestaff, setSpacestaff] = useState('');
+  const [spaceSeat, setSpaceSeat] = useState('');
   
   //spaceUserId 구현
   const spaceUserId = sessionStorage.getItem("spaceUserId");
@@ -76,6 +85,53 @@ const VenueRegisterPage = () => {
     setUploadedImages(imageUrls);
     console.log("이미지 URL 배열 전달 확인:", imageUrls); 
   };
+
+  // 유의사항 업데이트 함수 
+  const updateNotice = (notice) => {
+    setNotice(notice);
+    console.log("유의사항 전달 확인:", notice)
+  };
+
+  // holiday 업데이트 함수 
+  const updateHoliday = (date) => {
+    // 변환된 날짜 배열을 holidays 상태로 설정
+    setHolidays(date);
+    // 업데이트된 holidays 배열을 콘솔에 출력
+    console.log("휴무일:", holidays);
+  };
+  // 시설 자료 업데이트 함수 
+  const updateStageMachinery = (data) => {
+    setStageMachinery(data);
+  };
+
+  const updateSoundEquipment = (data) => {
+    setSoundEquipment(data);
+  };
+
+  const updateLightingEquipment = (data) => {
+    setLightingEquipment(data);
+  };
+
+  const updateSpaceDrawing = (data) => {
+    setSpaceDrawing(data);
+  };
+
+  const updateSpacestaff = (data) => {
+    setSpacestaff(data);
+  };
+
+  const updateSpaceSeat = (data) => {
+    setSpaceSeat(data);
+  };
+
+  useEffect(() => {
+    console.log("soundEquipment:",soundEquipment);
+    console.log("lightingEquipment:",lightingEquipment);
+    console.log("stageMachinery:",stageMachinery);
+    console.log("spaceDrawing:",spaceDrawing);
+    console.log("spacestaff:",spacestaff);
+    console.log("spaceSeat:",spaceSeat);
+  }, [soundEquipment, lightingEquipment, stageMachinery, spaceDrawing, spacestaff, spaceSeat])
 
   // 날짜 맵핑 함수
   const dayOfWeekMapping = {
@@ -124,15 +180,30 @@ const VenueRegisterPage = () => {
         peakSeasonRentalFees,
         additionalServices,
         spaceType: Category,
-        holidays: [], // 어진 part
-        notice: "", // 어진 part
+        holidays: holidays, // 어진 part
+        notice: notice, // 어진 part
       };
+      // 시설 자료 
+      const getsoundEquipment = soundEquipment;
+      const getlightingEquipment = lightingEquipment;
+      const getstageMachinery = stageMachinery;
+      const getspaceDrawing = spaceDrawing;
+      const getspacestaff = spacestaff;
+      const getspaceSeat = spaceSeat;
 
       // 전송할 데이터 확인
-      console.log("서버로 전송할 데이터:", spaceRegisterRequestDTO);
+      console.log("서버로 전송할 데이터(spaceRegisterRequestDTO):", spaceRegisterRequestDTO);
 
       const formData = new FormData();
       formData.append('spaceRegisterRequestDTO', JSON.stringify(spaceRegisterRequestDTO));
+      formData.append('soundEquipment', getsoundEquipment);
+      formData.append('lightingEquipment', getlightingEquipment);
+      formData.append('stageMachinery', getstageMachinery);
+      formData.append('spaceDrawing', getspaceDrawing);
+      formData.append('spacestaff', getspacestaff);
+      formData.append('spaceSeat', getspaceSeat);
+
+      console.log("서버로 전송할 데이터:", formData)
 
       // API 요청
       const response = await axios.post(`http://ec2-3-34-248-63.ap-northeast-2.compute.amazonaws.com:8081/spaces/${spaceUserId}`, 
@@ -241,13 +312,21 @@ const VenueRegisterPage = () => {
                   />
               )}
               {selectedTab === 'facility' && (
-                <Host_VenueFacility />
+                <Host_VenueFacility 
+                  openPlaceModal={openPlaceModal}
+                  updateStageMachinery={updateStageMachinery}
+                  updateSoundEquipment={updateSoundEquipment} 
+                  updateLightingEquipment={updateLightingEquipment} 
+                  updateSpaceDrawing={updateSpaceDrawing} 
+                  updateSpacestaff={updateSpacestaff} 
+                  updateSpaceSeat={updateSpaceSeat} 
+                  />
               )}
               {selectedTab === 'notice' && (
-                <Host_VenueNotice openPlaceModal={openPlaceModal} />
+                <Host_VenueNotice openPlaceModal={openPlaceModal} updateNotice={updateNotice} />
               )}
               {selectedTab === 'schedule' && (
-                <Host_VenueSchedule openPlaceModal={openPlaceModal} />
+                <Host_VenueSchedule openPlaceModal={openPlaceModal} updateHoliday={updateHoliday} />
               )}
               {selectedTab === 'reviews' && (
                 <Host_VenueReviews openPlaceModal={openPlaceModal} />

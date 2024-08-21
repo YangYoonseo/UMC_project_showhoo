@@ -1,31 +1,33 @@
 import "../../styles/Eojin/readyPoster.css";
 import React, { useState, useEffect } from "react";
+import { format } from "date-fns"; // 날짜 포맷팅을 위해 가져오기
+import axios from "axios";
+
 import Button from "../common/Button";
 import Editor from "./Editor/Editor";
 import SelectCalender from "./Datepicker/calender";
+
 import arrow from "../../assets/img_Ready/arrow.svg";
-import { format } from "date-fns"; // 날짜 포맷팅을 위해 가져오기
 
 const ReadyPoster = ({ preStep, nextStep, check }) => {
   const [image, setImage] = useState(null);
+  const [imageUrl, setImageUrl] = useState(null);
   const [selectedDate1, setSelectedDate1] = useState(null);
   const [selectedDate2, setSelectedDate2] = useState(null);
   const [isDatePickerOpen1, setIsDatePickerOpen1] = useState(false);
   const [isDatePickerOpen2, setIsDatePickerOpen2] = useState(false);
+  // CKEditor에서 받아올 데이터 
+  const [descriptionDTO, setDescriptionDTO] = useState('');
+  const [imgData, setImgData] = useState(new FormData());
 
   const [formData, setFormData] = useState({
-    club: "",
-    concertName: "",
-    date1: "",
-    time1: "",
+    name: "",
+    date: "",
+    time: "",
     runningTime: "",
-    date2: "",
-    time2: "",
+    cancelDate: "",
+    cancelTime: "",
   });
-
-  useEffect(() => {
-    console.log("Updated formData:", formData);
-  }, [formData]);
 
   const handleUploadClick = () => {
     document.getElementById("file-input").click();
@@ -34,15 +36,44 @@ const ReadyPoster = ({ preStep, nextStep, check }) => {
   const handleFileChange = (event) => {
     const file = event.target.files[0];
     if (file && (file.type === "image/jpeg" || file.type === "image/png")) {
-      const reader = new FileReader();
-      reader.onload = (e) => {
-        setImage(e.target.result);
-      };
-      reader.readAsDataURL(file);
+        setImage(file);
+        getPosterUrl();
     } else {
-      alert("Only JPG, JPEG, and PNG files are allowed.");
+        alert("Only JPG, JPEG, and PNG files are allowed.");
     }
   };
+
+const getPosterUrl = async () => {
+    const token = sessionStorage.getItem("accessToken");
+
+    const formData = new FormData();
+    formData.append("poster", image);  // 'file'은 서버에서 기대하는 파일 필드 이름입니다.
+
+    try {
+        const res = await axios.post(
+            `http://ec2-3-34-248-63.ap-northeast-2.compute.amazonaws.com:8081/upload-poster`,
+            formData,
+            {
+                headers: {
+                    "Content-Type": "multipart/form-data",
+                    Authorization: `Bearer ${token}`,
+                },
+            }
+        );
+
+        if (res.data.isSuccess) {
+          const posterUrl = res.data.result.poster;
+          console.log("업로드 성공:", posterUrl);
+          setImageUrl(posterUrl);  // 서버에서 반환된 이미지 URL을 저장
+      } else {
+          console.error("업로드 실패:", res.data.message);
+          alert(`Upload failed: ${res.data.message}`);
+      }
+  } catch (error) {
+      console.error("업로드 실패:", error);
+      alert("An error occurred during the upload.");
+  }
+};
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -56,8 +87,8 @@ const ReadyPoster = ({ preStep, nextStep, check }) => {
     setSelectedDate1(date);
     setFormData((prevData) => ({
       ...prevData,
-      date1: format(date, "yyyy-MM-dd HH:mm"), // 원하는 형식으로 날짜 저장
-      time1: date.toLocaleTimeString(), // 원하는 형식으로 시간 저장
+      date: format(date, "yyyy-MM-dd HH:mm"), // 원하는 형식으로 날짜 저장
+      time: date.toLocaleTimeString(), // 원하는 형식으로 시간 저장
     }));
     setIsDatePickerOpen1(false); // 선택 후 DatePicker 닫기
     console.log(formData);
@@ -67,8 +98,8 @@ const ReadyPoster = ({ preStep, nextStep, check }) => {
     setSelectedDate2(date);
     setFormData((prevData) => ({
       ...prevData,
-      date2: format(date, "yyyy-MM-dd HH:mm"), // 원하는 형식으로 날짜 저장
-      time2: date.toLocaleTimeString(), // 원하는 형식으로 시간 저장
+      cancelDate: format(date, "yyyy-MM-dd HH:mm"), // 원하는 형식으로 날짜 저장
+      cancelTime: date.toLocaleTimeString(), // 원하는 형식으로 시간 저장
     }));
     setIsDatePickerOpen2(false); // 선택 후 DatePicker 닫기
     console.log(formData);
@@ -81,6 +112,72 @@ const ReadyPoster = ({ preStep, nextStep, check }) => {
   const toggleDatePicker2 = () => {
     setIsDatePickerOpen2(!isDatePickerOpen2);
   };
+
+  const performerProfileId = 1;
+
+  const uploadInf = async () => {
+    const token = sessionStorage.getItem("accessToken");
+
+    // FormData 객체 생성
+    const formDataToSend = new FormData();
+
+    // showRequestDTO 객체를 FormData에 추가
+    formDataToSend.append("showRequestDTO", new Blob([JSON.stringify(formData)], { type: "application/json" }));
+
+    // poster 이미지 URL을 FormData에 추가
+    formDataToSend.append("poster", imageUrl);
+
+    try {
+        const res = await axios.post(
+            `http://ec2-3-34-248-63.ap-northeast-2.compute.amazonaws.com:8081/${performerProfileId}/show-register`,
+            formDataToSend, // 서버로 전송할 FormData
+            {
+                headers: {
+                    "Content-Type": "multipart/form-data", // 데이터를 multipart/form-data로 전송
+                    Authorization: `Bearer ${token}`,
+                },
+            }
+        );
+        console.log("업로드 성공:", res.data);
+        uploadDes();
+        nextStep();  // 서버 전송 후 다음 단계로 진행
+    } catch (error) {
+        console.error("업로드 실패:", error);
+        alert("An error occurred during the upload.");
+    }
+};
+
+// CKEditor에서 받아올 내용
+const handleContentChange = (content) => {
+    setDescriptionDTO(content);
+};
+
+const showId = 1;
+
+// 서버에 상세내용 보내기 
+const uploadDes = async () => {
+    const token = sessionStorage.getItem("accessToken");
+
+    // FormData에 데이터 추가
+    const formData = new FormData();
+    formData.append('descriptionDTO', descriptionDTO);
+
+    try {
+        const response = await axios.post(
+            `http://ec2-3-34-248-63.ap-northeast-2.compute.amazonaws.com:8081/${showId}/show-register/description`,  // 실제 서버 API 엔드포인트
+            formData,
+            {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                    'Content-Type': 'multipart/form-data',
+                },
+            }
+        );
+        console.log("서버 응답:", response.data);
+    } catch (error) {
+        console.error("업로드 실패:", error);
+    }
+};
 
   return (
     <div className="ReadyPoster">
@@ -100,7 +197,7 @@ const ReadyPoster = ({ preStep, nextStep, check }) => {
                 </p>
               </div>
             )}
-            {image && <img src={image} alt="Uploaded" />}
+            {imageUrl && <img src={imageUrl} alt="Uploaded" />}
             <input
               type="file"
               id="file-input"
@@ -117,15 +214,13 @@ const ReadyPoster = ({ preStep, nextStep, check }) => {
             className="inf_club"
             type="text"
             placeholder="001 클럽"
-            onChange={handleChange}
-            name="club"
           />
           <input
             className="inf_concertName"
             type="text"
             placeholder="공연명"
             onChange={handleChange}
-            name="concertName"
+            name="name"
           />
           <div className="inf_date" onClick={toggleDatePicker1}>
             {selectedDate1 ? <p>{formData.date1}</p> : <p>공연 날짜</p>}
@@ -161,12 +256,12 @@ const ReadyPoster = ({ preStep, nextStep, check }) => {
         <p>공연/리허설 과정에서 발생한 내용을 메모하세요.</p>
         <p>이미지는 드래그 앤 드롭으로 첨부 가능해요.</p>
         <div className="editor">
-          <Editor />
+          <Editor onContentChange={handleContentChange} setImgData={setImgData}/>
         </div>
       </div>
       <div className="Poster_button">
         <Button text={"뒤로 가기"} type={"gray"} onClick={preStep} />
-        <Button text={"다음 단계"} type={"green"} onClick={nextStep} />
+        <Button text={"다음 단계"} type={"green"} onClick={uploadInf} />
       </div>
     </div>
   );
