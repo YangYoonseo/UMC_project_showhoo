@@ -8,8 +8,9 @@ const Host_VenueReviews = () => {
     const [data, setData] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
     const reviewsPerPage = 4; // 한 페이지당 리뷰 수
-
+    // spaceId 변경 해줘야 함 ! 
     const spaceId = 4;
+    // 리뷰 가져오기 API 연결
     async function getDownloadData() {
         const token = sessionStorage.getItem("accessToken");
         try {
