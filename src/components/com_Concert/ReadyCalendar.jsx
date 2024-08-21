@@ -17,6 +17,7 @@ const ReadyCalendar = () => {
   const [completed, setCompleted] = useState(false);
   const [fullRental, setFullRental] = useState([]);
   const [selectedProfile, setSelectedProfile] = useState(null);
+  const [rental, setRental] = useState(null);
 
   // 공연 들어온거 띄우기
 
@@ -25,7 +26,7 @@ const ReadyCalendar = () => {
       {
         id: 5,
         date: "2024-08-23",
-        status: 1,
+        status: 0,
         audienceMin: 10,
         audienceMax: 40,
         rentalSum: 300000,
@@ -94,6 +95,7 @@ const ReadyCalendar = () => {
       }
       // 선택된 rental의 프로필 가져오기
       SpaceApplyProfile(selectedRental.id);
+      setRental(selectedRental);
     }
   };
 
@@ -191,6 +193,7 @@ const ReadyCalendar = () => {
       {(show || completed || application) && (
         <PerformerCalendar
           profile={selectedProfile}
+          rental={rental}
           className={"PerformerCalendar PerformerCalendar_calendar"}
         />
       )}

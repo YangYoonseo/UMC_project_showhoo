@@ -98,6 +98,7 @@ function App() {
   // uid로 아이디 받아오기
   useEffect(() => {
     const MemberId = async (uid) => {
+      if (!token) return; // If no token, do not attempt to fetch
       try {
         const response = await axios.get(`${url}/member_info/${uid}`, {
           headers: {
