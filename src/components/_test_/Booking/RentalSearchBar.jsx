@@ -10,6 +10,7 @@ const RentalSearchBar = () => {
     const [modalContent, setModalContent] = useState(null);
     const [selectedDate, setSelectedDate] = useState(""); // 선택된 날짜 상태
     const [selectedType, setSelectedType] = useState(""); // 선택된 유형 상태
+    const [selectedLocation, setSelectedLocation] = useState({ Do: "", District: "" }); // 선택된 도와 구 상태
 
     const handleButtonClick = (index) => {
         setActiveButton(index);
@@ -35,6 +36,11 @@ const RentalSearchBar = () => {
         console.log("선택된 유형:", type); // 선택된 유형을 콘솔에 출력
     };
 
+    const handleLocationSelect = (Do, District) => {
+        setSelectedLocation({ Do, District });
+        console.log("선택된 위치:", Do, District); // 선택된 도와 구를 콘솔에 출력
+    };
+
     return (
         <div className="BookingSearchBar">
             <RoundButton 
@@ -51,7 +57,8 @@ const RentalSearchBar = () => {
             <RoundButton 
                 className="searchLocation"
                 topic="지역"
-                detail="지역 검색"
+                detail={selectedLocation.Do ? `${selectedLocation.Do} ${selectedLocation.District}` : "지역 검색"}
+                // 선택된 지역이 있으면 표시, 없으면 기본 텍스트
                 index={1}
                 isClicked={activeButton === 1}
                 onClick={handleButtonClick}
@@ -103,6 +110,7 @@ const RentalSearchBar = () => {
                 index={modalContent}
                 onDateSelect={handleDateSelect} // 날짜 선택 핸들러 전달
                 onTypeSelect={handleTypeSelect} // 유형 선택 핸들러 전달
+                onLocationSelect={handleLocationSelect} // 위치 선택 핸들러 전달
             />
         </div>
     );

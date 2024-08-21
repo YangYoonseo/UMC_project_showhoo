@@ -40,7 +40,7 @@
 
 .Gu, .Do {
     overflow-y: auto;
-    max-height: 539px;
+    max-height: 5422px;
     flex-direction: column;
     flex-wrap: wrap;
     flex: 1;
@@ -59,4 +59,16 @@
 /* 스크롤바의 전체 트랙 스타일 */
 .Do::-webkit-scrollbar {
     width: 0px;
+}
+
+.selectLocationText {
+    color: #4F4F4F;
+    font-size: 18px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 98%;
+    /* 부모 요소의 높이에 맞추어 중앙에 배치 */
+    width: 100%;
 }
