@@ -23,6 +23,24 @@ const Navbar_Perforemr = () => {
     fetchAlarmNumber();
   }, []);
 
+  const handleRoleSwitchClick = () => {
+    const token = sessionStorage.getItem("accessToken");
+    if (token) {
+      setPopup(true);
+    } else {
+      nav("/login/oauth2/code/kakao"); // Redirect to Login page if not logged in
+    }
+  };
+
+  const handleMypageClick = () => {
+    const token = sessionStorage.getItem("accessToken");
+    if (token) {
+      nav("/mypage");
+    } else {
+      nav("/login/oauth2/code/kakao");
+    }
+  };
+
   return (
     <div className="Container113">
       <div className="Frame128">
@@ -63,21 +81,14 @@ const Navbar_Perforemr = () => {
         </div>
       </div>
       <div className="Frame169">
-        <button
-          className="Button51"
-          onClick={() => {
-            setPopup(true);
-          }}
-        >
+        <button className="Button51" onClick={handleRoleSwitchClick}>
           역할 전환
         </button>
         <img
           className="mypageImg"
           src={logo_mypage}
           alt=""
-          onClick={() => {
-            nav("/mypage_performer");
-          }}
+          onClick={handleMypageClick}
         />
         <h6 className={numberOfAlarm === 0 ? "no_alarm" : "number_of_alarm"}>
           {numberOfAlarm}
