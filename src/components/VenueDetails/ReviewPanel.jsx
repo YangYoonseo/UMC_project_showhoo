@@ -6,6 +6,7 @@ import scoreStar from "../../assets/images/venueregisterpage_introduce/scoreStar
 import nonscoredStar from "../../assets/images/venueregisterpage_introduce/nonscoredStar.svg";
 import review_add_panel from "../../assets/images/venuedetailpage/review_add_image.svg";
 import default_profile_image from "../../assets/images/venuedetailpage/default_profile_image.svg";
+import delete_btn from "../../assets/images/venuedetailpage/delete_btn.svg";
 
 const ReviewPanel = ({ reviews, setReviews, fetchReviews, profileImage, name, context, reviewImage, grade, date, answer, dateAnswer }) => {
     const [newContext, setNewContext] = useState('');
@@ -17,14 +18,12 @@ const ReviewPanel = ({ reviews, setReviews, fetchReviews, profileImage, name, co
     const yourAccessToken = sessionStorage.getItem("accessToken");
 
     // 이미지 미리보기를 위해 URL.createObjectURL(file)을 사용하면서도, 서버에 업로드될 때는 실제 File 객체를 사용
-    const [uploadedImage, setUploadedImage] = useState(null);  // 미리보기용 URL
-    const [fileForUpload, setFileForUpload] = useState(null);  // 실제 업로드용 파일
+    // const [uploadedImage, setUploadedImage] = useState(null);  // 미리보기용 URL
+    const [fileForUpload, setFileForUpload] = useState([]);  // 실제 업로드용 파일
 
     const formatDate = (date) => {
         if (!date) return 'Invalid date'; // date가 null 또는 undefined이면 빈 문자열 반환
         const parsedDate = typeof date === 'string' ? new Date(date) : date;
-        
-        // console.log("Formatting date:", parsedDate);
     
         return `${parsedDate.getFullYear()}.${(parsedDate.getMonth() + 1)
             .toString()
@@ -61,10 +60,10 @@ const ReviewPanel = ({ reviews, setReviews, fetchReviews, profileImage, name, co
         if (newContext.trim() !== '') {
             let uploadedImageUrl = null;
     
-            if (fileForUpload) {  // 실제 업로드할 파일이 있는지 확인
+            if (fileForUpload.length > 0) {  // 실제 업로드할 파일이 있는지 확인
                 try {
                     const formData = new FormData();
-                    formData.append('reviewImages', fileForUpload);  // 실제 파일 업로드
+                    formData.append('reviewImages', file);  // 실제 파일 업로드
     
                     const uploadResponse = await axios.post(
                         'https://showhoo.site/reviewImage/upload',
@@ -78,7 +77,7 @@ const ReviewPanel = ({ reviews, setReviews, fetchReviews, profileImage, name, co
                     );
     
                     if (uploadResponse.data.isSuccess) {
-                        uploadedImageUrl = uploadResponse.data.result[0];
+                        uploadedImageUrl = uploadResponse.data.result; //쓰읍 [0]ㄱ같은데..
                     } else {
                         console.warn("이미지 업로드에 실패했습니다:", uploadResponse.data.message);
                     }
@@ -108,8 +107,7 @@ const ReviewPanel = ({ reviews, setReviews, fetchReviews, profileImage, name, co
                     setNewContext('');
                     setNewGrade(0);
                     setSelectedStars(0);
-                    setUploadedImage(null);
-                    setFileForUpload(null);  // 업로드 후 파일 초기화
+                    setFileForUpload([]);  // 업로드 후 파일 초기화
                 } else {
                     console.warn("리뷰 제출에 실패했습니다:", reviewResponse.data.message);
                 }
@@ -120,11 +118,12 @@ const ReviewPanel = ({ reviews, setReviews, fetchReviews, profileImage, name, co
     };
 
     const handleImageUpload = (e) => {
-        const file = e.target.files[0];
-        if (file) {
-            setUploadedImage(URL.createObjectURL(file));  // 미리보기용 URL 설정
-            setFileForUpload(file);  // 실제 업로드용 파일 설정
-        }
+        const files = Array.from(e.target.files);
+        setFileForUpload([...fileForUpload, ...files]);
+    };
+
+    const handleImageDelete = (index) => {
+        setFileForUpload(fileForUpload.filter((_, i) => i !== index));
     };
 
     const handleNoticeClick = () => {
@@ -172,20 +171,30 @@ const ReviewPanel = ({ reviews, setReviews, fetchReviews, profileImage, name, co
                         등록
                     </button>
                     <label htmlFor="upload-image" className="review-add-panel">
-                        {uploadedImage ? (
-                            <img src={uploadedImage} alt="Uploaded Preview" style={{ maxHeight: '100px', objectFit: 'cover' }} />
-                        ) : (
-                            <img src={review_add_panel} alt="Add" />
-                        )}
+                        <img src={review_add_panel} alt="Add" />
                     </label>
                     <input
                         id="upload-image"
                         type="file"
                         accept="image/*"
                         style={{ display: 'none' }}
+                        multiple
                         onChange={handleImageUpload}
-                    />
+                    />                    
                     <p className="notice-review" onClick={handleNoticeClick}>후기 작성 시 유의사항</p>
+                    <div className="image-preview-list">
+                        {Array.isArray(fileForUpload) && fileForUpload.length > 0 && fileForUpload.map((file, index) => (
+                            <div key={index} className="image-preview-item">
+                                <span>{file.name}</span>
+                                <img
+                                    src={delete_btn}
+                                    alt="삭제"
+                                    className="reviewimg_delete_btn"
+                                    onClick={() => handleImageDelete(index)}
+                                />
+                            </div>
+                        ))}
+                    </div>
                 </div>
             </>
         );
@@ -200,7 +209,8 @@ const ReviewPanel = ({ reviews, setReviews, fetchReviews, profileImage, name, co
                     style={{ 
                         borderRadius: '50%',  // 원형으로
                         objectFit: 'cover'     // 이미지가 원 안에 꼭 맞게
-                      }}/></div>
+                      }}/>
+            </div>
             <div className="review_container">
                 <div className="name_score">
                     <h4>{name}</h4>
@@ -212,7 +222,7 @@ const ReviewPanel = ({ reviews, setReviews, fetchReviews, profileImage, name, co
                 </div>
                 <div className="review_content">
                     <p>{context}</p>
-                    {reviewImage && reviewImage.length > 0 && (
+                    {Array.isArray(reviewImage) && reviewImage.length > 0 && (
                         <div className="review-images">
                             {reviewImage.map((img, index) => (
                                 <img key={index} src={img} alt={`reviewImage_${index}`} style={{ maxHeight: '220px', objectFit: 'cover' }} />

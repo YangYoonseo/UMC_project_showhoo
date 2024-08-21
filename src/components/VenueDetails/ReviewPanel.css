@@ -240,3 +240,22 @@ body {
     position: relative;
     left:180px;
 }
+
+.image-preview-list{
+    background-color:none;
+    max-width:300px;
+
+    position: relative;
+    top: -140px;
+    left: 100px;
+}
+.image-preview-item span{
+    font-size:15px;
+    color:#696969
+}
+.reviewimg_delete_btn{
+    width:20px;
+    position: relative;
+    top:6px;
+    left:5px;
+}
