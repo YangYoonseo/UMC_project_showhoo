@@ -9,7 +9,6 @@ import TrashIcon from "../../assets/img_Performer/TrashIcon.svg";
 
 const Profile = ({ profile = {} }) => {
   const url = "https://showhoo.site";
-
   const token = sessionStorage.getItem("accessToken");
   const performerId = sessionStorage.getItem("performerId");
 
@@ -174,8 +173,8 @@ const Profile = ({ profile = {} }) => {
 
       // 프로필 ID가 있는 경우 PUT 요청, 없는 경우 POST 요청
       const url = profileId
-        ? `${url}/profile/${performerId}/${profileId}/text`
-        : `${url}/profile/${performerId}`;
+        ? `https://showhoo.site/profile/${performerId}/${profileId}/text`
+        : `https://showhoo.site/profile/${performerId}`;
 
       const method = profileId ? "put" : "post";
 

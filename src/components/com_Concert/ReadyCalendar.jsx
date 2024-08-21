@@ -1,40 +1,57 @@
 import Calendar from "react-calendar";
 import "../../styles/yoonseo/ReadyCalendar.css";
 import "react-calendar/dist/Calendar.css";
-import { useState, useContext, useEffect } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
-import { ProfileContext } from "../../App";
 import PerformerCalendar from "./PerformerCalendar";
 
 const ReadyCalendar = () => {
   const url = "https://showhoo.site";
-  const profiles = useContext(ProfileContext);
+  const token = sessionStorage.getItem("accessToken");
+  const spaceUserId = sessionStorage.getItem("spaceUserId");
+
+  const [profile, setProfile] = useState(null); // 초기값 설정
   const [date, setDate] = useState(new Date());
   const [show, setShow] = useState(false);
   const [application, setApplication] = useState(false);
   const [completed, setCompleted] = useState(false);
-  const [rental, setRental] = useState([]);
+  const [fullRental, setFullRental] = useState([]);
   const [selectedProfile, setSelectedProfile] = useState(null);
 
-  const fetchSpaceApplyList = async (selectedDay) => {
+  // 공연 들어온거 띄우기
+
+  useEffect(() => {
+    setFullRental([
+      {
+        id: 5,
+        date: "2024-08-23",
+        status: 1,
+        audienceMin: 10,
+        audienceMax: 40,
+        rentalSum: 300000,
+        spaceName: "test3",
+        spaceLocation: "서울 성동구 연희로 36",
+        title: "공연예시",
+        poster:
+          "https://umc-mission.s3.ap-northeast-2.amazonaws.com/spaceRegister/3d453f92-a4aa-4e12-8a52-13c81203983b",
+      },
+    ]);
+  }, []);
+
+  const SpaceApplyProfile = async (spaceApplyId) => {
     try {
-      const token = sessionStorage.getItem("accessToken");
       const response = await axios.get(
-        `${url}/spaces/1/spaceApply/info/${selectedDay}`,
+        `${url}/spaces/spaceApply/info/check/${spaceApplyId}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
           },
         }
       );
-      if (response.data.result) {
-        console.log(selectedDay, "에 대관요청", response.data.result);
-        setRental(response.data.result);
-      } else {
-        console.log("없음");
-      }
+      console.log("프로필 불러오기 성공", response.data.result);
+      setProfile(response.data.result);
     } catch (error) {
-      console.log("날짜에 따른 공연자 확인 에러", error);
+      console.log("프로필 불러오기 에러", error);
     }
   };
 
@@ -51,14 +68,37 @@ const ReadyCalendar = () => {
     setShow(false);
     setApplication(false);
     setCompleted(false);
-    setSelectedProfile();
+    setSelectedProfile(null);
     console.log("현재 선택한 날짜", selectedDate);
     console.log("현재 선택 날짜 변환", selectedDay);
-    fetchSpaceApplyList(selectedDay);
+
+    // Clicked date에 해당하는 rental 찾기
+    const selectedRental = fullRental.find(
+      (rentalItem) => rentalItem.date === selectedDay
+    );
+
+    if (selectedRental) {
+      // rental이 있는 경우, 상태 업데이트
+      switch (selectedRental.status) {
+        case -2:
+          setShow(true);
+          break;
+        case 0:
+          setApplication(true);
+          break;
+        case 1:
+          setCompleted(true);
+          break;
+        default:
+          break;
+      }
+      // 선택된 rental의 프로필 가져오기
+      SpaceApplyProfile(selectedRental.id);
+    }
   };
 
   useEffect(() => {
-    if (rental.length > 0) {
+    if (fullRental && fullRental.length > 0) {
       const selectedDay = new Date(
         date.getFullYear(),
         date.getMonth(),
@@ -67,30 +107,30 @@ const ReadyCalendar = () => {
         .toISOString()
         .split("T")[0];
 
-      if (rental.date === selectedDay) {
-        const matchedProfile = profiles.find(
-          (profile) => profile.id === 34
-          // 임시로 34해놓음 추후에 performerProfileId로 바꿔야 함
-        );
+      fullRental.forEach((rentalItem) => {
+        // 각 rentalItem에 대해 처리합니다.
+        if (rentalItem.date === selectedDay) {
+          const matchedProfile = profile; // profile을 직접 사용함
 
-        setSelectedProfile(matchedProfile);
+          setSelectedProfile(matchedProfile);
 
-        switch (rentalItem.status) {
-          case -2:
-            setShow(true);
-            break;
-          case 0:
-            setApplication(true);
-            break;
-          case 1:
-            setCompleted(true);
-            break;
-          default:
-            break;
+          switch (rentalItem.status) {
+            case -2:
+              setShow(true);
+              break;
+            case 0:
+              setApplication(true);
+              break;
+            case 1:
+              setCompleted(true);
+              break;
+            default:
+              break;
+          }
         }
-      }
+      });
     }
-  }, [rental, date, profiles]);
+  }, [fullRental, date, profile]);
 
   const getTileContent = ({ date, view }) => {
     if (view === "month") {
@@ -102,26 +142,29 @@ const ReadyCalendar = () => {
       let className = "";
       let text = "";
 
-      rental.forEach((rentalItem) => {
-        if (rentalItem.date === formattedDate) {
-          switch (rentalItem.status) {
-            case -2:
-              className = "event event_show";
-              text = "공연 완료";
-              break;
-            case 0:
-              className = "event event_application";
-              text = "대관 신청";
-              break;
-            case 1:
-              className = "event event_completed";
-              text = "대관 완료";
-              break;
-            default:
-              break;
+      // rental이 배열인지 확인
+      if (Array.isArray(fullRental)) {
+        fullRental.forEach((rentalItem) => {
+          if (rentalItem.date === formattedDate) {
+            switch (rentalItem.status) {
+              case -2:
+                className = "event event_show";
+                text = "공연 완료";
+                break;
+              case 0:
+                className = "event event_application";
+                text = "대관 신청";
+                break;
+              case 1:
+                className = "event event_completed";
+                text = "대관 완료";
+                break;
+              default:
+                break;
+            }
           }
-        }
-      });
+        });
+      }
 
       return <div className={className}>{text}</div>;
     }
@@ -143,12 +186,11 @@ const ReadyCalendar = () => {
       />
 
       {console.log("프로필", selectedProfile)}
-      {console.log("렌트", rental)}
+      {console.log("렌트", fullRental)}
 
       {(show || completed || application) && (
         <PerformerCalendar
           profile={selectedProfile}
-          rental={rental}
           className={"PerformerCalendar PerformerCalendar_calendar"}
         />
       )}

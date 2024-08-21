@@ -11,7 +11,7 @@ import ion_people_outline from "../../assets/img_Performer/ion_people_outline.sv
 import Frame22 from "../../assets/img_Performer/Frame22.svg";
 import Line40 from "../../assets/img_Performer/Line40.svg";
 
-const PerformerCalendar = ({ profile, rental, className }) => {
+const PerformerCalendar = ({ profile, className }) => {
   const nav = useNavigate();
   const [loading, setLoading] = useState(true);
   const [ok, setOk] = useState(false);
@@ -19,20 +19,6 @@ const PerformerCalendar = ({ profile, rental, className }) => {
   const [receipt, setReceipt] = useState(false);
   const [receipt2, setReceipt2] = useState(false);
   const [selectedRental, setSelectedRental] = useState();
-
-  useEffect(() => {
-    if (profile && rental) {
-      const matchedRental = rental.find(
-        (rent) => rent.performerId === profile.id
-      );
-      setSelectedRental(matchedRental);
-      setLoading(false);
-    }
-  }, [profile, rental]);
-
-  if (loading) {
-    return <div>로딩 중입니다...</div>;
-  }
 
   const getClassName = () => {
     if (selectedRental) {

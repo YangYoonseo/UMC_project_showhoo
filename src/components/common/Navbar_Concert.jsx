@@ -52,7 +52,7 @@ const Navbar_Concert = () => {
           <button
             className="concert_ready"
             onClick={() => {
-              nav("/con_ready");
+              nav("/concert_ready");
             }}
           >
             공연 준비
