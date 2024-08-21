@@ -36,5 +36,9 @@
 }
 
 .RentalSearchBar {
-    margin-left: 241px;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    /* 중앙 정렬을 위한 transform */
+    z-index: 2;
 }

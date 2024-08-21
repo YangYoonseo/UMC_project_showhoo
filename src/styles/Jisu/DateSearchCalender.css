@@ -18,7 +18,7 @@
 
 /* Calendar 컴포넌트 스타일 */
 .DateSearchCalender .react-calendar {
-    margin-top: 45px;
+    margin-top: 0px;
     width: 100%;
     /* 부모 컨테이너에 맞추기 */
     max-width: 100%;

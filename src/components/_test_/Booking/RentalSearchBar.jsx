@@ -9,6 +9,7 @@ const RentalSearchBar = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [modalContent, setModalContent] = useState(null);
     const [selectedDate, setSelectedDate] = useState(""); // 선택된 날짜 상태
+    const [selectedType, setSelectedType] = useState(""); // 선택된 유형 상태
 
     const handleButtonClick = (index) => {
         setActiveButton(index);
@@ -27,6 +28,11 @@ const RentalSearchBar = () => {
     const handleDateSelect = (date) => {
         setSelectedDate(date);
         console.log("선택된 날짜:", date); // 선택된 날짜를 콘솔에 출력
+    };
+
+    const handleTypeSelect = (type) => {
+        setSelectedType(type);
+        console.log("선택된 유형:", type); // 선택된 유형을 콘솔에 출력
     };
 
     return (
@@ -50,7 +56,10 @@ const RentalSearchBar = () => {
                 isClicked={activeButton === 1}
                 onClick={handleButtonClick}
                 onOpenModal={() => openModal(1)}
-                style={{padding: '0px 80px 0px 40px'}} 
+                style={{
+                    padding: '0px 100px 0px 40px',
+                    width: '214px'
+                }} 
             />
 
             <div className="Divider"></div>
@@ -63,19 +72,26 @@ const RentalSearchBar = () => {
                 isClicked={activeButton === 2}
                 onClick={handleButtonClick}
                 onOpenModal={() => openModal(2)}
-                style={{padding: '0px 60px 0px 40px'}} 
+                style={{
+                    padding: '0px 60px 0px 40px',
+                    width: '208px'  // width를 208px로 고정
+                }} 
             />
 
             <div className="Divider"></div>
             <RoundButton
                 className="searchType"
                 topic="유형"
-                detail="공연장 유형 추가"
+                detail={selectedType ? `${selectedType}` : "공연장 유형 추가"}
+                // 선택된 유형이 있으면 표시, 없으면 기본 텍스트
                 index={3}
                 isClicked={activeButton === 3}
                 onClick={handleButtonClick}
                 onOpenModal={() => openModal(3)}
-                style={{padding: '0px 173px 0px 40px'}} 
+                style={{
+                    padding: '0px 153px 0px 40px',
+                    width: '323px'  // width를 208px로 고정
+                }} 
             />
 
             <RentalSearchButton size="size65" />
@@ -86,6 +102,7 @@ const RentalSearchBar = () => {
                 onClose={closeModal}
                 index={modalContent}
                 onDateSelect={handleDateSelect} // 날짜 선택 핸들러 전달
+                onTypeSelect={handleTypeSelect} // 유형 선택 핸들러 전달
             />
         </div>
     );
