@@ -4,10 +4,22 @@ import Footer from "../components/common/Footer";
 import Check from "../components/com_Booking/Check";
 import Cancel from "../components/com_Booking/Cancel";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const BookingHistroy = () => {
   const [tab, setTab] = useState("check");
+
+  useEffect(() => {
+    // 매번 페이지를 들어올 때마다 새로고침을 수행
+    const hasRefreshed = localStorage.getItem("hasRefreshed");
+
+    if (!hasRefreshed) {
+      localStorage.setItem("hasRefreshed", "true");
+      window.location.reload();
+    } else {
+      localStorage.removeItem("hasRefreshed");
+    }
+  }, []);
   return (
     <div className="BookingHistory">
       <Navbar_Booking />

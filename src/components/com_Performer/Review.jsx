@@ -16,11 +16,12 @@ const Review = () => {
   const [reviews, setReviews] = useState([]);
   const token = sessionStorage.getItem("accessToken");
   const performerId = sessionStorage.getItem("performerId");
+  const url = "https://showhoo.site";
 
   const myReview = async () => {
     try {
       const response = await axios.get(
-        `http://ec2-3-34-248-63.ap-northeast-2.compute.amazonaws.com:8081/review/performer/${performerId}`,
+        `${url}/review/performer/${performerId}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -40,14 +41,11 @@ const Review = () => {
 
   const myReviewDelete = async (id) => {
     try {
-      const response = await axios.delete(
-        `http://ec2-3-34-248-63.ap-northeast-2.compute.amazonaws.com:8081/review/${id}`,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
+      const response = await axios.delete(`${url}/review/${id}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
       console.log("리뷰삭제", response.data.message);
     } catch (error) {
       console.log("리뷰 삭제 에러", error);
@@ -75,7 +73,7 @@ const Review = () => {
             <p className="review_content">{review.content}</p>
 
             {review.imageUrls && review.imageUrls[0] !== "string" && (
-              <img src={review.imageUrls} />
+              <img src={review.imageUrls} className="review_img" />
             )}
 
             <div className="content_button">

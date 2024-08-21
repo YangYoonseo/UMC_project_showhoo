@@ -2,18 +2,17 @@ import TwoButton from "../../modals/TwoButton";
 import axios from "axios";
 
 const RentalApproval = ({ title, onClose, onNext, id }) => {
+  const url = "https://showhoo.site";
+
   // 에러 뜸 나중에 수정 필요
   const PatchSpaceApply = async (id) => {
     try {
       const token = sessionStorage.getItem("accessToken");
-      const response = await axios.patch(
-        `http://ec2-3-34-248-63.ap-northeast-2.compute.amazonaws.com:8081/spaces/1/spaceApply/${id}`,
-        {
-          headers: {
-            Authorization: `Bear ${token}`,
-          },
-        }
-      );
+      const response = await axios.patch(`${url}/spaces/1/spaceApply/${id}`, {
+        headers: {
+          Authorization: `Bear ${token}`,
+        },
+      });
       console.log(response.data);
     } catch (error) {
       console.log("승인 에러", error);

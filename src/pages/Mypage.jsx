@@ -11,6 +11,7 @@ import PerformerCancel from "../components/popup_Performer/PerformerCancel";
 import SwitchRoles from "../components/common/SwitchRoles";
 
 const Mypage = () => {
+  const url = "https://showhoo.site";
   const nav = useNavigate();
   const performerId = sessionStorage.getItem("performerId");
   const [cancel, setCancel] = useState(false);
@@ -23,7 +24,7 @@ const Mypage = () => {
       const token = sessionStorage.getItem("accessToken");
       try {
         const response = await axios.get(
-          `http://ec2-3-34-248-63.ap-northeast-2.compute.amazonaws.com:8081/performer/mypage/${performerId}`,
+          `${url}/performer/mypage/${performerId}`,
           {
             headers: {
               Authorization: `Bearer ${token}`,
@@ -51,12 +52,12 @@ const Mypage = () => {
           // Handle the case where profileDTO is not available
           setLatestProfile({
             id: "",
-            introduction: "No introduction available",
-            name: "No name available",
-            phoneNumber: "No phone number available",
+            introduction: "",
+            name: "최근 프로필이 없습니다",
+            phoneNumber: "",
             profileImages: [],
-            team: "No team available",
-            date: "no date",
+            team: "",
+            date: "",
           });
         }
       } catch (error) {
@@ -65,6 +66,27 @@ const Mypage = () => {
     };
     MypageView();
   }, []);
+
+  async function kakaoLogout() {
+    const endpoint = "/kakao/logout/withAccount";
+    if (sessionStorage.getItem("accessToken") !== null) {
+      try {
+        const res = await axios.get(url + endpoint);
+        //console.log(res.data);
+        sessionStorage.removeItem("accessToken");
+        sessionStorage.removeItem("name");
+        sessionStorage.removeItem("uid");
+        window.location.href = res.data;
+      } catch (err) {
+        console.log(err);
+      }
+    }
+  }
+
+  const handleLogout = () => {
+    console.log("로그아웃");
+    kakaoLogout();
+  };
 
   if (!myprofile) {
     return <div>Loading...</div>;
@@ -128,7 +150,7 @@ const Mypage = () => {
           >
             역할 전환
           </button>
-          <button>로그아웃</button>
+          <button onClick={handleLogout}>로그아웃</button>
           <button
             onClick={() => {
               setCancel(true);

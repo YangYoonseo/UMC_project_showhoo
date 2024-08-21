@@ -8,15 +8,28 @@ import Footer from "../components/common/Footer";
 import Concerthall from "../components/com_Performer/Concerthall";
 
 const RentalHistory = () => {
+  const url = "https://showhoo.site";
   const [rental, setRental] = useState([]);
   const performerId = sessionStorage.getItem("performerId");
+
+  useEffect(() => {
+    // 매번 페이지를 들어올 때마다 새로고침을 수행
+    const hasRefreshed = localStorage.getItem("hasRefreshed");
+
+    if (!hasRefreshed) {
+      localStorage.setItem("hasRefreshed", "true");
+      window.location.reload();
+    } else {
+      localStorage.removeItem("hasRefreshed");
+    }
+  }, []);
 
   useEffect(() => {
     const SpaceRental = async () => {
       const token = sessionStorage.getItem("accessToken");
       try {
         const response = await axios.get(
-          `http://ec2-3-34-248-63.ap-northeast-2.compute.amazonaws.com:8081/spaces/spaceApply/${performerId}`,
+          `${url}/spaces/spaceApply/${performerId}`,
           {
             headers: {
               Authorization: `Bearer ${token}`,

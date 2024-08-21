@@ -17,6 +17,12 @@ const Pop_Service = ({ isOpen, onClose, onConfirm, initialDescription, initialOp
   // 서비스 변경
   const handleServiceChange = (index, event) => {
     const updatedServices = [...services];
+    const { name, value } = event.target;
+
+    if (name === "name" && value.length > 7) {
+        alert("서비스 이름은 최대 7자까지 입력 가능합니다.");
+        return;
+    }
     updatedServices[index][event.target.name] = event.target.value;
     setServices(updatedServices);
   };

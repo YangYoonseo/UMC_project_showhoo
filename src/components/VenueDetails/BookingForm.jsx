@@ -33,7 +33,7 @@ const BookingForm = () => {
   const [totalPrice, setTotalPrice] = useState(0);
   const [additionalServices1, setAdditionalServices1] = useState([]); 
   const navigate = useNavigate();
-  const spaceId = 2; // 실제 spaceId 값으로 교체 필요
+  const spaceId = 7; // 실제 spaceId 값으로 교체 필요
   const performerId = 1; // 실제 performerId 값으로 교체 필요
 
   useEffect(() => {
@@ -46,7 +46,7 @@ const BookingForm = () => {
   const fetchAdditionalServices = async () => {
     try {
       const response = await axios.get(
-        `http://ec2-3-34-248-63.ap-northeast-2.compute.amazonaws.com:8081/spaces/${spaceId}/description`,
+        `https://showhoo.site/spaces/${spaceId}/description`,
         {
           headers: {
             'Content-Type': 'application/json',
@@ -70,7 +70,7 @@ const BookingForm = () => {
     // edittedDate.setDate(edittedDate.getDate()+1); // 임시로 하루전 날짜...
     try {
       const response = await axios.post(
-        `http://ec2-3-34-248-63.ap-northeast-2.compute.amazonaws.com:8081/spaces/${spaceId}/price`,
+        `https://showhoo.site/spaces/${spaceId}/price`,
         {
           date: edittedDate.toISOString().split('T')[0],
           additionalServices: selectedServices,
@@ -95,6 +95,15 @@ const BookingForm = () => {
   };
 
   const handleDateChange = (date) => {
+    const today = new Date();
+    today.setHours(0, 0, 0, 0); // 오늘의 날짜로 시간을 00:00:00으로 초기화
+    const selected = new Date(date);
+
+    if (selected < today) {
+      alert("지난 날짜는 선택이 불가합니다.");
+      return; // 이전 날짜 선택 시 아무 작업도 하지 않음
+    }
+
     const newDate = new Date(date);
     newDate.setDate(newDate.getDate() + 1);
     setSelectedDate(newDate);
@@ -157,19 +166,25 @@ const BookingForm = () => {
       .filter(service => selectedServices.includes(service.title))
       .map(service => service.id);
     
-    console.log("selectedAdditionalServices:", selectedAdditionalServiceIds);
-    // console.log("선택한 추가 서비스:", selectedServices);
+    console.log("선택한 추가 서비스:", selectedServices);
 
-    navigate('/rental_details', {
-      state: {
-        selectedDate: selectedDate.toISOString().split('T')[0],
-        expectedAudienceMin: expectedAudience[0],
-        expectedAudienceMax: expectedAudience[1],
-        rentalFee,
-        rentalSum: totalPrice,
-        selectedAdditionalServices: selectedAdditionalServiceIds,
-      }
-    });
+    const token = sessionStorage.getItem("accessToken");
+    if (!token) {
+      navigate("/login/oauth2/code/kakao");
+    }
+    else {
+      navigate('/rental_details', {
+        state: {
+          selectedDate: selectedDate.toISOString().split('T')[0],
+          expectedAudienceMin: expectedAudience[0],
+          expectedAudienceMax: expectedAudience[1],
+          rentalFee,
+          rentalSum: totalPrice,
+          selectedAdditionalServices: selectedAdditionalServiceIds,
+          selectedServicesTitle: selectedServices
+        }
+      });
+    }
 
   };
 
@@ -371,7 +386,7 @@ const StyledCalendar = styled(Calendar)`
   border-radius: 25px 0px 25px 25px !important;
 
   .react-calendar__navigation__label {
-    margin-top: 5px;
+    margin-top: 20px;
     font-size: 15px !important; /* 년월 글자 크기 조정 */
   }
 

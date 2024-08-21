@@ -89,6 +89,10 @@
   margin: 0;
 }
 
+.Review .myReview .review_img {
+  height: 200px;
+}
+
 .Review .myReview .review-item button {
   /* 삭제 */
 

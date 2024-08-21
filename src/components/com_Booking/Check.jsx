@@ -9,6 +9,7 @@ import axios from "axios";
 import BookingProfile from "./BookingProfile";
 
 const Check = () => {
+  const url = "https://showhoo.site";
   const audienceId = sessionStorage.getItem("audienceId");
   // 일단 임시로 page 0
   const page = 0;
@@ -18,14 +19,11 @@ const Check = () => {
     const WatchedList = async (id) => {
       try {
         const token = sessionStorage.getItem("accessToken");
-        const response = await axios.put(
-          `http://ec2-3-34-248-63.ap-northeast-2.compute.amazonaws.com:8081/book/${id}/watched`,
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          }
-        );
+        const response = await axios.put(`${url}/book/${id}/watched`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
         console.log(response.data.result);
       } catch (error) {
         console.log("공연 완료 전환 에러", error);

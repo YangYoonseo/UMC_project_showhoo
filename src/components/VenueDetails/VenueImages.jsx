@@ -5,17 +5,13 @@ import './VenueDetails.css';
 
 const VenueImages = () => {
   const [images, setImages] = useState([]);
-  const spaceId = 2; // 상수로 spaceId를 지정
+  const spaceId = 9;
   const yourAccessToken = sessionStorage.getItem("accessToken"); // 토큰 가져오기
 
   useEffect(() => {
     const fetchVenueHeader = async () => {
       try {
-        const response = await axios.get(`http://ec2-3-34-248-63.ap-northeast-2.compute.amazonaws.com:8081/spaces/${spaceId}/header`, {
-          headers: {
-            Authorization: `Bearer ${yourAccessToken}`, // 인증 토큰 추가
-          },
-        });
+        const response = await axios.get(`https://showhoo.site/spaces/${spaceId}/header`);
         if (response.data.isSuccess) {
           setImages(response.data.result.photos);
         }

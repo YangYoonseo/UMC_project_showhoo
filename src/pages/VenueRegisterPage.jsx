@@ -56,7 +56,9 @@ const VenueRegisterPage = () => {
   const [spacestaff, setSpacestaff] = useState('');
   const [spaceSeat, setSpaceSeat] = useState('');
   
-  const spaceUserId = 2;
+  //spaceUserId 구현
+  const spaceUserId = sessionStorage.getItem("spaceUserId");
+
   const openNameModal = () => setIsNameModalOpen(true);
   const closeNameModal = () => setIsNameModalOpen(false);
 
