@@ -7,7 +7,7 @@ import "../../styles/yoonseo/ProfileProvide.css";
 
 const ProfileProvide = () => {
   const profiles = useContext(ProfileContext); // 프로필 정보는 이 컨텍스트에서 받아옵니다.
-  const [myProfile, setMyProfile] = useState(0);
+  const [myProfile, setMyProfile] = useState();
   const { setSelectedProfileId } = useProfileId();
 
   const handleProfileClick = (profileId, index) => {

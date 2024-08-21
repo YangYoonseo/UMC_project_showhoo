@@ -10,7 +10,7 @@ import AlarmNumber from "../../api/AlarmNumber";
 
 const Navbar_Concert = () => {
   const [popup, setPopup] = useState(false);
-  const [numberOfAlarm, setNumberOfAlarm] = useState();
+  const [numberOfAlarm, setNumberOfAlarm] = useState(null);
   const nav = useNavigate();
 
   useEffect(() => {
@@ -71,9 +71,11 @@ const Navbar_Concert = () => {
             nav("/mypage_concert");
           }}
         />
-        <h6 className={numberOfAlarm === 0 ? "no_alarm" : "number_of_alarm"}>
-          {numberOfAlarm}
-        </h6>
+        {numberOfAlarm !== null && ( // 알림 데이터가 로드되었을 때만 렌더링
+          <h6 className={numberOfAlarm === 0 ? "no_alarm" : "number_of_alarm"}>
+            {numberOfAlarm}
+          </h6>
+        )}
       </div>
       {popup && (
         <SwitchRoles

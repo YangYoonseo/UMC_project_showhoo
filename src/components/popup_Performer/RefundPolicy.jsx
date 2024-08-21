@@ -1,7 +1,11 @@
 import "../../styles/yoonseo/RefundPolicy.css";
 import OneButton from "../../modals/OneButton";
+import axios from "axios";
+import { useEffect, useState } from "react";
 
-const RefundPolicy = ({ onClose }) => {
+const RefundPolicy = ({ onClose, spaceId }) => {
+  const [notice, setNotice] = useState();
+
   return (
     <OneButton
       title="환불규정"

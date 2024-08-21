@@ -49,6 +49,7 @@ const Review = () => {
         }
       );
       console.log("리뷰삭제", response.data.message);
+      AlarmDetail("삭제");
     } catch (error) {
       console.log("리뷰 삭제 에러", error);
     }

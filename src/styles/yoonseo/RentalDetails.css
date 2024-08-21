@@ -371,9 +371,9 @@
   /* (예금주) 쇼호 */
 
   position: absolute;
-  width: 127px;
+  width: 327px;
   height: 28px;
-  left: 539px;
+  left: 529px;
   top: 570px;
   margin: 0;
 
@@ -418,7 +418,7 @@
   position: absolute;
   width: 124px;
   height: 28px;
-  left: 515px;
+  left: 529px;
   top: 617px;
 
   cursor: pointer;
