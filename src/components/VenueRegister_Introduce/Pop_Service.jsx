@@ -1,26 +1,46 @@
 //Pop_Service.jsx
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import '../../styles/VenueRegisterPage_Introduce/Pop_Service.css';
 import add_service_btn from '../../assets/images/venueregisterpage_introduce/add_service_btn.svg';
 
-const Pop_Service = ({ isOpen, onClose, onConfirm }) => {
-  const [services, setServices] = useState([{ name: '', price: '' }, { name: '', price: '' }, { name: '', price: '' }]);
-  const [description, setDescription] = useState('');
+const Pop_Service = ({ isOpen, onClose, onConfirm, initialDescription, initialOptions }) => {
+  const [services, setServices] = useState(initialOptions || []);
+  const [description, setDescription] = useState(initialDescription || '');
 
+
+
+  // 서비스 추가
   const addService = () => {
     setServices([...services, { name: '', price: '' }]);
   };
 
+  // 서비스 변경
   const handleServiceChange = (index, event) => {
     const updatedServices = [...services];
+    const { name, value } = event.target;
+
+    if (name === "name" && value.length > 7) {
+        alert("서비스 이름은 최대 7자까지 입력 가능합니다.");
+        return;
+    }
     updatedServices[index][event.target.name] = event.target.value;
     setServices(updatedServices);
   };
 
+  // 공백인 것만 콘솔에 출력!!!
   const handleConfirm = () => {
-    onConfirm(description, services); // 텍스트 필드와 옵션 필드를 함께 전달
+    const filteredServices = services.filter(service => service.name.trim() !== '' || service.price.trim() !== '');
+    console.log("추가 서비스 옵션:", filteredServices);
+    onConfirm(description, filteredServices); // 텍스트 필드와 옵션 필드(공백은 걸러진!)
   };
 
+  useEffect(() => {
+    if (!isOpen) return;
+    setDescription(initialDescription);
+    setServices(initialOptions || [{ name: '', price: '' }, { name: '', price: '' }, { name: '', price: '' }]);
+  }, [isOpen]);
+
+  // 모달이 열려있지 않을 때는 컴포넌트를 렌더링하지 않도록 수정
   if (!isOpen) return null;
 
   return (

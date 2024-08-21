@@ -1,5 +1,6 @@
 // BookingForm.jsx
 // css 중복 이슈로 styled-component 사용
+// 가격 설정하는 부분에 오류 있어서 덕지덕지 메워둠..
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
@@ -32,18 +33,20 @@ const BookingForm = () => {
   const [totalPrice, setTotalPrice] = useState(0);
   const [additionalServices1, setAdditionalServices1] = useState([]); 
   const navigate = useNavigate();
-  const spaceId = 1; // 실제 spaceId 값으로 교체 필요
+  const spaceId = 7; // 실제 spaceId 값으로 교체 필요
   const performerId = 1; // 실제 performerId 값으로 교체 필요
 
   useEffect(() => {
-    fetchAdditionalServices(); 
+    fetchAdditionalServices(); // 추가서비스 목록 뽑아오기
     fetchRentalFee();
-  }, []);
+  }, [selectedDate]); // selectedDate가 변경될 때마다 fetchRentalFee 호출
 
+
+  // 공연장 세부정보 공연장 소개 API 호출 -> 추가 서비스 목록만 뽑아오기
   const fetchAdditionalServices = async () => {
     try {
       const response = await axios.get(
-        `http://ec2-3-34-248-63.ap-northeast-2.compute.amazonaws.com:8081/spaces/${spaceId}/description`,
+        `https://showhoo.site/spaces/${spaceId}/description`,
         {
           headers: {
             'Content-Type': 'application/json',
@@ -53,19 +56,23 @@ const BookingForm = () => {
       );
 
       if (response.data.isSuccess) {
-        setAdditionalServices1(response.data.result.additionalServices);
+        setAdditionalServices1(response.data.result.additionalServices); // 추가 서비스 목록 설정
       }
     } catch (error) {
-      console.error("Failed to fetch additional services:", error);
+      console.error("추가 서비스 목록을 위한 공연장 소개 API 호출 실패:", error);
     }
   };
 
+
+  // 공연장 세부정보 가격 API 호출 -> 날짜 & 추가서비스를 post 하면 가격을 반환받음
   const fetchRentalFee = async () => {
+    const edittedDate = new Date(selectedDate);
+    // edittedDate.setDate(edittedDate.getDate()+1); // 임시로 하루전 날짜...
     try {
       const response = await axios.post(
-        `http://ec2-3-34-248-63.ap-northeast-2.compute.amazonaws.com:8081/spaces/${spaceId}/price`,
+        `https://showhoo.site/spaces/${spaceId}/price`,
         {
-          date: selectedDate.toISOString().split('T')[0],
+          date: edittedDate.toISOString().split('T')[0],
           additionalServices: selectedServices,
         },
         {
@@ -76,23 +83,34 @@ const BookingForm = () => {
         }
       );
 
+      console.log('선택된 날짜:',response.data.result);
       if (response.data.isSuccess) {
         setRentalFee(response.data.result.basePrice);
         setAdditionalServiceCost(response.data.result.additionalServicePrice);
         setTotalPrice(response.data.result.totalPrice);
       }
     } catch (error) {
-      console.error("Failed to fetch rental fee:", error);
+      console.error("공연장 세부정보 가격 API 호출 실패:", error);
     }
   };
 
   const handleDateChange = (date) => {
+    const today = new Date();
+    today.setHours(0, 0, 0, 0); // 오늘의 날짜로 시간을 00:00:00으로 초기화
+    const selected = new Date(date);
+
+    if (selected < today) {
+      alert("지난 날짜는 선택이 불가합니다.");
+      return; // 이전 날짜 선택 시 아무 작업도 하지 않음
+    }
+
     const newDate = new Date(date);
     newDate.setDate(newDate.getDate() + 1);
     setSelectedDate(newDate);
     setShowCalendar(false);
     setIsFirstOptionActive(false);
-    fetchRentalFee();
+    console.log("선택된 날짜:", newDate.toISOString().split('T')[0]); // 선택된 날짜를 콘솔에 출력
+    // fetchRentalFee(); //선택된 날짜에 따라 요금을 다시 계산
   };
 
   const toggleCalendar = () => {
@@ -135,42 +153,39 @@ const BookingForm = () => {
 
   const selectedServiceCount = selectedServices.length;
 
-  // 추가된 부분: 대관 신청하기 버튼 클릭 시 대관 신청 내역 서버에 전송
-  const handleSubmit = async () => {
-    if (isFormValid) {
-      const selectedServiceIds = additionalServices1
-        .filter((service) => selectedServices.includes(service.title))
-        .map((service) => service.id);
+  // 대관 신청하기 버튼 클릭 시 콘솔에 선택한 정보 출력
+  const handleSubmit = () => {
+    console.log("선택된 날짜:", selectedDate.toISOString().split('T')[0]);
+    console.log("최소 예상 관람객 수:", expectedAudience[0]);
+    console.log("최대 예상 관람객 수:", expectedAudience[1]);
+    console.log("rentalFee:",rentalFee);
+    console.log("rentalSum:",totalPrice);
 
-      try {
-        const response = await axios.post(
-          `http://ec2-3-34-248-63.ap-northeast-2.compute.amazonaws.com:8081/spaces/${spaceId}/spaceApply/${performerId}`,
-          {
-            date: selectedDate.toISOString().split('T')[0],
-            audienceMin: expectedAudience[0],
-            audienceMax: expectedAudience[1],
-            // performerProfileId의 값이 뭐지? 이 값에 따라 수정 필요하다
-            performerProfileId: 11,
-            rentalFee: rentalFee,
-            rentalSum: totalPrice,
-            selectedAdditionalServices: selectedServiceIds,
-          },
-          {
-            headers: {
-              'Content-Type': 'application/json',
-              Authorization: `Bearer ${sessionStorage.getItem("accessToken")}`,
-            },
-          }
-        );
+    // 선택한 추가 서비스의 정수 ID 값들을 추출하여 출력
+    const selectedAdditionalServiceIds = additionalServices1
+      .filter(service => selectedServices.includes(service.title))
+      .map(service => service.id);
+    
+    console.log("선택한 추가 서비스:", selectedServices);
 
-        if (response.data.isSuccess) {
-          console.log("대관 신청 성공:", response.data);
-          navigate('/rental_details');
-        }
-      } catch (error) {
-        console.error("Failed to apply for rental:", error);
-      }
+    const token = sessionStorage.getItem("accessToken");
+    if (!token) {
+      navigate("/login/oauth2/code/kakao");
     }
+    else {
+      navigate('/rental_details', {
+        state: {
+          selectedDate: selectedDate.toISOString().split('T')[0],
+          expectedAudienceMin: expectedAudience[0],
+          expectedAudienceMax: expectedAudience[1],
+          rentalFee,
+          rentalSum: totalPrice,
+          selectedAdditionalServices: selectedAdditionalServiceIds,
+          selectedServicesTitle: selectedServices
+        }
+      });
+    }
+
   };
 
   const isFormValid = selectedDate && audienceText !== '예상 관람객 수';
@@ -267,74 +282,74 @@ const BookingForm = () => {
                 },
               ]}
               railStyle={{ backgroundColor: '#e8e8e8', height: '2px' }}
-            />
-          </SliderContainer>
-        </AudienceSliderContainer>
-      )}
-
-      {/* 세번째 옵션 */}
-      <div className={`booking-option last-option ${isThirdOptionActive ? 'active' : ''}`} onClick={toggleServiceDropdown}>
-        <img src={plusimg} alt="Plus" />
-        <span className="booking-option-label">
-          {selectedServiceCount > 0 ? `택 ${selectedServiceCount}` : '추가 서비스'}
-        </span>
-        <img src={arrowbutton} alt="Arrow" className="arrow-button" />
-      </div>
-      {showServiceDropdown && (
-        <div
-          className="service-dropdown"
-          style={{ height: `${(additionalServices1.length + 1) * 60}px` }}
-        >
-          {additionalServices1.length > 0 ? (
-            additionalServices1.map((service, index) => (
-              <div className="service-item" key={index} onClick={() => handleServiceToggle(service)}>
-                <img
-                  src={selectedServices.includes(service.title) ? checkOn : checkOff}
-                  alt={selectedServices.includes(service.title) ? "Checked" : "Unchecked"}
-                  className="check-icon"
-                />
-                <span className="service-name">{service.title}</span>
-                <span className="service-price">{service.price.toLocaleString()}원</span>
-              </div>
-            ))
-          ) : (
-            <div>추가 서비스가 없습니다</div>
+              />
+              </SliderContainer>
+            </AudienceSliderContainer>
+          )}
+    
+          {/* 세번째 옵션 */}
+          <div className={`booking-option last-option ${isThirdOptionActive ? 'active' : ''}`} onClick={toggleServiceDropdown}>
+            <img src={plusimg} alt="Plus" />
+            <span className="booking-option-label">
+              {selectedServiceCount > 0 ? `택 ${selectedServiceCount}` : '추가 서비스'}
+            </span>
+            <img src={arrowbutton} alt="Arrow" className="arrow-button" />
+          </div>
+          {showServiceDropdown && (
+            <div
+              className="service-dropdown"
+              style={{ height: `${(additionalServices1.length + 1) * 60}px` }}
+            >
+              {additionalServices1.length > 0 ? (
+                additionalServices1.map((service, index) => (
+                  <div className="service-item" key={index} onClick={() => handleServiceToggle(service)}>
+                    <img
+                      src={selectedServices.includes(service.title) ? checkOn : checkOff}
+                      alt={selectedServices.includes(service.title) ? "Checked" : "Unchecked"}
+                      className="check-icon"
+                    />
+                    <span className="service-name">{service.title}</span>
+                    <span className="service-price">{service.price.toLocaleString()}원</span>
+                  </div>
+                ))
+              ) : (
+                <div>추가 서비스가 없습니다</div>
+              )}
+            </div>
           )}
         </div>
-      )}
-    </div>
-
-    {/* 대관 신청하기 버튼 */}
-    <button 
-      className="booking-button" 
-      onClick={handleSubmit} 
-      disabled={!isFormValid} 
-    >
-      대관 신청하기
-    </button>
-    <div className="additional-info">
-      <div className="additional-info-row">
-        <span className="feetext">대관료</span>
-        <span className="rental-fee">₩{rentalFee.toLocaleString()}</span>
-      </div>
-      {/* 추가 서비스 비용 표시 */}
-      {!showServiceDropdown && selectedServiceCount > 0 && (
-        <div className="additional-info-row3">
-          <span className="feetext">추가 서비스</span>
-          <span className="additional-fee">₩{additionalServiceCost.toLocaleString()}</span>
+    
+        {/* 대관 신청하기 버튼 */}
+        <button 
+          className="booking-button" 
+          onClick={handleSubmit} 
+          disabled={!isFormValid} 
+        >
+          대관 신청하기
+        </button>
+        <div className="additional-info">
+          <div className="additional-info-row">
+            <span className="feetext">대관료</span>
+            <span className="rental-fee">₩{rentalFee.toLocaleString()}</span>
+          </div>
+          {!showServiceDropdown && selectedServiceCount > 0 && (
+            <div className="additional-info-row3">
+              <span className="feetext">추가 서비스</span>
+              <span className="additional-fee">₩{additionalServiceCost.toLocaleString()}</span>
+            </div>
+          )}
+          <hr className="divider-line" style={{ top: !showServiceDropdown && selectedServiceCount > 0 ? '390px' : '360px' }}/>
+          <div className="additional-info-row2" style={{ top: !showServiceDropdown && selectedServiceCount > 0 ? '400px' : '370px' }}>
+            <span className="totaltext">총 합계</span>
+            <span className="total-fee">₩{totalPrice.toLocaleString()}</span>
+          </div>
         </div>
-      )}
-      <hr className="divider-line" style={{ top: !showServiceDropdown && selectedServiceCount > 0 ? '390px' : '360px' }}/>
-      <div className="additional-info-row2" style={{ top: !showServiceDropdown && selectedServiceCount > 0 ? '400px' : '370px' }}>
-        <span className="totaltext">총 합계</span>
-        <span className="total-fee">₩{totalPrice.toLocaleString()}</span>
       </div>
-    </div>
-  </div>
-);
-};
-
-export default BookingForm;
+      );
+    };
+    
+    export default BookingForm;
+    
 
 
 
@@ -371,7 +386,7 @@ const StyledCalendar = styled(Calendar)`
   border-radius: 25px 0px 25px 25px !important;
 
   .react-calendar__navigation__label {
-    margin-top: 5px;
+    margin-top: 20px;
     font-size: 15px !important; /* 년월 글자 크기 조정 */
   }
 

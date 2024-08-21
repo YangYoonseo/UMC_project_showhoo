@@ -1,6 +1,7 @@
 //Pop_Image.jsx
 /* image panel 등록 로직에 대한 이해 매우 부족 ==> 겨우 구현해놓은 상태 건들면 안됨.. */
 import React, { useState } from 'react';
+import axios from 'axios';
 import '../../styles/VenueRegisterPage_Introduce/Pop_Image.css';
 import image_register_panel1 from '../../assets/images/venueregisterpage_introduce/image_register_panel1.svg';
 import image_register_panel2 from '../../assets/images/venueregisterpage_introduce/image_register_panel2.svg';
@@ -16,7 +17,8 @@ const Pop_Image = ({ isOpen, onClose, onConfirm }) => {
       const reader = new FileReader();
       reader.onload = (e) => {
         const newImages = [...images];
-        newImages[index] = e.target.result;
+        // newImages[index] = e.target.result;
+        newImages[index] = file; // 파일 저장
         setImages(newImages);
       };
       reader.readAsDataURL(file);
@@ -42,10 +44,37 @@ const Pop_Image = ({ isOpen, onClose, onConfirm }) => {
     setImages([...images, null]); // 새로운 이미지 슬롯 추가
   };
 
-  const handleConfirm = () => {
-    onConfirm(images);
+  const handleConfirm = async () => {
+    try {
+      const formData = new FormData();
+      images.forEach((image) => {
+        if (image) {
+          formData.append('photos', image);
+        }
+      });
+
+      const response = await axios.post(
+        'http://ec2-3-34-248-63.ap-northeast-2.compute.amazonaws.com:8081/spaces/photos',
+        formData,
+        {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+            Authorization: `Bearer ${sessionStorage.getItem("accessToken")}`,
+          },
+        }
+      );
+
+      if (response.data.isSuccess) {
+        const imageUrls = response.data.result; // URL 배열
+        // console.log("이미지 URL 배열 확인:", imageUrls);
+        onConfirm(imageUrls);
+      }
+    } catch (error) {
+      console.error("이미지 업로드 실패:", error);
+    }
     onClose();
   };
+
 
   if (!isOpen) return null;
 
@@ -65,7 +94,7 @@ const Pop_Image = ({ isOpen, onClose, onConfirm }) => {
               onClick={() => index === images.length && handleAddPanel()} // 더하기 패널 클릭 시 패널 추가
             >
               {images[index] ? (
-                <img src={images[index]} alt={`Uploaded ${index + 1}`} />
+                <img src={URL.createObjectURL(images[index])} alt={`Uploaded ${index + 1}`} />
               ) : (
                 <>
                   <input

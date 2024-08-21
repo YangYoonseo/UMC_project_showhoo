@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { ProfileContext } from "../../App";
 
-import Frame21 from "../../assets/img_Performer/Frame21.png";
+import Frame21 from "../../assets/img_Performer/Frame21.svg";
 
 const Addprofiles = () => {
   const profiles = useContext(ProfileContext);

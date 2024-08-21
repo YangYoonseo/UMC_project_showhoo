@@ -1,9 +1,8 @@
 import "../../styles/Eojin/readyUploader.css";
 import Button from "../common/Button";
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
 
-const FacilityUploader = ({ onClose, uploadSuc, uploadFail }) => {
+const FacilityUploader = ({ onClose, uploadSuc, uploadFail, updateData }) => {
     const [selectedFile, setSelectedFile] = useState(null);
     const [fileName, setFileName] = useState('선택된 파일 없음');
 
@@ -24,6 +23,9 @@ const FacilityUploader = ({ onClose, uploadSuc, uploadFail }) => {
         const reader = new FileReader();
         reader.onload = (e) => {
             // 파일이 성공적으로 로드되었을 때 처리
+            const fileContent = e.target.result.split(',')[1]; // Base64 인코딩된 문자열만 가져옴
+            updateData(fileContent);
+
             console.log('File read successfully:', e.target.result);
             uploadSuc();
             onClose();

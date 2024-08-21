@@ -71,17 +71,17 @@ const mockReservations = [
     }
   ];
 
-  const AwaitPermission = () => {
-    const [data, setData] = useState(mockReservations);
+  const AwaitPermission = ({ bookData }) => {
+    const [data, setData] = useState(bookData);
 
     const columns = React.useMemo(
       () => [
-        { Header: '주문번호', accessor: 'orderNumber' },
+        { Header: '주문번호', accessor: 'book_id' },
         { Header: '이름', accessor: 'name' },
-        { Header: '전화번호', accessor: 'phone' },
-        { Header: '매수', accessor: 'quantity' },
-        { Header: '총 결제금액', accessor: 'totalAmount' },
-        { Header: '예매 일시', accessor: 'bookingDate', Cell: ({ value }) => new Date(value).toLocaleString() },
+        { Header: '전화번호', accessor: 'phoneNum' },
+        { Header: '매수', accessor: 'ticketNum' },
+        { Header: '총 결제금액', accessor: 'payment' },
+        { Header: '예매 일시', accessor: 'dateTime', Cell: ({ value }) => new Date(value).toLocaleString() },
         {
           Header: '승인',
           accessor: 'isApproved',

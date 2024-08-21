@@ -1,11 +1,15 @@
 import "../../styles/yoonseo/Concerthall.css";
 
-import ion_people_outline from "../../assets/img_Performer/ion_people_outline.png";
-import uil_calender from "../../assets/img_Performer/uil_calender.png";
-import Line40 from "../../assets/img_Performer/Line40.png";
+import ion_people_outline from "../../assets/img_Performer/ion_people_outline.svg";
+import uil_calender from "../../assets/img_Performer/uil_calender.svg";
+import Line40 from "../../assets/img_Performer/Line40.svg";
 import { useNavigate } from "react-router-dom";
 
+import axios from "axios";
+
 const Concerthall = ({ venue, className }) => {
+  const url = "https://showhoo.site";
+
   const getClassName = () => {
     switch (venue.status) {
       case 0:
@@ -36,6 +40,24 @@ const Concerthall = ({ venue, className }) => {
     }
   };
 
+  const PerformerCancel = async () => {
+    try {
+      const token = sessionStorage.getItem("accessToken");
+      const response = await axios.delete(
+        `${url}/spaceApply/delete/${venue.id}/0`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      console.log("공연자의 대관 취소 성공");
+      window.location.reload();
+    } catch (error) {
+      console.log("공연자의 대관 취소 에러", error);
+    }
+  };
+
   return (
     // className: venue-card venue-${index + 1}
     <div className={className}>
@@ -59,9 +81,10 @@ const Concerthall = ({ venue, className }) => {
         <p className="venue_price">￦{venue.rentalSum}</p>
         <img src={Line40} alt="" className="Line41_2" />
         <div className={`venue_button venue_button_${venue.status}`}>
-          <button className="more_button">더 보기</button>
           {venue.status == "0" ? (
-            <button className="last_button">취소</button>
+            <button className="last_button" onClick={PerformerCancel}>
+              취소
+            </button>
           ) : null}
           {venue.status == "1" ? (
             <button
@@ -70,14 +93,14 @@ const Concerthall = ({ venue, className }) => {
                 nav("/concert_ready");
               }}
             >
-              공연 준비
+              준비 시작
             </button>
           ) : null}
-          {venue.status == "-2" ? (
+          {/* {venue.status == "-2" ? (
             <button className="last_button past_last_button">
               준비과정 보기
             </button>
-          ) : null}
+          ) : null} */}
         </div>
       </div>
     </div>

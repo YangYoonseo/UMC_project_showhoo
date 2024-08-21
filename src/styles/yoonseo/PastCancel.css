@@ -1,0 +1,28 @@
+.OneButton_PastCancel {
+  width: 697px;
+  height: 319px;
+}
+
+.OneButton_PastCancel h1 {
+  position: absolute;
+  width: 516px;
+  height: 48px;
+  left: 91px;
+  top: 61px;
+  margin: 0;
+
+  font-family: "Pretendard";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 40px;
+  line-height: 30px;
+  /* or 75% */
+  display: flex;
+  align-items: center;
+
+  color: #0f0f0f;
+}
+
+.OneButton_PastCancel .Button {
+  top: 230px;
+}

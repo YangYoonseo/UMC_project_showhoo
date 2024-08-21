@@ -1,32 +1,57 @@
 import "../../styles/yoonseo/PerformerCalendar.css";
 import Button from "../common/Button";
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import RentalApproval from "../popup_Concert/RentalApproval";
 import RentalRefuse from "../popup_Concert/RentalRefuse";
 import ConcertReceipt from "./ConcertReceipt";
 import Receipt from "./Receipt";
 
-import ion_people_outline from "../../assets/img_Performer/ion_people_outline.png";
-import Frame22 from "../../assets/img_Performer/Frame22.png";
-import Line40 from "../../assets/img_Performer/Line40.png";
+import ion_people_outline from "../../assets/img_Performer/ion_people_outline.svg";
+import Frame22 from "../../assets/img_Performer/Frame22.svg";
+import Line40 from "../../assets/img_Performer/Line40.svg";
 
 const PerformerCalendar = ({ profile, className }) => {
+  const nav = useNavigate();
+  const [loading, setLoading] = useState(true);
   const [ok, setOk] = useState(false);
   const [refuse, setRefuse] = useState(false);
   const [receipt, setReceipt] = useState(false);
   const [receipt2, setReceipt2] = useState(false);
+  const [selectedRental, setSelectedRental] = useState();
 
   const getClassName = () => {
-    switch (profile.status) {
-      case "공연 완료":
-        return "status_show";
-      case "대관 신청":
-        return "status_application";
-      case "대관 완료":
-        return "status_completed";
-      default:
-        return "";
+    if (selectedRental) {
+      const status = selectedRental.status;
+      switch (status) {
+        case -2:
+          return "status_show";
+        case 0:
+          return "status_application";
+        case 1:
+          return "status_completed";
+        default:
+          return "";
+      }
     }
+    return "";
+  };
+
+  const getStatus = () => {
+    if (selectedRental) {
+      const status = selectedRental.status;
+      switch (status) {
+        case -2:
+          return "공연 완료";
+        case 0:
+          return "대관 신청";
+        case 1:
+          return "대관 완료";
+        default:
+          return "";
+      }
+    }
+    return "";
   };
 
   return (
@@ -38,23 +63,31 @@ const PerformerCalendar = ({ profile, className }) => {
         }
       }}
     >
-      <img src={profile.image} alt="Profile" className="profile_img" />
-      <p className={`status ${getClassName()}`}>{profile.status}</p>
+      <img
+        src={profile.profileImages[0].profileImageUrl}
+        alt="Profile"
+        className="profile_img"
+      />
+      {console.log("선택된", selectedRental)}
+      <p className={`status ${getClassName()}`}>{getStatus()}</p>
       <div className="performerCalendar_div">
-        <h3>{profile.title}</h3>
-        <p className="school_p">{profile.school}</p>
+        <h3>{profile.name}</h3>
+        <p className="school_p">{profile.team}</p>
         <div className="people">
           <img src={ion_people_outline} alt="" />
-          <p>예상 관람객 80~100명</p>
+          <p>
+            예상 관람객 {selectedRental.audienceMin} ~{" "}
+            {selectedRental.audienceMax}명
+          </p>
         </div>
         <div className="service">
           <img src={Frame22} alt="" />
-          <p>추가 서비스 택 4</p>
+          <p>추가 서비스 택 </p>
         </div>
         <img src={Line40} alt="" className="line" />
       </div>
       <div className="performerCalendar_button">
-        {profile.status === "대관 신청" && (
+        {getStatus() === "대관 신청" && (
           <>
             <Button
               text={"거절"}
@@ -75,11 +108,11 @@ const PerformerCalendar = ({ profile, className }) => {
           </>
         )}
 
-        {profile.status === "공연 완료" && (
+        {getStatus() === "공연 완료" && (
           <Button text={"준비 과정 보기"} type={"gray"} />
         )}
 
-        {profile.status === "대관 완료" && (
+        {getStatus() === "대관 완료" && (
           <Button
             text={"준비 시작"}
             type={"black"}
@@ -91,7 +124,7 @@ const PerformerCalendar = ({ profile, className }) => {
       </div>
       {ok && (
         <RentalApproval
-          title={profile.title}
+          title={profile.name}
           onClose={() => {
             setOk(false);
           }}
@@ -99,11 +132,12 @@ const PerformerCalendar = ({ profile, className }) => {
           onNext={() => {
             setOk(false);
           }}
+          id={selectedRental.id}
         />
       )}
       {refuse && (
         <RentalRefuse
-          title={profile.title}
+          title={profile.name}
           onClose={() => {
             setRefuse(false);
           }}

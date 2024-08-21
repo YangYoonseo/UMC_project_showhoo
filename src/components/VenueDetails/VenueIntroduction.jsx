@@ -6,52 +6,74 @@ import ex_map from '../../assets/images/venueregisterpage_introduce/ex_map.svg';
 
 const VenueIntroduction = () => {
   const [descriptionData, setDescriptionData] = useState(null);
-  const spaceId = 1; // Use the actual spaceId as needed
-  const yourAccessToken = sessionStorage.getItem("accessToken");
+  const spaceId = 7;
 
   useEffect(() => {
     const fetchVenueDescription = async () => {
       try {
         const response = await axios.get(
-          `http://ec2-3-34-248-63.ap-northeast-2.compute.amazonaws.com:8081/spaces/${spaceId}/description`,
-          {
-            headers: {
-              Authorization: `Bearer ${yourAccessToken}`,
-            },
-          }
+          `https://showhoo.site/spaces/${spaceId}/description`
         );
-        console.log("API 전체 응답 조회:", response.data);  // API 응답 전체를 로그로 확인
         if (response.data.isSuccess) {
-          console.log("API 결과 조회:", response.data.result);  // 응답의 result 부분을 로그로 확인
-
-          // 데이터를 검증하여 undefined나 null 값이 있는지 확인
-          const data = response.data.result;
-          if (!data.rentalFee) data.rentalFee = '기본설정<br>월·화·수·목: 70만원(8, 11, 12월은 +10만원)<br>금·일·공휴일: 90만원(8, 11, 12월은 +10만원)<br>토 : 110만원(8, 11, 12월은 + 10만원)';  // rentalFee가 없으면 빈 문자열로 초기화
-          if (!data.additionalServices) data.additionalServices = [];  // additionalServices가 없으면 빈 배열로 초기화
-
           setDescriptionData(response.data.result);
-        }else {
-          console.warn("API call was not successful:", response.data.message);  // 성공 여부가 false인 경우
         }
       } catch (error) {
-        console.error("[실패]Failed to fetch venue description:", error);
+        console.error("Failed to fetch venue description:", error);
       }
     };
 
     fetchVenueDescription();
   }, [spaceId]);
 
-  // Function to split and format text as a list
-  const formatTextToList = (text) => {
-    if (!text) return null; // text가 undefined나 null인 경우 처리
-    return text.split('<br>').map((item, index) => (
-      <li key={index}>{item.trim()}</li>
-    ));
+  // 요일 매핑
+  const dayOfWeekMap = {
+    "MONDAY": "월",
+    "TUESDAY": "화",
+    "WEDNESDAY": "수",
+    "THURSDAY": "목",
+    "FRIDAY": "금",
+    "SATURDAY": "토",
+    "SUNDAY": "일"
   };
+
+  // ! 대관료 그룹화 로직 ! -> 모든 경우에 잘 작동하는지 확인 필요
+  const groupRentalFees = (rentalFees) => {
+    const feeGroups = {};
+
+    rentalFees.forEach(({ dayOfWeek, fee }) => {
+      const day = dayOfWeekMap[dayOfWeek]; // 한국어로 변환된 요일
+      if (!feeGroups[fee]) {
+        feeGroups[fee] = [day];
+      } else {
+        feeGroups[fee].push(day);
+      }
+    });
+
+    return feeGroups;
+  };
+
+    // ! 대관료 그룹화 로직 ! -> 모든 경우에 잘 작동하는지 확인 필요
+    const groupPeakRentalFees = (peakSeasonRentalFees) => {
+      const feeGroups = {};
+  
+      peakSeasonRentalFees.forEach(({ dayOfWeek, fee }) => {
+        const day = dayOfWeekMap[dayOfWeek]; // 한국어로 변환된 요일
+        if (!feeGroups[fee]) {
+          feeGroups[fee] = [day];
+        } else {
+          feeGroups[fee].push(day);
+        }
+      });
+  
+      return feeGroups;
+    };
 
   if (!descriptionData) {
     return <div>no description data...</div>;
   }
+
+  const groupedFees = groupRentalFees(descriptionData.rentalFees);
+  const groupedPeakFees = groupPeakRentalFees(descriptionData.peakSeasonRentalFees);
 
   return (
     <div className="venue-introduction">
@@ -64,16 +86,28 @@ const VenueIntroduction = () => {
       <p><span className="label">대관시간 </span> <span className="value">{descriptionData.rentalHours}</span></p>
       <p><span className="label">대관료 </span></p>
       <ul className="value-list">
-        {formatTextToList(descriptionData.rentalFee)}
+      <p style={{marginLeft: '-20px'}}>[비성수기]</p>
+        {Object.entries(groupedFees).map(([fee, days], index) => (
+          <li key={index}>
+            {days.join('/')} : {fee}₩
+          </li>
+        ))}
+      </ul>
+      <br></br>
+      <ul className="value-list">
+        <p style={{marginLeft: '-20px'}}>[성수기]</p>
+        {Object.entries(groupedPeakFees).map(([fee, days], index) => (
+          <li key={index}>
+            {days.join('/')} : {fee}₩
+          </li>
+        ))}
       </ul>
       <p><span className="label">추가 서비스 </span></p>
       <ul className="value-list2">
-        {formatTextToList(descriptionData.additionalServices.map(service => `${service.title}`).join('<br>') )}
+        {descriptionData.additionalServices.map((service, index) => (
+          <li key={index}>{service.title}</li>
+        ))}
       </ul>
-      {/* <p><span className="label">연락처 </span></p>
-      <ul className="value-list">
-        {formatTextToList(descriptionData.tel)}
-      </ul> */}
       <br />
       <div className="location-section2">
         <h2>위치</h2>

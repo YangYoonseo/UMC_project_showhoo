@@ -4,23 +4,17 @@ import axios from 'axios';
 import './VenueDetails.css';
 import ReviewPanel from './ReviewPanel';
 import default_profile_image from "../../assets/images/venuedetailpage/default_profile_image.svg";
+import delete_btn from "../../assets/images/venuedetailpage/delete_btn.svg";
 
 const Reviews = () => {
   const [reviews, setReviews] = useState([]);
   const [averageScore, setAverageScore] = useState(0);
   const spaceId = 1; // Replace with the actual spaceId
-  const yourAccessToken = sessionStorage.getItem("accessToken");
 
   const fetchReviews = async () => {
     try {
       const response = await axios.get(
-        `http://ec2-3-34-248-63.ap-northeast-2.compute.amazonaws.com:8081/review/space/${spaceId}`,
-        {
-          headers: {
-            Authorization: `Bearer ${yourAccessToken}`,
-          },
-        }
-      );
+        `https://showhoo.site/review/space/${spaceId}`);
 
       if (response.data.isSuccess) {
         const reviewsData = response.data.result;
@@ -52,14 +46,14 @@ const Reviews = () => {
                   key={review.id}
                   id={review.id}
                   // 프로필 이미지와 사용자 이름, 이미지의 경우 일단 기본설정을 해놓음
-                  profileImage={review.profileImage || default_profile_image}
-                  name={review.name || '사용자'}
+                  profileImage={review.memberUrl || default_profile_image}
+                  name={review.memberName || '사용자'}
+                  date={new Date(review.updatedAt)} // 리뷰 작성 시각
                   context={review.content}
                   reviewImage={review.imageUrls || []}
                   grade={review.grade}
-                  date={new Date(review.date)} // 날짜를 Date 객체로 변환하여 전달
                   answer={review.answers && review.answers[0] ? review.answers[0].content : ''}
-                  dateAnswer={new Date(review.date)} // 날짜를 Date 객체로 변환하여 전달
+                  dateAnswer={review.answers && review.answers[0] ? new Date(review.answers[0].updatedAt) : null} // 답글 작성 시각
               />
           ))}
       </div>

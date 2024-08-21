@@ -11,8 +11,9 @@ import PerformerCancel from "../components/popup_Performer/PerformerCancel";
 import SwitchRoles from "../components/common/SwitchRoles";
 
 const Mypage = () => {
+  const url = "https://showhoo.site";
   const nav = useNavigate();
-
+  const performerId = sessionStorage.getItem("performerId");
   const [cancel, setCancel] = useState(false);
   const [popup, setPopup] = useState(false);
   const [myprofile, setMyprofile] = useState();
@@ -23,7 +24,7 @@ const Mypage = () => {
       const token = sessionStorage.getItem("accessToken");
       try {
         const response = await axios.get(
-          `http://ec2-3-34-248-63.ap-northeast-2.compute.amazonaws.com:8081/performer/mypage/1`,
+          `${url}/performer/mypage/${performerId}`,
           {
             headers: {
               Authorization: `Bearer ${token}`,
@@ -31,7 +32,9 @@ const Mypage = () => {
           }
         );
         console.log("마이프로필", response.data.result);
-        setMyprofile(response.data.result);
+        {
+          response.data.result && setMyprofile(response.data.result);
+        }
 
         const profileDTO = response.data.result.profileDTO;
 
@@ -49,27 +52,48 @@ const Mypage = () => {
           // Handle the case where profileDTO is not available
           setLatestProfile({
             id: "",
-            introduction: "No introduction available",
-            name: "No name available",
-            phoneNumber: "No phone number available",
+            introduction: "",
+            name: "최근 프로필이 없습니다",
+            phoneNumber: "",
             profileImages: [],
-            team: "No team available",
-            date: "no date",
+            team: "",
+            date: "",
           });
         }
       } catch (error) {
-        console.error("프로필 정보를 불러오는데 실패했습니다:", error);
+        console.error("최근 프로필 정보를 불러오는데 실패했습니다:", error);
       }
     };
     MypageView();
   }, []);
 
+  async function kakaoLogout() {
+    const endpoint = "/kakao/logout/withAccount";
+    if (sessionStorage.getItem("accessToken") !== null) {
+      try {
+        const res = await axios.get(url + endpoint);
+        //console.log(res.data);
+        sessionStorage.removeItem("accessToken");
+        sessionStorage.removeItem("name");
+        sessionStorage.removeItem("uid");
+        window.location.href = res.data;
+      } catch (err) {
+        console.log(err);
+      }
+    }
+  }
+
+  const handleLogout = () => {
+    console.log("로그아웃");
+    kakaoLogout();
+  };
+
   if (!myprofile) {
     return <div>Loading...</div>;
   }
 
-  const fullName = myprofile.name;
-  const name = fullName.substring(1);
+  const fullName = myprofile.name || "";
+  const name = fullName.substring(1) || "";
 
   return (
     <div className="Mypage">
@@ -82,11 +106,13 @@ const Mypage = () => {
           {name}님의<span>&nbsp;최근&nbsp;</span>프로필이에요
         </p>
         {console.log("제일 최근", latestProfile)}
-        <PerformerProfile
-          key={latestProfile.id}
-          profile={latestProfile}
-          className={"profile-card profile-latest"}
-        />
+        {latestProfile && (
+          <PerformerProfile
+            key={latestProfile.id}
+            profile={latestProfile}
+            className={"profile-card profile-latest"}
+          />
+        )}
 
         <div className="choice">
           <button
@@ -124,7 +150,7 @@ const Mypage = () => {
           >
             역할 전환
           </button>
-          <button>로그아웃</button>
+          <button onClick={handleLogout}>로그아웃</button>
           <button
             onClick={() => {
               setCancel(true);
