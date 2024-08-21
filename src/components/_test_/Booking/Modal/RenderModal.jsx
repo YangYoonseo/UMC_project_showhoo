@@ -4,7 +4,7 @@ import LocateModal from "./LocateModal";
 import DateModal from "./DateModal";
 import TypeModal from "./TypeModal";
 
-const RenderModal = ({ isOpen, onClose, index }) => {
+const RenderModal = ({ isOpen, onClose, index, onDateSelect }) => { // onDateSelect 프롭 추가
     if (!isOpen) return null;
 
     let ModalContent;
@@ -14,7 +14,7 @@ const RenderModal = ({ isOpen, onClose, index }) => {
             ModalContent = <LocateModal isOpen={isOpen} onClose={onClose} />;
             break;
         case 2:
-            ModalContent = <DateModal isOpen={isOpen} onClose={onClose} />;
+            ModalContent = <DateModal isOpen={isOpen} onClose={onClose} onDateSelect={onDateSelect} />; // onDateSelect 전달
             break;
         case 3:
             ModalContent = <TypeModal isOpen={isOpen} onClose={onClose} />;
