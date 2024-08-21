@@ -53,6 +53,15 @@ const Pop_Fee = ({ isOpen, onClose, onConfirm, initialDescription, initialOffSea
     }
   };
 
+    // 숫자만 입력되도록 하고, 잘못된 입력이 있을 때 알림 표시
+  const handleFeeChange = (type, value) => {
+    if (/^\d*$/.test(value)) { // 입력된 값이 숫자인 경우만 허용
+      setFees({ ...fees, [type]: value });
+    } else {
+      alert('숫자만 입력해주세요!');
+    }
+  };
+
   const handleSave = season => {
     if (season === 'offSeason') {
       if (selectedOffDays.some(day => offSeasonSaved[day])) {
@@ -164,7 +173,7 @@ const Pop_Fee = ({ isOpen, onClose, onConfirm, initialDescription, initialOffSea
             className="fee-input"
             placeholder="숫자만 입력해 주세요 !"
             value={fees.offSeason|| ''}
-            onChange={e => setFees({ ...fees, offSeason: e.target.value })}
+            onChange={e => handleFeeChange('offSeason', e.target.value)}
           />
           <span className="currency-unit">원</span>
           <button className="fee-save-button" onClick={() => handleSave('offSeason')}>저장</button>
@@ -198,7 +207,7 @@ const Pop_Fee = ({ isOpen, onClose, onConfirm, initialDescription, initialOffSea
             className="fee-input"
             placeholder="숫자만 입력해 주세요 !"
             value={fees.peakSeason || ''}
-            onChange={e => setFees({ ...fees, peakSeason: e.target.value })}
+            onChange={e => handleFeeChange('peakSeason', e.target.value)}
           />
           <span className="currency-unit">원</span>
           <button className="fee-save-button" onClick={() => handleSave('peakSeason')}>저장</button>

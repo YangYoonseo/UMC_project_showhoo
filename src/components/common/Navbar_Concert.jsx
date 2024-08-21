@@ -39,7 +39,12 @@ const Navbar_Concert = () => {
           <button
             className="concert_register"
             onClick={() => {
-              nav("/venue_register");
+              const token = sessionStorage.getItem("accessToken");
+              if (!token) {
+                nav("/login/oauth2/code/kakao");
+              } else {
+                nav("/venue_register");
+              }
             }}
           >
             공연장 등록
