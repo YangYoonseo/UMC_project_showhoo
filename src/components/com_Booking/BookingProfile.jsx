@@ -1,15 +1,16 @@
 import "../../styles/yoonseo/BookingProfile.css";
 
 import { useState } from "react";
-import axios from "axios";
 
 import ticket from "../../assets/img_Booking/ticket.svg";
 import ticket_show from "../../assets/img_Booking/ticket_show.svg";
 import BookingCancel from "../popup_Booking/BookingCancel";
+import PastCancel from "../popup_Booking/PastCancel";
 import Button from "../common/Button";
 
 const BookingProfile = ({ pamphlet, className }) => {
   const [cancelPopup, setCancelPopup] = useState(false);
+  const [pastPopup, setPastPopup] = useState(false);
 
   const getClassName = () => {
     switch (pamphlet.detail) {
@@ -56,7 +57,9 @@ const BookingProfile = ({ pamphlet, className }) => {
         <img src={ticket_show} alt="" className="pamphlet_ticket_show" />
       )}
 
-      <img src={pamphlet.poster} alt="" className="pamphlet_image" />
+      {pamphlet.poster && (
+        <img src={pamphlet.poster} alt="" className="pamphlet_image" />
+      )}
       {name !== "status_cancel" && (
         <p className={`status ${getClassName()}`}>{status}</p>
       )}
@@ -79,12 +82,13 @@ const BookingProfile = ({ pamphlet, className }) => {
         name !== "status_canceling" &&
         name !== "status_cancel" && (
           <div className="pamphlet_button">
-            <Button text={"더 보기"} type={"white"} onClick={() => {}} />
             <Button
               text={"취소"}
               type={"green"}
               onClick={() => {
-                setCancelPopup(true);
+                pamphlet.isCancellable
+                  ? setCancelPopup(true)
+                  : setPastPopup(true);
               }}
             />
           </div>
@@ -95,6 +99,13 @@ const BookingProfile = ({ pamphlet, className }) => {
             setCancelPopup(false);
           }}
           id={pamphlet.bookId}
+        />
+      )}
+      {pastPopup && (
+        <PastCancel
+          onClose={() => {
+            setPastPopup(false);
+          }}
         />
       )}
     </div>

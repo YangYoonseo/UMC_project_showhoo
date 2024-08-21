@@ -4,7 +4,7 @@ import Navbar_Perforemr from "./components/common/Navbar_Performer";
 import kakao from "./assets/images/kakao_login_large_wide.png";
 import { useNavigate } from "react-router-dom";
 
-const url = "http://ec2-3-34-248-63.ap-northeast-2.compute.amazonaws.com:8081";
+const url = "https://showhoo.site";
 const dev = "http://localhost:8080";
 
 async function kakaoLogin() {

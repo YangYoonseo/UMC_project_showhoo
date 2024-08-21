@@ -9,6 +9,8 @@ import Rectangle16 from "../../assets/img_Performer/Rectangle16.png";
 import Rectangle19 from "../../assets/img_Performer/Rectangle19.png";
 
 const Favorite = () => {
+  const url = "https://showhoo.site";
+
   const performerId = sessionStorage.getItem("performerId");
   const [prefer, setPrefer] = useState();
   const [loading, setLoading] = useState(true);
@@ -18,7 +20,7 @@ const Favorite = () => {
       try {
         const token = sessionStorage.getItem("accessToken");
         const response = await axios.get(
-          `http://ec2-3-34-248-63.ap-northeast-2.compute.amazonaws.com:8081/spaces/${performerId}/prefer`,
+          `${url}/spaces/${performerId}/prefer`,
           {
             headers: {
               Authorization: `Bearer ${token}`,

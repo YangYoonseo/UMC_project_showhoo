@@ -9,6 +9,7 @@ import AlarmDetail from "../components/com_Performer/AlarmDetail";
 import AlarmDelete from "../api/AlarmDelete";
 
 const AlarmConcert = () => {
+  const url = "https://showhoo.site";
   const [alarmResult, setAlarmResult] = useState([]);
   const spaceUserId = sessionStorage.getItem("spaceUserId");
 
@@ -17,7 +18,7 @@ const AlarmConcert = () => {
       const token = sessionStorage.getItem("accessToken");
       try {
         const response = await axios.get(
-          `http://ec2-3-34-248-63.ap-northeast-2.compute.amazonaws.com:8081/notifications/SPACEUSER/${spaceUserId}`,
+          `${url}/notifications/SPACEUSER/${spaceUserId}`,
           {
             headers: {
               Authorization: `Bearer ${token}`,

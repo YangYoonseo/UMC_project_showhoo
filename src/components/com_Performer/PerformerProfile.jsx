@@ -13,6 +13,8 @@ import map_pin from "../../assets/img_Performer/map_pin.svg";
 import Line40 from "../../assets/img_Performer/Line40.svg";
 
 const PerformerProfile = ({ profile, className }) => {
+  const url = "https://showhoo.site";
+
   const nav = useNavigate();
   const [popup, setPopup] = useState(false);
   const token = sessionStorage.getItem("accessToken");
@@ -21,7 +23,7 @@ const PerformerProfile = ({ profile, className }) => {
   const deletePerformer = async () => {
     try {
       const response = await axios.delete(
-        `http://ec2-3-34-248-63.ap-northeast-2.compute.amazonaws.com:8081/profile/${performerId}/${profile.id}`,
+        `${url}/profile/${performerId}/${profile.id}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -46,7 +48,7 @@ const PerformerProfile = ({ profile, className }) => {
       };
 
       const response = await axios.put(
-        `http://ec2-3-34-248-63.ap-northeast-2.compute.amazonaws.com:8081/profile/${performerId}/${profile.id}/text`,
+        `${url}/profile/${performerId}/${profile.id}/text`,
         data,
         {
           headers: {
@@ -76,7 +78,7 @@ const PerformerProfile = ({ profile, className }) => {
           profile.profileImages[0].profileImageUrl ? (
             <img src={profile.profileImages[0].profileImageUrl} alt="Profile" />
           ) : (
-            <div>No Image Available</div> // 이미지가 없을 때를 대비한 처리
+            <div></div> // 이미지가 없을 때를 대비한 처리
           )}
         </div>
         <h3>{profile.name}</h3>

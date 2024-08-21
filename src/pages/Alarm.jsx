@@ -9,6 +9,7 @@ import Navbar_Perforemr from "../components/common/Navbar_Performer";
 import AlarmDetail from "../components/com_Performer/AlarmDetail";
 
 const Alarm = () => {
+  const url = "https://showhoo.site";
   const [alarmResult, setAlarmResult] = useState([]);
   const token = sessionStorage.getItem("accessToken");
   const performerId = sessionStorage.getItem("performerId");
@@ -17,7 +18,7 @@ const Alarm = () => {
     const PerformerAlarmCheck = async () => {
       try {
         const response = await axios.get(
-          `http://ec2-3-34-248-63.ap-northeast-2.compute.amazonaws.com:8081/notifications/PERFORMER/${performerId}`,
+          `${url}/notifications/PERFORMER/${performerId}`,
           {
             headers: {
               Authorization: `Bearer ${token}`,

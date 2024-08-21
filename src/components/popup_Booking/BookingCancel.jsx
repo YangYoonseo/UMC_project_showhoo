@@ -5,6 +5,8 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 const BookingCancel = ({ onClose, id }) => {
+  const url = "https://showhoo.site";
+
   const nav = useNavigate();
   const [bank, setBank] = useState("");
   const [name, setName] = useState("");
@@ -31,16 +33,12 @@ const BookingCancel = ({ onClose, id }) => {
         account: number || "",
         reason: "이유 미작성",
       };
-      const response = await axios.put(
-        `http://ec2-3-34-248-63.ap-northeast-2.compute.amazonaws.com:8081/book/${id}/cancel`,
-        data,
-        {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
+      const response = await axios.put(`${url}/book/${id}/cancel`, data, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      });
       console.log(response.data.result);
       alert("성공");
       nav("/mypage_booking");

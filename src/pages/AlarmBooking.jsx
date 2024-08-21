@@ -9,6 +9,7 @@ import Navbar_Booking from "../components/common/Navbar_Booking";
 import AlarmDetail from "../components/com_Performer/AlarmDetail";
 
 const AlarmBooking = () => {
+  const url = "https://showhoo.site";
   const [alarmResult, setAlarmResult] = useState([]);
   const audienceId = sessionStorage.getItem("audienceId");
 
@@ -17,7 +18,7 @@ const AlarmBooking = () => {
       const token = sessionStorage.getItem("accessToken");
       try {
         const response = await axios.get(
-          `http://ec2-3-34-248-63.ap-northeast-2.compute.amazonaws.com:8081/notifications/AUDIENCE/${audienceId}`,
+          `${url}/notifications/AUDIENCE/${audienceId}`,
           {
             headers: {
               Authorization: `Bearer ${token}`,
