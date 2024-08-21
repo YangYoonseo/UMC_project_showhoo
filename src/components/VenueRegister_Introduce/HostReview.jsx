@@ -3,6 +3,8 @@ import scoreStar from "../../assets/images/venueregisterpage_introduce/scoreStar
 import HostAnswer from "./HostAnswer";
 
 const HostReview = ({ id, profile, name, review, review_img, score, date }) => {
+    const stringTodate = new Date(date);
+
     // 날짜 포맷팅 함수
     const formatDate = (date) => {
         const year = date.getFullYear();
@@ -38,7 +40,7 @@ const HostReview = ({ id, profile, name, review, review_img, score, date }) => {
                     )}
                 </div>
                 <div className="review_date">
-                    {formatDate(date)}
+                    {formatDate(stringTodate)}
                 </div>
                 <div className="review_answer">
                     <HostAnswer index={id} />

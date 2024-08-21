@@ -60,14 +60,6 @@ const VenueRegisterPage = () => {
     spacestaff,
     spaceSeat,
   } = useContext(FacilityContext); 
-
-  useEffect (()=> {
-    console.log("soundEquipment",soundEquipment);
-    console.log(lightingEquipment);
-    console.log(stageMachinery);
-    console.log(spaceDrawing);
-    console.log(spacestaff);
-  }, [soundEquipment])
   
   //spaceUserId 구현
   const spaceUserId = sessionStorage.getItem("spaceUserId");
@@ -102,15 +94,12 @@ const VenueRegisterPage = () => {
   // 유의사항 업데이트 함수 
   const updateNotice = (notice) => {
     setNotice(notice);
-    console.log("유의사항 전달 확인:", notice)
   };
 
   // holiday 업데이트 함수 
   const updateHoliday = (date) => {
     // 변환된 날짜 배열을 holidays 상태로 설정
     setHolidays(date);
-    // 업데이트된 holidays 배열을 콘솔에 출력
-    console.log("휴무일:", holidays);
   };
 
   // 날짜 맵핑 함수
