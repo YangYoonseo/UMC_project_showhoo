@@ -13,8 +13,8 @@ const ReviewPanel = ({ reviews, setReviews, fetchReviews, profileImage, name, co
     const [newGrade, setNewGrade] = useState(0);
     const [selectedStars, setSelectedStars] = useState(0);
     const [showPopup, setShowPopup] = useState(false);
-    const spaceId = 1;
-    const performerId = 3; // 실제 performerId로 교체 필요
+    const spaceId = 4;
+    const performerId = 4; // 실제 performerId로 교체 필요
     const yourAccessToken = sessionStorage.getItem("accessToken");
 
     // 이미지 미리보기를 위해 URL.createObjectURL(file)을 사용하면서도, 서버에 업로드될 때는 실제 File 객체를 사용
@@ -63,7 +63,9 @@ const ReviewPanel = ({ reviews, setReviews, fetchReviews, profileImage, name, co
             if (fileForUpload.length > 0) {  // 실제 업로드할 파일이 있는지 확인
                 try {
                     const formData = new FormData();
-                    formData.append('reviewImages', file);  // 실제 파일 업로드
+                    fileForUpload.forEach(file => {
+                        formData.append('reviewImages', file);  // 실제 파일 업로드
+                    });
     
                     const uploadResponse = await axios.post(
                         'https://showhoo.site/reviewImage/upload',
@@ -77,7 +79,8 @@ const ReviewPanel = ({ reviews, setReviews, fetchReviews, profileImage, name, co
                     );
     
                     if (uploadResponse.data.isSuccess) {
-                        uploadedImageUrl = uploadResponse.data.result; //쓰읍 [0]ㄱ같은데..
+                        uploadedImageUrl = uploadResponse.data.result; // 업로드된 이미지 URL 배열
+                        console.log("이미지 업로드 성공!",uploadResponse.data);
                     } else {
                         console.warn("이미지 업로드에 실패했습니다:", uploadResponse.data.message);
                     }
@@ -92,7 +95,7 @@ const ReviewPanel = ({ reviews, setReviews, fetchReviews, profileImage, name, co
                     {
                         grade: newGrade,
                         content: newContext,
-                        imageUrls: uploadedImageUrl ? [uploadedImageUrl] : [],
+                        imageUrls: uploadedImageUrl || [],
                     },
                     {
                         headers: {
@@ -108,6 +111,7 @@ const ReviewPanel = ({ reviews, setReviews, fetchReviews, profileImage, name, co
                     setNewGrade(0);
                     setSelectedStars(0);
                     setFileForUpload([]);  // 업로드 후 파일 초기화
+                    console.log("리뷰 제출 성공!",reviewResponse.data);
                 } else {
                     console.warn("리뷰 제출에 실패했습니다:", reviewResponse.data.message);
                 }
@@ -207,7 +211,7 @@ const ReviewPanel = ({ reviews, setReviews, fetchReviews, profileImage, name, co
                     src={profileImage} 
                     alt="profile" 
                     style={{ 
-                        borderRadius: '50%',  // 원형으로
+                        borderRadius: '50px',  // 원형으로
                         objectFit: 'cover'     // 이미지가 원 안에 꼭 맞게
                       }}/>
             </div>

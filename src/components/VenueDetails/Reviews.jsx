@@ -9,7 +9,7 @@ import delete_btn from "../../assets/images/venuedetailpage/delete_btn.svg";
 const Reviews = () => {
   const [reviews, setReviews] = useState([]);
   const [averageScore, setAverageScore] = useState(0);
-  const spaceId = 1; // Replace with the actual spaceId
+  const spaceId = 4; // Replace with the actual spaceId
 
   const fetchReviews = async () => {
     try {

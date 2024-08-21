@@ -166,6 +166,8 @@ const RentalDetails = () => {
             ? selectedAdditionalServices
             : [],
       };
+
+      
       const response = await axios.post(
         `${url}/spaces/${spaceId}/spaceApply/${performerId}`,
         data,

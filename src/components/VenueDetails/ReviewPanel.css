@@ -24,6 +24,7 @@ body {
 .review_container {
     max-width: 570px;
     flex-direction: column;
+    overflow-x: auto;
 }
 
 .name_score {
@@ -52,6 +53,7 @@ body {
     margin: 15px 0;
     display: flex;
     gap: 30px;
+    max-width: 100px;
 }
 
 .review_date {
@@ -241,12 +243,13 @@ body {
     left:180px;
 }
 
+/* 리뷰 미리보기 리스트 */
 .image-preview-list{
     background-color:none;
     max-width:300px;
 
     position: relative;
-    top: -140px;
+    top: -160px;
     left: 100px;
 }
 .image-preview-item span{
