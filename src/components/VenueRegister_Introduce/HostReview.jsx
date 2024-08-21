@@ -2,7 +2,7 @@ import "../../styles/Eojin/HostReview.css";
 import scoreStar from "../../assets/images/venueregisterpage_introduce/scoreStar.svg";
 import HostAnswer from "./HostAnswer";
 
-const HostReview = ({ id, profile, name, review, review_img, score, date }) => {
+const HostReview = ({ id, profile, name, review, review_img, score, date, spaceId }) => {
     const stringTodate = new Date(date);
 
     // 날짜 포맷팅 함수
@@ -43,7 +43,7 @@ const HostReview = ({ id, profile, name, review, review_img, score, date }) => {
                     {formatDate(stringTodate)}
                 </div>
                 <div className="review_answer">
-                    <HostAnswer index={id} />
+                    <HostAnswer index={id} spaceId={spaceId} />
                 </div>
             </div>
         </div>

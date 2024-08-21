@@ -1,7 +1,7 @@
 import "../../styles/Eojin/HostAnswer.css";
 import { useState, useEffect } from "react";
 
-const HostAnswer = ({ index }) => {
+const HostAnswer = ({ spaceId, index }) => {
     const [answer, setAnswer] = useState("");
     const [inputValue, setInputValue] = useState("");
     const [date, setDate] = useState(new Date());

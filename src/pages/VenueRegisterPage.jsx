@@ -51,6 +51,9 @@ const VenueRegisterPage = () => {
   const [holidays, setHolidays] = useState();
   const [notice, setNotice] = useState("");
 
+  // spaceId => useContext 사용해서 따로 빼야하지 않나 싶음 
+  const [spaceId, setSpaceId] = useState(0);
+
   // 시설 안내 데이터 context에서 가져오기 
   const {
     soundEquipment,
@@ -184,6 +187,7 @@ const VenueRegisterPage = () => {
       });
 
       console.log('등록 결과:', response.data);
+      setSpaceId(response.data.result.spaceId);
       alert('공연장 등록이 성공적으로 완료되었습니다.');
     } catch (error) {
       console.error('공연장 등록 실패:', error);
@@ -290,7 +294,7 @@ const VenueRegisterPage = () => {
                 <Host_VenueSchedule openPlaceModal={openPlaceModal} updateHoliday={updateHoliday} />
               </div>
               <div style={{ display: selectedTab === 'reviews' ? 'block' : 'none' }}>
-                <Host_VenueReviews openPlaceModal={openPlaceModal} />
+                <Host_VenueReviews openPlaceModal={openPlaceModal} spaceId={spaceId}/>
               </div>
             </div>
           </div>
