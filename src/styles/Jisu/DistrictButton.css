@@ -14,6 +14,9 @@
     /* 아래만 */
     padding: 0px;
     flex: auto;
+
+    font-size: 15px;
+    cursor: pointer;
 }
 
 .topButton {
@@ -21,12 +24,10 @@
 }
 
 .bottomButton {
-    border-width: 0px;
     border-radius: 0px 0px 18px 18px;
 }
 
-.DistrictButton .onClicked {
+.DistrictButton.clicked {
     border-width: 1px;
-    border-radius: 18px 18px 18px 18px;
     border-color: #07C093;
 }

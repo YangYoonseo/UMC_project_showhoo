@@ -1,0 +1,84 @@
+/* DateSearchCalender 컨테이너 스타일 */
+.DateSearchCalender {
+    display: flex;
+    justify-content: center;
+    /* 가운데 정렬 */
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    max-width: 350px;
+    /* Calendar 최대 너비 */
+    margin: 0 auto;
+    /* 페이지 가운데로 배치 */
+}
+
+.DateSearchCalender .react-calendar__navigation__label {
+    font-size: 1.1em !important;
+}
+
+/* Calendar 컴포넌트 스타일 */
+.DateSearchCalender .react-calendar {
+    margin-top: 0px;
+    width: 100%;
+    /* 부모 컨테이너에 맞추기 */
+    max-width: 100%;
+    border: none;
+    font-family: Arial, sans-serif;
+    line-height: 1.125em;
+    border-radius: 10px;
+    /* 달력 자체에도 둥근 모서리 적용 */
+}
+
+.DateSearchCalender .react-calendar__navigation {
+    /* 네비게이션 바 */
+    display: flex;
+    height: 40px;
+    margin-bottom: 7px;
+}
+
+.DateSearchCalender .react-calendar__navigation__arrow {
+    /* 네비게이션 화살표 버튼 */
+    font-size: 30px;
+    /* 화살표 아이콘의 크기 */
+    font-weight: lighter;
+    /* 화살표 아이콘의 두께 */
+    padding: 0px;
+    margin: 0px;
+}
+
+.DateSearchCalender .react-calendar__month-view__weekdays {
+    margin-bottom: 0px !important;
+    color: #828282;
+    font-weight: 400;
+    font-size: 18px;
+}
+
+.DateSearchCalender .react-calendar__month-view__days {
+    border-top: none !important;
+}
+
+.DateSearchCalender .react-calendar__tile {
+    height: 50px !important;
+    font-size: 19px;
+    color: black;
+    justify-content: center !important;
+    margin-bottom: 5px;
+    border-radius: 50%;
+}
+
+.DateSearchCalender .react-calendar__tile--active {
+    /* 선택된 날짜 타일 스타일 */
+    background-color: #09F1B9 !important;
+    /* 배경색을 흰색으로 지정 */
+    color: inherit !important;
+    /* 글자 색상은 부모 요소에서 상속 */
+    border: none;
+    /* 테두리 제거 */
+}
+
+.DateSearchCalender .react-calendar__tile:hover {
+    background-color: #e0e0e0;
+    /* 호버 시 배경색을 약간 변경하여 시각적 피드백을 줍니다 */
+    transition: background-color 0.3s ease;
+    /* 부드러운 전환 효과 추가 */
+}

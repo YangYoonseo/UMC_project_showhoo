@@ -29,7 +29,6 @@ const RentalSearchBar_2 = () => {
                 topic="모두"
                 index={0}
                 isClicked={activeButton === 0}
-                onClick={() => handleButtonClick(0)}
                 onOpenModal={() => openModal(0)}
                 style={{ padding: '0px 36px 0px 53px' }} 
             />
@@ -38,7 +37,6 @@ const RentalSearchBar_2 = () => {
                 topic="서울 마포구"
                 index={1}
                 isClicked={activeButton === 1}
-                onClick={() => handleButtonClick(1)}
                 onOpenModal={() => openModal(1)}
                 style={{ padding: '0px 36px 0px 36px' }} 
             />
@@ -47,7 +45,6 @@ const RentalSearchBar_2 = () => {
                 topic="2024-08-13"
                 index={2}
                 isClicked={activeButton === 2}
-                onClick={() => handleButtonClick(2)}
                 onOpenModal={() => openModal(2)}
                 style={{ padding: '0px 36px 0px 36px' }} 
             />
@@ -56,7 +53,6 @@ const RentalSearchBar_2 = () => {
                 topic="콘서트홀"
                 index={3}
                 isClicked={activeButton === 3}
-                onClick={() => handleButtonClick(3)}
                 onOpenModal={() => openModal(3)}
                 style={{ padding: '0px 106px 0px 46px' }} 
             />

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import "../../../../styles/Jisu/TypeModal.css";
 
-const TypeModal = ({ isOpen, onClose }) => {
+const TypeModal = ({ isOpen, onClose, onTypeSelect }) => { // onTypeSelect 프롭 추가
     const [selectedButton, setSelectedButton] = useState(null); // State to track the selected button
 
     if (!isOpen) return null;
@@ -11,6 +11,7 @@ const TypeModal = ({ isOpen, onClose }) => {
 
     const handleButtonClick = (index) => {
         setSelectedButton(index);
+        onTypeSelect(buttons[index]); // 선택된 유형을 부모 컴포넌트로 전달
     };
 
     return (
