@@ -6,13 +6,13 @@ import star from "../../assets/images/venueregisterpage_introduce/scoreStar.svg"
 
 const VenueInfo = ({ data }) => {
   const [headerData, setHeaderData] = useState(null);
-  const spaceId = 2; // 실제 spaceId 값으로 교체 필요
+  const spaceId = 7; // 실제 spaceId 값으로 교체 필요
   const yourAccessToken = sessionStorage.getItem("accessToken");
 
   useEffect(() => {
     const fetchVenueHeader = async () => {
       try {
-        const response = await axios.get(`http://ec2-3-34-248-63.ap-northeast-2.compute.amazonaws.com:8081/spaces/${spaceId}/header`, {
+        const response = await axios.get(`https://showhoo.site/spaces/${spaceId}/header`, {
           headers: {
             Authorization: `Bearer ${yourAccessToken}`,
           },

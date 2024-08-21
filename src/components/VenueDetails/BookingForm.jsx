@@ -33,7 +33,7 @@ const BookingForm = () => {
   const [totalPrice, setTotalPrice] = useState(0);
   const [additionalServices1, setAdditionalServices1] = useState([]); 
   const navigate = useNavigate();
-  const spaceId = 2; // 실제 spaceId 값으로 교체 필요
+  const spaceId = 7; // 실제 spaceId 값으로 교체 필요
   const performerId = 1; // 실제 performerId 값으로 교체 필요
 
   useEffect(() => {
@@ -46,7 +46,7 @@ const BookingForm = () => {
   const fetchAdditionalServices = async () => {
     try {
       const response = await axios.get(
-        `http://ec2-3-34-248-63.ap-northeast-2.compute.amazonaws.com:8081/spaces/${spaceId}/description`,
+        `https://showhoo.site/spaces/${spaceId}/description`,
         {
           headers: {
             'Content-Type': 'application/json',
@@ -70,7 +70,7 @@ const BookingForm = () => {
     // edittedDate.setDate(edittedDate.getDate()+1); // 임시로 하루전 날짜...
     try {
       const response = await axios.post(
-        `http://ec2-3-34-248-63.ap-northeast-2.compute.amazonaws.com:8081/spaces/${spaceId}/price`,
+        `https://showhoo.site/spaces/${spaceId}/price`,
         {
           date: edittedDate.toISOString().split('T')[0],
           additionalServices: selectedServices,
@@ -157,8 +157,7 @@ const BookingForm = () => {
       .filter(service => selectedServices.includes(service.title))
       .map(service => service.id);
     
-    console.log("selectedAdditionalServices:", selectedAdditionalServiceIds);
-    // console.log("선택한 추가 서비스:", selectedServices);
+    console.log("선택한 추가 서비스:", selectedServices);
 
     navigate('/rental_details', {
       state: {
@@ -168,6 +167,7 @@ const BookingForm = () => {
         rentalFee,
         rentalSum: totalPrice,
         selectedAdditionalServices: selectedAdditionalServiceIds,
+        selectedServicesTitle: selectedServices
       }
     });
 

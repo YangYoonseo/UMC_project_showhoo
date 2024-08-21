@@ -18,14 +18,14 @@ import seating_chart_hovered from '../../assets/images/venuedetailpage/seating_c
 const FacilityInfo = ({ name }) => {
   const [hovered, setHovered] = useState('');
   const [facilityData, setFacilityData] = useState({});
-  const spaceId = 3;
+  const spaceId = 7;
   const yourAccessToken = sessionStorage.getItem("accessToken");
 
   useEffect(() => {
     const fetchFacilityData = async () => {
       try {
         const response = await axios.get(
-          `http://ec2-3-34-248-63.ap-northeast-2.compute.amazonaws.com:8081/spaces/${spaceId}/file`,
+          `https://showhoo.site/spaces/${spaceId}/file`,
           {
             headers: {
               Authorization: `Bearer ${yourAccessToken}`,
@@ -78,7 +78,9 @@ const FacilityInfo = ({ name }) => {
     const link = document.createElement('a');
     link.href = fileUrl;
     link.download = fileName;
+    document.body.appendChild(link); // 링크를 DOM에 추가
     link.click();
+    document.body.removeChild(link); // 클릭 후 링크를 DOM에서 제거
   };
 
   return (

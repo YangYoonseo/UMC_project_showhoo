@@ -19,14 +19,14 @@ const renderTextWithLineBreaks = (text) => {
   const Notice = () => {
     const [noticeData, setNoticeData] = useState(null);
     const [isLoading, setIsLoading] = useState(true);
-    const spaceId = 2; //실제 id로 교체 필요
+    const spaceId = 7; //실제 id로 교체 필요
     const yourAccessToken = sessionStorage.getItem("accessToken");
   
     useEffect(() => {
       const fetchNoticeData = async () => {
         try {
           const response = await axios.get(
-            `http://ec2-3-34-248-63.ap-northeast-2.compute.amazonaws.com:8081/spaces/${spaceId}/notice`,
+            `https://showhoo.site/spaces/${spaceId}/notice`,
             {
               headers: {
                 Authorization: `Bearer ${yourAccessToken}`,

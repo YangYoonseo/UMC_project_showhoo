@@ -6,14 +6,14 @@ import ex_map from '../../assets/images/venueregisterpage_introduce/ex_map.svg';
 
 const VenueIntroduction = () => {
   const [descriptionData, setDescriptionData] = useState(null);
-  const spaceId = 2;
+  const spaceId = 7;
   const yourAccessToken = sessionStorage.getItem("accessToken");
 
   useEffect(() => {
     const fetchVenueDescription = async () => {
       try {
         const response = await axios.get(
-          `http://ec2-3-34-248-63.ap-northeast-2.compute.amazonaws.com:8081/spaces/${spaceId}/description`,
+          `https://showhoo.site/spaces/${spaceId}/description`,
           {
             headers: {
               Authorization: `Bearer ${yourAccessToken}`,
