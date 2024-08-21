@@ -4,19 +4,21 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 
 import Navbar_Booking from "../components/common/Navbar_Booking";
-import Book_component from "../components/booking/Book_component";
-import { components } from "react-select";
+import BookPrefer from "../components/com_Booking/BookPrefer";
 
 const LikeBooking = () => {
   const [prefer, setPrefer] = useState([]);
   const token = sessionStorage.getItem("accessToken");
+  const page = 0;
+  const url = "https://showhoo.site";
+  const audienceId = sessionStorage.getItem("audienceId");
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const getPrefer = async () => {
       try {
         const response = await axios.get(
-          "http://ec2-3-34-248-63.ap-northeast-2.compute.amazonaws.com:8081/shows-prefer/1?page=0",
+          `${url}/shows-prefer/${audienceId}?page=${page}`,
           // 페이지 우선 0으로 고정. 추후 수정 예정
           {
             headers: {
@@ -52,9 +54,16 @@ const LikeBooking = () => {
           {prefer.length === 0 ? (
             <p>관심 목록이 없습니다.</p> // 빈 상태 메시지
           ) : (
-            prefer.map((item) => (
-              <h3 key={item.showsId}>{item.name}</h3>
-              // <Book_component key={item.id} prefer={prefer} />
+            prefer.map((concert) => (
+              <BookPrefer
+                key={concert.showsId}
+                id={concert.showsId}
+                img={concert.poster}
+                name={concert.name}
+                date={concert.date}
+                time={concert.time}
+                isComplete={concert.isComplete}
+              />
             ))
           )}
         </div>

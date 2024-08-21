@@ -1,4 +1,5 @@
 //Pop_Category.jsx
+// Pop_Category.jsx
 import React, { useState } from 'react';
 import '../../styles/VenueRegisterPage_Introduce/Pop_Category.css';
 
@@ -9,13 +10,23 @@ const Pop_Category = ({ isOpen, onClose, onConfirm }) => {
 
   const categories = ['콘서트홀', '아트홀', '대공연장', '소공연장', '대극장', '소극장'];
 
+  const categoryMapping = {
+    '콘서트홀': 'CONCERTHALL',
+    '아트홀': 'ARTHALL',
+    '대공연장': 'GRANDHALL',
+    '소공연장': 'SMALLHALL',
+    '대극장': 'GRANDTHEATER',
+    '소극장': 'SMALLTHEATER'
+  };
+
   const handleCategoryClick = (category) => {
     setSelectedCategory(category); // 선택된 유형 업데이트
   };
 
   const handleConfirm = () => {
     if (selectedCategory) {
-      onConfirm(selectedCategory); // 부모 컴포넌트로 선택된 유형 전달
+      const mappedCategory = categoryMapping[selectedCategory]; // 카테고리 변환
+      onConfirm(mappedCategory); // 부모 컴포넌트로 변환된 카테고리 전달
       onClose(); // 팝업 닫기
     }
   };
@@ -36,10 +47,10 @@ const Pop_Category = ({ isOpen, onClose, onConfirm }) => {
             </div>
           ))}
         </div>
-        <div className="modal-buttons-category">
-          <button className="cancel-button" onClick={onClose}>뒤로 가기</button>
+        <div className="modal-buttons-category33">
+          <button className="cancel-button333" onClick={onClose}>뒤로 가기</button>
           <button 
-            className="confirm-button" 
+            className="confirm-button333" 
             onClick={handleConfirm} 
             disabled={!selectedCategory} // 선택된 유형이 없으면 버튼 비활성화
           >
@@ -52,3 +63,4 @@ const Pop_Category = ({ isOpen, onClose, onConfirm }) => {
 };
 
 export default Pop_Category;
+

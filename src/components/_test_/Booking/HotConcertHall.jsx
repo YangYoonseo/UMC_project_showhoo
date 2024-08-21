@@ -15,7 +15,7 @@ const HotConcertHall = () => {
                     alt="Concert Hall"
                 />
                 <div className="LikeButton">
-                    <LikeButton />
+                    <LikeButton spaceId={1} performerId={1} />
                 </div>
             </div>
             <div className="ConcertHallBody">

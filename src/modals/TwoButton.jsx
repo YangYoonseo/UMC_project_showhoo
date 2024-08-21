@@ -9,7 +9,7 @@ const TwoButton = ({ title, children, onClose, onNext, className }) => {
         <div className="content">{children}</div>
         {/* { text, type, onClick } */}
         <Button text={"취소"} type={"gray"} onClick={onClose} />
-        <Button text={"신청하기"} type={"green"} onClick={onNext} />
+        <Button text={"확인"} type={"green"} onClick={onNext} />
       </div>
     </div>
   );

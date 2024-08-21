@@ -1,8 +1,13 @@
 import "../../styles/yoonseo/BookingCancel.css";
 import TwoButton from "../../modals/TwoButton";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
-const BookingCancel = ({ onClose, onNext }) => {
+const BookingCancel = ({ onClose, id }) => {
+  const url = "https://showhoo.site";
+
+  const nav = useNavigate();
   const [bank, setBank] = useState("");
   const [name, setName] = useState("");
   const [number, setNumber] = useState("");
@@ -17,6 +22,33 @@ const BookingCancel = ({ onClose, onNext }) => {
 
   const numberChange = (e) => {
     setNumber(e.target.value);
+  };
+
+  const CancelRequest = async (bank, name, number, id) => {
+    try {
+      const token = sessionStorage.getItem("accessToken");
+      const data = {
+        name: name || "",
+        bankName: bank || "",
+        account: number || "",
+        reason: "이유 미작성",
+      };
+      const response = await axios.put(`${url}/book/${id}/cancel`, data, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      console.log(response.data.result);
+      alert("성공");
+      nav("/mypage_booking");
+    } catch (error) {
+      console.log("취소 요청 에러", error);
+    }
+  };
+
+  const onNext = () => {
+    CancelRequest(bank, name, number, id);
   };
 
   return (

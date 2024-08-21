@@ -10,6 +10,8 @@ import PerformerCancel from "../components/popup_Performer/PerformerCancel";
 import SwitchRoles from "../components/common/SwitchRoles";
 
 const MypageConcert = () => {
+  const url = "https://showhoo.site";
+  const spaceUserId = sessionStorage.getItem("audienceId");
   const nav = useNavigate();
   const [cancel, setCancel] = useState(false);
   const [popup, setPopup] = useState(false);
@@ -20,7 +22,7 @@ const MypageConcert = () => {
       const token = sessionStorage.getItem("accessToken");
       try {
         const response = await axios.get(
-          `http://ec2-3-34-248-63.ap-northeast-2.compute.amazonaws.com:8081/space-user/mypage/1`,
+          `${url}/space-user/mypage/${spaceUserId}`,
           {
             headers: {
               Authorization: `Bearer ${token}`,
@@ -41,6 +43,27 @@ const MypageConcert = () => {
   }
 
   const fullName = myprofile.name;
+
+  async function kakaoLogout() {
+    const endpoint = "/kakao/logout/withAccount";
+    if (sessionStorage.getItem("accessToken") !== null) {
+      try {
+        const res = await axios.get(url + endpoint);
+        //console.log(res.data);
+        sessionStorage.removeItem("accessToken");
+        sessionStorage.removeItem("name");
+        sessionStorage.removeItem("uid");
+        window.location.href = res.data;
+      } catch (err) {
+        console.log(err);
+      }
+    }
+  }
+
+  const handleLogout = () => {
+    console.log("로그아웃");
+    kakaoLogout();
+  };
 
   return (
     <div className="MypageConcert">
@@ -65,7 +88,7 @@ const MypageConcert = () => {
           >
             역할 전환
           </button>
-          <button>로그아웃</button>
+          <button onClick={handleLogout}>로그아웃</button>
           <button
             onClick={() => {
               setCancel(true);

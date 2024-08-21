@@ -6,24 +6,29 @@ body {
 .HostReview {
     box-sizing: border-box;
     padding: 20px 0;
-    width: 720px;
+    width: 100%;
     display: flex;
     margin: 20px 0;
     border-bottom: 1.5px solid #E8E8E8;
 }
 
 .profile {
-    margin : 15px;
+    width: 64px;
+    margin : 10px;
+    margin-right: 30px;
+    padding: 0;
 }
 
 .profile img {
-    width: 67px;
+    width: 64px;
     height: 64px;
+    border-radius: 50%;
 }
 
 .review_container {
     width: 600px;
     flex-direction: column;
+    min-width: 550px;
 }
 
 .name_score {
@@ -41,6 +46,8 @@ body {
 }
 
 .review_content > p {
+    margin: 0;
+    padding: 0;
     font-weight: 400;
     font-size: 18px;
     align-items: center;
@@ -51,6 +58,11 @@ body {
     margin: 15px 0;
     display: flex;
     gap: 30px;
+}
+.review-images img {
+    width: 120px;
+    height: 160px;
+    object-fit: cover;
 }
 
 .review_date {

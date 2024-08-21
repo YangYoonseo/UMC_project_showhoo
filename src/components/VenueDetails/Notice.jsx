@@ -1,8 +1,11 @@
-import React from 'react';
+// Notice.jsx
+// + 로딩까지 구현
+
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 import './VenueDetails.css';
 
 // 텍스트 자르는 함수 
-// but 백엔드로부터 받아오는 데이터에 따라서 수정해야 할 가능성 높음
 const renderTextWithLineBreaks = (text) => {
   const lines = text.split('<br><br>').map((line, index) =>
     <div key={index}>
@@ -13,35 +16,58 @@ const renderTextWithLineBreaks = (text) => {
   return <>{lines}</>;
 };
 
-const Notice = ({ data }) => {
-  return (
-    <div className="venue-notice">
-      <div className="notice-section">
-        <h3>1. 환불 규정</h3>
-        {renderTextWithLineBreaks(data.refundPolicy)}
+  const Notice = () => {
+    const [noticeData, setNoticeData] = useState(null);
+    const [isLoading, setIsLoading] = useState(true);
+    const spaceId = 15; //실제 id로 교체 필요
+  
+    useEffect(() => {
+      const fetchNoticeData = async () => {
+        try {
+          const response = await axios.get(
+            `https://showhoo.site/spaces/${spaceId}/notice`);
+  
+          if (response.data.isSuccess) {
+            // console.log("API 결과 조회:", response.data.result);
+
+            // 개발자 시점 : 데이터의 받아온 값이 유효하지 않음을 알린다
+            if (!response.data.result.notice) console.log('Notice description is null');
+
+            setNoticeData(response.data.result.notice);
+          } 
+          else {
+            console.warn("[Notice] API 결과 조회 실패:", response.data.message);
+          }
+        } 
+        catch (error) {
+          console.error('[Notice] API 호출 실패 ; 유의사항을 가져오는데 실패했습니다:', error);
+        } finally {
+          setIsLoading(false);
+        }
+      };
+  
+      fetchNoticeData();
+    }, [spaceId]);
+  
+    if (isLoading) {
+      return <div>Loading...</div>;
+    }
+  
+    // ux시점 : 데이터가 없을 때 사용자에게 데이터를 제공할 수 없음을 알린다
+    if (!noticeData) {
+      return <div>No data available</div>;
+    }
+  
+    return (
+      <div className="venue-notice">
+        <div className="notice-section">
+          <h3>유의사항</h3>
+          <div dangerouslySetInnerHTML={{ __html: noticeData }} />
+          {/* {renderTextWithLineBreaks(noticeData)} */}
+        </div>
       </div>
-      <div className="notice-section">
-        <h3>2. 대관비, 예약금 및 잔금</h3>
-        {renderTextWithLineBreaks(data.rentalInfo)}
-      </div>
-      <div className="notice-section">
-        <h3>3. 예약 시 주의사항</h3>
-        <ul>
-          {data.precautions.split('<br>').map((item, index) => (
-            <li key={index}>{item}</li>
-          ))}
-        </ul>
-      </div>
-      <div className="notice-section">
-        <h3>4. 주차, 화장실 및 대기실</h3>
-        <ul>
-          {data.amenities.split('<br>').map((item, index) => (
-            <li key={index}>{item}</li>
-          ))}
-        </ul>
-      </div>
-    </div>
-  );
-};
+    );
+  };
+  
 
 export default Notice;

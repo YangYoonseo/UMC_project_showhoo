@@ -30,7 +30,6 @@ const Book_detail = (
                 <strong>· 공연 입장 안내</strong><br>
                 공연 입장 전에 "이름"과 "전화번호"를 말씀하시면, 공연자가 예매자 확인 후 입장이 가능합니다.<br>
             `;
-
         // 예매자 공연 예매 API 연결 
         const uploadBookInf = async () => {
             const bookInf = {
