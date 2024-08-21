@@ -47,7 +47,9 @@ const VenueRegisterPage = () => {
   const [serviceDescriptiontest, setServiceDescriptiontest] = useState('');
   const [serviceOptionstest, setServiceOptionstest] = useState([]);
   
-  const spaceUserId = 4;
+  //spaceUserId 구현
+  const spaceUserId = sessionStorage.getItem("spaceUserId");
+
   const openNameModal = () => setIsNameModalOpen(true);
   const closeNameModal = () => setIsNameModalOpen(false);
 
@@ -239,7 +241,7 @@ const VenueRegisterPage = () => {
                   />
               )}
               {selectedTab === 'facility' && (
-                <Host_VenueFacility openPlaceModal={openPlaceModal} />
+                <Host_VenueFacility />
               )}
               {selectedTab === 'notice' && (
                 <Host_VenueNotice openPlaceModal={openPlaceModal} />

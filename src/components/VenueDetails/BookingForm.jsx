@@ -95,6 +95,15 @@ const BookingForm = () => {
   };
 
   const handleDateChange = (date) => {
+    const today = new Date();
+    today.setHours(0, 0, 0, 0); // 오늘의 날짜로 시간을 00:00:00으로 초기화
+    const selected = new Date(date);
+
+    if (selected < today) {
+      alert("지난 날짜는 선택이 불가합니다.");
+      return; // 이전 날짜 선택 시 아무 작업도 하지 않음
+    }
+
     const newDate = new Date(date);
     newDate.setDate(newDate.getDate() + 1);
     setSelectedDate(newDate);
@@ -159,17 +168,23 @@ const BookingForm = () => {
     
     console.log("선택한 추가 서비스:", selectedServices);
 
-    navigate('/rental_details', {
-      state: {
-        selectedDate: selectedDate.toISOString().split('T')[0],
-        expectedAudienceMin: expectedAudience[0],
-        expectedAudienceMax: expectedAudience[1],
-        rentalFee,
-        rentalSum: totalPrice,
-        selectedAdditionalServices: selectedAdditionalServiceIds,
-        selectedServicesTitle: selectedServices
-      }
-    });
+    const token = sessionStorage.getItem("accessToken");
+    if (!token) {
+      navigate("/login/oauth2/code/kakao");
+    }
+    else {
+      navigate('/rental_details', {
+        state: {
+          selectedDate: selectedDate.toISOString().split('T')[0],
+          expectedAudienceMin: expectedAudience[0],
+          expectedAudienceMax: expectedAudience[1],
+          rentalFee,
+          rentalSum: totalPrice,
+          selectedAdditionalServices: selectedAdditionalServiceIds,
+          selectedServicesTitle: selectedServices
+        }
+      });
+    }
 
   };
 
@@ -371,7 +386,7 @@ const StyledCalendar = styled(Calendar)`
   border-radius: 25px 0px 25px 25px !important;
 
   .react-calendar__navigation__label {
-    margin-top: 5px;
+    margin-top: 20px;
     font-size: 15px !important; /* 년월 글자 크기 조정 */
   }
 
