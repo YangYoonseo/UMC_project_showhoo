@@ -41,6 +41,15 @@ const Navbar_Perforemr = () => {
     }
   };
 
+  const handleReadyClick = () => {
+    const token = sessionStorage.getItem("accesToken");
+    if (token) {
+      nav("/performer_ready");
+    } else {
+      nav("/login/oauth2/code/kakao");
+    }
+  };
+
   return (
     <div className="Container113">
       <div className="Frame128">
@@ -70,12 +79,7 @@ const Navbar_Perforemr = () => {
           >
             대관 내역
           </button>
-          <button
-            className="Button50"
-            onClick={() => {
-              nav("/performer_ready");
-            }}
-          >
+          <button className="Button50" onClick={handleReadyClick}>
             공연 준비
           </button>
         </div>
