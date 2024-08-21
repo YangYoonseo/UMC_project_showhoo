@@ -47,7 +47,7 @@ const VenueRegisterPage = () => {
   const [serviceDescriptiontest, setServiceDescriptiontest] = useState('');
   const [serviceOptionstest, setServiceOptionstest] = useState([]);
   
-  const spaceUserId = 2;
+  const spaceUserId = 4;
   const openNameModal = () => setIsNameModalOpen(true);
   const closeNameModal = () => setIsNameModalOpen(false);
 

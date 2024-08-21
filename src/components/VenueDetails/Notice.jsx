@@ -20,22 +20,15 @@ const renderTextWithLineBreaks = (text) => {
     const [noticeData, setNoticeData] = useState(null);
     const [isLoading, setIsLoading] = useState(true);
     const spaceId = 7; //실제 id로 교체 필요
-    const yourAccessToken = sessionStorage.getItem("accessToken");
   
     useEffect(() => {
       const fetchNoticeData = async () => {
         try {
           const response = await axios.get(
-            `https://showhoo.site/spaces/${spaceId}/notice`,
-            {
-              headers: {
-                Authorization: `Bearer ${yourAccessToken}`,
-              },
-            }
-          );
+            `https://showhoo.site/spaces/${spaceId}/notice`);
   
           if (response.data.isSuccess) {
-            console.log("API 결과 조회:", response.data.result);
+            // console.log("API 결과 조회:", response.data.result);
 
             // 개발자 시점 : 데이터의 받아온 값이 유효하지 않음을 알린다
             if (!response.data.result.notice) console.log('Notice description is null');

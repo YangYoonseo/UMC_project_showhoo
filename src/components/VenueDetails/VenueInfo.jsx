@@ -12,11 +12,7 @@ const VenueInfo = ({ data }) => {
   useEffect(() => {
     const fetchVenueHeader = async () => {
       try {
-        const response = await axios.get(`https://showhoo.site/spaces/${spaceId}/header`, {
-          headers: {
-            Authorization: `Bearer ${yourAccessToken}`,
-          },
-        });
+        const response = await axios.get(`https://showhoo.site/spaces/${spaceId}/header`);
         if (response.data.isSuccess) {
           setHeaderData(response.data.result);
         }
