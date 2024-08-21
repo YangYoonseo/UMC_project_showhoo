@@ -39,7 +39,7 @@ const BookingForm = () => {
   useEffect(() => {
     fetchAdditionalServices(); // 추가서비스 목록 뽑아오기
     fetchRentalFee();
-  }, [selectedDate]); // selectedDate가 변경될 때마다 fetchRentalFee 호출
+  }, [selectedDate,selectedServices]); // selectedDate가 변경될 때마다 fetchRentalFee 호출
 
 
   // 공연장 세부정보 공연장 소개 API 호출 -> 추가 서비스 목록만 뽑아오기
@@ -148,7 +148,6 @@ const BookingForm = () => {
       : [...selectedServices, service.title];
 
     setSelectedServices(updatedServices);
-    fetchRentalFee();
   };
 
   const selectedServiceCount = selectedServices.length;

@@ -6,6 +6,7 @@ import '../../styles/VenueRegisterPage_Introduce/Pop_Image.css';
 import image_register_panel1 from '../../assets/images/venueregisterpage_introduce/image_register_panel1.svg';
 import image_register_panel2 from '../../assets/images/venueregisterpage_introduce/image_register_panel2.svg';
 import more_image_panel from '../../assets/images/venueregisterpage_introduce/more_image_panel.svg';
+import delete_icon from '../../assets/images/venuedetailpage/delete_btn.svg';
 
 const Pop_Image = ({ isOpen, onClose, onConfirm }) => {
   const [images, setImages] = useState(Array(5).fill(null)); // 처음에 5개의 패널로 시작
@@ -23,6 +24,15 @@ const Pop_Image = ({ isOpen, onClose, onConfirm }) => {
       };
       reader.readAsDataURL(file);
     }
+  };
+
+  // 이미지를 삭제하는 함수 수정
+  const handleImageDelete = (index) => {
+    const newImages = images.filter((_, i) => i !== index); // 삭제된 이미지 제외하고 배열 재구성
+    while (newImages.length < 5) {
+      newImages.push(null); // 배열의 길이가 5가 될 때까지 null 추가
+    }
+    setImages(newImages);
   };
 
   const handleImageDrop = (index, event) => {
@@ -94,7 +104,17 @@ const Pop_Image = ({ isOpen, onClose, onConfirm }) => {
               onClick={() => index === images.length && handleAddPanel()} // 더하기 패널 클릭 시 패널 추가
             >
               {images[index] ? (
-                <img src={URL.createObjectURL(images[index])} alt={`Uploaded ${index + 1}`} />
+                // <img src={URL.createObjectURL(images[index])} alt={`Uploaded ${index + 1}`} />
+                
+                <div className="image-container319">  {/* 이미지와 휴지통 아이콘을 감싸는 div 추가 */}
+                  <img src={URL.createObjectURL(images[index])} alt={`Uploaded ${index + 1}`} />
+                  <img 
+                    src={delete_icon} 
+                    alt="Delete" 
+                    className="delete-icon" 
+                    onClick={() => handleImageDelete(index)}  // 삭제 아이콘 클릭 시 삭제 함수 호출
+                  />
+                </div>
               ) : (
                 <>
                   <input

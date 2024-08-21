@@ -19,7 +19,7 @@ const renderTextWithLineBreaks = (text) => {
   const Notice = () => {
     const [noticeData, setNoticeData] = useState(null);
     const [isLoading, setIsLoading] = useState(true);
-    const spaceId = 7; //실제 id로 교체 필요
+    const spaceId = 15; //실제 id로 교체 필요
   
     useEffect(() => {
       const fetchNoticeData = async () => {
@@ -62,7 +62,8 @@ const renderTextWithLineBreaks = (text) => {
       <div className="venue-notice">
         <div className="notice-section">
           <h3>유의사항</h3>
-          {renderTextWithLineBreaks(noticeData)}
+          <div dangerouslySetInnerHTML={{ __html: noticeData }} />
+          {/* {renderTextWithLineBreaks(noticeData)} */}
         </div>
       </div>
     );

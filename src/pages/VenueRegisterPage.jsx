@@ -56,7 +56,7 @@ const VenueRegisterPage = () => {
   const [spacestaff, setSpacestaff] = useState('');
   const [spaceSeat, setSpaceSeat] = useState('');
   
-  //spaceUserId 구현
+  //spaceUserId 연결
   const spaceUserId = sessionStorage.getItem("spaceUserId");
 
   const openNameModal = () => setIsNameModalOpen(true);
