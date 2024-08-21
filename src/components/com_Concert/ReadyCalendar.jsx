@@ -7,6 +7,7 @@ import { ProfileContext } from "../../App";
 import PerformerCalendar from "./PerformerCalendar";
 
 const ReadyCalendar = () => {
+  const url = "https://showhoo.site";
   const profiles = useContext(ProfileContext);
   const [date, setDate] = useState(new Date());
   const [show, setShow] = useState(false);
@@ -19,7 +20,7 @@ const ReadyCalendar = () => {
     try {
       const token = sessionStorage.getItem("accessToken");
       const response = await axios.get(
-        `http://ec2-3-34-248-63.ap-northeast-2.compute.amazonaws.com:8081/spaces/1/spaceApply/info/${selectedDay}`,
+        `${url}/spaces/1/spaceApply/info/${selectedDay}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,

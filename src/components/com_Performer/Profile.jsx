@@ -8,6 +8,8 @@ import Frame21 from "../../assets/img_Performer/Frame21.svg";
 import TrashIcon from "../../assets/img_Performer/TrashIcon.svg";
 
 const Profile = ({ profile = {} }) => {
+  const url = "https://showhoo.site";
+
   const token = sessionStorage.getItem("accessToken");
   const performerId = sessionStorage.getItem("performerId");
 
@@ -51,18 +53,15 @@ const Profile = ({ profile = {} }) => {
   // 이미지 삭제_API
   const deleteImage = async (imageUrl) => {
     try {
-      await axios.delete(
-        "http://ec2-3-34-248-63.ap-northeast-2.compute.amazonaws.com:8081/profile/profileImage",
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-            "Content-Type": "application/json",
-          },
-          data: {
-            profileImageUrl: imageUrl,
-          },
-        }
-      );
+      await axios.delete(`${url}/profile/profileImage`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+        data: {
+          profileImageUrl: imageUrl,
+        },
+      });
     } catch (error) {
       console.error("Error deleting image:", error);
     }
@@ -75,7 +74,7 @@ const Profile = ({ profile = {} }) => {
 
     try {
       const response = await axios.post(
-        "http://ec2-3-34-248-63.ap-northeast-2.compute.amazonaws.com:8081/profileImage/upload",
+        `${url}/profileImage/upload`,
         formData,
         {
           headers: {
@@ -105,7 +104,7 @@ const Profile = ({ profile = {} }) => {
 
     try {
       const response = await axios.post(
-        `http://ec2-3-34-248-63.ap-northeast-2.compute.amazonaws.com:8081/profile/${performerId}/${profileId}/profileImage`,
+        `${url}/profile/${performerId}/${profileId}/profileImage`,
         formData,
         {
           headers: {
@@ -175,8 +174,8 @@ const Profile = ({ profile = {} }) => {
 
       // 프로필 ID가 있는 경우 PUT 요청, 없는 경우 POST 요청
       const url = profileId
-        ? `http://ec2-3-34-248-63.ap-northeast-2.compute.amazonaws.com:8081/profile/${performerId}/${profileId}/text`
-        : `http://ec2-3-34-248-63.ap-northeast-2.compute.amazonaws.com:8081/profile/${performerId}`;
+        ? `${url}/profile/${performerId}/${profileId}/text`
+        : `${url}/profile/${performerId}`;
 
       const method = profileId ? "put" : "post";
 

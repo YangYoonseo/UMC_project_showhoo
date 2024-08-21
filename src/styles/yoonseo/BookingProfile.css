@@ -296,19 +296,5 @@
 }
 
 .pamphlet_button .Button {
-  /* 더 보기 */
-
-  box-sizing: border-box;
-
-  width: 166px;
-  height: 42px;
-
-  /* 더 보기 */
-
-  font-family: "Pretendard";
-  font-style: normal;
-  font-weight: 500;
-  font-size: 14px;
-  line-height: 30px;
-  /* or 214% */
+  font-size: 15px;
 }

@@ -10,6 +10,7 @@ import BookingProfile from "../components/com_Booking/BookingProfile";
 import SwitchRoles from "../components/common/SwitchRoles";
 
 const MypageBooking = () => {
+  const url = "https://showhoo.site";
   const audienceId = sessionStorage.getItem("audienceId");
   const fullName = sessionStorage.getItem("name");
   const name = fullName.substring(1);
@@ -24,14 +25,11 @@ const MypageBooking = () => {
     const MypageView = async () => {
       const token = sessionStorage.getItem("accessToken");
       try {
-        const response = await axios.get(
-          `http://ec2-3-34-248-63.ap-northeast-2.compute.amazonaws.com:8081/book/${audienceId}/next`,
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          }
-        );
+        const response = await axios.get(`${url}/book/${audienceId}/next`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
         console.log("마이프로필", response.data.result);
 
         const nextResult = response.data.result;
@@ -40,15 +38,15 @@ const MypageBooking = () => {
         setNextShow({
           bookId: nextResult.bookId || "",
           showsId: nextResult.showsId || "",
-          poster: nextResult.poster || "포스터 없음",
-          name: nextResult.name || "이름 없음",
-          date: nextResult.date || "날짜 없음",
-          time: nextResult.time || "시간 없음",
-          place: nextResult.place || "장소 없음",
-          performer: nextResult.perforemr || "공연자 없음",
-          status: nextResult.status || "상태 없음",
-          detail: nextResult.detail || "디테일 없음",
-          isCancellable: nextResult.isCancellable || "취소 여부 없음",
+          poster: nextResult.poster || "",
+          name: nextResult.name || "",
+          date: nextResult.date || "",
+          time: nextResult.time || "",
+          place: nextResult.place || "",
+          performer: nextResult.perforemr || "",
+          status: nextResult.status || "",
+          detail: nextResult.detail || "",
+          isCancellable: nextResult.isCancellable || "",
         });
       } catch (error) {
         console.error("프로필 정보를 불러오는데 실패했습니다:", error);
@@ -56,6 +54,27 @@ const MypageBooking = () => {
     };
     MypageView();
   }, []);
+
+  async function kakaoLogout() {
+    const endpoint = "/kakao/logout/withAccount";
+    if (sessionStorage.getItem("accessToken") !== null) {
+      try {
+        const res = await axios.get(url + endpoint);
+        //console.log(res.data);
+        sessionStorage.removeItem("accessToken");
+        sessionStorage.removeItem("name");
+        sessionStorage.removeItem("uid");
+        window.location.href = res.data;
+      } catch (err) {
+        console.log(err);
+      }
+    }
+  }
+
+  const handleLogout = () => {
+    console.log("로그아웃");
+    kakaoLogout();
+  };
 
   return (
     <div className="MypageBooking">
@@ -104,7 +123,7 @@ const MypageBooking = () => {
           >
             역할 전환
           </button>
-          <button>로그아웃</button>
+          <button onClick={handleLogout}>로그아웃</button>
           <button
             onClick={() => {
               setCancel(true);
