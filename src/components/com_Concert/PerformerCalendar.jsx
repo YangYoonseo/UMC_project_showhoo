@@ -1,6 +1,7 @@
 import "../../styles/yoonseo/PerformerCalendar.css";
 import Button from "../common/Button";
 import { useState, useEffect } from "react";
+import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import RentalApproval from "../popup_Concert/RentalApproval";
 import RentalRefuse from "../popup_Concert/RentalRefuse";
@@ -11,18 +12,20 @@ import ion_people_outline from "../../assets/img_Performer/ion_people_outline.sv
 import Frame22 from "../../assets/img_Performer/Frame22.svg";
 import Line40 from "../../assets/img_Performer/Line40.svg";
 
-const PerformerCalendar = ({ profile, className }) => {
+const PerformerCalendar = ({ profile, rental, className }) => {
   const nav = useNavigate();
-  const [loading, setLoading] = useState(true);
+  const token = sessionStorage.getItem("accessToken");
+  const spaceUserId = sessionStorage.getItem("spaceUserId");
+  const url = "https://showhoo.site";
+
   const [ok, setOk] = useState(false);
   const [refuse, setRefuse] = useState(false);
   const [receipt, setReceipt] = useState(false);
   const [receipt2, setReceipt2] = useState(false);
-  const [selectedRental, setSelectedRental] = useState();
 
   const getClassName = () => {
-    if (selectedRental) {
-      const status = selectedRental.status;
+    if (rental) {
+      const status = rental.status;
       switch (status) {
         case -2:
           return "status_show";
@@ -38,8 +41,8 @@ const PerformerCalendar = ({ profile, className }) => {
   };
 
   const getStatus = () => {
-    if (selectedRental) {
-      const status = selectedRental.status;
+    if (rental) {
+      const status = rental.status;
       switch (status) {
         case -2:
           return "공연 완료";
@@ -54,6 +57,55 @@ const PerformerCalendar = ({ profile, className }) => {
     return "";
   };
 
+  // 대관 수락
+  const PatchOk = async () => {
+    try {
+      const response = await axios.patch(
+        `${url}/spaces/${spaceUserId}/spaceApply/${rental.id}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      console.log("수락 성공");
+    } catch (error) {
+      console.log("수락 에러", error);
+    }
+  };
+
+  const OkNext = () => {
+    PatchOk();
+    setOk(false);
+  };
+
+  // 대관 거절
+  const PatchRefuse = async () => {
+    try {
+      const response = await axios.delete(
+        `${url}/spaceApply/delete/${rental.id}/1`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      console.log("거절 성공");
+    } catch (error) {
+      console.log("거절 에러", error);
+    }
+  };
+
+  const RefuseNext = () => {
+    PatchRefuse();
+    setRefuse(false);
+  };
+
+  if (!profile) {
+    // profile이 없을 경우 렌더링하지 않거나 대체 UI를 제공할 수 있습니다.
+    return <div className={className}>Profile information is missing.</div>;
+  }
+
   return (
     <div
       className={className}
@@ -64,11 +116,11 @@ const PerformerCalendar = ({ profile, className }) => {
       }}
     >
       <img
-        src={profile.profileImages[0].profileImageUrl}
+        src={profile.profileImageUrls[0] || { Frame22 }} // 프로필 이미지 URL이 없을 경우 대체 URL 사용
         alt="Profile"
         className="profile_img"
       />
-      {console.log("선택된", selectedRental)}
+      {console.log("선택된", rental)}
       <p className={`status ${getClassName()}`}>{getStatus()}</p>
       <div className="performerCalendar_div">
         <h3>{profile.name}</h3>
@@ -76,14 +128,13 @@ const PerformerCalendar = ({ profile, className }) => {
         <div className="people">
           <img src={ion_people_outline} alt="" />
           <p>
-            예상 관람객 {selectedRental.audienceMin} ~{" "}
-            {selectedRental.audienceMax}명
+            예상 관람객 {rental.audienceMin} ~ {rental.audienceMax}명
           </p>
         </div>
-        <div className="service">
+        {/* <div className="service">
           <img src={Frame22} alt="" />
           <p>추가 서비스 택 </p>
-        </div>
+        </div> */}
         <img src={Line40} alt="" className="line" />
       </div>
       <div className="performerCalendar_button">
@@ -109,7 +160,13 @@ const PerformerCalendar = ({ profile, className }) => {
         )}
 
         {getStatus() === "공연 완료" && (
-          <Button text={"준비 과정 보기"} type={"gray"} />
+          <Button
+            text={"준비 과정 보기"}
+            type={"gray"}
+            onClick={() => {
+              nav("/con_ready", { id: rental.id });
+            }}
+          />
         )}
 
         {getStatus() === "대관 완료" && (
@@ -117,7 +174,7 @@ const PerformerCalendar = ({ profile, className }) => {
             text={"준비 시작"}
             type={"black"}
             onClick={() => {
-              nav("/con_ready");
+              nav("/con_ready", { id: rental.id });
             }}
           />
         )}
@@ -128,11 +185,7 @@ const PerformerCalendar = ({ profile, className }) => {
           onClose={() => {
             setOk(false);
           }}
-          //   추후 수정 필요, 승인단계 안 되었음
-          onNext={() => {
-            setOk(false);
-          }}
-          id={selectedRental.id}
+          onNext={OkNext}
         />
       )}
       {refuse && (
@@ -141,13 +194,12 @@ const PerformerCalendar = ({ profile, className }) => {
           onClose={() => {
             setRefuse(false);
           }}
-          onNext={() => {
-            setRefuse(false);
-          }}
+          onNext={RefuseNext}
         />
       )}
       {receipt && (
         <ConcertReceipt
+          rental={rental}
           profile={profile}
           onClose={() => {
             setReceipt(false);
@@ -163,7 +215,6 @@ const PerformerCalendar = ({ profile, className }) => {
       )}
       {receipt2 && (
         <Receipt
-          profile={profile}
           onPre={() => {
             setReceipt(true); // 이 부분 수정
             setReceipt2(false); // 이 부분 수정
@@ -174,6 +225,9 @@ const PerformerCalendar = ({ profile, className }) => {
             setReceipt2(false); // 이 부분 수정
             console.log(4);
           }}
+          id={rental.id}
+          profile={profile}
+          date={rental.date}
         />
       )}
     </div>

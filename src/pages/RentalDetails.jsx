@@ -161,7 +161,10 @@ const RentalDetails = () => {
         rentalFee: rentalFee,
         rentalSum: rentalSum,
         // 이건 나중에 수정 필요
-        selectedAdditionalServices: [selectedAdditionalServices],
+        selectedAdditionalServices:
+          selectedAdditionalServices.length > 0
+            ? selectedAdditionalServices
+            : [],
       };
       const response = await axios.post(
         `${url}/spaces/${spaceId}/spaceApply/${performerId}`,
