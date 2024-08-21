@@ -57,7 +57,7 @@ const VenueDetailPage = () => {
   const [isPopupOpen, setIsPopupOpen] = useState(false); // 팝업 상태 관리
   const [venueData, setVenueData] = useState(null);
   const [images, setImages] = useState([]);
-  const spaceId = 2; // 실제 spaceId 값으로 교체 필요
+  const spaceId = 7; // 실제 spaceId 값으로 교체 필요
   const yourAccessToken = sessionStorage.getItem("accessToken");
 
 
@@ -66,7 +66,7 @@ const VenueDetailPage = () => {
     // VenueInfo API
     const fetchVenueInfo = async () => {
       try {
-        const response = await axios.get(`http://ec2-3-34-248-63.ap-northeast-2.compute.amazonaws.com:8081/spaces/${spaceId}/description`, {
+        const response = await axios.get(`https://showhoo.site/spaces/${spaceId}/description`, {
           headers: {
             Authorization: `Bearer ${yourAccessToken}`, // 필요한 경우 헤더에 토큰 추가
           },
@@ -100,28 +100,11 @@ const VenueDetailPage = () => {
       }
     };
 
-    // Venue 이미지 가져오기
-    // const fetchVenueImages = async () => {
-    //   try {
-    //     const response = await axios.get(`http://ec2-3-34-248-63.ap-northeast-2.compute.amazonaws.com:8081/spaces/${spaceId}/photos`, {
-    //       headers: {
-    //         Authorization: `Bearer ${yourAccessToken}`, // 필요한 경우 헤더에 토큰 추가
-    //       },
-    //     });
-    //     if (response.data.isSuccess) {
-    //       setImages(response.data.result.map(photo => photo.photoUrl));
-    //     }
-    //   } catch (error) {
-    //     console.error("Failed to fetch venue images:", error);
-    //   }
-    // };
 
     fetchVenueInfo();
-    // fetchVenueImages();
   }, [spaceId]);
 
   if (!venueData) {
-  // if (!venueData || images.length === 0) {
     return <div>Loading...</div>;
   }
 

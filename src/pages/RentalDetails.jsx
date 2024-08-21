@@ -47,6 +47,7 @@ const RentalDetails = () => {
     rentalFee = "200000",
     rentalSum = "300000",
     selectedAdditionalServices = "0",
+    selectedServicesTitle,
   } = location.state || {};
   console.log("정보 연동 완료");
   console.log({ selectedDate });
@@ -54,6 +55,7 @@ const RentalDetails = () => {
   console.log({ expectedAudienceMax });
   console.log({ rentalFee });
   console.log({ rentalSum });
+  console.log({selectedServicesTitle})
   console.log({ selectedAdditionalServices });
   console.log({ spaceId });
   console.log("선택된 프로필 ID:", selectedProfileId); // 선택된 프로필 ID 출력

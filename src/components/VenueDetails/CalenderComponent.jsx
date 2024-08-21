@@ -10,7 +10,7 @@ const CalenderComponent = () => {
     const [scheduleData, setScheduleData] = useState([]);
     const [holidayData, setHolidayData] = useState([]);
     const [date, setDate] = useState(new Date());
-    const spaceId = 2; // 실제 spaceId로 교체 가능
+    const spaceId = 7; // 실제 spaceId로 교체 가능
 
     useEffect(() => {
         fetchScheduleData();
@@ -19,7 +19,7 @@ const CalenderComponent = () => {
     const fetchScheduleData = async () => {
         try {
             const response = await axios.get(
-                `http://ec2-3-34-248-63.ap-northeast-2.compute.amazonaws.com:8081/spaces/${spaceId}/spaceApply/info`,
+                `https://showhoo.site/spaces/${spaceId}/spaceApply/info`,
                 {
                     headers: {
                         Authorization: `Bearer ${sessionStorage.getItem("accessToken")}`,
