@@ -22,9 +22,8 @@ const FacilityUploader = ({ onClose, uploadSuc, uploadFail, updateData }) => {
 
         const reader = new FileReader();
         reader.onload = (e) => {
-            // 파일이 성공적으로 로드되었을 때 처리
-            updateData(selectedFile); // 파일 URL을 업데이트
-    
+            updateData(selectedFile);
+
             console.log('File read successfully');
             uploadSuc();
             onClose();

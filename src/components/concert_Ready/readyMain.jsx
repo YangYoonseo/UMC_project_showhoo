@@ -27,10 +27,10 @@ const ReadyMain = () => {
             <div className="Ready_header"><ReadyHeader step={step} onClick={onClick}/></div>
             <div className="Ready_content">
                 <div style={{ display: step === 1 ? 'block' : 'none' }}>
-                    <ReadyQsheet nextStep={nextStep} setShowId={setShowId} />
+                    <ReadyQsheet nextStep={nextStep} setShowId={setShowId} showId={showId} />
                 </div>
                 <div style={{ display: step === 2 ? 'block' : 'none' }}>
-                    <ReadyRequest preStep={preStep} nextStep={nextStep} />
+                    <ReadyRequest preStep={preStep} nextStep={nextStep} showId={showId} />
                 </div>
                 <div style={{ display: step === 3 ? 'block' : 'none' }}>
                     <ReadyComplete />

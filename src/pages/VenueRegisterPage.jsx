@@ -62,7 +62,7 @@ const VenueRegisterPage = () => {
     spacestaff,
     spaceSeat,
   } = useContext(FacilityContext);
-  
+  /*
   useEffect(()=> {
     console.log("soundEquipment:",soundEquipment);
     console.log("lightingEquipment:",lightingEquipment);
@@ -71,8 +71,7 @@ const VenueRegisterPage = () => {
     console.log("spacestaff:",spacestaff);
     console.log("spaceSeat:",spaceSeat);
   }, [soundEquipment, lightingEquipment, stageMachinery, spaceDrawing, spacestaff, spaceSeat]);
-  
-
+  */
   //spaceUserId 연결
   const spaceUserId = sessionStorage.getItem("spaceUserId");
 
