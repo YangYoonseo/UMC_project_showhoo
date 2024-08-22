@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import "../../../styles/Jisu/RoundButton.css";
 
-const RoundButton = ({ className, topic, detail, index, isClicked, onClick, style, onOpenModal }) => {
+const RoundButton = ({ className, topic, detail, index, isClicked, onClick, style, onOpenModal, onChange }) => {
     const [inputTextColor, setInputTextColor] = useState("#000000"); // 기본 텍스트 색상
 
     const handleFocus = () => {
-        setInputTextColor("#09F1B9"); // 입력 중일 때 텍스트 색상을 빨간색으로 변경
+        setInputTextColor("#09F1B9"); // 입력 중일 때 텍스트 색상 변경
     };
 
     const handleBlur = () => {
@@ -16,8 +16,12 @@ const RoundButton = ({ className, topic, detail, index, isClicked, onClick, styl
         <button
             className={`RoundButton ${isClicked ? 'clicked' : ''}`}
             onClick={() => {
-                onClick(index);
-                onOpenModal(); // 모달 열기
+                if (onClick) {
+                    onClick(index); // onClick이 존재할 경우에만 실행
+                }
+                if (onOpenModal) {
+                    onOpenModal(); // onOpenModal이 존재할 경우에만 실행
+                }
             }}
             style={style}
         >
@@ -29,6 +33,8 @@ const RoundButton = ({ className, topic, detail, index, isClicked, onClick, styl
                         style={{ color: inputTextColor }} // 입력 중일 때 텍스트 색상 변경
                         onFocus={handleFocus} 
                         onBlur={handleBlur} 
+                        placeholder="공연장 검색"
+                        onChange={onChange}
                     />
                 </div>
             ) : (

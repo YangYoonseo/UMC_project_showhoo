@@ -1,16 +1,31 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import RentalSearchButton from "./BookingSearchButton";
 import RoundButton from "./RoundButton";
 import RenderModal from "./Modal/RenderModal";
 import "../../../styles/Jisu/RentalSearchBar.css";
+import axios from "axios";
 
 const RentalSearchBar = () => {
+    const nav = useNavigate();
     const [activeButton, setActiveButton] = useState(null);
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [modalContent, setModalContent] = useState(null);
-    const [selectedDate, setSelectedDate] = useState(""); // 선택된 날짜 상태
-    const [selectedType, setSelectedType] = useState(""); // 선택된 유형 상태
-    const [selectedLocation, setSelectedLocation] = useState({ Do: "", District: "" }); // 선택된 도와 구 상태
+    const [selectedDate, setSelectedDate] = useState(""); 
+    const [selectedType, setSelectedType] = useState(""); // 화면에 보이는 타입
+    const [mappedType, setMappedType] = useState(""); // API에 전달될 매핑된 타입
+    const [selectedLocation, setSelectedLocation] = useState({ Do: "", District: "" }); 
+    const [searchName, setSearchName] = useState(""); 
+    
+    // 타입 매핑 테이블
+    const typeMapping = {
+        "콘서트홀": "CONCERTHALL",
+        "아트홀": "ARTHALL",
+        "대공연장": "GRANDHALL",
+        "소공연장": "SMALLHALL",
+        "대극장": "GRANDTHEATER",
+        "소극장": "SMALLTHEATER",
+    };
 
     const handleButtonClick = (index) => {
         setActiveButton(index);
@@ -28,17 +43,39 @@ const RentalSearchBar = () => {
 
     const handleDateSelect = (date) => {
         setSelectedDate(date);
-        console.log("선택된 날짜:", date); // 선택된 날짜를 콘솔에 출력
+        console.log("선택된 날짜:", date); 
     };
 
     const handleTypeSelect = (type) => {
-        setSelectedType(type);
-        console.log("선택된 유형:", type); // 선택된 유형을 콘솔에 출력
+        // 사용자 선택 값을 매핑된 값으로 변환
+        const mapped = typeMapping[type] || type;
+        setSelectedType(type); // 화면에 표시될 원래 값 설정
+        setMappedType(mapped); // 매핑된 값 설정
+        console.log("선택된 유형:", type, ", 매핑된 값:", mapped);
     };
 
     const handleLocationSelect = (Do, District) => {
         setSelectedLocation({ Do, District });
-        console.log("선택된 위치:", Do, District); // 선택된 도와 구를 콘솔에 출력
+        console.log("선택된 위치:", Do, District);
+    };
+
+    const handleSearchNameChange = (event) => {
+        setSearchName(event.target.value);
+        console.log("검색할 공연장 이름: ", event.target.value);
+    };
+
+    const handleSearchButtonClick = () => {
+        // 버튼 클릭시 같이 넘겨줄 값
+        const searchValues = {
+        searchName,
+        selectedLocation,
+        selectedDate,
+        selectedType,
+        mappedType
+        };
+        
+        // 검색 조건을 state로 전달하면서 페이지 이동
+        nav("/rental_search", { state: searchValues });
     };
 
     return (
@@ -54,6 +91,8 @@ const RentalSearchBar = () => {
                 style={{
                     width: '211px'
                 }} 
+                value={searchName}
+                onChange={handleSearchNameChange} 
             />
 
             <div className="Divider"></div>
@@ -61,7 +100,6 @@ const RentalSearchBar = () => {
                 className="searchLocation"
                 topic="지역"
                 detail={selectedLocation.Do ? `${selectedLocation.Do} ${selectedLocation.District}` : "지역 검색"}
-                // 선택된 지역이 있으면 표시, 없으면 기본 텍스트
                 index={1}
                 isClicked={activeButton === 1}
                 onClick={handleButtonClick}
@@ -77,14 +115,13 @@ const RentalSearchBar = () => {
                 className="searchDate"
                 topic="날짜"
                 detail={selectedDate ? `${selectedDate}` : "공연날짜 추가"}
-                // 선택된 날짜가 있으면 표시, 없으면 기본 텍스트
                 index={2}
                 isClicked={activeButton === 2}
                 onClick={handleButtonClick}
                 onOpenModal={() => openModal(2)}
                 style={{
                     padding: '0px 60px 0px 40px',
-                    width: '208px'  // width를 208px로 고정
+                    width: '208px'
                 }} 
             />
 
@@ -93,27 +130,26 @@ const RentalSearchBar = () => {
                 className="searchType"
                 topic="유형"
                 detail={selectedType ? `${selectedType}` : "공연장 유형 추가"}
-                // 선택된 유형이 있으면 표시, 없으면 기본 텍스트
                 index={3}
                 isClicked={activeButton === 3}
                 onClick={handleButtonClick}
                 onOpenModal={() => openModal(3)}
                 style={{
                     padding: '0px 153px 0px 40px',
-                    width: '323px'  // width를 208px로 고정
+                    width: '323px'
                 }} 
             />
 
-            <RentalSearchButton size="size65" />
+            <RentalSearchButton size="size65" onClick={handleSearchButtonClick}/>
 
             <RenderModal
                 className="Modal"
                 isOpen={isModalOpen}
                 onClose={closeModal}
                 index={modalContent}
-                onDateSelect={handleDateSelect} // 날짜 선택 핸들러 전달
-                onTypeSelect={handleTypeSelect} // 유형 선택 핸들러 전달
-                onLocationSelect={handleLocationSelect} // 위치 선택 핸들러 전달
+                onDateSelect={handleDateSelect}
+                onTypeSelect={handleTypeSelect}
+                onLocationSelect={handleLocationSelect}
             />
         </div>
     );

@@ -8,6 +8,7 @@ import StarPointImg from '../../../assets/img_Booking/vector19.svg';
 import defaultHallImg from "../../../../src/assets/img_Booking/_test_/concert_hall_2.jpg"
 
 const HotConcertHall = ({ hall }) => {
+    const PerformerId = sessionStorage.getItem("performerId");
     const navigate = useNavigate(); // useNavigate 훅 사용
 
     const handleImageClick = () => {
@@ -25,7 +26,7 @@ const HotConcertHall = ({ hall }) => {
                     style={{ cursor: "pointer" }} // 클릭 가능한 커서 스타일 추가
                 />
                 <div className="LikeButton">
-                    <LikeButton spaceId={hall.spaceId} performerId={1} />
+                    <LikeButton spaceId={hall.spaceId} performerId={PerformerId} />
                 </div>
             </div>
             <div className="ConcertHallBody">
