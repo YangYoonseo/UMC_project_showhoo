@@ -1,23 +1,50 @@
 import React, { useState } from "react";
+import { useLocation } from "react-router-dom";
 import RentalSearchButton from "../_test_/Booking/BookingSearchButton";
 import RoundButton from "../_test_/Booking/RoundButton";
 import RenderModal from "../_test_/Booking/Modal/RenderModal";
 import "../../styles/Jisu/RentalSearchBar_2.css";
 
 const RentalSearchBar_2 = () => {
+    // 이전 페이지에서 전달된 상태 가져오기
+    const location = useLocation();
+
+    // 전달된 상태가 없으면 빈 객체로 초기화
+    const searchValues = location.state || {};
+
+    // 각 검색 필드를 전달된 상태에서 가져오거나, 없을 경우 기본값으로 설정
+    const searchName = searchValues.searchName || "모두";
+    const selectedLocation = {
+        Do: searchValues?.selectedLocation?.Do || "모두",
+        District: searchValues?.selectedLocation?.District || "모두"
+    };
+    const selectedDate = searchValues.selectedDate || "모두";
+    const selectedType = searchValues.selectedType || "모두";
+
+    // Location이 "모두 모두" 인 경우 "모두" 로 변경
+    const locationDisplay = selectedLocation.Do === "모두" && selectedLocation.District === "모두"
+        ? "모두"
+        : `${selectedLocation.Do} ${selectedLocation.District}`;
+    
+    // 현재 클릭된 버튼을 추적하기 위한 상태를 설정합니다.
     const [activeButton, setActiveButton] = useState(null);
+
+    // 모달의 열림 상태와 콘텐츠를 관리하기 위한 상태를 설정합니다.
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [modalContent, setModalContent] = useState(null);
 
+    // 버튼 클릭 시 활성화된 버튼 인덱스를 설정합니다.
     const handleButtonClick = (index) => {
         setActiveButton(index);
     };
 
+    // 모달을 열고, 해당 모달에 대한 콘텐츠 인덱스를 설정합니다.
     const openModal = (index) => {
         setModalContent(index);
         setIsModalOpen(true);
     };
 
+    // 모달을 닫고, 콘텐츠를 초기화합니다.
     const closeModal = () => {
         setIsModalOpen(false);
         setModalContent(null);
@@ -25,47 +52,36 @@ const RentalSearchBar_2 = () => {
 
     return (
         <div className="BookingSearchBar2">
+            {/* 이름 검색 필드 */}
             <RoundButton 
-                topic="모두"
-                index={0}
-                isClicked={activeButton === 0}
-                onClick={() => handleButtonClick(0)}
-                onOpenModal={() => openModal(0)}
-                style={{ padding: '0px 36px 0px 53px' }} 
+                topic={searchName}  // 검색된 이름 또는 기본값 "모두"를 표시합니다.
+                style={{ padding: '0px 36px 0px 53px' }}  // 버튼 스타일 설정
             />
             <div className="Divider"></div>
             <RoundButton
-                topic="서울 마포구"
-                index={1}
-                isClicked={activeButton === 1}
-                onClick={() => handleButtonClick(1)}
-                onOpenModal={() => openModal(1)}
+                topic={locationDisplay.trim()}
                 style={{ padding: '0px 36px 0px 36px' }} 
             />
             <div className="Divider"></div>
             <RoundButton 
-                topic="2024-08-13"
-                index={2}
-                isClicked={activeButton === 2}
-                onClick={() => handleButtonClick(2)}
-                onOpenModal={() => openModal(2)}
+                topic={selectedDate}
                 style={{ padding: '0px 36px 0px 36px' }} 
             />
             <div className="Divider"></div>
             <RoundButton 
-                topic="콘서트홀"
-                index={3}
-                isClicked={activeButton === 3}
-                onClick={() => handleButtonClick(3)}
-                onOpenModal={() => openModal(3)}
+                topic={selectedType}
                 style={{ padding: '0px 106px 0px 46px' }} 
             />
-            <RentalSearchButton size="size46" /> {/* 버튼 크기 조정 */}
+            
+            {/* 검색 버튼 */}
+            <RentalSearchButton size="size46" />
+
+            {/* 모달 렌더링 */}
             <RenderModal
                 className="Modal"
-                isOpen={isModalOpen}
-                onClose={closeModal}
-                index={modalContent}
+                isOpen={isModalOpen}  // 모달 열림 여부 확인
+                onClose={closeModal}  // 모달 닫기 핸들러 설정
+                index={modalContent}  // 모달 콘텐츠 인덱스 설정
             />
         </div>
     );

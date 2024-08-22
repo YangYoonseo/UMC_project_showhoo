@@ -180,6 +180,26 @@
   border-radius: 18px;
 }
 
+.ConcertReceipt .profile_img_0 {
+  top: 0px;
+  left: 0px;
+}
+
+.ConcertReceipt .profile_img_1 {
+  top: 0px;
+  left: 272px;
+}
+
+.ConcertReceipt .profile_img_2 {
+  top: 180px;
+  left: 0;
+}
+
+.ConcertReceipt .profile_img_3 {
+  top: 180px;
+  left: 272px;
+}
+
 .ConcertReceipt .Button_gray {
   /* 예매하기 버튼 */
 
@@ -235,7 +255,9 @@
   left: 84px;
   top: 208px;
 
-  padding: 30px;
+  padding-left: 70px;
+  padding-right: 70px;
+  padding-top: 30px;
 
   background: #ffffff;
   border: 1px solid #e8e8e8;
@@ -275,4 +297,29 @@
   height: 48px;
   left: 371px;
   top: 567px;
+}
+
+.Receipt .receipt-item {
+  display: flex;
+  justify-content: space-between;
+}
+
+.Receipt .Line40 {
+  /* Line 41 */
+
+  width: 374px;
+  height: 0px;
+
+  border: 1.5px solid #e8e8e8;
+
+  position: absolute;
+  top: 225px;
+  left: 70px;
+}
+
+.Receipt .total_price {
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  top: 130px;
 }

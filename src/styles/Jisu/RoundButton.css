@@ -20,6 +20,8 @@
         color: #9C9C9C;
         font-weight: 400;
     }
+
+    cursor: pointer;
 }
 
 .RoundButton.clicked {
@@ -32,4 +34,23 @@
     .detail {
         color: #09F1B9;
     }
+}
+
+.searchHallInputText {
+    font-size: 19.97px;
+    width: 104px;
+    color: #9C9C9C;
+    font-weight: 400;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+
+.searchHallInputText::placeholder {
+    font-size: 19.97px;
+    color: #9C9C9C;
+    font-weight: 400;
 }

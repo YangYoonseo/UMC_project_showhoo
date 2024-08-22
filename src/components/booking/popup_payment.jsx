@@ -11,13 +11,25 @@ import copyIcon from "../../assets/img_Booking/Booking/copyIcon.svg";
 
 import Button from "../common/Button";
 
-const Popup_payment = ({name, count, person, phone, prev, next}) => {
-    const [complete, setComplete] = useState(false);
-    const [agreeNote, setAgreeNote] = useState(false);
-    const [agreeRefund, setAgreeRefund] = useState(false);
+const Popup_payment = ({name, count, price, bookName, phoneNum, prev, next, bank, accountHolder, accountNum }) => {
+    const [complete, setComplete] = useState(false);        // 전체 동의
+    const [agreeNote, setAgreeNote] = useState(false);      // 유의사항 동의
+    const [agreeRefund, setAgreeRefund] = useState(false);  // 환불규정 동의
+    const accountInfo = `${bank} ${accountNum}`;            // 계좌번호 
 
-    const accountInfo = "우리은행 1002061254000";
+    // 전체 금액 계산 
+    function calculator(price, amount) {
+        // 금액 문자열을 정수로 변환
+        const priceNumber = parseInt(price, 10);
+    
+        // 총 금액 계산
+        const totalAmount = priceNumber * amount;
+    
+        // 총 금액을 문자열로 변환하여 반환
+        return totalAmount.toString();
+    }
 
+    // 계좌번호 복사 
     const copyToClipboard = () => {
         navigator.clipboard.writeText(accountInfo).then(() => {
             alert("계좌 정보가 복사되었습니다!");
@@ -26,14 +38,17 @@ const Popup_payment = ({name, count, person, phone, prev, next}) => {
         });
     };
 
+    // 유의사항 동의
     const onNote = () => {
         setAgreeNote(!agreeNote);
     };
 
+    // 환뷸규정 동의
     const onRefund = () => {
         setAgreeRefund(!agreeRefund);
     };
 
+    // 전체 동의 
     const onComplete = () => {
         if (!complete) {
             setAgreeNote(true);
@@ -44,6 +59,7 @@ const Popup_payment = ({name, count, person, phone, prev, next}) => {
         }
     };
 
+    // 전체 동의 (자동)
     useEffect(() => {
         if (agreeNote && agreeRefund) {
             setComplete(true);
@@ -51,6 +67,15 @@ const Popup_payment = ({name, count, person, phone, prev, next}) => {
             setComplete(false);
         }
     }, [agreeNote, agreeRefund]);
+
+    // 전체 동의 확인 
+    const checkComplete = () => {
+        if (complete) {
+            next();
+        } else {
+            alert("전체 동의해주셔야 예매가 가능합니다.");
+        }
+    };
 
     return (
         <div className="payment_backdrop">
@@ -60,12 +85,12 @@ const Popup_payment = ({name, count, person, phone, prev, next}) => {
                     <p>{name} <span className="color">{count}매</span></p>
                     <div className="book_input">
                         <div className="book book_name">
-                            <img src={personIcon} alt="" />
-                            <input placeholder="이름 (입금자명과 동일)" />
+                            <img src={personIcon} alt="personIcon" />
+                            <div className="input">{bookName}</div>
                         </div>
                         <div className="book book_phone">
-                            <img src={phoneIcon} alt="" />
-                            <input placeholder="전화번호" />
+                            <img src={phoneIcon} alt="phoneIcon" />
+                            <div className="input">{phoneNum}</div>
                         </div>
                     </div>
                 </div>
@@ -74,7 +99,7 @@ const Popup_payment = ({name, count, person, phone, prev, next}) => {
                         <h5>결제금액</h5>
                         <div className="total">
                             <p>티켓   X {count}</p>
-                            <p>12000원</p>
+                            <p>{calculator(price, count)}원</p>
                         </div>
                         <div className="total">
                             <p>할인</p>
@@ -83,16 +108,16 @@ const Popup_payment = ({name, count, person, phone, prev, next}) => {
                     </div>
                     <div className="total_payment">
                         <p>총 결제금액</p>
-                        <p>12000원</p>
+                        <p>{calculator(price, count)}원</p>
                     </div>
                 </div>
                 <div className="payment_inf">
                     <div className="payment_content">
                         <h5>결제 정보</h5>
-                        <p>입금자명은 '홍길동'으로 해주세요</p>
+                        <p>입금자명은 '{bookName}'으로 해주세요</p>
                         <div className="inf_account">
                             <p>입금 계좌</p>
-                            <p>(예금주) 쇼호</p>
+                            <p>(예금주) {accountHolder}</p>
                         </div>
                         <div className="inf_account">
                             <p>{accountInfo}</p>
@@ -137,7 +162,7 @@ const Popup_payment = ({name, count, person, phone, prev, next}) => {
                 </div>
                 <div className="payment_button">
                     <Button text={"뒤로 가기"} type={"gray"} onClick={prev}/>
-                    <Button text={"예매하기"} type={"green"} onClick={next}/>
+                    <Button text={"예매하기"} type={"green"} onClick={checkComplete}/>
                 </div>
             </div>
         </div>

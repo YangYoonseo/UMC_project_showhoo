@@ -1,16 +1,26 @@
 //VenueImages.jsx
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 import './VenueDetails.css';
 
-const VenueImages = ({ images }) => {
+const VenueImages = ({spaceId}) => {
+  const [images, setImages] = useState([]);
+  const yourAccessToken = sessionStorage.getItem("accessToken"); // 토큰 가져오기
 
   useEffect(() => {
-    if (!images) {
-      console.error("이미지가 전달되지 않았습니다");
-    } else if (images.length === 0 || images.every(img => img === null)) {
-      console.error("이미지가 null입니다");
-    }
-  }, [images]);
+    const fetchVenueHeader = async () => {
+      try {
+        const response = await axios.get(`https://showhoo.site/spaces/${spaceId}/header`);
+        if (response.data.isSuccess) {
+          setImages(response.data.result.photos);
+        }
+      } catch (error) {
+        console.error("Failed to fetch venue header information:", error);
+      }
+    };
+
+    fetchVenueHeader();
+  }, [yourAccessToken, spaceId]);
 
   return (
     <div className="venue-images">
@@ -37,5 +47,4 @@ const VenueImages = ({ images }) => {
 };
 
 export default VenueImages;
-
 

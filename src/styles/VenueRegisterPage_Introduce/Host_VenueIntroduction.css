@@ -77,13 +77,13 @@ label{
 
   }
   .input-type-2{
-    width: 140px;
+    width: 170px;
     height: 41px;
     border: 1px solid #9c9c9c;;
     border-radius: 10px;
     margin-right: 5px;
     margin-left:10px;
-    padding: 20px;
+    padding: 15px;
     box-sizing: border-box;
     font-size: 18px;
     margin-right: 10px;
@@ -233,6 +233,12 @@ label[for="service"] {
 .location-header {
     display: flex;
     align-items: center;
+    position: relative;
+  }
+
+  .location_register_here{
+    position: relative;
+    top:-7px;
   }
   
 .ex_map {

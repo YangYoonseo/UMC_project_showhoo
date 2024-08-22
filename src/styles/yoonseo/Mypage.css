@@ -224,7 +224,7 @@
 
   position: absolute;
   width: 950px;
-  height: 394px;
+  height: 463px;
   left: 246px;
   top: 594px;
 
@@ -263,6 +263,8 @@
 
 .choice button:nth-of-type(1) {
   top: 0px;
+  border-top-left-radius: 25px;
+  border-top-right-radius: 25px;
 }
 
 .choice button:nth-of-type(2) {
@@ -287,6 +289,8 @@
 
 .choice button:nth-of-type(7) {
   top: 390px;
+  border-bottom-left-radius: 25px;
+  border-bottom-right-radius: 25px;
 
   border: none;
 }

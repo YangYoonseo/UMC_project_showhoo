@@ -22,19 +22,24 @@
 .concertText {
     font-size: 30px;
     font-weight: 600;
-    margin-top: 92px;
+    margin-top: 150px;
     padding-bottom: 38px;
     margin-left: 68px;
 }
 
 .ConcertHallList {
     width: 1330px;
-    display: flex;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    /* 4개의 열을 생성 */
     margin-left: 61px;
-    margin-bottom: 38px;
+    gap: 38px;
 }
 
 .RentalSearchBar {
-    margin-left: 241px;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    /* 중앙 정렬을 위한 transform */
+    z-index: 2;
 }

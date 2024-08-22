@@ -3,6 +3,7 @@ import HomeImage from "../components/_test_/Home/HomeImage";
 import MainInfo from "../components/_test_/Home/mainInfo";
 import Footer from "../components/common/Footer";
 import "../styles/Jisu/home.css";
+import NotionNav from "../components/_test_/Home/NotionNav";
 
 const Home_Performer = () => {
   return (
@@ -10,8 +11,9 @@ const Home_Performer = () => {
       <Navbar_Performer />
       <Footer />
       <div className="HomeContent">
-      <HomeImage />
-      <MainInfo />
+        <HomeImage />
+        <MainInfo />
+        <NotionNav />
       </div>
     </div>
   );

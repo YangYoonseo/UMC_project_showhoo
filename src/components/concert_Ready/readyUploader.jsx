@@ -1,9 +1,8 @@
 import "../../styles/Eojin/readyUploader.css";
 import Button from "../common/Button";
 import React, { useState } from 'react';
-/// import axios from 'axios';
 
-const ReadyUploader = ({ onClose, uploadSuc, uploadFail }) => {
+const ReadyUploader = ({ onClose, uploadSuc, uploadFail, setForm }) => {
     const [selectedFile, setSelectedFile] = useState(null);
     const [fileName, setFileName] = useState('선택된 파일 없음');
 
@@ -23,8 +22,9 @@ const ReadyUploader = ({ onClose, uploadSuc, uploadFail }) => {
 
         const reader = new FileReader();
         reader.onload = (e) => {
-            // 파일이 성공적으로 로드되었을 때 처리
-            console.log('File read successfully:', e.target.result);
+            setForm(selectedFile);
+
+            console.log('File read successfully');
             uploadSuc();
             onClose();
         };

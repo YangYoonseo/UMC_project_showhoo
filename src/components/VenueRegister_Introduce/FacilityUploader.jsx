@@ -1,9 +1,8 @@
 import "../../styles/Eojin/readyUploader.css";
 import Button from "../common/Button";
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
 
-const FacilityUploader = ({ onClose, uploadSuc, uploadFail }) => {
+const FacilityUploader = ({ onClose, uploadSuc, uploadFail, updateData }) => {
     const [selectedFile, setSelectedFile] = useState(null);
     const [fileName, setFileName] = useState('선택된 파일 없음');
 
@@ -13,7 +12,7 @@ const FacilityUploader = ({ onClose, uploadSuc, uploadFail }) => {
         setFileName(file ? file.name : '선택된 파일 없음');
     };
 
-    const handleFileUpload = () => {
+    const handleFileUpload = (event) => {
         if (!selectedFile) {
             console.log('No file selected, calling uploadNonComplete and onClose');
             uploadFail();
@@ -23,8 +22,9 @@ const FacilityUploader = ({ onClose, uploadSuc, uploadFail }) => {
 
         const reader = new FileReader();
         reader.onload = (e) => {
-            // 파일이 성공적으로 로드되었을 때 처리
-            console.log('File read successfully:', e.target.result);
+            updateData(selectedFile);
+
+            console.log('File read successfully');
             uploadSuc();
             onClose();
         };
@@ -32,8 +32,9 @@ const FacilityUploader = ({ onClose, uploadSuc, uploadFail }) => {
             console.error('Error reading file', e);
             alert('파일을 읽는 중에 오류가 발생했습니다.');
         };
-        reader.readAsDataURL(selectedFile);
+        reader.readAsDataURL(selectedFile); // Base64 URL로 읽음
     };
+    
 
   return (
     <div className="backdrop">

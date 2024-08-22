@@ -1,0 +1,20 @@
+.NotionNav {
+    margin: auto;
+    
+    width: 297px;
+    height: 65px;
+    background-color: #09F1B9;
+    border-radius: 15.2px;
+
+    font-family: Pretendard;
+    font-size: 23px;
+    font-weight: 500;
+    line-height: 32.57px;
+    text-align: center;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    cursor: pointer;
+}

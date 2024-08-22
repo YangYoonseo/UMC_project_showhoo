@@ -1,0 +1,76 @@
+.navfot-notfound {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    height: 100vh; /* Full viewport height */
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .venuedetail-notfound {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+  
+  .venuedetail-notfound h2 {
+    color: #ffffff;
+    margin: 20px 0;
+    font-size: 50px;
+
+    position: relative;
+    top:-170px;
+  }
+  
+  .venuedetail-notfound .logo {
+    width: 120px;
+    height: auto;
+    margin-bottom: 20px;
+
+    position: relative;
+    top:-265px;
+  }
+
+  .venuedetail-notfound .bg1{
+    display: flex;
+    top: -36.5px;
+    margin: 0 auto;
+    width: 265px;
+    height: 73px;
+
+    position: relative;
+    top:225px;
+}
+  
+
+  .venuedetail-notfound .bg2 {
+    display: flex;
+    margin: 0 auto;
+    width: 270px;
+    height: 330px;
+
+    position: relative;
+    top:-100px;
+}
+
+  .back-button {
+    background-color: #09F1B9;
+    color: #000;
+    border: none;
+    border-radius: 8px;
+    padding: 15px 30px;
+    font-size: 1.2em;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+
+    position: relative;
+    top:-100px;
+  }
+  
+  .back-button:hover {
+    background-color: #07cfa1;
+  }
+  

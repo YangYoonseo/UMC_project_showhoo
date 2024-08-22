@@ -141,7 +141,7 @@
 
   position: absolute;
   left: 0px;
-  top: 23px;
+  top: 0px;
 
   color: #0f0f0f;
 
@@ -162,7 +162,7 @@
 
   position: absolute;
   left: 0px;
-  top: 90.18px;
+  top: 80.18px;
 
   font-family: "Pretendard";
   font-style: normal;
@@ -221,7 +221,7 @@
 
   position: absolute;
   left: 370px;
-  top: 90.18px;
+  top: 80.18px;
 
   font-family: "Pretendard";
   font-style: normal;
@@ -369,7 +369,7 @@
 
   position: absolute;
   top: 258px;
-  left: 346px;
+  left: 430px;
 
   width: 173px;
   height: 42px;
@@ -380,41 +380,10 @@
   flex-grow: 0;
 }
 
-.venue_button .more_button {
-  /* Frame 31 */
-
-  box-sizing: border-box;
-
-  width: 80px;
-  height: 42px;
-
-  border: 1px solid #0f0f0f;
-  border-radius: 16px;
-
-  /* Inside auto layout */
-  flex: none;
-  order: 0;
-  flex-grow: 0;
-
-  /* 더 보기 */
-
-  font-family: "Pretendard";
-  font-style: normal;
-  font-weight: 500;
-  font-size: 14px;
-  line-height: 30px;
-  /* or 214% */
-
-  text-align: center;
-
-  color: #171a1f;
-  background-color: #ffffff;
-}
-
 .venue_button .last_button {
   /* Frame 33 */
 
-  width: 80px;
+  width: 88px;
   height: 42px;
 
   background: #09f1b9;
@@ -429,7 +398,7 @@
   font-family: "Pretendard";
   font-style: normal;
   font-weight: 500;
-  font-size: 14px;
+  font-size: 15px;
   line-height: 30px;
   /* or 214% */
 
@@ -444,7 +413,7 @@
 
   box-sizing: border-box;
 
-  width: 80px;
+  width: 88px;
   height: 42px;
 
   background: #0f0f0f;
@@ -454,7 +423,7 @@
   font-family: "Pretendard";
   font-style: normal;
   font-weight: 500;
-  font-size: 14px;
+  font-size: 15px;
   line-height: 30px;
   /* or 214% */
 
@@ -470,7 +439,7 @@
   height: 0px;
 
   position: absolute;
-  top: 83px;
+  top: 60px;
   left: 0px;
 
   border: 2.43713px solid #dee1e6;

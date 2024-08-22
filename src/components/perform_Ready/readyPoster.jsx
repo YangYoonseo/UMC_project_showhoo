@@ -1,10 +1,13 @@
 import "../../styles/Eojin/readyPoster.css";
 import React, { useState, useEffect } from "react";
+import { format } from "date-fns"; // 날짜 포맷팅을 위해 가져오기
+import axios from "axios";
+
 import Button from "../common/Button";
 import Editor from "./Editor/Editor";
 import SelectCalender from "./Datepicker/calender";
+
 import arrow from "../../assets/img_Ready/arrow.svg";
-import { format } from "date-fns"; // 날짜 포맷팅을 위해 가져오기
 
 const ReadyPoster = ({ preStep, nextStep, check }) => {
   const [image, setImage] = useState(null);
@@ -48,7 +51,7 @@ const getPosterUrl = async () => {
 
     try {
         const res = await axios.post(
-            `http://ec2-3-34-248-63.ap-northeast-2.compute.amazonaws.com:8081/upload-poster`,
+            `https://showhoo.site/upload-poster`,
             formData,
             {
                 headers: {
@@ -126,7 +129,7 @@ const getPosterUrl = async () => {
 
     try {
         const res = await axios.post(
-            `http://ec2-3-34-248-63.ap-northeast-2.compute.amazonaws.com:8081/${performerProfileId}/show-register`,
+            `https://showhoo.site/${performerProfileId}/show-register`,
             formDataToSend, // 서버로 전송할 FormData
             {
                 headers: {
@@ -161,7 +164,7 @@ const uploadDes = async () => {
 
     try {
         const response = await axios.post(
-            `http://ec2-3-34-248-63.ap-northeast-2.compute.amazonaws.com:8081/${showId}/show-register/description`,  // 실제 서버 API 엔드포인트
+            `https://showhoo.site/${showId}/show-register/description`,  // 실제 서버 API 엔드포인트
             formData,
             {
                 headers: {

@@ -1,4 +1,5 @@
 import TwoButton from "../../modals/TwoButton";
+import axios from "axios";
 
 const RentalApproval = ({ title, onClose, onNext }) => {
   return (
