@@ -25,7 +25,7 @@ const ReadyCalendar = () => {
     const SpaceApply = async () => {
       try {
         const response = await axios.get(
-          `${url}/spaces/20/spaceApply/info/calendar`,
+          `${url}/spaces/${showId}/spaceApply/info/calendar`,
           {
             headers: {
               Authorization: `Bearer ${token}`,
