@@ -1,7 +1,7 @@
 // VenueDetailPage.jsx
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import VenueInfo from '../components/VenueDetails/VenueInfo';
 import VenueInfo2 from '../components/VenueDetails/VenueInfo2';
 import VenueImages from '../components/VenueDetails/VenueImages';
@@ -12,10 +12,10 @@ import FacilityInfo from '../components/VenueDetails/FacilityInfo';
 import Notice from '../components/VenueDetails/Notice';
 import Schedule from '../components/VenueDetails/Schedule';
 import Reviews from '../components/VenueDetails/Reviews';
-import Navbar_Concert from '../components/common/Navbar_Concert';
 import Navbar_Performer from '../components/common/Navbar_Performer';
 import Footer from '../components/common/Footer';
 import AllImages from '../components/VenueDetails/AllImages';
+import VenueDetailPage_NotFound from './VenueDetailPage_NotFound';
 import '../components/VenueDetails/VenueDetails.css';
 
 import all_image_btn from '../assets/images/venuedetailpage/all_image_btn.svg';
@@ -29,6 +29,7 @@ const VenueDetailPage = () => {
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const [venueData, setVenueData] = useState(null);
   const [images, setImages] = useState([]);
+  const navigate = useNavigate();
   //const spaceId = 8;
 
 
@@ -59,15 +60,18 @@ const VenueDetailPage = () => {
 
             },
           });
+        } else {
+          navigate("/venuedetail_not_found"); // 404 에러 발생
         }
       } catch (error) {
         console.error("Failed to fetch venue information:", error);
+        navigate('/venuedetail_not_found'); // 에러 발생 시 리다이렉트 (뭐가 다른지..)
       }
     };
 
 
     fetchVenueInfo();
-  }, [spaceId]);
+  }, [spaceId, navigate]);
 
   if (!venueData) {
     return <div>Loading...</div>;

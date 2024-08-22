@@ -137,3 +137,30 @@ p {
     object-fit: cover; /* 패널 크기에 맞추기 */
     border-radius: inherit; /* 패널의 border-radius와 동일하게 적용 */
 }
+
+
+.spinner_image_register{
+    border: 4px solid rgba(0, 0, 0, 0.1);
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border-left-color: #09F1B9;
+    animation: spin 1s linear infinite;
+  }
+  
+  @keyframes spin {
+    to { transform: rotate(360deg); }
+  }
+  
+  .spinner-overlay1 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.7); /* 스피너 배경 투명도 조절 */
+    z-index: 1100; /* 기존 콘텐츠 위에 표시되도록 */
+}
