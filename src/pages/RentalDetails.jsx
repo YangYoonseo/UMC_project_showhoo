@@ -49,7 +49,7 @@ const RentalDetails = () => {
   // 임시용
 
   const {
-    spaceId = 18,
+    spaceId,
     selectedDate = "2024-08-23",
     expectedAudienceMin = "10",
     expectedAudienceMax = "40",
@@ -179,6 +179,9 @@ const RentalDetails = () => {
         }
       );
       console.log("대관 신청 성공", response.data);
+      console.log("대관신청한 spaceId:",spaceId);
+      console.log("대관신청한 performerId:",performerId);
+      console.log("대관신청한 profileId:",data.performerProfileId);
     } catch (error) {
       console.log("대관 신청 에러", error);
     }

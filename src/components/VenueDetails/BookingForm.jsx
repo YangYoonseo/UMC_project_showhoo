@@ -182,7 +182,9 @@ const BookingForm = ({ spaceId }) => {
           rentalFee,
           rentalSum: totalPrice,
           selectedAdditionalServices: selectedAdditionalServiceIds,
-          selectedServicesTitle: selectedServices
+          selectedServicesTitle: selectedServices,
+          spaceId
+
         }
       });
     }
