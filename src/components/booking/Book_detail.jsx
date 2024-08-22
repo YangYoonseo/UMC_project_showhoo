@@ -44,7 +44,7 @@ const Book_detail = (
         
             try {
                 const response = await axios.post(
-                    `http://ec2-3-34-248-63.ap-northeast-2.compute.amazonaws.com:8081/book/post`,  // 실제 서버 API 엔드포인트
+                    `https://showhoo.site/book/post`,  // 실제 서버 API 엔드포인트
                     bookInf,
                     {
                         headers: {

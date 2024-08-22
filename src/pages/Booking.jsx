@@ -30,7 +30,7 @@ const Booking = () => {
       const token = sessionStorage.getItem("accessToken");
       try {
           const res = await axios.get(
-              `http://ec2-3-34-248-63.ap-northeast-2.compute.amazonaws.com:8081/aud/${audienceId}`,
+              `https://showhoo.site/aud/${audienceId}`,
               {
                   headers: {
                       Authorization: `Bearer ${token}`,
@@ -58,7 +58,7 @@ const Booking = () => {
     const request = term;
     try {
         const res = await axios.get(
-            `http://ec2-3-34-248-63.ap-northeast-2.compute.amazonaws.com:8081/aud/${audienceId}/search/${encodeURIComponent(request)}`,
+            `https://showhoo.site/aud/${audienceId}/search/${encodeURIComponent(request)}`,
             {
                 headers: {
                     Authorization: `Bearer ${token}`,
@@ -95,7 +95,7 @@ const Booking = () => {
     const token = sessionStorage.getItem("accessToken");
     try {
         const res = await axios.get(
-            `http://ec2-3-34-248-63.ap-northeast-2.compute.amazonaws.com:8081/aud/${showsId}/detail`,
+            `https://showhoo.site/aud/${showsId}/detail`,
             {
                 headers: {
                     Authorization: `Bearer ${token}`,
