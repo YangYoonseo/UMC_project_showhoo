@@ -1,5 +1,6 @@
 import "../../styles/Eojin/readyQsheet.css";
 import { useState, useEffect } from "react";
+import { useLocation } from "react-router-dom";
 import axios from "axios";
 
 import Button from "../common/Button";
@@ -153,9 +154,9 @@ const ReadyQsheet = ({ nextStep, check, setShowId, showId }) => {
                 <h4>업로드하기</h4>
                 <p>공연자가 대관을 위해 제출해야 할 신청서 및 양식을 업로드해주세요.</p>
                 <div className="submit_container">
-                    <ReadySubmit text={"공연 셋리스트"} id={"setList"} onCheck={onCheck} setSetListForm={setSetListForm}/>
-                    <ReadySubmit text={"대관 시간"} id={"rentalTime"} onCheck={onCheck} setListForm={setRentalTimeForm} />
-                    <ReadySubmit text={"추가 주문 사항"} id={"plus"} onCheck={onCheck} setAddOrderForm={setAddOrderForm} />
+                    <ReadySubmit text={"공연 셋리스트"} id={"setList"} onCheck={onCheck} setForm={setSetListForm}/>
+                    <ReadySubmit text={"대관 시간"} id={"rentalTime"} onCheck={onCheck} setForm={setRentalTimeForm} />
+                    <ReadySubmit text={"추가 주문 사항"} id={"plus"} onCheck={onCheck} setForm={setAddOrderForm} />
                 </div>
             </div>
             <div className="Qsheet_download">
