@@ -51,6 +51,9 @@ const RentalSearchBar = () => {
                 isClicked={activeButton === 0}
                 onClick={handleButtonClick}
                 onOpenModal={() => openModal(0)}
+                style={{
+                    width: '211px'
+                }} 
             />
 
             <div className="Divider"></div>

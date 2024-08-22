@@ -9,6 +9,7 @@ import axios from "axios";
 
 const Concerthall = ({ venue, className }) => {
   const url = "https://showhoo.site";
+  const nav = useNavigate();
 
   const getClassName = () => {
     switch (venue.status) {
@@ -52,6 +53,7 @@ const Concerthall = ({ venue, className }) => {
         }
       );
       console.log("공연자의 대관 취소 성공");
+      alert("취소 완료");
       window.location.reload();
     } catch (error) {
       console.log("공연자의 대관 취소 에러", error);
@@ -90,7 +92,7 @@ const Concerthall = ({ venue, className }) => {
             <button
               className="prepare_button"
               onClick={() => {
-                nav("/concert_ready");
+                nav("/performer_ready");
               }}
             >
               준비 시작

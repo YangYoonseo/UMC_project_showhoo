@@ -29,10 +29,11 @@
 
 .ConcertHallList {
     width: 1330px;
-    display: flex;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    /* 4개의 열을 생성 */
     margin-left: 61px;
-    margin-bottom: 38px;
+    gap: 38px;
 }
 
 .RentalSearchBar {
