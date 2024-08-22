@@ -70,6 +70,8 @@ const PerformerCalendar = ({ profile, rental, className }) => {
         }
       );
       console.log("수락 성공");
+      alert("대관 수락");
+      window.location.reload();
     } catch (error) {
       console.log("수락 에러", error);
     }
@@ -92,6 +94,8 @@ const PerformerCalendar = ({ profile, rental, className }) => {
         }
       );
       console.log("거절 성공");
+      alert("대관 거절");
+      window.location.reload();
     } catch (error) {
       console.log("거절 에러", error);
     }

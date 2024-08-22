@@ -8,7 +8,8 @@ import PerformerCalendar from "./PerformerCalendar";
 const ReadyCalendar = () => {
   const url = "https://showhoo.site";
   const token = sessionStorage.getItem("accessToken");
-  const spaceUserId = sessionStorage.getItem("spaceUserId");
+  const spaceId = localStorage.getItem("spaceId") || 0;
+  console.log(spaceId, "spaceId는");
 
   const [profile, setProfile] = useState(null); // 초기값 설정
   const [date, setDate] = useState(new Date());
@@ -24,7 +25,7 @@ const ReadyCalendar = () => {
     const SpaceApply = async () => {
       try {
         const response = await axios.get(
-          `${url}/spaces/2/spaceApply/info/calendar`,
+          `${url}/spaces/${spaceId}/spaceApply/info/calendar`,
           {
             headers: {
               Authorization: `Bearer ${token}`,
@@ -66,7 +67,7 @@ const ReadyCalendar = () => {
       .toISOString()
       .split("T")[0]; // 날짜를 "YYYY-MM-DD" 포맷으로 변환
 
-    // Reset all states
+    // 상태 초기화
     setShow(false);
     setApplication(false);
     setCompleted(false);
@@ -74,29 +75,34 @@ const ReadyCalendar = () => {
     console.log("현재 선택한 날짜", selectedDate);
     console.log("현재 선택 날짜 변환", selectedDay);
 
-    // Clicked date에 해당하는 rental 찾기
-    const selectedRental = fullRental.find(
-      (rentalItem) => rentalItem.date === selectedDay
-    );
+    if (Array.isArray(fullRental)) {
+      // fullRental이 배열인지 확인
+      // 선택한 날짜에 해당하는 렌탈 찾기
+      const selectedRental = fullRental.find(
+        (rentalItem) => rentalItem.date === selectedDay
+      );
 
-    if (selectedRental) {
-      // rental이 있는 경우, 상태 업데이트
-      switch (selectedRental.status) {
-        case -2:
-          setShow(true);
-          break;
-        case 0:
-          setApplication(true);
-          break;
-        case 1:
-          setCompleted(true);
-          break;
-        default:
-          break;
+      if (selectedRental) {
+        // 렌탈이 있는 경우 상태 업데이트
+        switch (selectedRental.status) {
+          case -2:
+            setShow(true);
+            break;
+          case 0:
+            setApplication(true);
+            break;
+          case 1:
+            setCompleted(true);
+            break;
+          default:
+            break;
+        }
+        // 선택된 렌탈의 프로필 가져오기
+        SpaceApplyProfile(selectedRental.id);
+        setRental(selectedRental);
       }
-      // 선택된 rental의 프로필 가져오기
-      SpaceApplyProfile(selectedRental.id);
-      setRental(selectedRental);
+    } else {
+      console.log("fullRental이 배열이 아니거나 정의되지 않았습니다.");
     }
   };
 
@@ -111,9 +117,8 @@ const ReadyCalendar = () => {
         .split("T")[0];
 
       fullRental.forEach((rentalItem) => {
-        // 각 rentalItem에 대해 처리합니다.
         if (rentalItem.date === selectedDay) {
-          const matchedProfile = profile; // profile을 직접 사용함
+          const matchedProfile = profile; // 프로필을 직접 사용
 
           setSelectedProfile(matchedProfile);
 

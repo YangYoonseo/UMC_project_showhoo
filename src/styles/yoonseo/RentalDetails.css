@@ -376,9 +376,9 @@
   /* (예금주) 쇼호 */
 
   position: absolute;
-  width: 127px;
+  width: 327px;
   height: 28px;
-  left: 539px;
+  left: 339px;
   top: 570px;
   margin: 0;
 
@@ -387,9 +387,7 @@
   font-weight: 400;
   font-size: 17px;
   line-height: 30px;
-  /* or 176% */
-  display: flex;
-  align-items: center;
+
   text-align: right;
 
   color: #0f0f0f;
@@ -399,7 +397,7 @@
   /* 우리은행 1002061254000 */
 
   position: absolute;
-  width: 260px;
+  width: 360px;
   height: 28px;
   left: 224px;
   top: 617px;

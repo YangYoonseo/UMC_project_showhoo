@@ -88,7 +88,7 @@ const Mypage = () => {
     const uid = sessionStorage.getItem("uid");
 
     const instance = axios.create({
-      baseURL: "http://localhost:8080",
+      baseURL: "https://showhoo.site",
       headers: { Authorization: `Bearer ${token}` },
       withCredentials: true,
     });
@@ -114,6 +114,7 @@ const Mypage = () => {
       sessionStorage.removeItem("uid");
 
       console.log(res);
+      nav("/");
     } catch (err) {
       console.log(err);
     }
