@@ -1,11 +1,18 @@
 import "../../styles/Eojin/readyUploader.css";
 import Button from "../common/Button";
 import React, { useState } from 'react';
-/// import axios from 'axios';
+import { useLocation } from "react-router-dom";
 
-const ReadyUploader = ({ onClose, uploadSuc, uploadFail }) => {
+import axios from 'axios';
+
+const ReadyUploader = ({ onClose, uploadSuc, uploadFail, form }) => {
     const [selectedFile, setSelectedFile] = useState(null);
     const [fileName, setFileName] = useState('선택된 파일 없음');
+    const [data, setData] = useState('');
+    const location = useLocation();
+    console.log("location:", location);
+    const spaceApplyId = location.state.id || "받아오지 못함";
+    console.log("spaceApplyId:", spaceApplyId);
 
     const handleFileChange = (event) => {
         const file = event.target.files[0];
@@ -24,7 +31,11 @@ const ReadyUploader = ({ onClose, uploadSuc, uploadFail }) => {
         const reader = new FileReader();
         reader.onload = (e) => {
             // 파일이 성공적으로 로드되었을 때 처리
+            const fileContent = e.target.result.split(',')[1]; // Base64 인코딩된 문자열만 가져옴
+            setData(fileContent);
+
             console.log('File read successfully:', e.target.result);
+            uploadData();
             uploadSuc();
             onClose();
         };
@@ -33,6 +44,32 @@ const ReadyUploader = ({ onClose, uploadSuc, uploadFail }) => {
             alert('파일을 읽는 중에 오류가 발생했습니다.');
         };
         reader.readAsDataURL(selectedFile);
+    };
+    
+
+    const uploadData = async () => {
+        const token = sessionStorage.getItem("accessToken");
+
+        try {
+            const formData = new FormData();
+            formData.append(form, data);  // 'file'은 서버에서 받을 파일의 key입니다.
+            console.log("전달할 데이터:", formData);
+    
+            const res = await axios.post(
+                `http://ec2-3-34-248-63.ap-northeast-2.compute.amazonaws.com:8081/space/${spaceApplyId}/prepare`,
+                formData,
+                {
+                    headers: {
+                        "Content-Type": "multipart/form-data",
+                        Authorization: `Bearer ${token}`,
+                    },
+                }
+            );
+            console.log("업로드 성공:", res.data);
+            setData('');
+        } catch (error) {
+            console.error("업로드 실패:", error);
+        }
     };
 
   return (

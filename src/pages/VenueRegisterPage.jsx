@@ -198,6 +198,7 @@ const VenueRegisterPage = () => {
 
       console.log("등록 결과:", response.data);
       setSpaceId(response.data.result.spaceId);
+      console.log("스페이스아이디:", response.data.result.spaceId);
       localStorage.setItem("spaceId", response.data.result.spaceId);
       console.log(localStorage.getItem("spaceId"), "넣었음(윤서)");
       alert("공연장 등록이 성공적으로 완료되었습니다.");
@@ -222,15 +223,15 @@ const VenueRegisterPage = () => {
     setComplete(false);
   };
 
-  // (노출되지 않는 정보 확인용) 탭 변경 시 콘솔 로그로 상태 출력
-  useEffect(() => {
-    console.log("<!!탭 변경!!>");
-    console.log("비성수기 대관료:", offSeasonFeestest);
-    console.log("성수기 대관료:", peakSeasonFeestest);
-    console.log("계좌정보:", accountDetailstest);
-    console.log("추가서비스 옵션:", serviceOptionstest);
-    console.log("공연장타입:", Category);
-  }, [selectedTab]);
+  // (노출되지 않는 정보 확인용) 탭 변경 시 콘솔 로그로 상태 출력 -> 주석처리
+  // useEffect(() => {
+  //   console.log("<!!탭 변경!!>");
+  //   console.log("비성수기 대관료:", offSeasonFeestest);
+  //   console.log("성수기 대관료:", peakSeasonFeestest);
+  //   console.log("계좌정보:", accountDetailstest);
+  //   console.log("추가서비스 옵션:", serviceOptionstest);
+  //   console.log("공연장타입:",Category);
+  // }, [selectedTab]);
 
   return (
     <div className="navfot">
@@ -377,7 +378,6 @@ const VenueRegisterPage = () => {
             </div>
           </div>
         </div>
-
         <Pop_Name
           isOpen={isNameModalOpen}
           onClose={closeNameModal}

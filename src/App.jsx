@@ -39,6 +39,8 @@ import MypageConcert from "./pages/MypageConcert.jsx";
 import LikeBooking from "./pages/LikeBooking.jsx";
 import Login from "./Login.jsx";
 import { ProfileIdProvider } from "./components/com_Performer/ProfileProvider.jsx";
+import VenueDetailPage_NotFound from "./pages/VenueDetailPage_NotFound.jsx";
+import NotFound from "./pages/NotFound.jsx";
 
 // context 가져오기
 import { FacilityProvider } from "./components/VenueRegister_Introduce/FacilityContext.jsx";
@@ -155,16 +157,9 @@ function App() {
                 <Route path="/mypage" element={<Mypage />} />
                 <Route path="/rental_details" element={<RentalDetails />} />
                 <Route path="/rental_history" element={<RentalHistory />} />
-                <Route
-                  path="/venue_detail/:spaceId"
-                  element={<VenueDetailPage />}
-                />{" "}
-                {/* 공연자 플로우 */}
-                <Route
-                  path="/venue_register"
-                  element={<VenueRegisterPage />}
-                />{" "}
-                {/* 공연장 플로우 */}
+                <Route path="/venue_detail/:spaceId" element={<VenueDetailPage />}/>
+                <Route path="/venuedetail_not_found" element={<VenueDetailPage_NotFound />} />
+                <Route path="/venue_register" element={<VenueRegisterPage />}/>
                 <Route path="/login" element={<LoginPage />} />
                 <Route path="alarm" element={<Alarm />} />
                 <Route path="/my_activity" element={<MyActivity />} />
@@ -178,6 +173,7 @@ function App() {
                 <Route path="/like_booking" element={<LikeBooking />} />
                 <Route path="/alarm_booking" element={<AlarmBooking />} />
                 <Route path="/alarm_concert" element={<AlarmConcert />} />
+                <Route path="*" element={<NotFound />} />
               </Routes>
             </div>
           </ProfileContext.Provider>
