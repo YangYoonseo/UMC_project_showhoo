@@ -8,6 +8,7 @@ import ReadyComplete from "./readyComplete";
 
 const ReadyMain = () => {
     const [step, setStep] = useState(1);
+    const [showId, setShowId] = useState(0);  // 생성된 showId 
 
     const onClick = (num) => {
         setStep(num);
@@ -26,7 +27,7 @@ const ReadyMain = () => {
             <div className="Ready_header"><ReadyHeader step={step} onClick={onClick}/></div>
             <div className="Ready_content">
                 <div style={{ display: step === 1 ? 'block' : 'none' }}>
-                    <ReadyQsheet nextStep={nextStep} />
+                    <ReadyQsheet nextStep={nextStep} setShowId={setShowId} />
                 </div>
                 <div style={{ display: step === 2 ? 'block' : 'none' }}>
                     <ReadyRequest preStep={preStep} nextStep={nextStep} />
