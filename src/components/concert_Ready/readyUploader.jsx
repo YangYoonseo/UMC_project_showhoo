@@ -24,8 +24,7 @@ const ReadyUploader = ({ onClose, uploadSuc, uploadFail, setForm }) => {
         reader.onload = (e) => {
             setForm(selectedFile);
 
-            console.log('File read successfully:', e.target.result);
-            uploadData();
+            console.log('File read successfully');
             uploadSuc();
             onClose();
         };
