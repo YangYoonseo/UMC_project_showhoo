@@ -96,10 +96,6 @@
   font-size: 18px;
 }
 
-.TwoButton_BookingCancel .full textarea:focus {
-  outline: none;
-}
-
 .TwoButton_BookingCancel .name,
 .TwoButton_BookingCancel .bank {
   padding: 0;

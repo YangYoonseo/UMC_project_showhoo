@@ -11,9 +11,8 @@ import BookingProfile from "./BookingProfile";
 const Check = () => {
   const url = "https://showhoo.site";
   const audienceId = sessionStorage.getItem("audienceId");
-  // 일단 임시로 page 0
-  const page = 0;
   const [booking, setBooking] = useState();
+  const [pages, setPages] = useState();
 
   useEffect(() => {
     const WatchedList = async (id) => {
@@ -29,7 +28,7 @@ const Check = () => {
         console.log("공연 완료 전환 에러", error);
       }
     };
-    const BookingList = async () => {
+    const BookingList = async (page) => {
       try {
         const token = sessionStorage.getItem("accessToken");
         const response = await axios.get(
@@ -42,6 +41,8 @@ const Check = () => {
         );
         const getBookList = response.data.result.getBookList;
         console.log("예매 내역", getBookList);
+        setPages(response.data.result.totalPages);
+
         if (getBookList) {
           const now = new Date();
 
@@ -61,8 +62,16 @@ const Check = () => {
       }
     };
 
-    BookingList();
-  }, []);
+    BookingList(0);
+  }, [audienceId]);
+
+  useEffect(() => {
+    if (pages === 2) {
+      BookingList(1);
+    } else if (pages === 3) {
+      BookingList(2);
+    }
+  }, [pages]); // pages가 변경될 때마다 해당 BookingList가 실행됩니다.
 
   return (
     <div className="Check">
