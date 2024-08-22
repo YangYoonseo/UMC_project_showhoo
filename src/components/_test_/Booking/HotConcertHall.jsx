@@ -10,17 +10,13 @@ const HotConcertHall = ({ hall }) => {
     return (
         <div className="HotConcertHall">
             <div className="LikeAndImg">
-                {/* hall 객체에서 이미지 URL을 받아와서 출력 */}
                 <img
                     className="ConcertHallImg"
-                    src={hall.imageUrl || defaultHallImg}
-                    // hall.imageUrl이 없을 경우 기본 이미지 사용
+                    src={hall.imageURL || defaultHallImg}  // 기본 이미지 제공
                     alt={hall.name || "Concert Hall"}
-                    // hall.name이 없을 경우 기본 텍스트 사용
                 />
                 <div className="LikeButton">
-                    <LikeButton spaceId={1} performerId={1} />
-                    {/*<LikeButton spaceId={hall.spaceId} performerId={1} />*/}
+                    <LikeButton spaceId={hall.spaceId} performerId={1} />
                 </div>
             </div>
             <div className="ConcertHallBody">
@@ -49,8 +45,7 @@ const HotConcertHall = ({ hall }) => {
                     </div>
                 </div>
                 <div className="Price">
-                    {/* ₩{hall.minRentalFee.toLocaleString()}~*/}
-                    ₩{hall.minRentalFee}~
+                    ₩{hall.minRentalFee != null ? hall.minRentalFee.toLocaleString() : 'N/A'}~
                 </div>
             </div>
         </div>
