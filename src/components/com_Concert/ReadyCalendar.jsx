@@ -20,23 +20,24 @@ const ReadyCalendar = () => {
   const [rental, setRental] = useState(null);
 
   // 공연 들어온거 띄우기
-
   useEffect(() => {
-    setFullRental([
-      {
-        id: 5,
-        date: "2024-08-23",
-        status: 0,
-        audienceMin: 10,
-        audienceMax: 40,
-        rentalSum: 300000,
-        spaceName: "test3",
-        spaceLocation: "서울 성동구 연희로 36",
-        title: "공연예시",
-        poster:
-          "https://umc-mission.s3.ap-northeast-2.amazonaws.com/spaceRegister/3d453f92-a4aa-4e12-8a52-13c81203983b",
-      },
-    ]);
+    const SpaceApply = async () => {
+      try {
+        const response = await axios.get(
+          `${url}/spaces/2/spaceApply/info/calendar`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+        console.log(response.data.result);
+        setFullRental(response.data.result);
+      } catch (error) {
+        console.log("대관 신청 불러오기 에러", error);
+      }
+    };
+    SpaceApply();
   }, []);
 
   const SpaceApplyProfile = async (spaceApplyId) => {

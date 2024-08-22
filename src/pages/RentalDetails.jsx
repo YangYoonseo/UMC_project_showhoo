@@ -47,9 +47,9 @@ const RentalDetails = () => {
 
   const location = useLocation();
   // 임시용
-  const spaceId = 4;
 
   const {
+    spaceId = 18,
     selectedDate = "2024-08-23",
     expectedAudienceMin = "10",
     expectedAudienceMax = "40",
@@ -59,6 +59,7 @@ const RentalDetails = () => {
     selectedServicesTitle = "추가 예시",
   } = location.state || {};
   console.log("정보 연동 완료");
+  console.log({ spaceId });
   console.log({ selectedDate });
   console.log({ expectedAudienceMin });
   console.log({ expectedAudienceMax });
@@ -167,7 +168,6 @@ const RentalDetails = () => {
             : [],
       };
 
-      
       const response = await axios.post(
         `${url}/spaces/${spaceId}/spaceApply/${performerId}`,
         data,
@@ -351,8 +351,10 @@ const RentalDetails = () => {
           <div className="rental_card">
             {loading3 ? (
               <p> 사진 로딩 중...</p>
-            ) : (
+            ) : Array.isArray(venuePhotos) && venuePhotos.length > 0 ? (
               <img src={venuePhotos[0]} alt="" className="venue_img" />
+            ) : (
+              <p>사진이 없습니다</p>
             )}
 
             <h3 className="venue_name">{venue.name}</h3>
