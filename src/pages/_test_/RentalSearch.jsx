@@ -1,4 +1,5 @@
 import "../../styles/Jisu/rentalSearch.css";
+import { useLocation } from "react-router-dom";
 import Footer from "../../components/common/Footer";
 import Navbar_Perforemr from "../../components/common/Navbar_Performer";
 import RentalSearchBar_2 from "../../components/rental/RentalSearchBar_2.jsx";
@@ -6,18 +7,19 @@ import RentalSearchFilter from "../../components/rental/RentalSearchFilter.jsx"
 import HotConcertHall from "../../components/_test_/Booking/HotConcertHall.jsx";
 import SearchMap from "../../components/rental/SearchMap.jsx";
 import React, { useState } from "react";
+import axios from "axios";
 
 // 검색 결과창
 const RentalSearch = () => {
+  const location = useLocation();
   const [isCollapsed, setIsCollapsed] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const hallsPerPage = 12; // 한 페이지에 표시할 콘서트홀 개수
+  const [concertHalls, setConcertHalls] = useState([]); // 콘서트홀 데이터 저장할 상태
 
-  // 예시 데이터 (실제로는 API에서 받아와야 함)
-  const concertHalls = new Array(2).fill(null).map((_, i) => ({
-    id: i + 1,
-    name: `Concert Hall ${i + 1}`,
-  }));
+  // 페이지에 전달된 검색 조건을 가져옵니다.
+  const searchValues = location.state || {};
+  console.log("전달된 검색 조건 :", searchValues); // 잘 가져와짐 확인 완료 ❤️
 
   const totalPages = Math.ceil(concertHalls.length / hallsPerPage);
 
