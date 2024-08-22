@@ -4,9 +4,8 @@ import axios from 'axios';
 import './AllImages.css';
 import back_arrow from '../../assets/images/venuedetailpage/back_arrow.svg';
 
-const AllImages = ({ onClose }) => {
+const AllImages = ({ onClose, spaceId }) => {
   const [images, setImages] = useState([]);
-  const spaceId = 9; // 수정해라
 
   useEffect(() => {
     const fetchImages = async () => {

@@ -287,6 +287,8 @@ const resetVenueData = () => {
         setServiceOptionstest(savedData.serviceOptionstest);
         setHolidays(savedData.holidays);
         setNotice(savedData.notice);
+
+        console.log("저장된 데이터 불러오기:", savedData);
       }
     };
 

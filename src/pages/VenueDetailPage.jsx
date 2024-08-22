@@ -105,6 +105,7 @@ const VenueDetailPage = () => {
       </div>
       {isPopupOpen && (
         <AllImages
+          spaceId={spaceId}
           onClose={() => setIsPopupOpen(false)}
         />
       )}
