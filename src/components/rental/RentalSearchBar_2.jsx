@@ -6,18 +6,26 @@ import RenderModal from "../_test_/Booking/Modal/RenderModal";
 import "../../styles/Jisu/RentalSearchBar_2.css";
 
 const RentalSearchBar_2 = () => {
-    // useLocation 훅을 사용하여 이전 페이지에서 전달된 상태(state)를 가져옵니다.
+    // 이전 페이지에서 전달된 상태 가져오기
     const location = useLocation();
 
-    // 전달된 상태가 없으면 빈 객체로 초기화합니다.
+    // 전달된 상태가 없으면 빈 객체로 초기화
     const searchValues = location.state || {};
 
-    // 각 검색 필드를 전달된 상태에서 가져오거나, 없을 경우 기본값("모두")으로 설정합니다.
+    // 각 검색 필드를 전달된 상태에서 가져오거나, 없을 경우 기본값으로 설정
     const searchName = searchValues.searchName || "모두";
-    const selectedLocation = searchValues.selectedLocation || { Do: "모두", District: "모두" };
+    const selectedLocation = {
+        Do: searchValues?.selectedLocation?.Do || "모두",
+        District: searchValues?.selectedLocation?.District || "모두"
+    };
     const selectedDate = searchValues.selectedDate || "모두";
     const selectedType = searchValues.selectedType || "모두";
 
+    // Location이 "모두 모두" 인 경우 "모두" 로 변경
+    const locationDisplay = selectedLocation.Do === "모두" && selectedLocation.District === "모두"
+        ? "모두"
+        : `${selectedLocation.Do} ${selectedLocation.District}`;
+    
     // 현재 클릭된 버튼을 추적하기 위한 상태를 설정합니다.
     const [activeButton, setActiveButton] = useState(null);
 
@@ -41,11 +49,6 @@ const RentalSearchBar_2 = () => {
         setIsModalOpen(false);
         setModalContent(null);
     };
-
-    // 'Do'와 'District'가 모두 "모두"일 때 "모두"를 표시하고, 그렇지 않으면 두 값을 결합합니다.
-    const locationDisplay = selectedLocation.Do === "모두" && selectedLocation.District === "모두"
-        ? "모두"
-        : `${selectedLocation.Do} ${selectedLocation.District}`;
 
     return (
         <div className="BookingSearchBar2">

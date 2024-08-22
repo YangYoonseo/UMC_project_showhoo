@@ -7,7 +7,7 @@ const CheckSpaceLike = async (spaceId, performerId) => {
 
     try {
         const response = await axios.get(
-        `http://ec2-3-34-248-63.ap-northeast-2.compute.amazonaws.com:8081/spaces/prefer/${spaceId}/${performerId}`,
+        `https://showhoo.site/spaces/prefer/${spaceId}/${performerId}`,
         {
             headers: {
                 Authorization: `Bearer ${token}`,
