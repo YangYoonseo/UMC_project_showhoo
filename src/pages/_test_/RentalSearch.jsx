@@ -93,8 +93,8 @@ const RentalSearch = () => {
               ))}
             </div>
           </div>
-          <div className="Map" style={{ width: isCollapsed ? "100%" : "50%" }}>
-            <SearchMap />
+          <div className="Map">
+            <SearchMap isCollapsed={isCollapsed} />
           </div>
         </div>
 

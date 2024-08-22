@@ -125,7 +125,9 @@
 
 /* 지도 섹션 스타일 */
 .Map {
-    background-color: #fff3f3;
+    height: 1621px;
+    transition: height 0.7s ease-in-out;
+        /* height 변경 시 부드럽게 전환 */
 }
 
 /* 토글 버튼 스타일 */
@@ -144,15 +146,13 @@
     border: none;
     cursor: pointer;
     z-index: 10;
-    /* 버튼이 다른 요소 위에 있도록 */
-    transition: right 0.3s, left 0.3s;
-    /* 애니메이션 효과 추가 */
+
+    transition: right 0.7s ease-in-out, left 0.7s ease-in-out;
+    /* 위치가 변경될 때 부드럽게 전환 */
 }
 
 /* 토글 버튼이 좌측으로 이동하도록 상태에 따라 클래스 변경 */
 .toggleButton.collapsed {
     right: auto;
     left: 50px;
-    /* 좌측으로 이동 */
-    transition: position 0.3s
 }
