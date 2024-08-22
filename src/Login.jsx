@@ -71,6 +71,10 @@ async function kakaoWithdraw() {
       uid: parseInt(sessionStorage.getItem("uid")),
     });
 
+    sessionStorage.removeItem("accessToken");
+    sessionStorage.removeItem("name");
+    sessionStorage.removeItem("uid");
+
     console.log(res);
   } catch (err) {
     console.log(err);

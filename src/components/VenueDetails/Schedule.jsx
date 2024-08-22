@@ -5,12 +5,12 @@ import React from 'react';
 import './VenueDetails.css';
 import CalenderComponent from "./CalenderComponent";
 
-const Schedule = () => {
+const Schedule = ({ spaceId }) => {
   return (
     <div className="venue-schedule">
       <div className="schedule-title">대관 일정</div>
       <div className="calendar2">
-        <CalenderComponent/>
+        <CalenderComponent spaceId={spaceId}/>
       </div>
     </div>
   );

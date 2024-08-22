@@ -4,9 +4,9 @@ import axios from 'axios';
 import './VenueDetails.css';
 import ex_map from '../../assets/images/venueregisterpage_introduce/ex_map.svg';
 
-const VenueIntroduction = () => {
+const VenueIntroduction = ({ spaceId }) => {
   const [descriptionData, setDescriptionData] = useState(null);
-  const spaceId = 7;
+  //const spaceId = 7;
 
   useEffect(() => {
     const fetchVenueDescription = async () => {
@@ -86,7 +86,7 @@ const VenueIntroduction = () => {
       <p><span className="label">대관시간 </span> <span className="value">{descriptionData.rentalHours}</span></p>
       <p><span className="label">대관료 </span></p>
       <ul className="value-list">
-      <p style={{marginLeft: '-20px'}}>[비성수기]</p>
+      <p style={{marginLeft: '-10px', marginBottom:'0px'}}>[비성수기]</p>
         {Object.entries(groupedFees).map(([fee, days], index) => (
           <li key={index}>
             {days.join('/')} : {fee}₩
@@ -95,14 +95,16 @@ const VenueIntroduction = () => {
       </ul>
       <br></br>
       <ul className="value-list">
-        <p style={{marginLeft: '-20px'}}>[성수기]</p>
+        <p style={{marginLeft: '-10px', marginBottom:'0px'}}>[성수기]</p>
         {Object.entries(groupedPeakFees).map(([fee, days], index) => (
-          <li key={index}>
+          <li 
+            className='value-list-li'
+            key={index}>
             {days.join('/')} : {fee}₩
           </li>
         ))}
       </ul>
-      <p><span className="label">추가 서비스 </span></p>
+      <p className='value-list-p'><span className="label">추가 서비스 </span></p>
       <ul className="value-list2">
         {descriptionData.additionalServices.map((service, index) => (
           <li key={index}>{service.title}</li>

@@ -15,7 +15,7 @@ import Line40 from "../../assets/img_Performer/Line40.svg";
 const PerformerCalendar = ({ profile, rental, className }) => {
   const nav = useNavigate();
   const token = sessionStorage.getItem("accessToken");
-  const spaceUserId = sessionStorage.getItem("spaceUserId");
+
   const url = "https://showhoo.site";
 
   const [ok, setOk] = useState(false);
@@ -61,7 +61,8 @@ const PerformerCalendar = ({ profile, rental, className }) => {
   const PatchOk = async () => {
     try {
       const response = await axios.patch(
-        `${url}/spaces/${spaceUserId}/spaceApply/${rental.id}`,
+        `${url}/spaces/${rental.id}/accept`,
+        {},
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -69,6 +70,8 @@ const PerformerCalendar = ({ profile, rental, className }) => {
         }
       );
       console.log("수락 성공");
+      alert("대관 수락");
+      window.location.reload();
     } catch (error) {
       console.log("수락 에러", error);
     }
@@ -91,6 +94,8 @@ const PerformerCalendar = ({ profile, rental, className }) => {
         }
       );
       console.log("거절 성공");
+      alert("대관 거절");
+      window.location.reload();
     } catch (error) {
       console.log("거절 에러", error);
     }
@@ -164,7 +169,7 @@ const PerformerCalendar = ({ profile, rental, className }) => {
             text={"준비 과정 보기"}
             type={"gray"}
             onClick={() => {
-              nav("/con_ready", { id: rental.id });
+              nav("/con_ready", { state: rental });
             }}
           />
         )}
@@ -174,11 +179,12 @@ const PerformerCalendar = ({ profile, rental, className }) => {
             text={"준비 시작"}
             type={"black"}
             onClick={() => {
-              nav("/con_ready", { id: rental.id });
+              nav("/con_ready", { state: rental });
             }}
           />
         )}
       </div>
+
       {ok && (
         <RentalApproval
           title={profile.name}

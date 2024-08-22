@@ -3,9 +3,8 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import './VenueDetails.css';
 
-const VenueImages = () => {
+const VenueImages = ({spaceId}) => {
   const [images, setImages] = useState([]);
-  const spaceId = 9;
   const yourAccessToken = sessionStorage.getItem("accessToken"); // 토큰 가져오기
 
   useEffect(() => {

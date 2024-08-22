@@ -178,7 +178,7 @@ const Host_VenueIntroduction = ({
       <div className="location-section">
         <h2>위치</h2>
         <div className="location-header">
-          <p>{venueLocation || '위치 등록하기'}</p> {/* venueLocation이 존재하면 표시, 없으면 '위치 등록하기' */}
+          <p className='location_register_here'>{venueLocation || '위치 등록하기'}</p> {/* venueLocation이 존재하면 표시, 없으면 '위치 등록하기' */}
           <img src={edit_icon} className="place_edit_icon" alt="edit icon" onClick={openPlaceModal} />
         </div>
         <div className="map">

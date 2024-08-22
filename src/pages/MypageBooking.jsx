@@ -71,9 +71,52 @@ const MypageBooking = () => {
     }
   }
 
+  async function kakaoWithdraw() {
+    const endpoint = "/kakao/delete";
+    const token = sessionStorage.getItem("accessToken");
+    const uid = sessionStorage.getItem("uid");
+
+    const instance = axios.create({
+      baseURL: "https://showhoo.site",
+      headers: { Authorization: `Bearer ${token}` },
+      withCredentials: true,
+    });
+
+    instance.interceptors.response.use(
+      (response) => response.data,
+      async function (error) {
+        if (error.response?.status === 401) {
+          alert("로그인 필요");
+        } else {
+          throw error;
+        }
+      }
+    );
+
+    try {
+      const res = await instance.post(endpoint, {
+        uid: parseInt(sessionStorage.getItem("uid")),
+      });
+
+      sessionStorage.removeItem("accessToken");
+      sessionStorage.removeItem("name");
+      sessionStorage.removeItem("uid");
+
+      console.log(res);
+      nav("/");
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
   const handleLogout = () => {
     console.log("로그아웃");
     kakaoLogout();
+  };
+
+  const handleWithdraw = () => {
+    kakaoWithdraw();
+    setCancel(false);
   };
 
   return (
@@ -124,13 +167,7 @@ const MypageBooking = () => {
             역할 전환
           </button>
           <button onClick={handleLogout}>로그아웃</button>
-          <button
-            onClick={() => {
-              setCancel(true);
-            }}
-          >
-            회원탈퇴
-          </button>
+          <button onClick={handleWithdraw}>회원탈퇴</button>
         </div>
         {cancel && <PerformerCancel onClose={() => setCancel(false)} />}
         {popup && (

@@ -16,11 +16,10 @@ const renderTextWithLineBreaks = (text) => {
   return <>{lines}</>;
 };
 
-  const Notice = () => {
+  const Notice = ({spaceId}) => {
     const [noticeData, setNoticeData] = useState(null);
     const [isLoading, setIsLoading] = useState(true);
-    const spaceId = 15; //실제 id로 교체 필요
-  
+    
     useEffect(() => {
       const fetchNoticeData = async () => {
         try {

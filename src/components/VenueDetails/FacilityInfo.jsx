@@ -15,10 +15,9 @@ import venue_pplguide_hovered from '../../assets/images/venuedetailpage/venue_pp
 import seating_chart from '../../assets/images/venuedetailpage/seating_chart.svg';
 import seating_chart_hovered from '../../assets/images/venuedetailpage/seating_chart_hovered.svg';
 
-const FacilityInfo = ({ name }) => {
+const FacilityInfo = ({ name,spaceId}) => {
   const [hovered, setHovered] = useState('');
   const [facilityData, setFacilityData] = useState({});
-  const spaceId = 7;
 
   useEffect(() => {
     const fetchFacilityData = async () => {

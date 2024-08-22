@@ -320,5 +320,6 @@
 .Receipt .total_price {
   display: flex;
   justify-content: space-between;
-  margin-top: 170px;
+  position: relative;
+  top: 130px;
 }

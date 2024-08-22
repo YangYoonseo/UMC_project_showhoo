@@ -49,11 +49,11 @@ body {
     line-height: 1.5;
 }
 
-.review-images {
+.review-images-1 {
     margin: 15px 0;
     display: flex;
     gap: 30px;
-    max-width: 100px;
+
 }
 
 .review_date {
