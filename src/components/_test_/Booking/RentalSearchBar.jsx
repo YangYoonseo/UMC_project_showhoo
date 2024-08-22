@@ -48,9 +48,8 @@ const RentalSearchBar = () => {
 
     const handleTypeSelect = (type) => {
         // 사용자 선택 값을 매핑된 값으로 변환
-        const mapped = typeMapping[type] || type; // 매핑되지 않은 경우 원래 값을 사용
+        const mapped = typeMapping[type] || type;
         setSelectedType(type); // 화면에 표시될 원래 값 설정
-        setMappedType(mapped); // API에 전달될 매핑된 값 설정
         console.log("선택된 유형:", type, "\n매핑된 값:", mapped);
     };
 
@@ -73,26 +72,7 @@ const RentalSearchBar = () => {
         selectedType,
         };
         
-        const baseUrl = "http://ec2-3-34-248-63.ap-northeast-2.compute.amazonaws.com:8081/spaces/search";
-        const queryParams = new URLSearchParams();
-        if (searchName) queryParams.append("name", searchName);
-        if (selectedLocation.Do) queryParams.append("city", selectedLocation.Do);
-        if (selectedLocation.District) queryParams.append("district", selectedLocation.District);
-        if (selectedDate) queryParams.append("date", selectedDate);
-        if (mappedType) queryParams.append("type", mappedType); // 변환된 타입 사용
-
-        const fullUrl = `${baseUrl}?${queryParams.toString()}`;
-        console.log("검색 API 호출로 생성된 URL:", fullUrl);
-
-        axios.get(fullUrl)
-            .then(response => {
-                console.log("[검색] API 응답 데이터:", response.data);
-            })
-            .catch(error => {
-                console.error("[검색] API 호출 오류:", error);
-            });
-        
-        // 검색 값을 state로 전달하면서 페이지 이동
+        // 검색 조건을 state로 전달하면서 페이지 이동
         nav("/rental_search", { state: searchValues });
     };
 
