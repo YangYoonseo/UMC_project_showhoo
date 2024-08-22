@@ -300,7 +300,6 @@ const VenueRegisterPage = () => {
             </div>
           </div>
         </div>
-
         <Pop_Name isOpen={isNameModalOpen} onClose={closeNameModal} onConfirm={updateVenueName} />
         <Pop_Place isOpen={isPlaceModalOpen} onClose={closePlaceModal} onConfirm={updateVenueLocation} />
         <Pop_Image isOpen={isImageModalOpen} onClose={closeImageModal} onConfirm={updateUploadedImages} />

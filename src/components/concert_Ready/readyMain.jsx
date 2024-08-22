@@ -25,9 +25,15 @@ const ReadyMain = () => {
         <div className="Ready_container">
             <div className="Ready_header"><ReadyHeader step={step} onClick={onClick}/></div>
             <div className="Ready_content">
-                {step === 1 && <ReadyQsheet nextStep={nextStep} />}
-                {step === 2 && <ReadyRequest preStep={preStep} nextStep={nextStep} />}
-                {step === 3 && <ReadyComplete />}
+                <div style={{ display: step === 1 ? 'block' : 'none' }}>
+                    <ReadyQsheet nextStep={nextStep} />
+                </div>
+                <div style={{ display: step === 2 ? 'block' : 'none' }}>
+                    <ReadyRequest preStep={preStep} nextStep={nextStep} />
+                </div>
+                <div style={{ display: step === 3 ? 'block' : 'none' }}>
+                    <ReadyComplete />
+                </div>
             </div>
         </div>
     )
