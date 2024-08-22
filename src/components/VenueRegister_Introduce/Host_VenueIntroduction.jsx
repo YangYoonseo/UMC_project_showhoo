@@ -44,7 +44,6 @@ const Host_VenueIntroduction = ({
   const [isCategoryModalOpen, setIsCategoryModalOpen] = useState(false); // 새로운 상태 추가
   const [isFeeModalOpen, setIsFeeModalOpen] = useState(false);
   const [isServiceModalOpen, setIsServiceModalOpen] = useState(false);
-  const [selectedCategory, setSelectedCategory] = useState(''); // 선택된 유형
 
   const openServiceModal = () => setIsServiceModalOpen(true);
   const closeServiceModal = () => setIsServiceModalOpen(false);
@@ -60,7 +59,7 @@ const Host_VenueIntroduction = ({
     setServiceDescriptiontest(description);
     setServiceOptionstest(options);
     closeServiceModal();
-  };
+};
 
   // 대관료 정보 설정 함수
   const handleFeeConfirm = (description, offSeason, peakSeason, accountInfo) => {
@@ -204,7 +203,7 @@ const Host_VenueIntroduction = ({
       />
       <Pop_Category 
         isOpen={isCategoryModalOpen} 
-        onClose={closeCategoryModal} 
+        onClose={closeCategoryModal}
         onConfirm={handleCategoryConfirm}
       />
     </div>
