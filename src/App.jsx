@@ -150,8 +150,8 @@ function App() {
                 <Route path="/rental_details" element={<RentalDetails />} />
                 <Route path="/rental_history" element={<RentalHistory />} />
                 <Route
-                  path="/venue_detail"
-                  element={<VenueDetailPage data={{ spaceId: 1 }} />}
+                  path="/venue_detail/:spaceId"
+                  element={<VenueDetailPage />}
                 />{" "}
                 {/* 공연자 플로우 */}
                 <Route

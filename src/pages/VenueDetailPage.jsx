@@ -1,6 +1,7 @@
 // VenueDetailPage.jsx
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { useParams } from 'react-router-dom';
 import VenueInfo from '../components/VenueDetails/VenueInfo';
 import VenueInfo2 from '../components/VenueDetails/VenueInfo2';
 import VenueImages from '../components/VenueDetails/VenueImages';
@@ -22,12 +23,13 @@ import all_image_btn from '../assets/images/venuedetailpage/all_image_btn.svg';
 
 
 const VenueDetailPage = () => {
+  const { spaceId } = useParams();
+  console.log("스페이스아이디:",spaceId);
   const [selectedTab, setSelectedTab] = useState('introduction');
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const [venueData, setVenueData] = useState(null);
   const [images, setImages] = useState([]);
-  const spaceId = 8; // 실제 spaceId 값으로 교체 필요
-  const yourAccessToken = sessionStorage.getItem("accessToken");
+  //const spaceId = 8;
 
 
   useEffect(() => {
@@ -77,9 +79,9 @@ const VenueDetailPage = () => {
       <Navbar_Performer />
       <Footer />
       <div className="venue-detail-page">
-        <VenueInfo data={venueData} />
+        <VenueInfo data={venueData} spaceId={spaceId}/>
         <VenueInfo2 spaceId={spaceId}/>
-        <VenueImages images={images} />
+        <VenueImages spaceId={spaceId}/>
         <img
           src={all_image_btn}
           className="all_image_btn"
@@ -88,13 +90,13 @@ const VenueDetailPage = () => {
         <div className="venue-content">
           <div className="venue-main-content">
             <VenueTabs selectedTab={selectedTab} setSelectedTab={setSelectedTab} />
-            {selectedTab === 'introduction' && <VenueIntroduction />}
-            {selectedTab === 'facility' && <FacilityInfo name={venueData.name}/>}
-            {selectedTab === 'notice' && <Notice />}
-            {selectedTab === 'schedule' && <Schedule />}
-            {selectedTab === 'reviews' && <Reviews />}
+            {selectedTab === 'introduction' && <VenueIntroduction spaceId={spaceId} />}
+            {selectedTab === 'facility' && <FacilityInfo name={venueData.name} spaceId={spaceId}/>}
+            {selectedTab === 'notice' && <Notice spaceId={spaceId}/>}
+            {selectedTab === 'schedule' && <Schedule spaceId={spaceId}/>}
+            {selectedTab === 'reviews' && <Reviews spaceId={spaceId}/>}
           </div>
-          <BookingForm />
+          <BookingForm spaceId={spaceId}/>
         </div>
       </div>
       {isPopupOpen && (
