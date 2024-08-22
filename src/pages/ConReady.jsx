@@ -5,15 +5,15 @@ import Footer from "../components/common/Footer";
 import ReadyMain from "../components/concert_Ready/readyMain";
 
 const ConReady = () => {
-    return (
-        <div className="Ready">
-            <Navbar_Concert />
-            <Footer />
-            <div className="Container117">
-                <ReadyMain />
-            </div>
-        </div>
-    );
+  return (
+    <div className="Ready">
+      <Navbar_Concert />
+      <Footer />
+      <div className="Container117">
+        <ReadyMain />
+      </div>
+    </div>
+  );
 };
 
 export default ConReady;
