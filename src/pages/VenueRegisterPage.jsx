@@ -62,7 +62,7 @@ const VenueRegisterPage = () => {
     spacestaff,
     spaceSeat,
   } = useContext(FacilityContext);
-  /*
+  
   useEffect(()=> {
     console.log("soundEquipment:",soundEquipment);
     console.log("lightingEquipment:",lightingEquipment);
@@ -71,7 +71,7 @@ const VenueRegisterPage = () => {
     console.log("spacestaff:",spacestaff);
     console.log("spaceSeat:",spaceSeat);
   }, [soundEquipment, lightingEquipment, stageMachinery, spaceDrawing, spacestaff, spaceSeat]);
-  */
+  
 
   //spaceUserId 연결
   const spaceUserId = sessionStorage.getItem("spaceUserId");
@@ -186,11 +186,11 @@ const VenueRegisterPage = () => {
         JSON.stringify(spaceRegisterRequestDTO)
       );
       formData.append("soundEquipment", JSON.stringify(getsoundEquipment));
-      formData.append("lightingEquipment", JSON.stringify(getlightingEquipment));
-      formData.append("stageMachinery", JSON.stringify(getstageMachinery));
-      formData.append("spaceDrawing", JSON.stringify(getspaceDrawing));
-      formData.append("spacestaff", JSON.stringify(getspacestaff));
-      formData.append("spaceSeat", JSON.stringify(getspaceSeat));
+      formData.append("lightingEquipment", getlightingEquipment);
+      formData.append("stageMachinery", getstageMachinery);
+      formData.append("spaceDrawing", getspaceDrawing);
+      formData.append("spacestaff", getspacestaff);
+      formData.append("spaceSeat", getspaceSeat);
 
       console.log("서버로 전송할 데이터:", formData);
 

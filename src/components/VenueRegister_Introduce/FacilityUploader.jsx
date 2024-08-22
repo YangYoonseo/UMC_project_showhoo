@@ -12,7 +12,7 @@ const FacilityUploader = ({ onClose, uploadSuc, uploadFail, updateData }) => {
         setFileName(file ? file.name : '선택된 파일 없음');
     };
 
-    const handleFileUpload = () => {
+    const handleFileUpload = (event) => {
         if (!selectedFile) {
             console.log('No file selected, calling uploadNonComplete and onClose');
             uploadFail();
@@ -23,9 +23,8 @@ const FacilityUploader = ({ onClose, uploadSuc, uploadFail, updateData }) => {
         const reader = new FileReader();
         reader.onload = (e) => {
             // 파일이 성공적으로 로드되었을 때 처리
-            const fileContent = e.target.result.split(',')[1]; // Base64 인코딩된 문자열만 가져옴
-            updateData(fileContent);
-
+            updateData(selectedFile); // 파일 URL을 업데이트
+    
             console.log('File read successfully');
             uploadSuc();
             onClose();
@@ -34,8 +33,9 @@ const FacilityUploader = ({ onClose, uploadSuc, uploadFail, updateData }) => {
             console.error('Error reading file', e);
             alert('파일을 읽는 중에 오류가 발생했습니다.');
         };
-        reader.readAsDataURL(selectedFile);
+        reader.readAsDataURL(selectedFile); // Base64 URL로 읽음
     };
+    
 
   return (
     <div className="backdrop">
