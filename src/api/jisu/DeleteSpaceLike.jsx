@@ -7,7 +7,7 @@ const DeleteSpaceLike = async (spacePreferId) => {
 
     try {
         const response = await axios.delete(
-            `http://ec2-3-34-248-63.ap-northeast-2.compute.amazonaws.com:8081/spaces/prefer/${spacePreferId}`,
+            `https://showhoo.site/spaces/prefer/${spacePreferId}`,
             {
                 headers: {
                     Authorization: `Bearer ${token}`,

@@ -21,7 +21,7 @@ const RentalSearch = () => {
   console.log("전달된 검색 조건 :", searchValues);
 
   useEffect(() => {
-    const baseUrl = "http://ec2-3-34-248-63.ap-northeast-2.compute.amazonaws.com:8081/spaces/search";
+    const baseUrl = "https://showhoo.site/spaces/search";
     
     const fetchConcertHalls = async () => {
       try {
@@ -78,7 +78,7 @@ const RentalSearch = () => {
             </div>
             <div className="ConcertHalls">
               {currentHalls.map((hall) => (
-                <HotConcertHall className="ConcertHallCss" key={hall.spaceId} hall={hall} />
+                <HotConcertHall className="ConcertHallCss" key={hall.spaceId} hall={hall}/>
               ))}
             </div>
             <div className="Pagination">

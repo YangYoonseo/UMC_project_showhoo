@@ -8,7 +8,7 @@ const SpaceLike = async (spaceId, performerId) => {
     try {
         const response = await axios.post(
             /* (get/post) 요청 보내기, 아래는 URL */
-        `http://ec2-3-34-248-63.ap-northeast-2.compute.amazonaws.com:8081/spaces/prefer`,
+        `https://showhoo.site/spaces/prefer`,
             /* 아래는 리퀘스트 바디 */
             {
                 spaceId: spaceId,

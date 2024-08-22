@@ -16,7 +16,8 @@ const SearchMap = ({ isCollapsed }) => {
                 };
 
                 const map = new window.kakao.maps.Map(container, options); // 지도 생성 및 객체 리턴
-
+                
+                {/*
                 // 마커 설정
                 const markerPosition = new window.kakao.maps.LatLng(37.5562, 126.9239); 
                 const marker = new window.kakao.maps.Marker({
@@ -25,6 +26,7 @@ const SearchMap = ({ isCollapsed }) => {
                 
                 // 마커를 지도에 설정
                 marker.setMap(map);
+                */}
             });
         };
     }, []);

@@ -18,11 +18,7 @@ const Rental = () => {
       try {
         // axios를 사용하여 API에서 공연장 데이터를 가져옴
         const response = await axios.get(
-          "http://ec2-3-34-248-63.ap-northeast-2.compute.amazonaws.com:8081/spaces", {
-          params: {
-            performerId: 1, // performerId는 필요에 따라 변경 가능
-          },
-        });
+          "https://showhoo.site/spaces");
         console.log("공연장 전체 조회 API 응답:", response.data); // 로그 추가
 
         // API 응답이 성공적인 경우 상태를 업데이트
