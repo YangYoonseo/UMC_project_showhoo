@@ -1,5 +1,6 @@
 .BookingSearchBar2 {
-    width: 635px;
+    width: 100%;
+    max-width: 635px;
     height: 73px;
 
     border: 1px;
@@ -13,6 +14,7 @@
     background-color: white;
 
     display: flex;
+    justify-content: space-between; /* 버튼들 간의 공간을 균등하게 분배 */
 }
 
 .Divider {
