@@ -89,7 +89,7 @@ const ReadyQsheet = ({ nextStep, check, setShowId, showId }) => {
 
             try {
                 const res = await axios.post(
-                    `http://ec2-3-34-248-63.ap-northeast-2.compute.amazonaws.com:8081/space/${spaceApplyId}/prepare`,
+                    `https://showhoo.site/space/${spaceApplyId}/prepare`,
                     formData,
                     {
                         headers: {
@@ -122,7 +122,7 @@ const ReadyQsheet = ({ nextStep, check, setShowId, showId }) => {
             const token = sessionStorage.getItem("accessToken");
             try {
                 const res = await axios.get(
-                    `http://ec2-3-34-248-63.ap-northeast-2.compute.amazonaws.com:8081/space/${showId}/prepare`,
+                    `https://showhoo.site/space/${showId}/prepare`,
                     {
                         headers: {
                             Authorization: `Bearer ${token}`,

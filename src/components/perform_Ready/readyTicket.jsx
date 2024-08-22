@@ -24,7 +24,7 @@ const ReadyDetail = ({ preStep, nextStep }) => {
 
         try {
             const res = await axios.post(
-                `http://ec2-3-34-248-63.ap-northeast-2.compute.amazonaws.com:8081/${showId}/ticket-register`,
+                `https://showhoo.site/${showId}/ticket-register`,
                 ticket,
                 {
                     headers: {

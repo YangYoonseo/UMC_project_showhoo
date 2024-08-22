@@ -31,7 +31,7 @@ const ReadyQsheet = ({ nextStep, check }) => {
         const token = sessionStorage.getItem("accessToken");
         try {
             const res = await axios.get(
-                `http://ec2-3-34-248-63.ap-northeast-2.compute.amazonaws.com:8081/performer/${showId}/prepare`,
+                `https://showhoo.site/performer/${showId}/prepare`,
                 {
                     headers: {
                         Authorization: `Bearer ${token}`,

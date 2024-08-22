@@ -219,7 +219,7 @@ const resetVenueData = () => {
 
       // API 요청
       const response = await axios.post(
-        `http://ec2-3-34-248-63.ap-northeast-2.compute.amazonaws.com:8081/spaces/${spaceUserId}`,
+        `https://showhoo.site/spaces/${spaceUserId}`,
         formData,
         {
           headers: {
