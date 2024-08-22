@@ -23,6 +23,48 @@ body {
     margin: 15px 0;
 }
 
-.editor {
-    margin: 40px 0;
-}
+.notice-section {
+    margin-bottom: 70px;
+    width:600px;
+    overflow-y: auto;
+  }
+  
+  .notice-section h3 {
+    font-size: 25px;
+    font-weight: 600;
+    color: #0F0F0F;
+  }
+  
+  .notice-section p,
+  .notice-section ul {
+    font-size: 20px;
+    color: #0F0F0F;
+    line-height: 1.2; /* 내용 간 간격 줄이기 위해 조정 */
+  }
+  
+  .notice-section ul {
+    list-style-type: disc;
+    margin-left: 20px;
+  }
+  
+  .notice-section ul li {
+    line-height: 1.6;
+    color: #4F4F4F;
+  }
+  
+  .notice-section h3:nth-of-type(1) {
+    top: 798px;
+  }
+  
+  .notice-section h3:nth-of-type(2) {
+    top: 1203px;
+  }
+  
+  .notice-section h3:nth-of-type(3) {
+    top: 2119px;
+  }
+  
+  .notice-section h3:nth-of-type(4) {
+    top: 2438px;
+  }
+  
