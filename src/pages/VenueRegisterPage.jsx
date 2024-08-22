@@ -35,6 +35,9 @@ const VenueRegisterPage = () => {
   const [uploadedImages, setUploadedImages] = useState([]);
   const [isRegister, setIsRegister] = useState(false);
   const [isComplete, setComplete] = useState(false);
+  
+
+
 
   const [introductionDescription, setIntroductionDescription] = useState("");
   const [venueArea, setVenueArea] = useState("");
@@ -50,8 +53,8 @@ const VenueRegisterPage = () => {
   const [holidays, setHolidays] = useState();
   const [notice, setNotice] = useState("");
 
-  // spaceId => useContext 사용해서 따로 빼야하지 않나 싶음
-  const [spaceId, setSpaceId] = useState(0);
+
+  const [spaceId, setSpaceId] = useState(localStorage.getItem("spaceId") || null);
 
   // 시설 안내 데이터 context에서 가져오기
   const {
@@ -62,16 +65,37 @@ const VenueRegisterPage = () => {
     spacestaff,
     spaceSeat,
   } = useContext(FacilityContext);
-  /*
-  useEffect(()=> {
-    console.log("soundEquipment:",soundEquipment);
-    console.log("lightingEquipment:",lightingEquipment);
-    console.log("stageMachinery:",stageMachinery);
-    console.log("spaceDrawing:",spaceDrawing);
-    console.log("spacestaff:",spacestaff);
-    console.log("spaceSeat:",spaceSeat);
-  }, [soundEquipment, lightingEquipment, stageMachinery, spaceDrawing, spacestaff, spaceSeat]);
-  */
+
+  // 1. spaceId에 따른 초기화 로직 추가
+  useEffect(() => {
+    if (spaceId && spaceId !== "null") {  // spaceId가 "null"이 아닌 경우에만
+      loadVenueData(); // 저장된 데이터 불러오기
+    } else {
+      resetVenueData(); // spaceId가 null일 경우 모든 상태 초기화
+    }
+  }, [spaceId]);
+
+
+    // 2. resetVenueData 함수 추가 (새 공연장 등록을 위한 초기화)
+const resetVenueData = () => {
+  setVenueName("공연장 이름");
+  setVenueLocation("공연장 위치");
+  setUploadedImages([]);
+  setIntroductionDescription("");
+  setVenueArea("");
+  setVenueCapacity("");
+  setCategory("");
+  setRentalTime("");
+  setFeeDescriptiontest("");
+  setOffSeasonFeestest({});
+  setPeakSeasonFeestest({});
+  setAccountDetailstest({});
+  setServiceDescriptiontest("");
+  setServiceOptionstest([]);
+  setHolidays(null);
+  setNotice("");
+};
+
   //spaceUserId 연결
   const spaceUserId = sessionStorage.getItem("spaceUserId");
 
@@ -207,7 +231,6 @@ const VenueRegisterPage = () => {
 
       console.log("등록 결과:", response.data);
       setSpaceId(response.data.result.spaceId);
-      console.log("스페이스아이디:", response.data.result.spaceId);
       localStorage.setItem("spaceId", response.data.result.spaceId);
       console.log(localStorage.getItem("spaceId"), "넣었음(윤서)");
       alert("공연장 등록이 성공적으로 완료되었습니다.");
@@ -221,10 +244,57 @@ const VenueRegisterPage = () => {
     setIsRegister(true);
   };
 
+
+  // 공간 정보 저장 및 복구 로직 추가
+  const saveVenueData = () => {
+    const venueData = {
+      venueName,
+      venueLocation,
+      uploadedImages,
+      introductionDescription,
+      venueArea,
+      venueCapacity,
+      Category,
+      rentalTime,
+      feeDescriptiontest,
+      offSeasonFeestest,
+      peakSeasonFeestest,
+      accountDetailstest,
+      serviceDescriptiontest,
+      serviceOptionstest,
+      holidays,
+      notice,
+    };
+    localStorage.setItem("savedVenueData", JSON.stringify(venueData));
+  };
+    // 로컬 스토리지에서 데이터를 불러와 초기화하는 함수
+    const loadVenueData = () => {
+      const savedData = JSON.parse(localStorage.getItem("savedVenueData"));
+      if (savedData) {
+        setVenueName(savedData.venueName);
+        setVenueLocation(savedData.venueLocation);
+        setUploadedImages(savedData.uploadedImages || []);
+        setIntroductionDescription(savedData.introductionDescription);
+        setVenueArea(savedData.venueArea);
+        setVenueCapacity(savedData.venueCapacity);
+        setCategory(savedData.Category);
+        setRentalTime(savedData.rentalTime);
+        setFeeDescriptiontest(savedData.feeDescriptiontest);
+        setOffSeasonFeestest(savedData.offSeasonFeestest);
+        setPeakSeasonFeestest(savedData.peakSeasonFeestest);
+        setAccountDetailstest(savedData.accountDetailstest);
+        setServiceDescriptiontest(savedData.serviceDescriptiontest);
+        setServiceOptionstest(savedData.serviceOptionstest);
+        setHolidays(savedData.holidays);
+        setNotice(savedData.notice);
+      }
+    };
+
   const onComplete = () => {
     setIsRegister(false);
     setComplete(true);
     registerVenue(); // 공연장 등록 API 호출
+    saveVenueData();
   };
 
   const closePopup = () => {
@@ -232,15 +302,6 @@ const VenueRegisterPage = () => {
     setComplete(false);
   };
 
-  // (노출되지 않는 정보 확인용) 탭 변경 시 콘솔 로그로 상태 출력 -> 주석처리
-  // useEffect(() => {
-  //   console.log("<!!탭 변경!!>");
-  //   console.log("비성수기 대관료:", offSeasonFeestest);
-  //   console.log("성수기 대관료:", peakSeasonFeestest);
-  //   console.log("계좌정보:", accountDetailstest);
-  //   console.log("추가서비스 옵션:", serviceOptionstest);
-  //   console.log("공연장타입:",Category);
-  // }, [selectedTab]);
 
   useEffect(() => {
   console.log("<탭 변경>");
@@ -262,7 +323,7 @@ const VenueRegisterPage = () => {
           />
         </div>
         <p className="venue-location">{venueLocation}</p>
-        <button className="registerbtn" onClick={onRegister}>
+        <button className="registerbtn" onClick={onComplete}>
           등록하기
         </button>
         {isRegister && <Popup_register prev={closePopup} next={onComplete} />}
@@ -378,7 +439,7 @@ const VenueRegisterPage = () => {
                 <Host_VenueSchedule
                   openPlaceModal={openPlaceModal}
                   updateHoliday={updateHoliday}
-                />
+              />
               </div>
               <div
                 style={{

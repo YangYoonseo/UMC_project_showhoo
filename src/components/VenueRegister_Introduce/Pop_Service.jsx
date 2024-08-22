@@ -60,11 +60,6 @@ const Pop_Service = ({ isOpen, onClose, onConfirm, initialDescription, initialOp
       return service;
     }).filter(service => service.name.trim() !== '' || service.price.trim() !== '');
 
-    if (filteredServices.length === 0) {
-      alert("유효한 서비스 항목이 없습니다.");
-      return;
-    }
-
     onConfirm(description, filteredServices);
     onClose(); // 팝업 닫기
     console.log(filteredServices);
