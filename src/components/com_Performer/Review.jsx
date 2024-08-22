@@ -20,14 +20,11 @@ const Review = () => {
 
   const myReview = async () => {
     try {
-      const response = await axios.get(
-        `${url}/review/performer/${performerId}`,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
+      const response = await axios.get(`${url}/review/performer/4`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
       setReviews(response.data.result);
       console.log("리뷰 보기", response.data.result);
     } catch (error) {
@@ -47,6 +44,7 @@ const Review = () => {
         },
       });
       console.log("리뷰삭제", response.data.message);
+      window.location.reload();
     } catch (error) {
       console.log("리뷰 삭제 에러", error);
     }
@@ -77,7 +75,12 @@ const Review = () => {
             )}
 
             <div className="content_button">
-              <p className="updatedAt">{review.updatedAt}</p>
+              <p className="updatedAt">{`${review.updatedAt
+                .split("T")[0]
+                .replace(/-/g, ".")} ${
+                review.updatedAt.split("T")[1].split(".")[0]
+              }`}</p>
+
               <button
                 onClick={() => {
                   setDeleteId(review.id);

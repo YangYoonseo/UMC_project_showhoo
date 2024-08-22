@@ -33,7 +33,7 @@ const Check = () => {
       try {
         const token = sessionStorage.getItem("accessToken");
         const response = await axios.get(
-          `http://ec2-3-34-248-63.ap-northeast-2.compute.amazonaws.com:8081/book/${audienceId}/ticket?page=${page}`,
+          `${url}/book/${audienceId}/ticket?page=${page}`,
           {
             headers: {
               Authorization: `Bearer ${token}`,
