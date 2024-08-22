@@ -34,7 +34,7 @@ import LikeBooking from "./pages/LikeBooking.jsx";
 import Login from "./Login.jsx";
 import { ProfileIdProvider } from "./components/com_Performer/ProfileProvider.jsx";
 
-// context 가져오기 
+// context 가져오기
 import { FacilityProvider } from "./components/VenueRegister_Introduce/FacilityContext.jsx";
 
 const token = sessionStorage.getItem("accessToken");
@@ -91,7 +91,7 @@ function App() {
         // Retry fetching after 3 seconds
         setTimeout(() => {
           window.location.reload();
-        }, 5000);
+        }, 3000);
       }
     };
 
@@ -121,7 +121,7 @@ function App() {
         // Retry fetching after 3 seconds
         setTimeout(() => {
           window.location.reload();
-        }, 5000);
+        }, 3000);
       }
     };
     MemberId(uid);
@@ -154,10 +154,10 @@ function App() {
                   element={<VenueDetailPage data={{ spaceId: 1 }} />}
                 />{" "}
                 {/* 공연자 플로우 */}
-                  <Route
-                    path="/venue_register"
-                    element={<VenueRegisterPage />}
-                  />{" "}
+                <Route
+                  path="/venue_register"
+                  element={<VenueRegisterPage />}
+                />{" "}
                 {/* 공연장 플로우 */}
                 <Route path="/login" element={<LoginPage />} />
                 <Route path="alarm" element={<Alarm />} />
