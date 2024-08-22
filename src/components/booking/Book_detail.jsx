@@ -105,23 +105,21 @@ const Book_detail = (
             setIsBook(false);
         };
 
-        const onPopupBook = () => {
+        const openPopup = (popupType) => {
+            // 모든 팝업 닫기
             setIsComplete(false);
+            setIsBook(false);
             setIsPayment(false);
-            setIsBook(true);
+        
+            // 특정 팝업 열기
+            if (popupType === 'book') {
+                setIsBook(true);
+            } else if (popupType === 'payment') {
+                setIsPayment(true);
+            } else if (popupType === 'complete') {
+                setIsComplete(true);
+            }
         };
-
-        const onPopupPayment = () => {
-            setIsComplete(false);
-            setIsBook(false);
-            setIsPayment(true);
-        }
-
-        const onPopupComplete = () => {
-            setIsBook(false);
-            setIsPayment(false);
-            setIsComplete(true);
-        }
 
         const onComplete = () => {
             uploadBookInf();
@@ -199,14 +197,15 @@ const Book_detail = (
                             </div>
                         </div>
                     }
-                    <Button text={"예매하기"} type={"green"} onClick={onPopupBook}/>
+                    <Button text={"예매하기"} type={"green"} onClick={()=> openPopup('book')}/>
                     {isBook && 
                         <Popup_book 
                             name={name} 
                             count={count} 
                             prev={closePopup} 
-                            next={onPopupPayment} 
+                            next={() => openPopup('payment')} 
                             handleBookInf={handleBookInf} 
+                            onBookComplete={() => setIsBook(false)}
                         />
                     }
                     {isPayment && 
@@ -214,8 +213,8 @@ const Book_detail = (
                             name={name} 
                             price={price} 
                             count={count} 
-                            prev={onPopupBook} 
-                            next={onPopupComplete} 
+                            prev={() => openPopup('book')} 
+                            next={() => openPopup('complete')} 
                             bookName={bookName} 
                             phoneNum={phoneNum}
                             bank={bank} 
