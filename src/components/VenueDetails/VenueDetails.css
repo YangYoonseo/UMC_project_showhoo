@@ -692,10 +692,16 @@ flex-grow: 0;
 
 /* 1번 : venue-introduction 컴포넌트 */
 .venue-introduction {
+  min-width: 650px;
+  min-height:1400px;
+  padding-right: 10px;
+
   position: absolute;
   width: 582px;
   left: 209px;
   top: 798px;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
 .venue-introduction h2 {
@@ -707,6 +713,7 @@ flex-grow: 0;
   color: #0F0F0F;
   display: flex;
   align-items: center;
+  margin-bottom: 0px;
 }
 
 .venue-introduction p {
@@ -718,6 +725,7 @@ flex-grow: 0;
   display: flex;
   align-items: center;
   color: #0F0F0F;
+  margin-bottom: 0px;
 }
 
 .venue-introduction .label {
@@ -728,6 +736,7 @@ flex-grow: 0;
   line-height: 36px;
   color: #9C9C9C;
   margin-right: 20px;
+  margin-bottom: -10px;
 }
 
 .venue-introduction .value {
@@ -737,6 +746,7 @@ flex-grow: 0;
   font-size: 20px;
   line-height: 36px;
   color: #4F4F4F;
+  margin-bottom: -10px;
 }
 
 .venue-introduction .value-list {
@@ -747,9 +757,14 @@ flex-grow: 0;
   line-height: 36px;
   color: #4F4F4F;
 
+  display: flex;
+  flex-direction: column;
+  list-style-type: disc; 
+  gap:5px;
+
   position: relative;
   left:60px;
-  top:-55px;
+  top:-65px;
   margin-bottom: -30px;
 } 
 
@@ -761,19 +776,27 @@ flex-grow: 0;
   line-height: 36px;
   color: #4F4F4F;
 
+  display: flex;
+  flex-direction: column;
+  list-style-type: disc; 
+  gap:5px;
+
   position: relative;
   left:100px;
   top:-55px;
   margin-bottom: -30px;
 } 
-
+.value-list-p{
+  margin-top: 0px;
+}
 .location-section2 {
-  margin-top: 40px;
+  margin-top: 60px;
 }
 
 .location-section2 h2 {
   font-size: 25px;
   margin-bottom: 20px;
+  margin-bottom: 5px;
 }
 
 .location-header2 {
