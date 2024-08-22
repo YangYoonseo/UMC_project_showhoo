@@ -10,7 +10,7 @@ import setList from "../../assets/img_Ready/setList.svg";
 import rentalTime from "../../assets/img_Ready/rentalTime.svg";
 import plus from "../../assets/img_Ready/plus.svg";
 
-const ReadyQsheet = ({ nextStep, check }) => {
+const ReadyQsheet = ({ nextStep, check, setShowId }) => {
     // 큐시트 form 업로드 확인 
     const [ qsheet, setQsheet ] = useState ([
         {
@@ -61,24 +61,26 @@ const ReadyQsheet = ({ nextStep, check }) => {
     };
 
     // 작성된 큐시트 다운 받기 
-    const showId = 1;
-
     async function getDownloadData() {
-        const token = sessionStorage.getItem("accessToken");
-        try {
-            const res = await axios.get(
-                `http://ec2-3-34-248-63.ap-northeast-2.compute.amazonaws.com:8081/space/${showId}/prepare`,
-                {
-                    headers: {
-                        Authorization: `Bearer ${token}`,
-                    },           
-                }
-            );
-            const { setList, rentalTime, addOrder } = res.data.result;
-            setUrls({ setList, rentalTime, addOrder });
-            console.log("다운로드 양식 보기", res.data);
-        } catch (error) {
-            console.log("Error:", error);
+        if (showId) {
+            const token = sessionStorage.getItem("accessToken");
+            try {
+                const res = await axios.get(
+                    `http://ec2-3-34-248-63.ap-northeast-2.compute.amazonaws.com:8081/space/${showId}/prepare`,
+                    {
+                        headers: {
+                            Authorization: `Bearer ${token}`,
+                        },           
+                    }
+                );
+                const { setList, rentalTime, addOrder } = res.data.result;
+                setUrls({ setList, rentalTime, addOrder });
+                console.log("다운로드 양식 보기", res.data);
+            } catch (error) {
+                console.log("Error:", error);
+            }
+        } else {
+            return;
         }
     };
 
@@ -96,9 +98,9 @@ const ReadyQsheet = ({ nextStep, check }) => {
                 <h4>업로드하기</h4>
                 <p>공연자가 대관을 위해 제출해야 할 신청서 및 양식을 업로드해주세요.</p>
                 <div className="submit_container">
-                    <ReadySubmit text={"공연 셋리스트"} id={"setList"} onCheck={onCheck}/>
-                    <ReadySubmit text={"대관 시간"} id={"rentalTime"} onCheck={onCheck} />
-                    <ReadySubmit text={"추가 주문 사항"} id={"plus"} onCheck={onCheck} />
+                    <ReadySubmit text={"공연 셋리스트"} id={"setList"} onCheck={onCheck} setShowId={setShowId} />
+                    <ReadySubmit text={"대관 시간"} id={"rentalTime"} onCheck={onCheck} setShowId={setShowId} />
+                    <ReadySubmit text={"추가 주문 사항"} id={"plus"} onCheck={onCheck} setShowId={setShowId} />
                 </div>
             </div>
             <div className="Qsheet_download">

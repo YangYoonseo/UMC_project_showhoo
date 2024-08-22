@@ -3,7 +3,7 @@ import { useState } from 'react';
 import submit from "../../assets/img_Ready/submit.svg";
 import ReadyUploader from "./readyUploader";
 
-const ReadySubmit = ({ text, id, onCheck }) => {
+const ReadySubmit = ({ text, id, onCheck, setShowId }) => {
     const [showUploader, setShowUploader] = useState(false);
     const [complete, setComplete] = useState(false);
 
@@ -27,7 +27,7 @@ const ReadySubmit = ({ text, id, onCheck }) => {
         <div className={`readySubmit readySubmit_${complete}`} onClick={onClick}>
             <img src={submit} alt="download" />
             <p>{text}</p>
-            {showUploader && <ReadyUploader onClose={closeModal} uploadSuc={uploadSuc} uploadFail={uploadFail} />}
+            {showUploader && <ReadyUploader onClose={closeModal} uploadSuc={uploadSuc} uploadFail={uploadFail} setShowId={setShowId} />}
         </div>
     )
 }

@@ -5,7 +5,7 @@ import { useLocation } from "react-router-dom";
 
 import axios from 'axios';
 
-const ReadyUploader = ({ onClose, uploadSuc, uploadFail, form }) => {
+const ReadyUploader = ({ onClose, uploadSuc, uploadFail, form, setShowId }) => {
     const [selectedFile, setSelectedFile] = useState(null);
     const [fileName, setFileName] = useState('선택된 파일 없음');
     const [data, setData] = useState('');
@@ -66,6 +66,7 @@ const ReadyUploader = ({ onClose, uploadSuc, uploadFail, form }) => {
                 }
             );
             console.log("업로드 성공:", res.data);
+            setShowId(res.data.result.showId);
             setData('');
         } catch (error) {
             console.error("업로드 실패:", error);
