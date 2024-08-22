@@ -12,7 +12,7 @@ const VenueDetailPage_NotFound = () => {
   const navigate = useNavigate();
 
   const goBack = () => {
-    navigate(-1); // 이전 페이지로 이동
+    navigate(-2); // 이전 페이지로 이동
   };
 
   return (

@@ -65,6 +65,10 @@ const FacilityInfo = ({ name,spaceId}) => {
   };
 
   const downloadFile = (fileName, fileUrl) => {
+    if (!fileUrl) {
+      console.warn(`${fileName} 파일이 존재하지 않습니다.`);
+      return; // 파일이 없으면 함수 종료
+    }
     const link = document.createElement('a');
     link.href = fileUrl;
     link.download = fileName;
@@ -74,6 +78,7 @@ const FacilityInfo = ({ name,spaceId}) => {
     document.body.removeChild(link); // 클릭 후 링크를 DOM에서 제거
   };
 
+  // 파일이 있을 때만 다운로드 되도록 수정
   return (
     <div className="facility-info">            
       <div className="Qsheet_download">
@@ -86,7 +91,7 @@ const FacilityInfo = ({ name,spaceId}) => {
               className="facility_download_item" 
               onMouseEnter={() => handleMouseEnter('device')}
               onMouseLeave={handleMouseLeave}
-              onClick={() => downloadFile('venue_device.pdf', facilityData.stageMachinery)}
+              onClick={() => facilityData.stageMachinery && downloadFile('venue_device.pdf', facilityData.stageMachinery)}
             >
               <img 
                 src={hovered === 'device' ? venue_device : venue_device} 
@@ -98,7 +103,7 @@ const FacilityInfo = ({ name,spaceId}) => {
               className="facility_download_item" 
               onMouseEnter={() => handleMouseEnter('light')}
               onMouseLeave={handleMouseLeave}
-              onClick={() => downloadFile('light_device.pdf', facilityData.lightingEquipment)}
+              onClick={() => facilityData.lightingEquipment && downloadFile('light_device.pdf', facilityData.lightingEquipment)}
             >
               <img 
                 src={hovered === 'light' ? light_device_hovered : light_device} 
@@ -110,7 +115,7 @@ const FacilityInfo = ({ name,spaceId}) => {
               className="facility_download_item" 
               onMouseEnter={() => handleMouseEnter('sound')}
               onMouseLeave={handleMouseLeave}
-              onClick={() => downloadFile('sound_device.pdf', facilityData.soundEquipment)}
+              onClick={() => facilityData.soundEquipment && downloadFile('sound_device.pdf', facilityData.soundEquipment)}
             >
               <img 
                 src={hovered === 'sound' ? sound_device_hovered : sound_device} 
@@ -122,7 +127,7 @@ const FacilityInfo = ({ name,spaceId}) => {
               className="facility_download_item" 
               onMouseEnter={() => handleMouseEnter('blueprint')}
               onMouseLeave={handleMouseLeave}
-              onClick={() => downloadFile('venue_blueprint.pdf', facilityData.spaceDrawing)}
+              onClick={() => facilityData.spaceDrawing && downloadFile('venue_blueprint.pdf', facilityData.spaceDrawing)}
             >
               <img 
                 src={hovered === 'blueprint' ? venue_blueprint_hovered : venue_blueprint} 
@@ -134,7 +139,7 @@ const FacilityInfo = ({ name,spaceId}) => {
               className="facility_download_item" 
               onMouseEnter={() => handleMouseEnter('pplguide')}
               onMouseLeave={handleMouseLeave}
-              onClick={() => downloadFile('venue_pplguide.pdf', facilityData.spaceStaff)}
+              onClick={() => facilityData.spaceStaff && downloadFile('venue_pplguide.pdf', facilityData.spaceStaff)}
             >
               <img 
                 src={hovered === 'pplguide' ? venue_pplguide_hovered : venue_pplguide} 
@@ -146,7 +151,7 @@ const FacilityInfo = ({ name,spaceId}) => {
               className="facility_download_item" 
               onMouseEnter={() => handleMouseEnter('seating')}
               onMouseLeave={handleMouseLeave}
-              onClick={() => downloadFile('seating_chart.pdf', facilityData.spaceSeat)}
+              onClick={() => facilityData.spaceSeat && downloadFile('seating_chart.pdf', facilityData.spaceSeat)}
             >
               <img 
                 src={hovered === 'seating' ? seating_chart_hovered : seating_chart} 

@@ -243,6 +243,12 @@ const VenueRegisterPage = () => {
   //   console.log("공연장타입:",Category);
   // }, [selectedTab]);
 
+  useEffect(() => {
+  console.log("<탭 변경>");
+  console.log("추가서비스 옵션:", serviceOptionstest);
+}, [selectedTab]);
+
+
   return (
     <div className="navfot">
       <Navbar_Concert />
