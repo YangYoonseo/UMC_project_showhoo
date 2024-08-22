@@ -12,7 +12,7 @@ const FacilityUploader = ({ onClose, uploadSuc, uploadFail, updateData }) => {
         setFileName(file ? file.name : '선택된 파일 없음');
     };
 
-    const handleFileUpload = () => {
+    const handleFileUpload = (event) => {
         if (!selectedFile) {
             console.log('No file selected, calling uploadNonComplete and onClose');
             uploadFail();
@@ -32,8 +32,9 @@ const FacilityUploader = ({ onClose, uploadSuc, uploadFail, updateData }) => {
             console.error('Error reading file', e);
             alert('파일을 읽는 중에 오류가 발생했습니다.');
         };
-        reader.readAsDataURL(selectedFile);
+        reader.readAsDataURL(selectedFile); // Base64 URL로 읽음
     };
+    
 
   return (
     <div className="backdrop">

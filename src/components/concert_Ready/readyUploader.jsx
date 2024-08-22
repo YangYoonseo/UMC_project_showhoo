@@ -2,7 +2,6 @@ import "../../styles/Eojin/readyUploader.css";
 import Button from "../common/Button";
 import React, { useState } from 'react';
 
-
 const ReadyUploader = ({ onClose, uploadSuc, uploadFail, setForm }) => {
     const [selectedFile, setSelectedFile] = useState(null);
     const [fileName, setFileName] = useState('선택된 파일 없음');
