@@ -5,7 +5,7 @@ import axios from "axios";
 import Navbar_Booking from "../components/common/Navbar_Booking";
 import Footer from "../components/common/Footer";
 import Book_component from "../components/booking/Book_component";
-// import Mockdata from "../components/booking/Mockdata";
+import Pagination from "../components/VenueRegister_Introduce/Pagination";
 
 import Star1 from "../assets/img_Ready/Star1.svg";
 import Star2 from "../assets/img_Ready/Star2.svg";
@@ -19,17 +19,24 @@ const Booking = () => {
   const [isOpen, setIsOpen] = useState(false);                      // 전체 공연 조회 페이지 || 상세설명 페이지 
   const [selectedConcert, setSelectedConcert] = useState(null);     // 선택된 공연 상태
   const [concerts, setConcerts] = useState([]);                     // 공연 리스트 
-  const [currentPage, setCurrentPage] = useState(0);                // 현재 페이지
-  const [totalPages, setTotalPages] = useState(0);                  // 전체 페이지 
+  const [currentPage, setCurrentPage] = useState(1);                // 현재 페이지
+  const [concertCount, setConcertCount] = useState(0);
+  const concertsPerPage = 8; // 한페이지 당 콘서트 수 
 
   // 전체 공연 리스트 API 연결 
-  const audienceId = 1;
+  const audienceId = sessionStorage.getItem("audienceId");
+  
+  // 검색어 입력 시 페이지를 0으로 설정하고 검색 API 호출
+  const handleSearch = (term) => {
+    setSearchTerm(term);
+    setCurrentPage(0);  // 검색어 입력 시 페이지 번호를 0으로 초기화
+  };
 
-  async function getDownloadData(page) {
+  async function getDownloadData() {
       const token = sessionStorage.getItem("accessToken");
       try {
           const res = await axios.get(
-              `http://ec2-3-34-248-63.ap-northeast-2.compute.amazonaws.com:8081/aud/${audienceId}?page=${page}`,
+              `http://ec2-3-34-248-63.ap-northeast-2.compute.amazonaws.com:8081/aud/${audienceId}`,
               {
                   headers: {
                       Authorization: `Bearer ${token}`,
@@ -38,29 +45,25 @@ const Booking = () => {
           );
           const totalConcert = res.data.result.showList;
           setConcerts(totalConcert);
-          setTotalPages(res.data.result.totalPages);
+          setConcertCount(totalConcert.length());
           console.log("다운로드 양식 보기", res.data);
       } catch (error) {
           console.log("Error:", error);
       }
   };
 
-  // 페이지가 바뀌거나 관람객이 바뀔 때 
+  // 전체 공연 게시물 조회 
   useEffect(() => {
-      getDownloadData(currentPage);
-  }, [currentPage, audienceId]);
-
-  // 검색 
-  const handleSearch = (term) => {
-    setSearchTerm(term);
-  };
+    getDownloadData()
+  }, []);
 
   // 공연 검색 리스트 API 연결 
-  async function getFilterData(page) {
+  async function getFilterData() {
     const token = sessionStorage.getItem("accessToken");
+    const search = searchTerm;
     try {
         const res = await axios.get(
-            `http://ec2-3-34-248-63.ap-northeast-2.compute.amazonaws.com:8081/aud/${audienceId}/search?page=${page}&request=${searchTerm}`,
+            `http://ec2-3-34-248-63.ap-northeast-2.compute.amazonaws.com:8081/aud/${audienceId}/search/${search}`,
             {
                 headers: {
                     Authorization: `Bearer ${token}`,
@@ -69,43 +72,20 @@ const Booking = () => {
         );
         const totalConcert = res.data.result.showList;
         setConcerts(totalConcert);
-        setTotalPages(res.data.result.totalPages);
+        setTotal(res.data.result);
+        setConcertCount(totalConcert.length());
         console.log("다운로드 양식 보기", res.data);
     } catch (error) {
         console.log("Error:", error);
     }
   };
+  // 현재 페이지에 해당하는 콘서트 데이터 계산
+  const indexOfLastConcert = currentPage * concertsPerPage;
+  const indexOfFirstConcert = indexOfLastConcert - concertsPerPage;
+  const currentConcerts = concerts.slice(indexOfFirstConcert, indexOfLastConcert);
 
-  // 검색하면 다시 첫 페이지가 뜨도록 하기 
-  useEffect(() => {
-    setCurrentPage(0);
-  }, [searchTerm]);
-
-  // 페이지가 바뀌거나 검색어가 바뀔 때 
-  useEffect(() => {
-      getFilterData(currentPage);
-  }, [currentPage, searchTerm]);
-
-  // 페이지 변경 
-  const handlePageChange = (page) => {
-    setCurrentPage(page);
-  };
-
-  // 페이지 번호 생성
-  const renderPageNumbers = () => {
-    const pageNumbers = [];
-    for (let i = 1; i <= totalPages; i++) {
-        pageNumbers.push(
-            <button
-                key={i}
-                onClick={() => handlePageChange(i-1)}
-            >
-                {i}
-            </button>
-        );
-    }
-    return pageNumbers;
-  };
+  // 페이지 번호 클릭 시 호출되는 함수
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   // 공연 상세 설명 API 연결 
   async function getFilterData(showsId) {
@@ -158,7 +138,7 @@ const Booking = () => {
             </div>
           </div>
           <div className="Booking_content">
-            {concerts.map((concert) => (
+            {currentConcerts.map((concert) => (
               <Book_component
                 key={concert.showsId}
                 id={concert.showsId}
@@ -169,6 +149,12 @@ const Booking = () => {
                 onClick={() => handleClick(concert.showsId)} // 클릭 핸들러 추가
               />
             ))}
+            <Pagination
+              reviewsPerPage={concertsPerPage}
+              totalReviews={concertCount}
+              paginate={paginate}
+              currentPage={currentPage}
+            />
           </div>
           <div className="pageNum">
             {renderPageNumbers()}
