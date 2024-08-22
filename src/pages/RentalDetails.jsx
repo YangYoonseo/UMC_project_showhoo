@@ -214,7 +214,21 @@ const RentalDetails = () => {
           <div className="information_video">
             <div className="Frame258">
               <img src={Frame22} alt="" />
-              <p>{selectedServicesTitle}</p>
+              <div className="selectedServicesTitle">
+                {Array.isArray(selectedServicesTitle) ? (
+                  selectedServicesTitle.length > 0 ? (
+                    selectedServicesTitle.map((title, index) => (
+                      <p key={index}>{`${title} `}</p>
+                    ))
+                  ) : (
+                    <p>추가 서비스 없음</p>
+                  )
+                ) : typeof selectedServicesTitle === "string" ? (
+                  <p>{selectedServicesTitle}</p>
+                ) : (
+                  <p>추가 서비스 없음</p>
+                )}
+              </div>
             </div>
           </div>
         </div>

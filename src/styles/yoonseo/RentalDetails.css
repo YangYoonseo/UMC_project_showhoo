@@ -280,7 +280,6 @@
 .information .information_video .Frame258 p {
   /* 공연 영상 제공 */
 
-  width: 168.24px;
   height: 25.35px;
   margin: 0px;
 
@@ -299,6 +298,12 @@
   flex: none;
   order: 1;
   flex-grow: 0;
+}
+
+.information .information_video .selectedServicesTitle {
+  display: flex;
+  justify-content: left;
+  gap: 10px;
 }
 
 .pay h4 {
