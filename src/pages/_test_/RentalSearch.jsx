@@ -14,7 +14,7 @@ const RentalSearch = () => {
   const hallsPerPage = 12; // 한 페이지에 표시할 콘서트홀 개수
 
   // 예시 데이터 (실제로는 API에서 받아와야 함)
-  const concertHalls = new Array(20).fill(null).map((_, i) => ({
+  const concertHalls = new Array(2).fill(null).map((_, i) => ({
     id: i + 1,
     name: `Concert Hall ${i + 1}`,
   }));

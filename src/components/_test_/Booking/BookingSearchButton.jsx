@@ -4,7 +4,7 @@ import "../../../styles/Jisu/BookingSearchButton.css";
 import SearchImg1 from "../../../assets/img_Booking/search_button.svg"; // size65용 이미지
 import SearchImg2 from "../../../assets/img_Booking/search_button_2.svg"; // size46용 이미지
 
-const BookingSearchButton = ({ size = '' }) => {
+const BookingSearchButton = ({ size = '' , onClick}) => {
     const nav = useNavigate();
     let imageSrc;
     switch (size) {
@@ -19,12 +19,14 @@ const BookingSearchButton = ({ size = '' }) => {
             break;
     }
 
+    {/*onClick={() => {
+                nav("/rental_search");
+     }} */}
+    
     return (
         <button
             className={`RentalSearchButton ${size}`}
-            onClick={() => {
-                nav("/rental_search");
-            }}
+            onClick={onClick} // 외부에서 전달받은 onClick 핸들러를 사용
         >
             <div className="SearchImg">
                 <img src={imageSrc} alt="SearchImg" />
