@@ -17,18 +17,15 @@ const RentalSearch = () => {
   const hallsPerPage = 12; // 한 페이지에 표시할 콘서트홀 개수
   const [concertHalls, setConcertHalls] = useState([]); // 콘서트홀 데이터 저장할 상태
 
-  // RentalSearchBar.jsx에서 전달된 검색 조건을 가져옵니다.
   const searchValues = location.state || {};
   console.log("전달된 검색 조건 :", searchValues);
 
   useEffect(() => {
     const baseUrl = "http://ec2-3-34-248-63.ap-northeast-2.compute.amazonaws.com:8081/spaces/search";
     
-    // 전달된 검색 조건으로 API 호출
     const fetchConcertHalls = async () => {
       try {
-        const response = await axios.get(
-          "http://ec2-3-34-248-63.ap-northeast-2.compute.amazonaws.com:8081/spaces/search", {
+        const response = await axios.get(baseUrl, {
           params: {
             name: searchValues.searchName || "",
             city: searchValues.selectedLocation?.Do || "",
@@ -39,8 +36,7 @@ const RentalSearch = () => {
         });
 
         setConcertHalls(response.data.result.spaceList || []);
-
-        console.log("[검색] 검색된 결과: ", response.data.result.spaceList)
+        console.log("[검색] 검색된 결과: ", response.data.result.spaceList);
       } catch (error) {
         console.error("[검색] API 호출 오류:", error);
       }
@@ -101,8 +97,12 @@ const RentalSearch = () => {
           </div>
         </div>
 
-        <button onClick={toggleCollapse} className="toggleButton">
-          {isCollapsed ? "콘서트홀 목록 보기" : "지도만 보기"}
+        {/* 버튼에 collapsed 클래스 추가 */}
+        <button  
+          onClick={toggleCollapse} 
+          className={`toggleButton ${isCollapsed ? "collapsed" : ""}`}
+        >
+          {isCollapsed ? ">" : "<"}
         </button>
       </div>
     </div>

@@ -2,7 +2,7 @@
 .RentalSearch {
     position: relative;
     width: 1440px;
-    height: 2150px;
+    height: 1850px;
     background: #ffffff;
     box-shadow: 0px 3px 6px rgba(18, 15, 40, 0.12);
 }
@@ -11,7 +11,7 @@
 .RentalSearchContent {
     position: absolute;
     width: 1440px;
-    height: 2115px;
+    height: 1806px;
     top: 81px;
     left: 0px;
     right: 0px;
@@ -67,6 +67,9 @@
 .ConcertHalls .HotConcertHall {
     width: 257px;
     height: 343px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .ConcertHalls .HotConcertHall .LikeAndImg {
@@ -92,7 +95,7 @@
 }
 
 .ConcertHalls .HotConcertHall .BottomInfo {
-    margin-bottom: 14px;
+    margin-bottom: 3px;
 }
 
 /* 페이지네이션 스타일 */
@@ -127,15 +130,29 @@
 
 /* 토글 버튼 스타일 */
 .toggleButton {
-    margin: 10px;
+    width: 54px;
+    height: 54px;
+    border-radius: 18px;
+    position: absolute;
+    box-shadow: 0px 2.88px 8.64px -1px #00000040;
+    top: 210px;
+    right: 470px;
+    /* 기본적으로 우측에 위치 */
     padding: 10px 20px;
-    background-color: #007BFF;
-    color: white;
+    background-color: #ffffff;
+    color: rgb(0, 0, 0);
     border: none;
-    border-radius: 50%;
     cursor: pointer;
+    z-index: 10;
+    /* 버튼이 다른 요소 위에 있도록 */
+    transition: right 0.3s, left 0.3s;
+    /* 애니메이션 효과 추가 */
 }
 
-.toggleButton:hover {
-    background-color: #0056b3;
+/* 토글 버튼이 좌측으로 이동하도록 상태에 따라 클래스 변경 */
+.toggleButton.collapsed {
+    right: auto;
+    left: 50px;
+    /* 좌측으로 이동 */
+    transition: position 0.3s
 }
