@@ -6,10 +6,9 @@ import ReviewPanel from './ReviewPanel';
 import default_profile_image from "../../assets/images/venuedetailpage/default_profile_image.svg";
 import delete_btn from "../../assets/images/venuedetailpage/delete_btn.svg";
 
-const Reviews = () => {
+const Reviews = ({ spaceId }) => {
   const [reviews, setReviews] = useState([]);
   const [averageScore, setAverageScore] = useState(0);
-  const spaceId = 4; // Replace with the actual spaceId
 
   const fetchReviews = async () => {
     try {
@@ -38,13 +37,14 @@ const Reviews = () => {
     <div className="venue-reviews">            
       <h4>후기 {reviews.length}개<span className="hightlight">&nbsp;•&nbsp;</span>평균 평점<span className="hightlight">&nbsp;{averageScore}</span></h4>
       
-      <ReviewPanel reviews={reviews} setReviews={setReviews} fetchReviews={fetchReviews} />
+      <ReviewPanel reviews={reviews} setReviews={setReviews} fetchReviews={fetchReviews} spaceId={spaceId}/>
 
       <div className="reviews-container">
           {reviews.map((review) => (
               <ReviewPanel
                   key={review.id}
                   id={review.id}
+                  spaceId={spaceId}
                   // 프로필 이미지와 사용자 이름, 이미지의 경우 일단 기본설정을 해놓음
                   profileImage={review.memberUrl || default_profile_image}
                   name={review.memberName || '사용자'}

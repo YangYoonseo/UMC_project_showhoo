@@ -4,7 +4,7 @@ import Navbar_Concert from "../components/common/Navbar_Concert";
 import Footer from "../components/common/Footer";
 import ReadyMain from "../components/concert_Ready/readyMain";
 
-const ConReady = ({ id }) => {
+const ConReady = () => {
     return (
         <div className="Ready">
             <Navbar_Concert />
