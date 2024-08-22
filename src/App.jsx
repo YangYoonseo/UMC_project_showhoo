@@ -34,6 +34,7 @@ import LikeBooking from "./pages/LikeBooking.jsx";
 import Login from "./Login.jsx";
 import { ProfileIdProvider } from "./components/com_Performer/ProfileProvider.jsx";
 import VenueDetailPage_NotFound from "./pages/VenueDetailPage_NotFound.jsx";
+import NotFound from "./pages/NotFound.jsx";
 
 // context 가져오기
 import { FacilityProvider } from "./components/VenueRegister_Introduce/FacilityContext.jsx";
@@ -166,6 +167,7 @@ function App() {
                 <Route path="/like_booking" element={<LikeBooking />} />
                 <Route path="/alarm_booking" element={<AlarmBooking />} />
                 <Route path="/alarm_concert" element={<AlarmConcert />} />
+                <Route path="*" element={<NotFound />} />
               </Routes>
             </div>
           </ProfileContext.Provider>
