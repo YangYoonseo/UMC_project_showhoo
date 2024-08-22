@@ -10,7 +10,12 @@ import setList from "../../assets/img_Ready/setList.svg";
 import rentalTime from "../../assets/img_Ready/rentalTime.svg";
 import plus from "../../assets/img_Ready/plus.svg";
 
-const ReadyQsheet = ({ nextStep, check, setShowId }) => {
+const ReadyQsheet = ({ nextStep, check, setShowId, showId }) => {
+    const location = useLocation();
+    console.log("location:", location);
+    const spaceApplyId = location.state.id || "받아오지 못함";
+    console.log("spaceApplyId:", spaceApplyId);
+
     // 큐시트 form 업로드 확인 
     const [ qsheet, setQsheet ] = useState ([
         {
@@ -19,6 +24,11 @@ const ReadyQsheet = ({ nextStep, check, setShowId }) => {
             plus: false,
         }
     ]);
+
+    const [ setListForm, setSetListForm ] = useState('');
+    const [ rentalTimeForm, setRentalTimeForm ] = useState('');
+    const [ addOrderForm, setAddOrderForm ] = useState('');
+
     // 작성된 큐시트 url 
     const [urls, setUrls] = useState({
         setList: '',
@@ -60,6 +70,51 @@ const ReadyQsheet = ({ nextStep, check, setShowId }) => {
         }
     };
 
+    // 큐시트 폼 업로드 하기 
+    async function getUploadData() {
+        if (setListForm && addOrderForm && rentalTimeForm) {
+            const token = sessionStorage.getItem("accessToken");
+
+            const getSetListForm = setListForm;
+            const getAddOrderForm = addOrderForm;
+            const getRentalTimeForm = rentalTimeForm;
+
+            const formData = new FormData();
+            formData.append("setListForm", JSON.stringify(getSetListForm));
+            formData.append("addOrderForm", JSON.stringify(getAddOrderForm));
+            formData.append("rentalTimeForm", JSON.stringify(getRentalTimeForm));
+
+            console.log("서버로 전송할 데이터:", formData);
+
+            try {
+                const res = await axios.post(
+                    `http://ec2-3-34-248-63.ap-northeast-2.compute.amazonaws.com:8081/space/${spaceApplyId}/prepare`,
+                    formData,
+                    {
+                        headers: {
+                            Authorization: `Bearer ${token}`,
+                            "Content-Type": "multipart/form-data",
+                        },           
+                    }
+                );
+
+                console.log("등록 결과:", res.data);
+                setShowId(res.data.result.showId);
+                console.log("showId:", showId);
+                alert("큐시트 폼 등록이 성공적으로 완료되었습니다.");
+            } catch (error) {
+                console.log("Error:", error);
+                alert("큐시트 폼 등록 중 오류가 발생했습니다.");
+            }
+        } else {
+            return;
+        }
+    };
+
+    useEffect(()=>{
+        getUploadData()
+    },[setListForm, addOrderForm, rentalTimeForm])
+
     // 작성된 큐시트 다운 받기 
     async function getDownloadData() {
         if (showId) {
@@ -98,9 +153,9 @@ const ReadyQsheet = ({ nextStep, check, setShowId }) => {
                 <h4>업로드하기</h4>
                 <p>공연자가 대관을 위해 제출해야 할 신청서 및 양식을 업로드해주세요.</p>
                 <div className="submit_container">
-                    <ReadySubmit text={"공연 셋리스트"} id={"setList"} onCheck={onCheck} setShowId={setShowId} />
-                    <ReadySubmit text={"대관 시간"} id={"rentalTime"} onCheck={onCheck} setShowId={setShowId} />
-                    <ReadySubmit text={"추가 주문 사항"} id={"plus"} onCheck={onCheck} setShowId={setShowId} />
+                    <ReadySubmit text={"공연 셋리스트"} id={"setList"} onCheck={onCheck} setSetListForm={setSetListForm}/>
+                    <ReadySubmit text={"대관 시간"} id={"rentalTime"} onCheck={onCheck} setListForm={setRentalTimeForm} />
+                    <ReadySubmit text={"추가 주문 사항"} id={"plus"} onCheck={onCheck} setAddOrderForm={setAddOrderForm} />
                 </div>
             </div>
             <div className="Qsheet_download">

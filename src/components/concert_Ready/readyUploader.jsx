@@ -9,10 +9,6 @@ const ReadyUploader = ({ onClose, uploadSuc, uploadFail, form, setShowId }) => {
     const [selectedFile, setSelectedFile] = useState(null);
     const [fileName, setFileName] = useState('선택된 파일 없음');
     const [data, setData] = useState('');
-    const location = useLocation();
-    console.log("location:", location);
-    const spaceApplyId = location.state.id || "받아오지 못함";
-    console.log("spaceApplyId:", spaceApplyId);
 
     const handleFileChange = (event) => {
         const file = event.target.files[0];

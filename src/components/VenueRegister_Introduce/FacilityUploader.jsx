@@ -22,9 +22,7 @@ const FacilityUploader = ({ onClose, uploadSuc, uploadFail, updateData }) => {
 
         const reader = new FileReader();
         reader.onload = (e) => {
-            // 파일이 성공적으로 로드되었을 때 처리
-            const fileContent = e.target.result.split(',')[1]; // Base64 인코딩된 문자열만 가져옴
-            updateData(fileContent);
+            updateData(selectedFile);
 
             console.log('File read successfully');
             uploadSuc();
