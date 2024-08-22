@@ -55,9 +55,9 @@ const Favorite = () => {
         {prefer.length === 0 ? (
           <p>관심 목록이 없습니다.</p> // 빈 상태 메시지
         ) : (
-          prefer.map((item) => (
+          prefer.map((item, index) => (
             <ConcertPrefer
-              key={item.index}
+              key={index}
               name={item.name}
               location={item.location}
               totalCapacity={item.totalCapacity}

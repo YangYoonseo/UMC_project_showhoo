@@ -6,11 +6,13 @@ import phoneIcon from "../../assets/img_Booking/Booking/phoneIcon.svg";
 import Button from "../common/Button";
 
 
-const Popup_book = ({ name, count, next, prev, handleBookInf }) => {
+const Popup_book = ({ name, count, next, prev, handleBookInf, onBookComplete }) => {
     const [bookinf, setBookinf] = useState({
         name: "",
         phoneNum: "",
     });
+
+    onBookComplete();
 
     const handleChange = (e) => {
         const { name, value } = e.target;

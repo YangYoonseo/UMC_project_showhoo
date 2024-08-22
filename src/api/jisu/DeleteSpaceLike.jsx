@@ -15,7 +15,7 @@ const DeleteSpaceLike = async (spacePreferId) => {
             }
         );
         // 디버깅
-        console.log(`공연장 찜 ID ${spacePreferId} 삭제 성공:`, response.data.result);
+        console.log(`공연장 찜 ID ${spacePreferId} 삭제 성공:`, response.data);
         return response.data;
     } catch (error) {
         console.error(`공연장 찜 ID ${spacePreferId} 삭제에 실패했습니다:`, error);

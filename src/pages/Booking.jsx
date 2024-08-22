@@ -5,7 +5,7 @@ import axios from "axios";
 import Navbar_Booking from "../components/common/Navbar_Booking";
 import Footer from "../components/common/Footer";
 import Book_component from "../components/booking/Book_component";
-// import Mockdata from "../components/booking/Mockdata";
+import Pagination from "../components/VenueRegister_Introduce/Pagination";
 
 import Star1 from "../assets/img_Ready/Star1.svg";
 import Star2 from "../assets/img_Ready/Star2.svg";
@@ -15,97 +15,80 @@ import Book_detail from "../components/booking/Book_detail";
 
 const Booking = () => {
   const [term, setTerm] = useState("");                             // 검색어 상태 
-  const [searchTerm, setSearchTerm] = useState("");                 // 검색어 
   const [isOpen, setIsOpen] = useState(false);                      // 전체 공연 조회 페이지 || 상세설명 페이지 
   const [selectedConcert, setSelectedConcert] = useState(null);     // 선택된 공연 상태
   const [concerts, setConcerts] = useState([]);                     // 공연 리스트 
-  const [currentPage, setCurrentPage] = useState(0);                // 현재 페이지
-  const [totalPages, setTotalPages] = useState(0);                  // 전체 페이지 
+  const [currentPage, setCurrentPage] = useState(1);                // 현재 페이지
+  const [currentConcerts, setCurrentConcerts] = useState([]);
+  const [concertCount, setConcertCount] = useState(0);
+  const concertsPerPage = 8; // 한페이지 당 콘서트 수 
 
   // 전체 공연 리스트 API 연결 
-  const audienceId = 1;
+  const audienceId = sessionStorage.getItem("audienceId");
 
-  async function getDownloadData(page) {
+  async function getDownloadData() {
       const token = sessionStorage.getItem("accessToken");
       try {
           const res = await axios.get(
-              `http://ec2-3-34-248-63.ap-northeast-2.compute.amazonaws.com:8081/aud/${audienceId}?page=${page}`,
+              `http://ec2-3-34-248-63.ap-northeast-2.compute.amazonaws.com:8081/aud/${audienceId}`,
               {
                   headers: {
                       Authorization: `Bearer ${token}`,
                   },           
               }
           );
-          const totalConcert = res.data.result.showList;
+          const totalConcert = res.data.result.showsList;
           setConcerts(totalConcert);
-          setTotalPages(res.data.result.totalPages);
+          const listSize = res.data.result.listSize;
+          setConcertCount(listSize);
           console.log("다운로드 양식 보기", res.data);
       } catch (error) {
           console.log("Error:", error);
       }
   };
 
-  // 페이지가 바뀌거나 관람객이 바뀔 때 
+  // 전체 공연 게시물 조회 
   useEffect(() => {
-      getDownloadData(currentPage);
-  }, [currentPage, audienceId]);
-
-  // 검색 
-  const handleSearch = (term) => {
-    setSearchTerm(term);
-  };
+    getDownloadData();
+  }, []);
 
   // 공연 검색 리스트 API 연결 
-  async function getFilterData(page) {
+  async function getFilterConcert() {
     const token = sessionStorage.getItem("accessToken");
+    const request = term;
     try {
         const res = await axios.get(
-            `http://ec2-3-34-248-63.ap-northeast-2.compute.amazonaws.com:8081/aud/${audienceId}/search?page=${page}&request=${searchTerm}`,
+            `http://ec2-3-34-248-63.ap-northeast-2.compute.amazonaws.com:8081/aud/${audienceId}/search/${encodeURIComponent(request)}`,
             {
                 headers: {
                     Authorization: `Bearer ${token}`,
                 },           
             }
         );
-        const totalConcert = res.data.result.showList;
+        const totalConcert = res.data.result.showsList;
         setConcerts(totalConcert);
-        setTotalPages(res.data.result.totalPages);
+        const listSize = res.data.result.listSize;
+        setConcertCount(listSize);
+        setCurrentPage(1); // 검색 후 페이지를 초기화
         console.log("다운로드 양식 보기", res.data);
     } catch (error) {
         console.log("Error:", error);
     }
   };
 
-  // 검색하면 다시 첫 페이지가 뜨도록 하기 
+  // 현재 페이지에 해당하는 콘서트 데이터 계산
   useEffect(() => {
-    setCurrentPage(0);
-  }, [searchTerm]);
-
-  // 페이지가 바뀌거나 검색어가 바뀔 때 
-  useEffect(() => {
-      getFilterData(currentPage);
-  }, [currentPage, searchTerm]);
-
-  // 페이지 변경 
-  const handlePageChange = (page) => {
-    setCurrentPage(page);
-  };
-
-  // 페이지 번호 생성
-  const renderPageNumbers = () => {
-    const pageNumbers = [];
-    for (let i = 1; i <= totalPages; i++) {
-        pageNumbers.push(
-            <button
-                key={i}
-                onClick={() => handlePageChange(i-1)}
-            >
-                {i}
-            </button>
-        );
+    if (concerts) {
+      const indexOfLastConcert = currentPage * concertsPerPage;
+      const indexOfFirstConcert = indexOfLastConcert - concertsPerPage;
+      const slicedConcerts = concerts.slice(indexOfFirstConcert, indexOfLastConcert);
+      setCurrentConcerts(slicedConcerts);
+      console.log("Sliced Concerts:", slicedConcerts); // 슬라이스된 콘서트 목록 출력
     }
-    return pageNumbers;
-  };
+  }, [concerts, currentPage]);
+
+  // 페이지 번호 클릭 시 호출되는 함수
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   // 공연 상세 설명 API 연결 
   async function getFilterData(showsId) {
@@ -153,12 +136,12 @@ const Booking = () => {
               value={term}
               onChange={(e) => setTerm(e.target.value)}
             />
-            <div className="img" onClick={handleSearch(term)}>
+            <div className="img" onClick={getFilterConcert}>
               <img className="search" src={search} alt="search" />
             </div>
           </div>
           <div className="Booking_content">
-            {concerts.map((concert) => (
+            {currentConcerts.map((concert) => (
               <Book_component
                 key={concert.showsId}
                 id={concert.showsId}
@@ -171,7 +154,12 @@ const Booking = () => {
             ))}
           </div>
           <div className="pageNum">
-            {renderPageNumbers()}
+            <Pagination
+              reviewsPerPage={concertsPerPage}
+              totalReviews={concertCount}
+              paginate={paginate}
+              currentPage={currentPage}
+            />
           </div>
         </div>
       )}
