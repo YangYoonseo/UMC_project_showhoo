@@ -61,7 +61,7 @@ const ReadyQsheet = ({ nextStep, check }) => {
     };
 
     // 작성된 큐시트 다운 받기 
-    const showId = 6;
+    const showId = 1;
 
     async function getDownloadData() {
         const token = sessionStorage.getItem("accessToken");
