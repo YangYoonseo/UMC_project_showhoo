@@ -11,7 +11,7 @@ import React, { useState } from "react";
 const RentalSearch = () => {
   const [isCollapsed, setIsCollapsed] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
-  const hallsPerPage = 3; // 한 페이지에 표시할 콘서트홀 개수
+  const hallsPerPage = 12; // 한 페이지에 표시할 콘서트홀 개수
 
   // 예시 데이터 (실제로는 API에서 받아와야 함)
   const concertHalls = new Array(20).fill(null).map((_, i) => ({
@@ -50,7 +50,7 @@ const RentalSearch = () => {
               </div>
               <div className="ConcertHalls">
                 {currentHalls.map((hall) => (
-                  <HotConcertHall key={hall.id} name={hall.name} />
+                  <HotConcertHall className="ConcertHallCss" key={hall.name} hall={hall} />
                 ))}
               </div>
               <div className="Pagination">

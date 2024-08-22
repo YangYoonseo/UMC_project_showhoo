@@ -29,6 +29,7 @@ const RoundButton = ({ className, topic, detail, index, isClicked, onClick, styl
                         style={{ color: inputTextColor }} // 입력 중일 때 텍스트 색상 변경
                         onFocus={handleFocus} 
                         onBlur={handleBlur} 
+                        placeholder="공연장 검색"
                     />
                 </div>
             ) : (
