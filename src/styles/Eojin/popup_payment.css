@@ -18,8 +18,8 @@ body {
 .payment_backdrop > .popup_payment {
     position: absolute;
     width: 698px;
-    height: 1010px;
-    top: 50%;
+    height: 1200px;
+    top: 700px;
     left: 50%;
     transform: translate(-50%, -50%);
   
@@ -98,6 +98,7 @@ body {
     font-weight: 400;
     font-size: 17px;
     border: none;
+    display: flex;
     align-items: center;
 }
 

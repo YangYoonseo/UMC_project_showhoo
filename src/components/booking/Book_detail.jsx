@@ -22,6 +22,7 @@ const Book_detail = (
         const [isComplete, setIsComplete] = useState(false);// 티켓 예매 팝업(완료)
         const [bookName, setBookName] = useState("");       // 티켓 예매자 이름
         const [phoneNum, setPhoneNum] = useState("");       // 티켁 예매자 전번
+
         // 판매 정보 
         const sell_inf = `
                 <strong>· 환불 안내</strong><br>
@@ -40,6 +41,7 @@ const Book_detail = (
                 "showsId": id,
             };
 
+            console.log("전송 데이터:", bookInf);
             const token = sessionStorage.getItem("accessToken");
         
             try {
@@ -53,9 +55,12 @@ const Book_detail = (
                         },
                     }
                 );
-                console.log("서버 응답:", response.data);
+                console.log("서버 응답:", response.data.isSuccess);
+                console.log(response.data.code, response.data.message);
+                alert("예매 완료");
             } catch (error) {
                 console.error("업로드 실패:", error);
+                alert("예매 실패");
             }
         };
 
@@ -103,6 +108,7 @@ const Book_detail = (
             setIsComplete(false);
             setIsPayment(false);
             setIsBook(false);
+            console.log("팝업창 닫기");
         };
 
         const openPopup = (popupType) => {
@@ -114,24 +120,21 @@ const Book_detail = (
             // 특정 팝업 열기
             if (popupType === 'book') {
                 setIsBook(true);
+                console.log("예매창");
             } else if (popupType === 'payment') {
                 setIsPayment(true);
+                console.log("결제창");
             } else if (popupType === 'complete') {
+                console.log("완료창");
+                uploadBookInf();
                 setIsComplete(true);
             }
         };
 
         const onComplete = () => {
-            uploadBookInf();
             setIsComplete(false);
             setIsBook(false);
             setIsPayment(false);
-        }
-
-        // 예매자 이름 + 전화번호 입력 
-        const handleBookInf = (name, phoneNum) => {
-            setBookName(name);
-            setPhoneNum(phoneNum);
         }
 
         return (
@@ -200,12 +203,12 @@ const Book_detail = (
                     <Button text={"예매하기"} type={"green"} onClick={()=> openPopup('book')}/>
                     {isBook && 
                         <Popup_book 
-                            name={name} 
+                            showname={name} 
                             count={count} 
                             prev={closePopup} 
                             next={() => openPopup('payment')} 
-                            handleBookInf={handleBookInf} 
-                            onBookComplete={() => setIsBook(false)}
+                            setBookName={setBookName}
+                            setPhoneNum={setPhoneNum}
                         />
                     }
                     {isPayment && 
