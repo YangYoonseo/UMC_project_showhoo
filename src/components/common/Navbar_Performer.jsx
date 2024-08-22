@@ -41,6 +41,15 @@ const Navbar_Perforemr = () => {
     }
   };
 
+  const handleRentalClick = () => {
+    const token = sessionStorage.getItem("accessToken");
+    if (token) {
+      nav("/rental_history");
+    } else {
+      nav("/login/oauth2/code/kakao");
+    }
+  };
+
   const handleReadyClick = () => {
     const token = sessionStorage.getItem("accessToken");
     if (token) {
@@ -71,12 +80,7 @@ const Navbar_Perforemr = () => {
           >
             공연장 대관
           </button>
-          <button
-            className="Button49"
-            onClick={() => {
-              nav("/rental_history");
-            }}
-          >
+          <button className="Button49" onClick={handleRentalClick}>
             대관 내역
           </button>
           <button className="Button50" onClick={handleReadyClick}>
