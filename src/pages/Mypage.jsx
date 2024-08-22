@@ -12,6 +12,7 @@ import SwitchRoles from "../components/common/SwitchRoles";
 
 const Mypage = () => {
   const url = "https://showhoo.site";
+  const dev = "http://localhost:8080";
   const nav = useNavigate();
   const performerId = sessionStorage.getItem("performerId");
   const [cancel, setCancel] = useState(false);

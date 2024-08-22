@@ -9,6 +9,7 @@ import axios from "axios";
 
 const Concerthall = ({ venue, className }) => {
   const url = "https://showhoo.site";
+  const nav = useNavigate();
 
   const getClassName = () => {
     switch (venue.status) {
@@ -90,7 +91,7 @@ const Concerthall = ({ venue, className }) => {
             <button
               className="prepare_button"
               onClick={() => {
-                nav("/concert_ready");
+                nav("/performer_ready");
               }}
             >
               준비 시작
