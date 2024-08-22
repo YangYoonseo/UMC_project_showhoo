@@ -6,7 +6,6 @@ import star from "../../assets/images/venueregisterpage_introduce/scoreStar.svg"
 
 const VenueInfo = ({ data, spaceId }) => {
   const [headerData, setHeaderData] = useState(null);
-  const yourAccessToken = sessionStorage.getItem("accessToken");
 
   useEffect(() => {
     const fetchVenueHeader = async () => {
@@ -21,7 +20,7 @@ const VenueInfo = ({ data, spaceId }) => {
     };
 
     fetchVenueHeader();
-  }, [spaceId, yourAccessToken]);
+  }, [spaceId]);
 
   if (!headerData) {
     return <div>Loading...</div>;
