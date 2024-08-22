@@ -34,7 +34,7 @@ const Receipt = ({ onPre, onNext, id, profile }) => {
   }, []);
 
   if (loading) {
-    return <p>로딩중</p>;
+    return <p></p>;
   }
 
   return (
