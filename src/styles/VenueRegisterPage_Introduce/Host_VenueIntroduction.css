@@ -233,6 +233,12 @@ label[for="service"] {
 .location-header {
     display: flex;
     align-items: center;
+    position: relative;
+  }
+
+  .location_register_here{
+    position: relative;
+    top:-7px;
   }
   
 .ex_map {

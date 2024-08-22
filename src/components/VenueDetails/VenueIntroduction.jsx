@@ -4,9 +4,9 @@ import axios from 'axios';
 import './VenueDetails.css';
 import ex_map from '../../assets/images/venueregisterpage_introduce/ex_map.svg';
 
-const VenueIntroduction = () => {
+const VenueIntroduction = ({ spaceId }) => {
   const [descriptionData, setDescriptionData] = useState(null);
-  const spaceId = 7;
+  //const spaceId = 7;
 
   useEffect(() => {
     const fetchVenueDescription = async () => {

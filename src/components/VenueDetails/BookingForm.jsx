@@ -17,7 +17,7 @@ import plusimg from "../../assets/images/venuedetailpage/plus_button.png";
 import checkOn from '../../assets/images/venuedetailpage/check_on.svg';
 import checkOff from '../../assets/images/venuedetailpage/check_off.svg';
 
-const BookingForm = () => {
+const BookingForm = ({ spaceId }) => {
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [showCalendar, setShowCalendar] = useState(false);
   const [expectedAudience, setExpectedAudience] = useState([0, 500]);
@@ -33,13 +33,13 @@ const BookingForm = () => {
   const [totalPrice, setTotalPrice] = useState(0);
   const [additionalServices1, setAdditionalServices1] = useState([]); 
   const navigate = useNavigate();
-  const spaceId = 7; // 실제 spaceId 값으로 교체 필요
+  //const spaceId = 7;
   const performerId = 1; // 실제 performerId 값으로 교체 필요
 
   useEffect(() => {
     fetchAdditionalServices(); // 추가서비스 목록 뽑아오기
     fetchRentalFee();
-  }, [selectedDate,selectedServices]); // selectedDate가 변경될 때마다 fetchRentalFee 호출
+  }, [selectedDate,selectedServices,spaceId]); // selectedDate가 변경될 때마다 fetchRentalFee 호출
 
 
   // 공연장 세부정보 공연장 소개 API 호출 -> 추가 서비스 목록만 뽑아오기
@@ -172,6 +172,8 @@ const BookingForm = () => {
       navigate("/login/oauth2/code/kakao");
     }
     else {
+      // 윤서 네비게이팅 설정 시 주석 처리한 부분으로 사용할 것
+      // navigate(`/rental_details/${spaceId}`, {
       navigate('/rental_details', {
         state: {
           selectedDate: selectedDate.toISOString().split('T')[0],

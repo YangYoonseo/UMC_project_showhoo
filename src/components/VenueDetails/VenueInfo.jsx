@@ -4,9 +4,8 @@ import axios from 'axios';
 import './VenueDetails.css';
 import star from "../../assets/images/venueregisterpage_introduce/scoreStar.svg";
 
-const VenueInfo = ({ data }) => {
+const VenueInfo = ({ data, spaceId }) => {
   const [headerData, setHeaderData] = useState(null);
-  const spaceId = 7; // 실제 spaceId 값으로 교체 필요
   const yourAccessToken = sessionStorage.getItem("accessToken");
 
   useEffect(() => {

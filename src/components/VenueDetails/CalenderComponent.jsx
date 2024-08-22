@@ -6,15 +6,15 @@ import "react-calendar/dist/Calendar.css";
 import { useState, useEffect } from "react";
 import axios from "axios";
 
-const CalenderComponent = () => {
+const CalenderComponent = ({ spaceId }) => {
     const [scheduleData, setScheduleData] = useState([]);
     const [holidayData, setHolidayData] = useState([]);
     const [date, setDate] = useState(new Date());
-    const spaceId = 7; // 실제 spaceId로 교체 가능
+    //const spaceId = 7; 
 
     useEffect(() => {
         fetchScheduleData();
-    }, []);
+    }, [spaceId]);
 
     const fetchScheduleData = async () => {
         try {
