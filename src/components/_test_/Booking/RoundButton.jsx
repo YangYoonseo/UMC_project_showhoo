@@ -10,7 +10,8 @@ const RoundButton = ({ topic, detail, index, isClicked, onClick, style, onOpenMo
                 onOpenModal(); // 모달 열기
             }}
             style={style}
-        >
+            >
+            
             <div className="topic">{topic}</div>
             <div className="detail">{detail}</div>
         </button>
