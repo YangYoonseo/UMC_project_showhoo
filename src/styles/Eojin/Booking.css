@@ -124,10 +124,3 @@ img {
     justify-content: space-around;
     align-items: center;
 }
-
-.pageNum button {
-    border: none;
-    display: none;
-    justify-content: center;
-    align-items: center;
-}

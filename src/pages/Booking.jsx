@@ -15,22 +15,16 @@ import Book_detail from "../components/booking/Book_detail";
 
 const Booking = () => {
   const [term, setTerm] = useState("");                             // 검색어 상태 
-  const [searchTerm, setSearchTerm] = useState("");                 // 검색어 
   const [isOpen, setIsOpen] = useState(false);                      // 전체 공연 조회 페이지 || 상세설명 페이지 
   const [selectedConcert, setSelectedConcert] = useState(null);     // 선택된 공연 상태
   const [concerts, setConcerts] = useState([]);                     // 공연 리스트 
   const [currentPage, setCurrentPage] = useState(1);                // 현재 페이지
+  const [currentConcerts, setCurrentConcerts] = useState([]);
   const [concertCount, setConcertCount] = useState(0);
   const concertsPerPage = 8; // 한페이지 당 콘서트 수 
 
   // 전체 공연 리스트 API 연결 
   const audienceId = sessionStorage.getItem("audienceId");
-  
-  // 검색어 입력 시 페이지를 0으로 설정하고 검색 API 호출
-  const handleSearch = (term) => {
-    setSearchTerm(term);
-    setCurrentPage(0);  // 검색어 입력 시 페이지 번호를 0으로 초기화
-  };
 
   async function getDownloadData() {
       const token = sessionStorage.getItem("accessToken");
@@ -43,9 +37,10 @@ const Booking = () => {
                   },           
               }
           );
-          const totalConcert = res.data.result.showList;
+          const totalConcert = res.data.result.showsList;
           setConcerts(totalConcert);
-          setConcertCount(totalConcert.length());
+          const listSize = res.data.result.listSize;
+          setConcertCount(listSize);
           console.log("다운로드 양식 보기", res.data);
       } catch (error) {
           console.log("Error:", error);
@@ -54,35 +49,43 @@ const Booking = () => {
 
   // 전체 공연 게시물 조회 
   useEffect(() => {
-    getDownloadData()
+    getDownloadData();
   }, []);
 
   // 공연 검색 리스트 API 연결 
-  async function getFilterData() {
+  async function getFilterConcert() {
     const token = sessionStorage.getItem("accessToken");
-    const search = searchTerm;
+    const request = term;
     try {
         const res = await axios.get(
-            `http://ec2-3-34-248-63.ap-northeast-2.compute.amazonaws.com:8081/aud/${audienceId}/search/${search}`,
+            `http://ec2-3-34-248-63.ap-northeast-2.compute.amazonaws.com:8081/aud/${audienceId}/search/${encodeURIComponent(request)}`,
             {
                 headers: {
                     Authorization: `Bearer ${token}`,
                 },           
             }
         );
-        const totalConcert = res.data.result.showList;
+        const totalConcert = res.data.result.showsList;
         setConcerts(totalConcert);
-        setTotal(res.data.result);
-        setConcertCount(totalConcert.length());
+        const listSize = res.data.result.listSize;
+        setConcertCount(listSize);
+        setCurrentPage(1); // 검색 후 페이지를 초기화
         console.log("다운로드 양식 보기", res.data);
     } catch (error) {
         console.log("Error:", error);
     }
   };
+
   // 현재 페이지에 해당하는 콘서트 데이터 계산
-  const indexOfLastConcert = currentPage * concertsPerPage;
-  const indexOfFirstConcert = indexOfLastConcert - concertsPerPage;
-  const currentConcerts = concerts.slice(indexOfFirstConcert, indexOfLastConcert);
+  useEffect(() => {
+    if (concerts) {
+      const indexOfLastConcert = currentPage * concertsPerPage;
+      const indexOfFirstConcert = indexOfLastConcert - concertsPerPage;
+      const slicedConcerts = concerts.slice(indexOfFirstConcert, indexOfLastConcert);
+      setCurrentConcerts(slicedConcerts);
+      console.log("Sliced Concerts:", slicedConcerts); // 슬라이스된 콘서트 목록 출력
+    }
+  }, [concerts, currentPage]);
 
   // 페이지 번호 클릭 시 호출되는 함수
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
@@ -133,7 +136,7 @@ const Booking = () => {
               value={term}
               onChange={(e) => setTerm(e.target.value)}
             />
-            <div className="img" onClick={handleSearch(term)}>
+            <div className="img" onClick={getFilterConcert}>
               <img className="search" src={search} alt="search" />
             </div>
           </div>
@@ -149,15 +152,14 @@ const Booking = () => {
                 onClick={() => handleClick(concert.showsId)} // 클릭 핸들러 추가
               />
             ))}
+          </div>
+          <div className="pageNum">
             <Pagination
               reviewsPerPage={concertsPerPage}
               totalReviews={concertCount}
               paginate={paginate}
               currentPage={currentPage}
             />
-          </div>
-          <div className="pageNum">
-            {renderPageNumbers()}
           </div>
         </div>
       )}
