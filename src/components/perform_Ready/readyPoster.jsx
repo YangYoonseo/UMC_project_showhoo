@@ -10,29 +10,29 @@ import SelectCalender from "./Datepicker/calender";
 import arrow from "../../assets/img_Ready/arrow.svg";
 
 const ReadyPoster = ({ preStep, nextStep, check }) => {
-  const [image, setImage] = useState(null);
-  const [imageUrl, setImageUrl] = useState(null);
-  const [selectedDate1, setSelectedDate1] = useState(null);
-  const [selectedDate2, setSelectedDate2] = useState(null);
-  const [isDatePickerOpen1, setIsDatePickerOpen1] = useState(false);
-  const [isDatePickerOpen2, setIsDatePickerOpen2] = useState(false);
+  const [image, setImage] = useState(null);     // 포스터 이미지 파일
+  const [imageUrl, setImageUrl] = useState(null);   // 포스터 이미지 URL
+  const [selectedDate1, setSelectedDate1] = useState(null);   // 공연 날짜 입력값
+  const [selectedDate2, setSelectedDate2] = useState(null);   //예매취소기한 입력값 
+  const [isDatePickerOpen1, setIsDatePickerOpen1] = useState(false);    // 공연 날짜 팝업창
+  const [isDatePickerOpen2, setIsDatePickerOpen2] = useState(false);    // 예매 기한 취소 날짜 팝업창 
+  const [name, setName] = useState("");   // 공연명 
+  const [date, setDate] = useState("");   // 공연 날짜
+  const [time, setTime] = useState("");   // 공연 시간
+  const [runningTime, setRunningTime] = useState("");   // 러닝 타임
+  const [cancelDate, setCancelDate] = useState("");   // 예매취소기한 날짜
+  const [cancelTime, setCancelTime] = useState("");   // 예매취소기한 시간
+
   // CKEditor에서 받아올 데이터 
-  const [descriptionDTO, setDescriptionDTO] = useState('');
-  const [imgData, setImgData] = useState(new FormData());
+  const [text, setText] = useState('');   // 상세내용 text 
+  const [imgData, setImgData] = useState(null);  // 상세내용 image 
 
-  const [formData, setFormData] = useState({
-    name: "",
-    date: "",
-    time: "",
-    runningTime: "",
-    cancelDate: "",
-    cancelTime: "",
-  });
-
+  //기기에서 업로드 링크 
   const handleUploadClick = () => {
     document.getElementById("file-input").click();
   };
 
+  // 포스터 파일 받아오기 
   const handleFileChange = (event) => {
     const file = event.target.files[0];
     if (file && (file.type === "image/jpeg" || file.type === "image/png")) {
@@ -43,7 +43,8 @@ const ReadyPoster = ({ preStep, nextStep, check }) => {
     }
   };
 
-const getPosterUrl = async () => {
+  // Poster Url 받아오는 함수 
+  const getPosterUrl = async () => {
     const token = sessionStorage.getItem("accessToken");
 
     const formData = new FormData();
@@ -69,71 +70,90 @@ const getPosterUrl = async () => {
           console.error("업로드 실패:", res.data.message);
           alert(`Upload failed: ${res.data.message}`);
       }
-  } catch (error) {
+    } catch (error) {
       console.error("업로드 실패:", error);
       alert("An error occurred during the upload.");
+    }
+  };
+
+ // 날짜 변환 함수 
+  const formatDate = (data) => {
+    // 날짜를 'YYYY-MM-DD' 형식으로 변환
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, '0'); // 월은 0부터 시작하므로 +1
+    const day = String(date.getDate()).padStart(2, '0');
+
+    return `${year}-${month}-${day}`;
   }
-};
+  // 시간 변환 함수 
+  const formatTime = (data) => {
+    // 시간 'HH-MM' 형식으로 변환
+    const hours = String(data.getHours()).padStart(2, '0');
+    const minutes = String(data.getMinutes()).padStart(2, '0');
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prevData) => ({
-      ...prevData,
-      [name]: value,
-    }));
-  };
+    return `${hours}:${minutes}`;
+  }
 
-  const handleDateChange1 = (date) => {
-    setSelectedDate1(date);
-    setFormData((prevData) => ({
-      ...prevData,
-      date: format(date, "yyyy-MM-dd HH:mm"), // 원하는 형식으로 날짜 저장
-      time: date.toLocaleTimeString(), // 원하는 형식으로 시간 저장
-    }));
+  // 공연 날짜 정하는 함수 
+  const handleDateChange1 = (data) => {
+    setSelectedDate1(data);
+    setDate(formatDate(data));
+    setTime(formatTime(data));
     setIsDatePickerOpen1(false); // 선택 후 DatePicker 닫기
-    console.log(formData);
+    console.log(date, time);
   };
 
-  const handleDateChange2 = (date) => {
-    setSelectedDate2(date);
-    setFormData((prevData) => ({
-      ...prevData,
-      cancelDate: format(date, "yyyy-MM-dd HH:mm"), // 원하는 형식으로 날짜 저장
-      cancelTime: date.toLocaleTimeString(), // 원하는 형식으로 시간 저장
-    }));
+  // 예매 취소 기한 정하는 함수 
+  const handleDateChange2 = (data) => {
+    setSelectedDate2(data);
+    setCancelDate(formatDate(data));
+    setCancelTime(formatTime(data))
     setIsDatePickerOpen2(false); // 선택 후 DatePicker 닫기
-    console.log(formData);
+    console.log(cancelDate, cancelTime);
   };
 
+  // 공연 날짜 정하는 팝업창 열기 
   const toggleDatePicker1 = () => {
     setIsDatePickerOpen1(!isDatePickerOpen1);
   };
 
+  // 예매 취소 기한 정하는 팝업창 열기 
   const toggleDatePicker2 = () => {
     setIsDatePickerOpen2(!isDatePickerOpen2);
   };
 
+
+  // 공연 포스터 및 정보에 대한 데이터 API 연결
   const performerProfileId = 1;
 
   const uploadInf = async () => {
     const token = sessionStorage.getItem("accessToken");
 
-    // FormData 객체 생성
-    const formDataToSend = new FormData();
+    const getName = name;
+    const getUrl = imageUrl;
+    const getDate = date;
+    const getTime = time;
+    const getRunningTime = runningTime;
+    const getCancelDate = cancelDate;
+    const getCancelTime = cancelTime;
 
-    // showRequestDTO 객체를 FormData에 추가
-    formDataToSend.append("showRequestDTO", new Blob([JSON.stringify(formData)], { type: "application/json" }));
-
-    // poster 이미지 URL을 FormData에 추가
-    formDataToSend.append("poster", imageUrl);
+    const formData = {
+      "name": getName,
+      "posterUrl": getUrl,
+      "date": getDate,
+      "time": getTime,
+      "runningTime": getRunningTime,
+      "cancelDate": getCancelDate,
+      "cancelTime": getCancelTime
+    }
 
     try {
         const res = await axios.post(
             `https://showhoo.site/${performerProfileId}/show-register`,
-            formDataToSend, // 서버로 전송할 FormData
+            formData, // 서버로 전송할 FormData
             {
                 headers: {
-                    "Content-Type": "multipart/form-data", // 데이터를 multipart/form-data로 전송
+                    "Content-Type": "application/json", // 데이터를 multipart/form-data로 전송
                     Authorization: `Bearer ${token}`,
                 },
             }
@@ -145,22 +165,31 @@ const getPosterUrl = async () => {
         console.error("업로드 실패:", error);
         alert("An error occurred during the upload.");
     }
-};
+  };
 
-// CKEditor에서 받아올 내용
-const handleContentChange = (content) => {
-    setDescriptionDTO(content);
-};
+  // CKEditor에서 받아올 내용
+  const handleContentChange = (content) => {
+      setText(content);
+  };
 
-const showId = 1;
+  // 서버에 상세내용 보내기 API 연결 
+  const showId = 1;
 
-// 서버에 상세내용 보내기 
-const uploadDes = async () => {
+  const uploadDes = async () => {
     const token = sessionStorage.getItem("accessToken");
 
     // FormData에 데이터 추가
     const formData = new FormData();
-    formData.append('descriptionDTO', descriptionDTO);
+    const descriptionDTO = {
+      "showId": showId,
+      "text": text
+    }
+
+    const img = imgData;
+    formData.append("descriptionDTO", JSON.stringify(descriptionDTO));
+    formData.append("img", img);
+
+    console.log("서버로 전송할 데이터:", formData);
 
     try {
         const response = await axios.post(
@@ -177,7 +206,7 @@ const uploadDes = async () => {
     } catch (error) {
         console.error("업로드 실패:", error);
     }
-};
+  };
 
   return (
     <div className="ReadyPoster">
@@ -219,11 +248,11 @@ const uploadDes = async () => {
             className="inf_concertName"
             type="text"
             placeholder="공연명"
-            onChange={handleChange}
-            name="name"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
           />
           <div className="inf_date" onClick={toggleDatePicker1}>
-            {selectedDate1 ? <p>{formData.date1}</p> : <p>공연 날짜</p>}
+            {selectedDate1 ? <p>{date} {time}</p> : <p>공연 날짜</p>}
             <img className="arrow" src={arrow} alt="arrow" />
           </div>
           {isDatePickerOpen1 && (
@@ -236,11 +265,11 @@ const uploadDes = async () => {
             className="inf_runningTime"
             type="text"
             placeholder="러닝 타임(분 기준)"
-            onChange={handleChange}
-            name="runningTime"
+            value={runningTime}
+            onChange={(e) => setRunningTime(e.target.value)}
           />
           <div className="inf_cancel" onClick={toggleDatePicker2}>
-            {selectedDate2 ? <p>{formData.date2}</p> : <p>예매 취소 기한</p>}
+            {selectedDate2 ? <p>{cancelDate} {cancelTime}</p> : <p>예매 취소 기한</p>}
             <img className="arrow" src={arrow} alt="arrow" />
           </div>
           {isDatePickerOpen2 && (

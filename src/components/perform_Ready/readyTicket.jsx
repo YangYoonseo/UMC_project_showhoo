@@ -4,28 +4,41 @@ import Button from "../common/Button";
 
 
 const ReadyDetail = ({ preStep, nextStep }) => {
-    const [price, setPrice] = useState(0);
-    const [quantity, setQuantity] = useState(0);
-    const [count, setCount] = useState(0);
+    const [bank, setBank] = useState('');
+    const [accountHolder, setAccountHolder] = useState('');
+    const [accountNum, setAccountNum] = useState('');
+    const [ticketNum, setTicketNum] = useState(0);
+    const [ticketPrice, setTicketPrice] = useState(0);
+    const [perMaxticket, setPermaxticket] = useState(0);
 
-    const [ticket, setTicket] = useState({
-            bank: '',
-            accountHolder: '',
-            accountNum: '',
-            ticketPrice: price,
-            ticketNum: quantity,
-            perMaxticket: count
-    })
-
+    // 티켓 발행 등록 API 연결 
     const showId = 1;
 
     const uploadTicket = async () => {
         const token = sessionStorage.getItem("accessToken");
 
+        const getBank = bank;
+        const getAccountHolder = accountHolder;
+        const getAccountNum = accountNum;
+        const getTicketNum = ticketNum;
+        const getTicketPrice = ticketPrice;
+        const getPerMaxticket = perMaxticket;
+
+        const formData = {
+            "bank": getBank,
+            "accountHolder": getAccountHolder,
+            "accountNum": getAccountNum,
+            "ticketNum": getTicketNum,
+            "ticketPrice": getTicketPrice,
+            "perMaxticket": getPerMaxticket
+        }
+
+        console.log("서버로 전송할 데이터:", formData);
+
         try {
             const res = await axios.post(
                 `https://showhoo.site/${showId}/ticket-register`,
-                ticket,
+                formData,
                 {
                     headers: {
                         "Content-Type": "application/json",
@@ -41,19 +54,11 @@ const ReadyDetail = ({ preStep, nextStep }) => {
     };
 
     const increase = () => {
-        setCount(count + 1); // 숫자 증가
+        setPermaxticket(perMaxticket + 1); // 숫자 증가
     };
     
       const decrease = () => {
-        setCount(count - 1); // 숫자 감소
-    };
-
-    const handleChange = (e) => {
-        const { name, value } = e.target;
-        setTicket((prevData) => ({
-          ...prevData,
-          [name]: value
-        }));
+        setPermaxticket(perMaxticket - 1); // 숫자 감소
     };
     
     return (
@@ -66,10 +71,28 @@ const ReadyDetail = ({ preStep, nextStep }) => {
                         <h5>계좌번호 입력</h5>
                         <p>계좌 번호를 적어주세요. (ex. 우리 전채운 1002061254000)</p>
                         <div className="Account_table">
-                            <input className="bank" type="text" placeholder="은행명" name="bank" onChange={handleChange} />
-                            <input className="accountHolder" type="text" placeholder="예금주" name="accountHoloder" onChange={handleChange} />
+                            <input 
+                                className="bank" 
+                                type="text" 
+                                placeholder="은행명" 
+                                value="bank"
+                                onChange={(e) => setBank(e.target.value)} 
+                            />
+                            <input 
+                                className="accountHolder" 
+                                type="text" 
+                                placeholder="예금주" 
+                                name="accountHolder" 
+                                onChange={(e) => setAccountHolder(e.target.value)} 
+                            />
                         </div>
-                        <input className="account" type="text" placeholder="계좌번호" name="accountNum" onChange={handleChange} />
+                        <input 
+                            className="account" 
+                            type="text" 
+                            placeholder="계좌번호" 
+                            name="accountNum" 
+                            onChange={(e) => setAccountNum(e.target.value)} 
+                        />
                     </div>
                     <div className="Ticket_num">
                         <div className="Ticket_input1">
@@ -77,7 +100,7 @@ const ReadyDetail = ({ preStep, nextStep }) => {
                                 <h5>티켓 가격</h5>
                                 <p>송금받을 티켓 가격을 써주세요.</p>
                                 <div className="input">
-                                    <input className="input-left" onChange={(e) => setPrice(e.target.value)} />
+                                    <input className="input-left" onChange={(e) => setTicketPrice(e.target.value)} />
                                     <span className="unit"> 원</span>
                                 </div>
                             </div>
@@ -85,7 +108,7 @@ const ReadyDetail = ({ preStep, nextStep }) => {
                                 <h5>발행 매수</h5>
                                 <p>공연장의 최대 수용 인원만큼 가능해요.</p>
                                 <div className="input">
-                                    <input type="number" className="input-left" onChange={(e) => setQuantity(e.target.value)} />
+                                    <input type="number" className="input-left" onChange={(e) => setTicketNum(e.target.value)} />
                                     <span className="unit"> 매</span>
                                 </div>
                             </div>
@@ -93,7 +116,7 @@ const ReadyDetail = ({ preStep, nextStep }) => {
                         <div className="Ticket_limit">
                             <h5>1인당 구매 가능 매수 제한</h5>
                             <button onClick={decrease}>-</button>
-                            <span className="counter_value">{count}</span>
+                            <span className="counter_value">{perMaxticket}</span>
                             <button onClick={increase}>+</button>
                         </div>
                     </div>

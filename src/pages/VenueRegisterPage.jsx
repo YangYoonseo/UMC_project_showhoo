@@ -34,7 +34,7 @@ const VenueRegisterPage = () => {
   const [venueLocation, setVenueLocation] = useState("공연장 위치");
   const [uploadedImages, setUploadedImages] = useState([]);
   const [isRegister, setIsRegister] = useState(false);
-  const [isComplete, setComplete] = useState(false);
+  const [isComplete, setIsComplete] = useState(false);
   
 
 
@@ -50,7 +50,7 @@ const VenueRegisterPage = () => {
   const [accountDetailstest, setAccountDetailstest] = useState({});
   const [serviceDescriptiontest, setServiceDescriptiontest] = useState("");
   const [serviceOptionstest, setServiceOptionstest] = useState([]);
-  const [holidays, setHolidays] = useState();
+  const [holidays, setHolidays] = useState([]);
   const [notice, setNotice] = useState("");
 
 
@@ -64,6 +64,12 @@ const VenueRegisterPage = () => {
     spaceDrawing,
     spacestaff,
     spaceSeat,
+    setStageMachinery, 
+    setSoundEquipment, 
+    setLightingEquipment, 
+    setSpaceDrawing, 
+    setSpacestaff, 
+    setSpaceSeat 
   } = useContext(FacilityContext);
 
   // 1. spaceId에 따른 초기화 로직 추가
@@ -92,8 +98,14 @@ const resetVenueData = () => {
   setAccountDetailstest({});
   setServiceDescriptiontest("");
   setServiceOptionstest([]);
-  setHolidays(null);
+  setHolidays([]);
   setNotice("");
+  setStageMachinery(''); 
+  setSoundEquipment(''); 
+  setLightingEquipment(''); 
+  setSpaceDrawing(''); 
+  setSpacestaff(''); 
+  setSpaceSeat('');
 };
 
   //spaceUserId 연결
@@ -208,13 +220,13 @@ const resetVenueData = () => {
         "spaceRegisterRequestDTO",
         JSON.stringify(spaceRegisterRequestDTO)
       );
-      formData.append("soundEquipment", JSON.stringify(getsoundEquipment));
+      formData.append("soundEquipment", getsoundEquipment);
       formData.append("lightingEquipment", getlightingEquipment);
       formData.append("stageMachinery", getstageMachinery);
       formData.append("spaceDrawing", getspaceDrawing);
       formData.append("spacestaff", getspacestaff);
       formData.append("spaceSeat", getspaceSeat);
-
+      
       console.log("서버로 전송할 데이터:", formData);
 
       // API 요청
@@ -264,6 +276,12 @@ const resetVenueData = () => {
       serviceOptionstest,
       holidays,
       notice,
+      soundEquipment,
+      lightingEquipment,
+      stageMachinery,
+      spaceDrawing,
+      spacestaff,
+      spaceSeat,
     };
     localStorage.setItem("savedVenueData", JSON.stringify(venueData));
   };
@@ -287,6 +305,12 @@ const resetVenueData = () => {
         setServiceOptionstest(savedData.serviceOptionstest);
         setHolidays(savedData.holidays);
         setNotice(savedData.notice);
+        setStageMachinery(savedData.stageMachinery); 
+        setSoundEquipment(savedData.soundEquipment); 
+        setLightingEquipment(savedData.lightingEquipment); 
+        setSpaceDrawing(savedData.spaceDrawing); 
+        setSpacestaff(savedData.spacestaff);
+        setSpaceSeat(savedData.spaceSeat);
 
         console.log("저장된 데이터 불러오기:", savedData);
       }
@@ -294,14 +318,14 @@ const resetVenueData = () => {
 
   const onComplete = () => {
     setIsRegister(false);
-    setComplete(true);
+    setIsComplete(true);
     registerVenue(); // 공연장 등록 API 호출
     saveVenueData();
   };
 
   const closePopup = () => {
     setIsRegister(false);
-    setComplete(false);
+    setIsComplete(false);
   };
 
 
@@ -431,6 +455,7 @@ const resetVenueData = () => {
                 <Host_VenueNotice
                   openPlaceModal={openPlaceModal}
                   updateNotice={updateNotice}
+                  notice={notice}
                 />
               </div>
               <div
@@ -441,6 +466,7 @@ const resetVenueData = () => {
                 <Host_VenueSchedule
                   openPlaceModal={openPlaceModal}
                   updateHoliday={updateHoliday}
+                  holidays={holidays}
               />
               </div>
               <div

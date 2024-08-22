@@ -1,5 +1,6 @@
 import "../../styles/Eojin/readyQsheet.css";
 import { useState,useEffect } from "react";
+import { useLocation } from "react-router-dom";
 import axios from 'axios';
 
 import Button from "../common/Button";
@@ -25,8 +26,13 @@ const ReadyQsheet = ({ nextStep, check }) => {
         addOrderForm: ''
     });
 
+    const [ setList, setSetList ] = useState('');
+    const [ rentalTime, setRentalTime ] = useState('');
+    const [ addOrder, setAddOrder ] = useState('');
+
     const showId = 6;
 
+    // 다운로드 양식 받기 
     async function getDownloadData() {
         const token = sessionStorage.getItem("accessToken");
         try {
@@ -50,9 +56,55 @@ const ReadyQsheet = ({ nextStep, check }) => {
         getDownloadData();
     }, []);
 
-    useEffect(() => {
-        console.log(urls)
-    }, [urls]);
+    const location = useLocation();
+    console.log("location:", location);
+    const spaceApplyId = location.state.id || "받아오지 못함";
+    console.log("spaceApplyId:", spaceApplyId);
+
+    // 큐시트 업로드 하기 
+    async function getUploadData() {
+        if (setList && addOrder && rentalTime) {
+            const token = sessionStorage.getItem("accessToken");
+
+            const getSetList = setList;
+            const getAddOrder = addOrder;
+            const getRentalTime = rentalTime;
+
+            const formData = new FormData();
+            formData.append("setList", JSON.stringify(getSetList));
+            formData.append("addOrder", JSON.stringify(getAddOrder));
+            formData.append("rentalTime", JSON.stringify(getRentalTime));
+
+            console.log("서버로 전송할 데이터:", formData);
+
+            try {
+                const res = await axios.post(
+                    `https://showhoo.site/performer/${spaceApplyId}/prepare`,
+                    formData,
+                    {
+                        headers: {
+                            Authorization: `Bearer ${token}`,
+                            "Content-Type": "multipart/form-data",
+                        },           
+                    }
+                );
+
+                console.log("등록 결과:", res.data);
+                setShowId(res.data.result.showId);
+                console.log("showId:", showId);
+                alert("큐시트 폼 등록이 성공적으로 완료되었습니다.");
+            } catch (error) {
+                console.log("Error:", error);
+                alert("큐시트 폼 등록 중 오류가 발생했습니다.");
+            }
+        } else {
+            return;
+        }
+    };
+
+    useEffect(()=>{
+        getUploadData()
+    },[setList, addOrder, rentalTime])
 
     const onCheck = (id) => {
         setQsheet(prevState => {
@@ -100,9 +152,9 @@ const ReadyQsheet = ({ nextStep, check }) => {
             <div className="Qsheet_submit">
                 <h4>제출하기</h4>
                 <div className="submit_container">
-                    <ReadySubmit text={"공연 셋리스트"} id={"setList"} onCheck={onCheck} name="setListForm" />
-                    <ReadySubmit text={"대관 시간"} id={"rentalTime"} onCheck={onCheck} name="rentalTimeForm" />
-                    <ReadySubmit text={"추가 주문 사항"} id={"plus"} onCheck={onCheck} name="addOrderForm" />
+                    <ReadySubmit text={"공연 셋리스트"} id={"setList"} onCheck={onCheck} name="setListForm" setForm={setSetList} />
+                    <ReadySubmit text={"대관 시간"} id={"rentalTime"} onCheck={onCheck} name="rentalTimeForm" setForm={setRentalTime} />
+                    <ReadySubmit text={"추가 주문 사항"} id={"plus"} onCheck={onCheck} name="addOrderForm" setForm={setAddOrder} />
                 </div>
             </div>
             <div className="Qsheet_button">

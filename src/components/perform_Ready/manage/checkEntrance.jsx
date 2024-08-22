@@ -4,43 +4,81 @@ import { useTable } from 'react-table';
 import checkbox from "../../../assets/img_Ready/checkbox.svg";
 import check from "../../../assets/img_Ready/check.svg";
 
-const initialData = [
-  { orderNumber: 'A001', name: '홍길동', phone: '010-1234-5678', isApproved: true, isCheckedIn: true },
-  { orderNumber: 'A002', name: '김철수', phone: '010-8765-4321', isApproved: false, isCheckedIn: false },
-  { orderNumber: 'A003', name: '이영희', phone: '010-1122-3344', isApproved: true, isCheckedIn: false },
-  { orderNumber: 'A004', name: '박민수', phone: '010-5566-7788', isApproved: false, isCheckedIn: false },
-  { orderNumber: 'A005', name: '최수진', phone: '010-9988-7766', isApproved: true, isCheckedIn: true },
-  { orderNumber: 'A006', name: '이민호', phone: '010-1111-2222', isApproved: false, isCheckedIn: false },
-  { orderNumber: 'A007', name: '김유신', phone: '010-3333-4444', isApproved: true, isCheckedIn: true },
-];
-
 const CheckEntrance = () => {
-  const [data, setData] = useState(initialData);
+  const [data, setData] = useState([]);
+
+    // 공연 준비 시 입장 관리  
+    const showId = 6;
+
+    async function getDownloadData() {
+        const token = sessionStorage.getItem("accessToken");
+
+        try {
+            const res = await axios.get(
+                `https://showhoo.site/performer/${showId}/prepare/book-admin/entrance`,
+                {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },           
+                }
+            );
+            const list = res.data.result;
+            setData(list);
+            console.log("다운로드 양식 보기", res.data);
+        } catch (error) {
+            console.log("Error:", error);
+        }
+    };
+
+    useEffect(() => {
+        getDownloadData();
+    },[]);
+
+    async function putEntrance(bookId, entrance) {
+      const token = sessionStorage.getItem("accessToken");
+
+      try {
+          const res = await axios.put(
+              `https://showhoo.site/performer/prepare/book-admin/${bookId}?request=${entrance}`,
+              {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },           
+              }
+          );
+          console.log("결과: ", res.data.isSuccess);
+          console.log(res.data.code, res.data.message);
+      } catch (error) {
+          console.log("Error:", error);
+      }
+    };
 
   const columns = React.useMemo(
     () => [
       {
         Header: '입장 확인',
-        accessor: 'isCheckedIn',
+        accessor: 'entrance',
         Cell: ({ row }) => (
           <img
-            src={row.original.isCheckedIn ? check  : checkbox }
-            alt={row.original.isApproved ? "승인됨" : "승인되지 않음"}
+            src={row.original.entrance ? check  : checkbox }
+            alt={row.original.entrance ? "승인됨" : "승인되지 않음"}
             onClick={() => {
               const newData = data.map(item => 
-                item.orderNumber === row.original.orderNumber 
+                item.bookId === row.original.bookId
                 ? { ...item, isCheckedIn: !item.isCheckedIn }
                   : item
               );
               setData(newData);
+
+              putEntrance(row.original.bookId, row.original.entrance);
             }}
             style={{ cursor: 'pointer' }}
           />
         )
       },
-      { Header: '주문번호', accessor: 'orderNumber' },
+      { Header: '주문번호', accessor: 'bookId' },
       { Header: '이름', accessor: 'name' },
-      { Header: '전화번호', accessor: 'phone' },
+      { Header: '전화번호', accessor: 'phoneNum' },
       {
         Header: '승인',
         accessor: 'isApproved',

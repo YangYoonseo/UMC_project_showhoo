@@ -24,7 +24,7 @@ const FacilityUploader = ({ onClose, uploadSuc, uploadFail, updateData }) => {
         reader.onload = (e) => {
             updateData(selectedFile);
 
-            console.log('File read successfully');
+            console.log('File read successfully',selectedFile);
             uploadSuc();
             onClose();
         };

@@ -6,67 +6,35 @@ import { useState } from "react";
 import checkbox from "../../../assets/img_Ready/checkbox.svg";
 import check from "../../../assets/img_Ready/check.svg";
 
-const mockRefundRequests = [
-    {  
-      orderNumber: 'R001',
-      name: '홍길동',
-      bank: '우리은행',
-      accountNumber: '123-456-789012',
-      refundRequestDate: '2024-07-15T14:48:00',
-      isCheckedIn: false,
-    },
-    {
-      orderNumber: 'R002',
-      name: '김철수',
-      bank: '신한은행',
-      accountNumber: '987-654-321098',
-      refundRequestDate: '2024-07-16T09:30:00',
-      isCheckedIn: false,
-    },
-    {
-      orderNumber: 'R003',
-      name: '이영희',
-      bank: '국민은행',
-      accountNumber: '135-791-113246',
-      refundRequestDate: '2024-07-17T11:15:00',
-      isCheckedIn: false,
-    },
-    {
-      orderNumber: 'R004',
-      name: '박민수',
-      bank: '하나은행',
-      accountNumber: '246-813-579024',
-      refundRequestDate: '2024-07-18T17:45:00',
-      isCheckedIn: false,
-    },
-    {
-      orderNumber: 'R005',
-      name: '최수진',
-      bank: '농협은행',
-      accountNumber: '357-924-680135',
-      refundRequestDate: '2024-07-19T13:20:00',
-      isCheckedIn: false,
-    },
-    {
-      orderNumber: 'R006',
-      name: '이민호',
-      bank: '기업은행',
-      accountNumber: '468-135-792468',
-      refundRequestDate: '2024-07-20T10:30:00',
-      isCheckedIn: false,
-    },
-    {
-      orderNumber: 'R007',
-      name: '김유신',
-      bank: '케이뱅크',
-      accountNumber: '579-246-813579',
-      refundRequestDate: '2024-07-21T11:45:00',
-      isCheckedIn: false,
-    }
-];
-
 const Refund = () => {
-    const [data, setData] = useState(mockRefundRequests);
+    const [data, setData] = useState([]);
+
+    // 공연 준비 시 환불 관리  
+    const showId = 6;
+
+    async function getDownloadData() {
+        const token = sessionStorage.getItem("accessToken");
+
+        try {
+            const res = await axios.get(
+                `https://showhoo.site/performer/${showId}/prepare/book-admin/cancel`,
+                {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },           
+                }
+            );
+            const list = res.data.result;
+            setData(list);
+            console.log("다운로드 양식 보기", res.data);
+        } catch (error) {
+            console.log("Error:", error);
+        }
+    };
+
+    useEffect(() => {
+        getDownloadData();
+    },[]);
 
     const columns = React.useMemo(
         () => [
@@ -92,13 +60,13 @@ const Refund = () => {
                     />
                 )
             },
-            { Header: '주문번호', accessor: 'orderNumber' },
+            { Header: '주문번호', accessor: 'book_id' },
             { Header: '이름', accessor: 'name' },
-            { Header: '은행', accessor: 'bank' },
-            { Header: '계좌번호', accessor: 'accountNumber' },
+            { Header: '은행', accessor: 'bankName' },
+            { Header: '계좌번호', accessor: 'account' },
             {
                 Header: '환불 요청 일시',
-                accessor: 'refundRequestDate',
+                accessor: 'dateTime',
                 Cell: ({ value }) => new Date(value).toLocaleString()
             },
         ],

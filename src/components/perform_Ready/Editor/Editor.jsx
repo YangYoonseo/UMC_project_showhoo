@@ -8,26 +8,22 @@ const Editor = ({ onContentChange, setImgData }) => {
     const handleImageUpload = (loader) => {
         return new Promise((resolve, reject) => {
             loader.file.then((file) => {
-                // FormData에 이미지 파일 추가
-                const formData = new FormData();
-                formData.append("img", file);
-                
-                // 미리보기를 위해 로컬에서 이미지를 읽는 부분
+                // 이미지 파일을 부모 컴포넌트로 전달
+                setImgData(file);
+
+                // FileReader는 미리보기용 Base64 인코딩 이미지를 생성하는데 사용될 수 있음
                 const reader = new FileReader();
                 reader.onload = () => {
                     // 여기서 reader.result는 Base64 인코딩된 이미지 URL입니다.
                     const imageUrl = reader.result;
-                    
-                    // 부모 컴포넌트로 이미지 URL을 전달하여 저장
-                    setImgData(imageUrl);
-                    
+
                     // 에디터에 이미지를 미리보기로 표시
                     resolve({ default: imageUrl });
                 };
                 reader.onerror = (error) => {
                     reject(error);
                 };
-                reader.readAsDataURL(file);
+                reader.readAsDataURL(file); // 파일을 Base64 URL로 읽음
             });
         });
     };

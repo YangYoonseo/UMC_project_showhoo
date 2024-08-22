@@ -8,6 +8,7 @@ import Refund from "./manage/refund";
 
 const ReadyManage = ({ preStep, nextStep }) => {
     const [activeTab, setActiveTab] = useState('reservationTicket');
+    /* 
     const [bookData, setBookData] = useState([]);
 
     const showId = 6;
@@ -34,15 +35,16 @@ const ReadyManage = ({ preStep, nextStep }) => {
     useEffect(() => {
         getDownloadData();
     }, []);
+    */
 
     const renderContent = () => {
         switch(activeTab) {
             case 'reservationTicket':
-                return <ReservationTicket bookData={bookData} />;
+                return <ReservationTicket />;
             case 'awaitPermission':
-                return <AwaitPermission bookData={bookData} />;
+                return <AwaitPermission />;
             case 'checkEntrance':
-                return <CheckEntrance bookData={bookData} />;
+                return <CheckEntrance />;
             default:
                 return null;
         }
