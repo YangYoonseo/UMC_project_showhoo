@@ -226,9 +226,9 @@ const ReviewPanel = ({ spaceId, reviews, setReviews, fetchReviews, profileImage,
                 <div className="review_content">
                     <p>{context}</p>
                     {Array.isArray(reviewImage) && reviewImage.length > 0 && (
-                        <div className="review-images">
+                        <div className="review-images-1">
                             {reviewImage.map((img, index) => (
-                                <img key={index} src={img} alt={`reviewImage_${index}`} style={{ maxHeight: '220px', objectFit: 'cover' }} />
+                                <img key={index} src={img} alt={`reviewImage_${index}`} style={{ maxHeight: '220px', objectFit: 'cover'}} />
                             ))}
                         </div>
                     )}
