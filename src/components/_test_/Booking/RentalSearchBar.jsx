@@ -50,7 +50,8 @@ const RentalSearchBar = () => {
         // 사용자 선택 값을 매핑된 값으로 변환
         const mapped = typeMapping[type] || type;
         setSelectedType(type); // 화면에 표시될 원래 값 설정
-        console.log("선택된 유형:", type, "\n매핑된 값:", mapped);
+        setMappedType(mapped); // 매핑된 값 설정
+        console.log("선택된 유형:", type, ", 매핑된 값:", mapped);
     };
 
     const handleLocationSelect = (Do, District) => {
@@ -70,6 +71,7 @@ const RentalSearchBar = () => {
         selectedLocation,
         selectedDate,
         selectedType,
+        mappedType
         };
         
         // 검색 조건을 state로 전달하면서 페이지 이동

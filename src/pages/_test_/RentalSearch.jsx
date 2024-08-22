@@ -25,15 +25,16 @@ const RentalSearch = () => {
     
     const fetchConcertHalls = async () => {
       try {
-        const response = await axios.get(baseUrl, {
-          params: {
-            name: searchValues.searchName || "",
-            city: searchValues.selectedLocation?.Do || "",
-            district: searchValues.selectedLocation?.District || "",
-            date: searchValues.selectedDate || "",
-            type: searchValues.mappedType || "",
-          },
-        });
+        const params = {};
+
+        // 조건이 있을 때만 파라미터에 추가
+        if (searchValues.searchName) params.name = searchValues.searchName;
+        if (searchValues.selectedLocation?.Do) params.city = searchValues.selectedLocation.Do;
+        if (searchValues.selectedLocation?.District) params.district = searchValues.selectedLocation.District;
+        if (searchValues.selectedDate) params.date = searchValues.selectedDate;
+        if (searchValues.mappedType) params.type = searchValues.mappedType;
+
+        const response = await axios.get(baseUrl, { params });
 
         setConcertHalls(response.data.result.spaceList || []);
         console.log("[검색] 검색된 결과: ", response.data.result.spaceList);
