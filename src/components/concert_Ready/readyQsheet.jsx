@@ -76,9 +76,9 @@ const ReadyQsheet = ({ nextStep, check, setShowId, showId, spaceApplyId }) => {
             const getRentalTimeForm = rentalTimeForm;
 
             const formData = new FormData();
-            formData.append("setListForm", JSON.stringify(getSetListForm));
-            formData.append("addOrderForm", JSON.stringify(getAddOrderForm));
-            formData.append("rentalTimeForm", JSON.stringify(getRentalTimeForm));
+            formData.append("setListForm", getSetListForm);
+            formData.append("addOrderForm", getAddOrderForm);
+            formData.append("rentalTimeForm", getRentalTimeForm);
 
             console.log("서버로 전송할 데이터:", formData);
 
