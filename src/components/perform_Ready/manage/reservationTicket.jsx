@@ -12,7 +12,7 @@ const ReservationTicket = ({ showId }) => {
 
     try {
       const res = await axios.get(
-        `https://showhoo.site/performer/${showId}/prepare/book-admin?detail=CONFIRMED`,
+        `https://showhoo.site/performer/${showId}/prepare/book-admin`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -21,7 +21,8 @@ const ReservationTicket = ({ showId }) => {
       );
       const list = res.data.result;
       setBookData(list);
-      console.log("다운로드 양식 보기", res.data);
+      console.log("결과", res.data.isSuccess);
+      console.log(res.data.code, res.data.message);
     } catch (error) {
       console.log("Error:", error);
     }
