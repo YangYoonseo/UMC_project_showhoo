@@ -40,7 +40,12 @@ const RefundPolicy = ({ onClose, spaceId }) => {
           onClose={onClose}
           className={"OneButton OneButton_RefundPolicy"}
         >
-          <p>{notices?.notice || "환불 규정을 불러올 수 없습니다."}</p>{" "}
+          <p
+            dangerouslySetInnerHTML={{
+              __html: notices.notice || "환불 규정을 불러올 수 없습니다.",
+            }}
+          ></p>
+
           {/* optional chaining */}
         </OneButton>
       )}
