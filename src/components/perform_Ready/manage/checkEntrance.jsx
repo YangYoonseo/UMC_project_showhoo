@@ -4,7 +4,7 @@ import { useTable } from 'react-table';
 import checkbox from "../../../assets/img_Ready/checkbox.svg";
 import check from "../../../assets/img_Ready/check.svg";
 
-const CheckEntrance = ({showId}) => {
+const CheckEntrance = ({ showId }) => {
   const [data, setData] = useState([]);
 
     // 공연 준비 시 입장 관리  
@@ -20,9 +20,10 @@ const CheckEntrance = ({showId}) => {
                 },           
                 }
             );
-            const list = res.data.result;
+            const list = res.data.result.entranceList;
             setData(list);
-            console.log("다운로드 양식 보기", res.data);
+            console.log("결과", res.data.isSuccess);
+            console.log(res.data.code, res.data.message);
         } catch (error) {
             console.log("Error:", error);
         }
@@ -63,11 +64,10 @@ const CheckEntrance = ({showId}) => {
             onClick={() => {
               const newData = data.map(item => 
                 item.bookId === row.original.bookId
-                ? { ...item, isCheckedIn: !item.isCheckedIn }
+                ? { ...item, entrance: !item.entrance }
                   : item
               );
               setData(newData);
-
               putEntrance(row.original.bookId, row.original.entrance);
             }}
             style={{ cursor: 'pointer' }}
@@ -79,10 +79,10 @@ const CheckEntrance = ({showId}) => {
       { Header: '전화번호', accessor: 'phoneNum' },
       {
         Header: '승인',
-        accessor: 'isApproved',
+        accessor: 'detail',
         Cell: ({ row }) => (
           <span>
-            {row.original.isApproved ? "YES" : "NO"}
+            {row.original.datail === "CONFIRMED" ? "YES" : "NO"}
           </span>
         )
       }
