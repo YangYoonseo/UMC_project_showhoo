@@ -9,7 +9,7 @@ import SelectCalender from "./Datepicker/calender";
 
 import arrow from "../../assets/img_Ready/arrow.svg";
 
-const ReadyPoster = ({ preStep, nextStep, check }) => {
+const ReadyPoster = ({ preStep, nextStep, check, showId }) => {
   const [image, setImage] = useState(null);     // 포스터 이미지 파일
   const [imageUrl, setImageUrl] = useState(null);   // 포스터 이미지 URL
   const [selectedDate1, setSelectedDate1] = useState(null);   // 공연 날짜 입력값
@@ -194,8 +194,6 @@ const ReadyPoster = ({ preStep, nextStep, check }) => {
   };
 
   // 서버에 상세내용 보내기 API 연결 
-  const showId = 8;
-
   const uploadDes = async () => {
     const token = sessionStorage.getItem("accessToken");
 

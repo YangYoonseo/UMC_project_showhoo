@@ -3,12 +3,10 @@ import "./table.css";
 import React from 'react';
 import { useState, useTable, useEffect } from 'react-table';
 
-const ReservationTicket = () => {
+const ReservationTicket = ({ showId }) => {
   const [bookData, setBookData] = useState([]);
 
   // 공연 준비 시 예매자 관리 
-  const showId = 6;
-
   async function getDownloadData() {
     const token = sessionStorage.getItem("accessToken");
 

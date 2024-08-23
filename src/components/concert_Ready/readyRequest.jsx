@@ -4,13 +4,10 @@ import axios from 'axios';
 
 import Button from "../common/Button";
 
-const ReadyRequest = ({ preStep, nextStep }) => {
+const ReadyRequest = ({ preStep, nextStep, showId }) => {
     const [request, setRequest] = useState("");
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
-
-    // 작성된 요청사항 API 연결 
-    const showId = 8;
 
     async function getDownloadData() {
         const token = sessionStorage.getItem("accessToken");

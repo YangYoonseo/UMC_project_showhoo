@@ -6,12 +6,10 @@ import { useState } from "react";
 import checkbox from "../../../assets/img_Ready/checkbox.svg";
 import check from "../../../assets/img_Ready/check.svg";
 
-const Refund = () => {
+const Refund = ({ showId }) => {
     const [data, setData] = useState([]);
 
     // 공연 준비 시 환불 관리  
-    const showId = 6;
-
     async function getDownloadData() {
         const token = sessionStorage.getItem("accessToken");
 

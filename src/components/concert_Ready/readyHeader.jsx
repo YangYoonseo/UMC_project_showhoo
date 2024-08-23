@@ -1,14 +1,10 @@
 import "../../styles/Eojin/readyHeader.css"
-import { useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
+import axios from "axios";
 
-const ReadyHeader = ({ step, onClick }) => {
+const ReadyHeader = ({ step, onClick, spaceApplyId }) => {
     const [date, setDate] = useState('');
     const [dDay, setDDay] = useState('');
-    const location = useLocation();
-    console.log("location:", location);
-    const spaceApplyId = location.state.id || "받아오지 못함";
-    console.log("spaceApplyId:", spaceApplyId);
 
     // 다운로드 양식 받기 
     async function getDay() {
