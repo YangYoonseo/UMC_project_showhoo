@@ -12,6 +12,7 @@ import rentalTime from "../../assets/img_Ready/rentalTime.svg";
 import plus from "../../assets/img_Ready/plus.svg";
 
 const ReadyQsheet = ({ nextStep, check, setShowId, showId }) => {
+
     const location = useLocation();
     console.log("location:", location);
     const spaceApplyId = location.state.id || "받아오지 못함";
@@ -116,6 +117,8 @@ const ReadyQsheet = ({ nextStep, check, setShowId, showId }) => {
         getUploadData()
     },[setListForm, addOrderForm, rentalTimeForm])
 
+
+    
     // 작성된 큐시트 다운 받기 
     async function getDownloadData() {
         if (showId) {

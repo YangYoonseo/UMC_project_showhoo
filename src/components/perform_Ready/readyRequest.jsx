@@ -25,7 +25,7 @@ const ReadyRequest = ({ preStep, nextStep, check }) => {
         }
     };
 
-    const showId = 1;
+    const showId = 8;
 
     const uploadData = async () => {
         const token = sessionStorage.getItem("accessToken");

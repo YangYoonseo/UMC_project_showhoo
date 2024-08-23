@@ -12,7 +12,7 @@ const ReadyDetail = ({ preStep, nextStep }) => {
     const [perMaxticket, setPermaxticket] = useState(0);
 
     // 티켓 발행 등록 API 연결 
-    const showId = 1;
+    const showId = 8;
 
     const uploadTicket = async () => {
         const token = sessionStorage.getItem("accessToken");
@@ -75,14 +75,12 @@ const ReadyDetail = ({ preStep, nextStep }) => {
                                 className="bank" 
                                 type="text" 
                                 placeholder="은행명" 
-                                value="bank"
                                 onChange={(e) => setBank(e.target.value)} 
                             />
                             <input 
                                 className="accountHolder" 
                                 type="text" 
                                 placeholder="예금주" 
-                                name="accountHolder" 
                                 onChange={(e) => setAccountHolder(e.target.value)} 
                             />
                         </div>
@@ -90,7 +88,6 @@ const ReadyDetail = ({ preStep, nextStep }) => {
                             className="account" 
                             type="text" 
                             placeholder="계좌번호" 
-                            name="accountNum" 
                             onChange={(e) => setAccountNum(e.target.value)} 
                         />
                     </div>
