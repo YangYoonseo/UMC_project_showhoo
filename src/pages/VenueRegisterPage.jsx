@@ -304,13 +304,13 @@ const VenueRegisterPage = () => {
 
   const onComplete = () => {
     setIsRegister(false);
-    setIsComplete(true);
+    setComplete(true);
     registerVenue(); // 공연장 등록 API 호출
   };
 
   const closePopup = () => {
     setIsRegister(false);
-    setIsComplete(false);
+    setComplete(false);
   };
 
  
