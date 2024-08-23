@@ -10,7 +10,7 @@ const ReadyRequest = ({ preStep, nextStep }) => {
     const [error, setError] = useState(null);
 
     // 작성된 요청사항 API 연결 
-    const showId = 1;
+    const showId = 8;
 
     async function getDownloadData() {
         const token = sessionStorage.getItem("accessToken");
@@ -23,7 +23,7 @@ const ReadyRequest = ({ preStep, nextStep }) => {
                     },           
                 }
             );
-            const getReq = res.data.result;
+            const getReq = res.data.result.requirement;
             setRequest(getReq);
             setLoading(false);
             console.log("다운로드 양식 보기", res.data);

@@ -23,6 +23,15 @@ input::placeholder {
     font-size: 30px;
 }
 
+
+.Poster_inf > h4 {
+    margin: 15px 0;
+    font-family: 'Pretendard';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 30px;
+}
+
 .Poster_container > .Poster_img {
     width: 45%;
 }
@@ -67,7 +76,24 @@ input::placeholder {
     color: #0F0F0F;
 }
 
-.Poster > .upload-text .upload-link {
+.Poster > .upload-text {
+    font-family: 'Pretendard';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    display: flex;
+    margin: 0 auto;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+    color: #0F0F0F;
+}
+
+.upload-text > p {
+    margin: 0 5px;
+}
+  
+.upload-text > p > .upload-link {
     font-family: 'Pretendard';
     font-style: normal;
     font-weight: 400;
@@ -76,10 +102,6 @@ input::placeholder {
     margin: 0 auto;
     align-items: center;
     text-align: center;
-    color: #0F0F0F;
-}
-  
-.upload-text > .upload-link {
     text-decoration: underline;
     color: blue;
     cursor: pointer;
@@ -166,7 +188,8 @@ input::placeholder {
     font-weight: 400;
     font-size: 17px;
     align-items: center;
-    color: #656565;;
+    color: #656565;
+    margin: 0;
 }
 
 .Poster_inf > .inf_runningTime {
@@ -208,7 +231,8 @@ input::placeholder {
     font-weight: 400;
     font-size: 17px;
     align-items: center;
-    color: #656565;;
+    color: #656565;
+    margin: 0;
 }
 
 .ReadyPoster > .Detail_Container {

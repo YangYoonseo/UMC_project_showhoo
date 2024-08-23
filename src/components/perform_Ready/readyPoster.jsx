@@ -19,9 +19,11 @@ const ReadyPoster = ({ preStep, nextStep, check }) => {
   const [name, setName] = useState("");   // 공연명 
   const [date, setDate] = useState("");   // 공연 날짜
   const [time, setTime] = useState("");   // 공연 시간
+  const [concertDate, setConcertDate] = useState("");
   const [runningTime, setRunningTime] = useState("");   // 러닝 타임
   const [cancelDate, setCancelDate] = useState("");   // 예매취소기한 날짜
   const [cancelTime, setCancelTime] = useState("");   // 예매취소기한 시간
+  const [cancelDateTime, setCancelDateTime] = useState("");
 
   // CKEditor에서 받아올 데이터 
   const [text, setText] = useState('');   // 상세내용 text 
@@ -37,7 +39,6 @@ const ReadyPoster = ({ preStep, nextStep, check }) => {
     const file = event.target.files[0];
     if (file && (file.type === "image/jpeg" || file.type === "image/png")) {
         setImage(file);
-        getPosterUrl();
     } else {
         alert("Only JPG, JPEG, and PNG files are allowed.");
     }
@@ -76,12 +77,20 @@ const ReadyPoster = ({ preStep, nextStep, check }) => {
     }
   };
 
+  useEffect(() => {
+    if(image) {
+      getPosterUrl();
+    } else {
+      alert("파일이 비어있어요!");
+    }
+  },[image]);
+
  // 날짜 변환 함수 
   const formatDate = (data) => {
     // 날짜를 'YYYY-MM-DD' 형식으로 변환
-    const year = date.getFullYear();
-    const month = String(date.getMonth() + 1).padStart(2, '0'); // 월은 0부터 시작하므로 +1
-    const day = String(date.getDate()).padStart(2, '0');
+    const year = data.getFullYear();
+    const month = String(data.getMonth() + 1).padStart(2, '0'); // 월은 0부터 시작하므로 +1
+    const day = String(data.getDate()).padStart(2, '0');
 
     return `${year}-${month}-${day}`;
   }
@@ -94,11 +103,22 @@ const ReadyPoster = ({ preStep, nextStep, check }) => {
     return `${hours}:${minutes}`;
   }
 
+  const formatDateTime = (data) => {
+    const year = data.getFullYear();
+    const month = String(data.getMonth() + 1).padStart(2, '0'); // 월은 0부터 시작하므로 +1
+    const day = String(data.getDate()).padStart(2, '0');
+    const hours = String(data.getHours()).padStart(2, '0');
+    const minutes = String(data.getMinutes()).padStart(2, '0');
+
+    return `${year}-${month}-${day} ${hours}:${minutes}`;
+  }
+
   // 공연 날짜 정하는 함수 
   const handleDateChange1 = (data) => {
     setSelectedDate1(data);
     setDate(formatDate(data));
     setTime(formatTime(data));
+    setConcertDate(formatDateTime(data));
     setIsDatePickerOpen1(false); // 선택 후 DatePicker 닫기
     console.log(date, time);
   };
@@ -107,7 +127,8 @@ const ReadyPoster = ({ preStep, nextStep, check }) => {
   const handleDateChange2 = (data) => {
     setSelectedDate2(data);
     setCancelDate(formatDate(data));
-    setCancelTime(formatTime(data))
+    setCancelTime(formatTime(data));
+    setCancelDateTime(formatDateTime(data));
     setIsDatePickerOpen2(false); // 선택 후 DatePicker 닫기
     console.log(cancelDate, cancelTime);
   };
@@ -124,7 +145,7 @@ const ReadyPoster = ({ preStep, nextStep, check }) => {
 
 
   // 공연 포스터 및 정보에 대한 데이터 API 연결
-  const performerProfileId = 1;
+  const performerProfileId = 11;
 
   const uploadInf = async () => {
     const token = sessionStorage.getItem("accessToken");
@@ -173,7 +194,7 @@ const ReadyPoster = ({ preStep, nextStep, check }) => {
   };
 
   // 서버에 상세내용 보내기 API 연결 
-  const showId = 1;
+  const showId = 8;
 
   const uploadDes = async () => {
     const token = sessionStorage.getItem("accessToken");
@@ -218,7 +239,7 @@ const ReadyPoster = ({ preStep, nextStep, check }) => {
           <div className="Poster">
             {!image && (
               <div className="upload-text">
-                <p>포스트를 추가하세요.</p>
+                <p>포스터를 추가하세요.</p>
                 <p>
                   <span className="upload-link" onClick={handleUploadClick}>
                     기기에서 업로드
@@ -252,7 +273,7 @@ const ReadyPoster = ({ preStep, nextStep, check }) => {
             onChange={(e) => setName(e.target.value)}
           />
           <div className="inf_date" onClick={toggleDatePicker1}>
-            {selectedDate1 ? <p>{date} {time}</p> : <p>공연 날짜</p>}
+            {selectedDate1 ? <p>{concertDate}</p> : <p>공연 날짜</p>}
             <img className="arrow" src={arrow} alt="arrow" />
           </div>
           {isDatePickerOpen1 && (
@@ -269,7 +290,7 @@ const ReadyPoster = ({ preStep, nextStep, check }) => {
             onChange={(e) => setRunningTime(e.target.value)}
           />
           <div className="inf_cancel" onClick={toggleDatePicker2}>
-            {selectedDate2 ? <p>{cancelDate} {cancelTime}</p> : <p>예매 취소 기한</p>}
+            {selectedDate2 ? <p>{cancelDateTime}</p> : <p>예매 취소 기한</p>}
             <img className="arrow" src={arrow} alt="arrow" />
           </div>
           {isDatePickerOpen2 && (

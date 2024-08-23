@@ -71,6 +71,7 @@ const Popup_payment = ({name, count, price, bookName, phoneNum, prev, next, bank
     // 전체 동의 확인 
     const checkComplete = () => {
         if (complete) {
+            
             next();
         } else {
             alert("전체 동의해주셔야 예매가 가능합니다.");
