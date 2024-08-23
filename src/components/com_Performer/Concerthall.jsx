@@ -92,7 +92,8 @@ const Concerthall = ({ venue, className }) => {
             <button
               className="prepare_button"
               onClick={() => {
-                nav("/performer_ready");
+                nav("/performer_ready", { state: venue });
+                console.log(venue, "넘겨줌");
               }}
             >
               준비 시작
