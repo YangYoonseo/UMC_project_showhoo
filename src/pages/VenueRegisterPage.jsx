@@ -4,7 +4,7 @@
 // 어진 : 한 api(공연장 등록 API) 사용하여 여러탭의 정보가 넘어가므로, 최종적으로 모든 data 이 페이지로 모아주면 됨
 // 유의사항 탭, 대관일정 탭의 정보 125, 126번째 줄(holidays, notice ; 현재는 초기화해놓음)에 넣어주면 됨!
 
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect, useContext, useRef } from "react";
 import axios from "axios";
 import Host_VenueTabs from "../components/VenueRegister_Introduce/Host_VenueTabs";
 import Host_VenueIntroduction from "../components/VenueRegister_Introduce/Host_VenueIntroduction";
@@ -48,6 +48,7 @@ const VenueRegisterPage = () => {
   const [venueData, setVenueData] = useState(null); // 공연장 정보를 위한 상태 추가
 
   // spaceId가져오되 상태로 관리
+  const spaceIdRef = useRef(0);
   const [spaceId, setSpaceId] = useState(() => {
     return localStorage.getItem("spaceId") || null;
   });
@@ -285,6 +286,7 @@ const VenueRegisterPage = () => {
       console.log("등록 결과:", response.data);
       if (response.data.isSuccess && response.data.result.spaceId) {
         setSpaceId(response.data.result.spaceId);
+        spaceIdRef.current = response.data.result.spaceId;
         localStorage.setItem("spaceId", response.data.result.spaceId);
         alert("공연장 등록이 성공적으로 완료되었습니다.");
       } else {
@@ -318,7 +320,7 @@ const VenueRegisterPage = () => {
   }, [selectedTab]);
 
   // 여기서 공연장 등록 페이지를 렌더링할지, 상세 정보를 렌더링할지 결정
-  if (spaceId && spaceId !== "null") {
+  if (spaceIdRef && spaceIdRef !== 0) {
     // 공연장 등록 이력이 있는 경우 상세 정보 렌더링
     return (
       <div className="navfot">
@@ -335,7 +337,11 @@ const VenueRegisterPage = () => {
               {selectedTab === "notice" && <Notice spaceId={spaceId} />}
               {selectedTab === "schedule" && <Schedule spaceId={spaceId} />}
               {/* 이 리뷰 탭만 다르게 렌더링 하면 될 듯! */}
-              {selectedTab === "reviews" && <Reviews spaceId={spaceId} />}
+              {selectedTab === "reviews" &&                  
+                <Host_VenueReviews
+                    openPlaceModal={openPlaceModal}
+                    spaceId={spaceId}
+                  />}
             </div>
             {/* <BookingForm spaceId={spaceId} /> */}
           </div>
