@@ -50,20 +50,11 @@ const Navbar_Perforemr = () => {
     }
   };
 
-  const handleReadyClick = () => {
-    const token = sessionStorage.getItem("accessToken");
-    if (token) {
-      nav("/performer_ready");
-    } else {
-      nav("/login/oauth2/code/kakao");
-    }
-  };
-
   return (
     <div className="Container113">
-      <div className="Frame128">
+      <div className="Frame128 concert_img">
         <img src={logo_performer} alt="" />
-        <div className="Frame127">
+        <div className="Frame127 concert_navbar">
           <button
             className="Button47"
             onClick={() => {
@@ -82,9 +73,6 @@ const Navbar_Perforemr = () => {
           </button>
           <button className="Button49" onClick={handleRentalClick}>
             대관 내역
-          </button>
-          <button className="Button50" onClick={handleReadyClick}>
-            공연 준비
           </button>
         </div>
       </div>
