@@ -4,7 +4,7 @@
 // 어진 : 한 api(공연장 등록 API) 사용하여 여러탭의 정보가 넘어가므로, 최종적으로 모든 data 이 페이지로 모아주면 됨
 // 유의사항 탭, 대관일정 탭의 정보 125, 126번째 줄(holidays, notice ; 현재는 초기화해놓음)에 넣어주면 됨!
 
-import React, { useState, useEffect, useContext, useRef } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import Host_VenueTabs from "../components/VenueRegister_Introduce/Host_VenueTabs";
 import Host_VenueIntroduction from "../components/VenueRegister_Introduce/Host_VenueIntroduction";
@@ -46,9 +46,9 @@ const VenueRegisterPage = () => {
   const [isRegister, setIsRegister] = useState(false);
   const [isComplete, setComplete] = useState(false);
   const [venueData, setVenueData] = useState(null); // 공연장 정보를 위한 상태 추가
+  const [isOpen, setIsOpen] = useState(false); // 등록하기 전 
 
   // spaceId가져오되 상태로 관리
-  const spaceIdRef = useRef(0);
   const [spaceId, setSpaceId] = useState(() => {
     return localStorage.getItem("spaceId") || null;
   });
@@ -198,7 +198,7 @@ const VenueRegisterPage = () => {
     setAccountDetailstest({});
     setServiceDescriptiontest("");
     setServiceOptionstest([]);
-    setHolidays(null);
+    setHolidays([]);
     setNotice("");
   };
 
@@ -286,7 +286,6 @@ const VenueRegisterPage = () => {
       console.log("등록 결과:", response.data);
       if (response.data.isSuccess && response.data.result.spaceId) {
         setSpaceId(response.data.result.spaceId);
-        spaceIdRef.current = response.data.result.spaceId;
         localStorage.setItem("spaceId", response.data.result.spaceId);
         alert("공연장 등록이 성공적으로 완료되었습니다.");
       } else {
@@ -319,202 +318,204 @@ const VenueRegisterPage = () => {
     console.log("추가서비스 옵션:", serviceOptionstest);
   }, [selectedTab]);
 
-  // 여기서 공연장 등록 페이지를 렌더링할지, 상세 정보를 렌더링할지 결정
-  if (spaceIdRef && spaceIdRef !== 0) {
-    // 공연장 등록 이력이 있는 경우 상세 정보 렌더링
-    return (
-      <div className="navfot">
-        <Navbar_Concert />
-        <Footer />
-        <div className="venue-detail-page">
-          <VenueInfo data={venueData} spaceId={spaceId} />
-          <VenueImages spaceId={spaceId} />
-          <div className="venue-content">
-            <div className="venue-main-content">
-              <VenueTabs selectedTab={selectedTab} setSelectedTab={setSelectedTab} />
-              {selectedTab === "introduction" && <VenueIntroduction spaceId={spaceId} />}
-              {selectedTab === "facility" && <FacilityInfo name={venueData.name} spaceId={spaceId} />}
-              {selectedTab === "notice" && <Notice spaceId={spaceId} />}
-              {selectedTab === "schedule" && <Schedule spaceId={spaceId} />}
-              {/* 이 리뷰 탭만 다르게 렌더링 하면 될 듯! */}
-              {selectedTab === "reviews" &&                  
-                <Host_VenueReviews
-                    openPlaceModal={openPlaceModal}
-                    spaceId={spaceId}
-                  />}
+
+
+  if (spaceId && spaceId !== null) {
+      return (
+      // 공연장 등록 이력이 있는 경우 상세 정보 렌더링
+        <div className="navfot">
+          <Navbar_Concert />
+          <Footer />
+          <div className="venue-detail-page">
+            <VenueInfo data={venueData} spaceId={spaceId} />
+            <VenueImages spaceId={spaceId} />
+            <div className="venue-content">
+              <div className="venue-main-content">
+                <VenueTabs selectedTab={selectedTab} setSelectedTab={setSelectedTab} />
+                {selectedTab === "introduction" && <VenueIntroduction spaceId={spaceId} />}
+                {selectedTab === "facility" && <FacilityInfo name={venueData.name} spaceId={spaceId} />}
+                {selectedTab === "notice" && <Notice spaceId={spaceId} />}
+                {selectedTab === "schedule" && <Schedule spaceId={spaceId} />}
+                {/* 이 리뷰 탭만 다르게 렌더링 하면 될 듯! */}
+                {selectedTab === "reviews" &&                  
+                  <Host_VenueReviews
+                      openPlaceModal={openPlaceModal}
+                      spaceId={spaceId}
+                    />}
+              </div>
+              {/* <BookingForm spaceId={spaceId} /> */}
             </div>
-            {/* <BookingForm spaceId={spaceId} /> */}
           </div>
         </div>
-      </div>
-    );
-  } else {
-    // 공연장 등록 이력이 없는 경우 등록 페이지 렌더링
-    return (
-      <div className="navfot">
-        <Navbar_Concert />
-        <Footer />
-        <div className="venue-register-page">
-          <div className="venue-name-wrapper">
-            <h1 className="venue-name">{venueName}</h1>
+      );
+    } else {
+      return (
+      // 공연장 등록 이력이 없는 경우 등록 페이지 렌더링
+        <div className="navfot">
+          <Navbar_Concert />
+          <Footer />
+          <div className="venue-register-page">
+            <div className="venue-name-wrapper">
+              <h1 className="venue-name">{venueName}</h1>
+              <img
+                src={edit_icon}
+                className="name_edit_icon"
+                onClick={openNameModal}
+              />
+            </div>
+            <p className="venue-location">{venueLocation}</p>
+            <button className="registerbtn" onClick={onRegister}>
+              등록하기
+            </button>
+            {isRegister && <Popup_register prev={closePopup} next={onComplete} />}
+            {isComplete && <Popup_complete check={closePopup} />}
+  
+            <div className="imagepanel1">
+              {uploadedImages[0] && (
+                <img
+                  src={uploadedImages[0]}
+                  alt="Venue 1"
+                  className="imagepanel-img"
+                />
+              )}
+            </div>
+            <div className="imagepanel2">
+              {uploadedImages[1] && (
+                <img
+                  src={uploadedImages[1]}
+                  alt="Venue 2"
+                  className="imagepanel-img"
+                />
+              )}
+            </div>
+            <div className="imagepanel3">
+              {uploadedImages[2] && (
+                <img
+                  src={uploadedImages[2]}
+                  alt="Venue 3"
+                  className="imagepanel-img"
+                />
+              )}
+            </div>
+            <div className="imagepanel4">
+              {uploadedImages[3] && (
+                <img
+                  src={uploadedImages[3]}
+                  alt="Venue 4"
+                  className="imagepanel-img"
+                />
+              )}
+            </div>
+            <div className="imagepanel5">
+              {uploadedImages[4] && (
+                <img
+                  src={uploadedImages[4]}
+                  alt="Venue 5"
+                  className="imagepanel-img"
+                />
+              )}
+            </div>
             <img
-              src={edit_icon}
-              className="name_edit_icon"
-              onClick={openNameModal}
-            />
-          </div>
-          <p className="venue-location">{venueLocation}</p>
-          <button className="registerbtn" onClick={onRegister}>
-            등록하기
-          </button>
-          {isRegister && <Popup_register prev={closePopup} next={onComplete} />}
-          {isComplete && <Popup_complete check={closePopup} />}
-
-          <div className="imagepanel1">
-            {uploadedImages[0] && (
-              <img
-                src={uploadedImages[0]}
-                alt="Venue 1"
-                className="imagepanel-img"
-              />
-            )}
-          </div>
-          <div className="imagepanel2">
-            {uploadedImages[1] && (
-              <img
-                src={uploadedImages[1]}
-                alt="Venue 2"
-                className="imagepanel-img"
-              />
-            )}
-          </div>
-          <div className="imagepanel3">
-            {uploadedImages[2] && (
-              <img
-                src={uploadedImages[2]}
-                alt="Venue 3"
-                className="imagepanel-img"
-              />
-            )}
-          </div>
-          <div className="imagepanel4">
-            {uploadedImages[3] && (
-              <img
-                src={uploadedImages[3]}
-                alt="Venue 4"
-                className="imagepanel-img"
-              />
-            )}
-          </div>
-          <div className="imagepanel5">
-            {uploadedImages[4] && (
-              <img
-                src={uploadedImages[4]}
-                alt="Venue 5"
-                className="imagepanel-img"
-              />
-            )}
-          </div>
-          <img
-            src={register_image_btn}
-            className="register_image_btn"
-            onClick={openImageModal}
-          ></img>
-
-          <div className="venue-content">
-            <div className="venue-main-content">
-              <Host_VenueTabs
-                selectedTab={selectedTab}
-                setSelectedTab={setSelectedTab}
-              />
-              <div className="main-content">
-                {selectedTab === "introduction" && (
-                  <Host_VenueIntroduction
-                    openPlaceModal={openPlaceModal}
-                    venueLocation={venueLocation}
-                    introductionDescription={introductionDescription}
-                    setIntroductionDescription={setIntroductionDescription}
-                    venueArea={venueArea}
-                    setVenueArea={setVenueArea}
-                    venueCapacity={venueCapacity}
-                    setVenueCapacity={setVenueCapacity}
-                    Category={Category}
-                    setCategory={setCategory}
-                    rentalTime={rentalTime}
-                    setRentalTime={setRentalTime}
-                    feeDescriptiontest={feeDescriptiontest}
-                    setFeeDescriptiontest={setFeeDescriptiontest}
-                    offSeasonFeestest={offSeasonFeestest}
-                    setOffSeasonFeestest={setOffSeasonFeestest}
-                    peakSeasonFeestest={peakSeasonFeestest}
-                    setPeakSeasonFeestest={setPeakSeasonFeestest}
-                    accountDetailstest={accountDetailstest}
-                    setAccountDetailstest={setAccountDetailstest}
-                    serviceDescriptiontest={serviceDescriptiontest}
-                    setServiceDescriptiontest={setServiceDescriptiontest}
-                    serviceOptiontests={serviceOptionstest}
-                    setServiceOptionstest={setServiceOptionstest}
-                  />
-                )}
-                <div
-                  style={{
-                    display: selectedTab === "facility" ? "block" : "none",
-                  }}
-                >
-                  <Host_VenueFacility openPlaceModal={openPlaceModal} />
-                </div>
-                <div
-                  style={{
-                    display: selectedTab === "notice" ? "block" : "none",
-                  }}
-                >
-                  <Host_VenueNotice
-                    openPlaceModal={openPlaceModal}
-                    updateNotice={updateNotice}
-                  />
-                </div>
-                <div
-                  style={{
-                    display: selectedTab === "schedule" ? "block" : "none",
-                  }}
-                >
-                  <Host_VenueSchedule
-                    openPlaceModal={openPlaceModal}
-                    updateHoliday={updateHoliday}
-                  />
-                </div>
-                <div
-                  style={{
-                    display: selectedTab === "reviews" ? "block" : "none",
-                  }}
-                >
-                  <Host_VenueReviews
-                    openPlaceModal={openPlaceModal}
-                    spaceId={spaceId}
-                  />
+              src={register_image_btn}
+              className="register_image_btn"
+              onClick={openImageModal}
+            ></img>
+  
+            <div className="venue-content">
+              <div className="venue-main-content">
+                <Host_VenueTabs
+                  selectedTab={selectedTab}
+                  setSelectedTab={setSelectedTab}
+                />
+                <div className="main-content">
+                  {selectedTab === "introduction" && (
+                    <Host_VenueIntroduction
+                      openPlaceModal={openPlaceModal}
+                      venueLocation={venueLocation}
+                      introductionDescription={introductionDescription}
+                      setIntroductionDescription={setIntroductionDescription}
+                      venueArea={venueArea}
+                      setVenueArea={setVenueArea}
+                      venueCapacity={venueCapacity}
+                      setVenueCapacity={setVenueCapacity}
+                      Category={Category}
+                      setCategory={setCategory}
+                      rentalTime={rentalTime}
+                      setRentalTime={setRentalTime}
+                      feeDescriptiontest={feeDescriptiontest}
+                      setFeeDescriptiontest={setFeeDescriptiontest}
+                      offSeasonFeestest={offSeasonFeestest}
+                      setOffSeasonFeestest={setOffSeasonFeestest}
+                      peakSeasonFeestest={peakSeasonFeestest}
+                      setPeakSeasonFeestest={setPeakSeasonFeestest}
+                      accountDetailstest={accountDetailstest}
+                      setAccountDetailstest={setAccountDetailstest}
+                      serviceDescriptiontest={serviceDescriptiontest}
+                      setServiceDescriptiontest={setServiceDescriptiontest}
+                      serviceOptiontests={serviceOptionstest}
+                      setServiceOptionstest={setServiceOptionstest}
+                    />
+                  )}
+                  <div
+                    style={{
+                      display: selectedTab === "facility" ? "block" : "none",
+                    }}
+                  >
+                    <Host_VenueFacility openPlaceModal={openPlaceModal} />
+                  </div>
+                  <div
+                    style={{
+                      display: selectedTab === "notice" ? "block" : "none",
+                    }}
+                  >
+                    <Host_VenueNotice
+                      openPlaceModal={openPlaceModal}
+                      updateNotice={updateNotice}
+                    />
+                  </div>
+                  <div
+                    style={{
+                      display: selectedTab === "schedule" ? "block" : "none",
+                    }}
+                  >
+                    <Host_VenueSchedule
+                      openPlaceModal={openPlaceModal}
+                      updateHoliday={updateHoliday}
+                      holidays={holidays}
+                    />
+                  </div>
+                  <div
+                    style={{
+                      display: selectedTab === "reviews" ? "block" : "none",
+                    }}
+                  >
+                    <Host_VenueReviews
+                      openPlaceModal={openPlaceModal}
+                      spaceId={spaceId}
+                    />
+                  </div>
                 </div>
               </div>
             </div>
+            <Pop_Name
+              isOpen={isNameModalOpen}
+              onClose={closeNameModal}
+              onConfirm={updateVenueName}
+            />
+            <Pop_Place
+              isOpen={isPlaceModalOpen}
+              onClose={closePlaceModal}
+              onConfirm={updateVenueLocation}
+            />
+            <Pop_Image
+              isOpen={isImageModalOpen}
+              onClose={closeImageModal}
+              onConfirm={updateUploadedImages}
+            />
           </div>
-          <Pop_Name
-            isOpen={isNameModalOpen}
-            onClose={closeNameModal}
-            onConfirm={updateVenueName}
-          />
-          <Pop_Place
-            isOpen={isPlaceModalOpen}
-            onClose={closePlaceModal}
-            onConfirm={updateVenueLocation}
-          />
-          <Pop_Image
-            isOpen={isImageModalOpen}
-            onClose={closeImageModal}
-            onConfirm={updateUploadedImages}
-          />
         </div>
-      </div>
-    );
-  }
+    )};
+  // 여기서 공연장 등록 페이지를 렌더링할지, 상세 정보를 렌더링할지 결정
 };
 
 export default VenueRegisterPage;
