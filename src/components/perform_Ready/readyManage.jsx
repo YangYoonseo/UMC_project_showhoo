@@ -8,34 +8,6 @@ import Refund from "./manage/refund";
 
 const ReadyManage = ({ preStep, nextStep, showId }) => {
     const [activeTab, setActiveTab] = useState('reservationTicket');
-    /* 
-    const [bookData, setBookData] = useState([]);
-
-    const showId = 6;
-
-    async function getDownloadData() {
-        const token = sessionStorage.getItem("accessToken");
-        try {
-            const res = await axios.get(
-                `https://showhoo.site/performer/${showId}/prepare/book-admin`,
-                {
-                    headers: {
-                        Authorization: `Bearer ${token}`,
-                    },           
-                }
-            );
-            const data = res.data.result;
-            setBookData(data);
-            console.log("다운로드 양식 보기", res.data);
-        } catch (error) {
-            console.log("Error:", error);
-        }
-    };
-
-    useEffect(() => {
-        getDownloadData();
-    }, []);
-    */
 
     const renderContent = () => {
         switch(activeTab) {

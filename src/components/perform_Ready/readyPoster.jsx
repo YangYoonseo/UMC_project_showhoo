@@ -143,10 +143,10 @@ const ReadyPoster = ({ preStep, nextStep, check, showId }) => {
     setIsDatePickerOpen2(!isDatePickerOpen2);
   };
 
+  // performerProfileId 가져오는 API 
+  const performerProfileId = sessionStorage.getItem("performerId");
 
   // 공연 포스터 및 정보에 대한 데이터 API 연결
-  const performerProfileId = 11;
-
   const uploadInf = async () => {
     const token = sessionStorage.getItem("accessToken");
 
@@ -170,7 +170,7 @@ const ReadyPoster = ({ preStep, nextStep, check, showId }) => {
 
     try {
         const res = await axios.post(
-            `https://showhoo.site/${performerProfileId}/show-register`,
+            `https://showhoo.site/${performerProfileId}/${showId}/show-register`,
             formData, // 서버로 전송할 FormData
             {
                 headers: {
