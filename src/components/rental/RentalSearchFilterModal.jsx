@@ -39,11 +39,13 @@ const RentalSearchFilterModal = ({ isOpen, onClose }) => {
                         <FilterBox
                             rangeText="최저"
                             rangeValue={minPrice}
+                            index={1}
                         />
                         <div className='border31px' />
                         <FilterBox
                             rangeText="최고"
                             rangeValue={maxPrice}
+                            index={1}
                         />
                     </div>
                     <FilterPriceSlide
@@ -61,10 +63,12 @@ const RentalSearchFilterModal = ({ isOpen, onClose }) => {
                     <div className='FilterBoxes'>
                         <FilterBox
                             rangeText="최저" rangeValue={minCapacity}
+                            index={2}
                         />
                         <div className='border31px' />
                         <FilterBox
                             rangeText="최고" rangeValue={maxCapacity}
+                            index={2}
                         />
                     </div>
                     <FilterPriceSlide
