@@ -1,4 +1,4 @@
-//VenueInfo.jsx
+// VenueInfo.jsx
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './VenueDetails.css';
@@ -22,7 +22,7 @@ const VenueInfo = ({ data, spaceId }) => {
     fetchVenueHeader();
   }, [spaceId]);
 
-  if (!headerData) {
+  if (!headerData || !data) {
     return <div>Loading...</div>;
   }
 
