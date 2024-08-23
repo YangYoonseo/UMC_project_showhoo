@@ -33,6 +33,7 @@ const RentalSearch = () => {
         if (searchValues.selectedLocation?.District) params.district = searchValues.selectedLocation.District;
         if (searchValues.selectedDate) params.date = searchValues.selectedDate;
         if (searchValues.mappedType) params.type = searchValues.mappedType;
+        params.size = 100; /* 일단 임시로 큰 값을 넣었습니다. */
 
         const response = await axios.get(baseUrl, { params });
 

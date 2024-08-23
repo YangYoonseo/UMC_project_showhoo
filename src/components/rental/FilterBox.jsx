@@ -1,16 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 import "../../styles/Jisu/FilterBox.css";
 
-const FilterBox = ({ rangeText = "", rangeStartValue = 0 }) => {
-    const [inputValue, setInputValue] = useState(rangeStartValue);
-
-    const handleInputChange = (e) => {
-        const value = e.target.value;
-        if (/^\d*$/.test(value)) {
-            setInputValue(value);
-        }
-    };
-
+const FilterBox = ({ rangeText = "", rangeValue = 0 }) => {
     return (
         <div className='FilterBox'>
             <div className='filterLabel'>
@@ -21,9 +12,8 @@ const FilterBox = ({ rangeText = "", rangeStartValue = 0 }) => {
                 <input
                     className='InputCost'
                     type="text"
-                    value={inputValue}
-                    onChange={handleInputChange}
-                    placeholder={rangeStartValue}
+                    value={rangeValue.toLocaleString()}  // 천 단위 콤마 추가
+                    readOnly
                 />
             </div>
         </div>
