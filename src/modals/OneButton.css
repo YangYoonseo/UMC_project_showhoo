@@ -14,9 +14,9 @@
 .OneButton {
   position: absolute;
   width: 698px;
-  height: 754px;
+  height: 700px;
   left: 500px;
-  top: 250px;
+  top: 150px;
 
   background: #ffffff;
   border-radius: 25px;
@@ -76,7 +76,7 @@
   position: absolute;
   width: 242px;
   height: 48px;
-  top: 645px;
+  top: 600px;
   left: 228px;
 
   font-weight: 500;
