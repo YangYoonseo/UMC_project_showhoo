@@ -17,35 +17,53 @@ const RentalSearch = () => {
   const hallsPerPage = 12; // 한 페이지에 표시할 콘서트홀 개수
   const [concertHalls, setConcertHalls] = useState([]); // 콘서트홀 데이터 저장할 상태
 
+  // 필터 상태 관리 (슬라이더는 고정된 범위를 유지)
+  const [minPrice, setMinPrice] = useState(0);
+  const [maxPrice, setMaxPrice] = useState(3000000);
+  const [selectedMinPrice, setSelectedMinPrice] = useState(minPrice); // 실제 API에 반영될 값
+  const [selectedMaxPrice, setSelectedMaxPrice] = useState(maxPrice); // 실제 API에 반영될 값
+
+  const [minCapacity, setMinCapacity] = useState(0);
+  const [maxCapacity, setMaxCapacity] = useState(3000);
+  const [selectedMinCapacity, setSelectedMinCapacity] = useState(minCapacity); // 실제 API에 반영될 값
+  const [selectedMaxCapacity, setSelectedMaxCapacity] = useState(maxCapacity); // 실제 API에 반영될 값
+
   const searchValues = location.state || {};
   console.log("전달된 검색 조건 :", searchValues);
 
-  useEffect(() => {
+  const fetchConcertHalls = async (filters = {}) => {
     const baseUrl = "https://showhoo.site/spaces/search";
     
-    const fetchConcertHalls = async () => {
-      try {
-        const params = {};
+    try {
+      const params = {
+        ...filters,
+        size: 100, // 일단 임시로 큰 값을 넣었습니다.
+      };
 
-        // 조건이 있을 때만 파라미터에 추가
-        if (searchValues.searchName) params.name = searchValues.searchName;
-        if (searchValues.selectedLocation?.Do) params.city = searchValues.selectedLocation.Do;
-        if (searchValues.selectedLocation?.District) params.district = searchValues.selectedLocation.District;
-        if (searchValues.selectedDate) params.date = searchValues.selectedDate;
-        if (searchValues.mappedType) params.type = searchValues.mappedType;
-        params.size = 100; /* 일단 임시로 큰 값을 넣었습니다. */
+      // 조건이 있을 때만 파라미터에 추가
+      if (searchValues.searchName) params.name = searchValues.searchName;
+      if (searchValues.selectedLocation?.Do) params.city = searchValues.selectedLocation.Do;
+      if (searchValues.selectedLocation?.District) params.district = searchValues.selectedLocation.District;
+      if (searchValues.selectedDate) params.date = searchValues.selectedDate;
+      if (searchValues.mappedType) params.type = searchValues.mappedType;
 
-        const response = await axios.get(baseUrl, { params });
+      const response = await axios.get(baseUrl, { params });
 
-        setConcertHalls(response.data.result.spaceList || []);
-        console.log("[검색] 검색된 결과: ", response.data.result.spaceList);
-      } catch (error) {
-        console.error("[검색] API 호출 오류:", error);
-      }
-    };
+      setConcertHalls(response.data.result.spaceList || []);
+      console.log("[검색] 검색된 결과: ", response.data.result.spaceList);
+    } catch (error) {
+      console.error("[검색] API 호출 오류:", error);
+    }
+  };
 
-    fetchConcertHalls();
-  }, [searchValues]);
+  useEffect(() => {
+    fetchConcertHalls({ 
+      minPrice: selectedMinPrice, 
+      maxPrice: selectedMaxPrice, 
+      minCapacity: selectedMinCapacity, 
+      maxCapacity: selectedMaxCapacity 
+    });
+  }, [searchValues, selectedMinPrice, selectedMaxPrice, selectedMinCapacity, selectedMaxCapacity]);
 
   const totalPages = Math.ceil(concertHalls.length / hallsPerPage);
 
@@ -66,7 +84,24 @@ const RentalSearch = () => {
       <div className="RentalSearchContent">
         <div className="BarAndFilter">
           <RentalSearchBar_2 />
-          <RentalSearchFilter />
+          <RentalSearchFilter 
+            minPrice={minPrice}
+            maxPrice={maxPrice}
+            selectedMinPrice={selectedMinPrice}
+            selectedMaxPrice={selectedMaxPrice}
+            minCapacity={minCapacity}
+            maxCapacity={maxCapacity}
+            selectedMinCapacity={selectedMinCapacity}
+            selectedMaxCapacity={selectedMaxCapacity}
+            onPriceChange={(min, max) => {
+              setSelectedMinPrice(min);
+              setSelectedMaxPrice(max);
+            }}
+            onCapacityChange={(min, max) => {
+              setSelectedMinCapacity(min);
+              setSelectedMaxCapacity(max);
+            }}
+          />
         </div>
 
         <div className="ConcertHallAndMap">

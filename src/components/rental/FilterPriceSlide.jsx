@@ -1,11 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import '../../styles/Jisu/FilterPriceSlide.css';
 
-const FilterPriceSlide = ({ minPrice = 0, fixedMaxPrice = 3000000, priceGap = 100000, onPriceChange }) => {
-  const [minValue, setMinValue] = useState(minPrice); // 최솟값 저장
-  const [maxValue, setMaxValue] = useState(fixedMaxPrice); // 최댓값 저장
+const FilterPriceSlide = ({ minPrice = 0, fixedMaxPrice = 3000000, selectedMinValue, selectedMaxValue, priceGap = 100000, onPriceChange }) => {
+  const [minValue, setMinValue] = useState(selectedMinValue); // 선택된 최솟값
+  const [maxValue, setMaxValue] = useState(selectedMaxValue); // 선택된 최댓값
   const [minPercent, setMinPercent] = useState(0);
   const [maxPercent, setMaxPercent] = useState(100);
+
+  useEffect(() => {
+    setMinValue(selectedMinValue);
+    setMaxValue(selectedMaxValue);
+  }, [selectedMinValue, selectedMaxValue]);
 
   // 퍼센트 값을 업데이트하는 함수
   const updatePercentages = () => {

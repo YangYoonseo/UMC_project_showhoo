@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import "../../styles/Jisu/RentalSearchFilter.css";
-import RentalSearchFilterModal from "./RentalSearchFilterModal"
+import RentalSearchFilterModal from "./RentalSearchFilterModal";
 
-const RentalSearchFilter = () => {
+const RentalSearchFilter = ({ minPrice, maxPrice, selectedMinPrice, selectedMaxPrice, minCapacity, maxCapacity, selectedMinCapacity, selectedMaxCapacity, onPriceChange, onCapacityChange }) => {
     const [isModalOpen, setIsModalOpen] = useState(false);
 
     const openModal = () => {
@@ -19,7 +19,22 @@ const RentalSearchFilter = () => {
                 <div className="FilterIcon">※</div>
                 <div className="FilterFont">필터</div>
             </button>
-            {isModalOpen && <RentalSearchFilterModal isOpen={isModalOpen} onClose={closeModal} />}
+            {isModalOpen && (
+                <RentalSearchFilterModal 
+                    isOpen={isModalOpen} 
+                    onClose={closeModal} 
+                    minPrice={minPrice}
+                    maxPrice={maxPrice}
+                    selectedMinPrice={selectedMinPrice}
+                    selectedMaxPrice={selectedMaxPrice}
+                    minCapacity={minCapacity}
+                    maxCapacity={maxCapacity}
+                    selectedMinCapacity={selectedMinCapacity}
+                    selectedMaxCapacity={selectedMaxCapacity}
+                    onPriceChange={onPriceChange}
+                    onCapacityChange={onCapacityChange}
+                />
+            )}
         </>
     );
 };
