@@ -3,6 +3,14 @@ body {
     font-style: normal;
 }
 
+.Host_VenueReviews {
+    position: relative;
+    width: 100%;
+    padding: 20px;
+    top: 750px;
+    left: 230px;
+}
+
 .Host_VenueReviews > h4 {
     width: 342px;
     height: 30px;
