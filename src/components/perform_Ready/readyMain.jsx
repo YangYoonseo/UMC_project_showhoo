@@ -11,13 +11,10 @@ import ReadyManage from "./readyManage";
 import ReadyComplete from "./readyComplete";
 
 const ReadyMain = () => {
-    /*
     const location = useLocation();
     console.log("location:", location);
     const spaceApplyId = location.state.id || "받아오지 못함";
     console.log("spaceApplyId:", spaceApplyId);
-    */
-    const spaceApplyId = 59;
 
     const [step, setStep] = useState(1);
     const [showId, setShowId] = useState(0);
