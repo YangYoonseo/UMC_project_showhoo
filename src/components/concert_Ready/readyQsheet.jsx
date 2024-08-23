@@ -1,6 +1,5 @@
 import "../../styles/Eojin/readyQsheet.css";
 import { useState, useEffect } from "react";
-import { useLocation } from "react-router-dom";
 import axios from "axios";
 
 import Button from "../common/Button";
@@ -11,12 +10,7 @@ import setList from "../../assets/img_Ready/setList.svg";
 import rentalTime from "../../assets/img_Ready/rentalTime.svg";
 import plus from "../../assets/img_Ready/plus.svg";
 
-const ReadyQsheet = ({ nextStep, check, setShowId, showId }) => {
-
-    const location = useLocation();
-    console.log("location:", location);
-    const spaceApplyId = location.state.id || "받아오지 못함";
-    console.log("spaceApplyId:", spaceApplyId);
+const ReadyQsheet = ({ nextStep, check, setShowId, showId, spaceApplyId }) => {
 
     // 큐시트 form 업로드 확인 
     const [ qsheet, setQsheet ] = useState ([

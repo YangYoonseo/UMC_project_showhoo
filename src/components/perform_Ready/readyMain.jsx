@@ -1,5 +1,6 @@
 import "../../styles/Eojin/readyMain.css";
 import React, { useState, useEffect } from 'react';
+import { useLocation } from "react-router-dom";
 
 import ReadyHeader from "./readyHeader";
 import ReadyQsheet from "./readyQsheet";
@@ -10,7 +11,13 @@ import ReadyManage from "./readyManage";
 import ReadyComplete from "./readyComplete";
 
 const ReadyMain = () => {
+    const location = useLocation();
+    console.log("location:", location);
+    const spaceApplyId = location.state.id || "받아오지 못함";
+    console.log("spaceApplyId:", spaceApplyId);
+
     const [step, setStep] = useState(1);
+    const [showId, setShowId] = useState(0);
     const [complete, setComplete] = useState([
         {
             Qsheet: false,
@@ -53,13 +60,13 @@ const ReadyMain = () => {
 
     return (
         <div className="Ready_container">
-            <div className="Ready_header"><ReadyHeader step={step} onClick={onClick}/></div>
+            <div className="Ready_header"><ReadyHeader step={step} onClick={onClick} spaceApplyId={spaceApplyId}/></div>
             <div className="Ready_content">
-                {step === 1 && <ReadyQsheet nextStep={nextStep} check={onCheck}/>}
-                {step === 2 && <ReadyRequest preStep={preStep} nextStep={nextStep} check={onCheck} />}
-                {step === 3 && <ReadyPoster preStep={preStep} nextStep={nextStep} check={onCheck} />}
-                {step === 4 && <ReadyTicket preStep={preStep} nextStep={nextStep} check={onCheck} checklist={complete}/>}
-                {step === 5 && <ReadyManage preStep={preStep} nextStep={nextStep} />}
+                {step === 1 && <ReadyQsheet nextStep={nextStep} check={onCheck} spaceApplyId={spaceApplyId} setShowId={setShowId} showId={showId} />}
+                {step === 2 && <ReadyRequest preStep={preStep} nextStep={nextStep} check={onCheck} showId={showId} />}
+                {step === 3 && <ReadyPoster preStep={preStep} nextStep={nextStep} check={onCheck} showId={showId} />}
+                {step === 4 && <ReadyTicket preStep={preStep} nextStep={nextStep} check={onCheck} checklist={complete} showId={showId} />}
+                {step === 5 && <ReadyManage preStep={preStep} nextStep={nextStep} showId={showId}/>}
                 {step === 6 && <ReadyComplete />}
             </div>
         </div>

@@ -11,7 +11,7 @@ import setListImg from "../../assets/img_Ready/setList.svg";
 import rentalTimeImg from "../../assets/img_Ready/rentalTime.svg";
 import plus from "../../assets/img_Ready/plus.svg";
 
-const ReadyQsheet = ({ nextStep, check }) => {
+const ReadyQsheet = ({ nextStep, check, spaceApplyId, setShowId, showId }) => {
     const [ qsheet, setQsheet ] = useState ([
         {
             setList: false,
@@ -35,32 +35,29 @@ const ReadyQsheet = ({ nextStep, check }) => {
     // 다운로드 양식 받기 
     async function getDownloadData() {
         const token = sessionStorage.getItem("accessToken");
-        try {
-            const res = await axios.get(
-                `https://showhoo.site/performer/${showId}/prepare`,
-                {
-                    headers: {
-                        Authorization: `Bearer ${token}`,
-                    },           
-                }
-            );
-            const { setListForm, rentalTimeForm, addOrderForm } = res.data.result;
-            setUrls({ setListForm, rentalTimeForm, addOrderForm });
-            console.log("다운로드 양식 보기", res.data);
-        } catch (error) {
-            console.log("Error:", error);
+        if(showId) {
+            try {
+                const res = await axios.get(
+                    `https://showhoo.site/performer/${showId}/prepare`,
+                    {
+                        headers: {
+                            Authorization: `Bearer ${token}`,
+                        },           
+                    }
+                );
+                const { setListForm, rentalTimeForm, addOrderForm } = res.data.result;
+                setUrls({ setListForm, rentalTimeForm, addOrderForm });
+                console.log("다운로드 양식 보기", res.data);
+            } catch (error) {
+                console.log("Error:", error);
+            }
         }
     };
 
     useEffect(() => {
         getDownloadData();
     }, []);
-    /*
-    const location = useLocation();
-    console.log("location:", location);
-    const spaceApplyId = location.state.id || "받아오지 못함";
-    console.log("spaceApplyId:", spaceApplyId);
-    */
+
     // 큐시트 업로드 하기 
     async function getUploadData() {
         if (setList && addOrder && rentalTime) {

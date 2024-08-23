@@ -6,7 +6,7 @@ import AwaitPermission from "./manage/awaitPermission";
 import CheckEntrance from "./manage/checkEntrance";
 import Refund from "./manage/refund";
 
-const ReadyManage = ({ preStep, nextStep }) => {
+const ReadyManage = ({ preStep, nextStep, showId }) => {
     const [activeTab, setActiveTab] = useState('reservationTicket');
     /* 
     const [bookData, setBookData] = useState([]);
@@ -40,11 +40,11 @@ const ReadyManage = ({ preStep, nextStep }) => {
     const renderContent = () => {
         switch(activeTab) {
             case 'reservationTicket':
-                return <ReservationTicket />;
+                return <ReservationTicket showId={showId} />;
             case 'awaitPermission':
-                return <AwaitPermission />;
+                return <AwaitPermission showId={showId} />;
             case 'checkEntrance':
-                return <CheckEntrance />;
+                return <CheckEntrance showId={showId} />;
             default:
                 return null;
         }
@@ -83,7 +83,7 @@ const ReadyManage = ({ preStep, nextStep }) => {
                         <p className='active'>환불요청</p>
                     </div>
                     <div className="table_content">
-                        <Refund />   
+                        <Refund showId={showId} />   
                     </div>
                 </div>
             </div>

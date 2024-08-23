@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import Button from "../common/Button";
 import axios from "axios";
 
-const ReadyRequest = ({ preStep, nextStep, check }) => {
+const ReadyRequest = ({ preStep, nextStep, check, showId }) => {
     const [text, setText] = useState('');
     const maxLength = 200;
 
@@ -24,8 +24,6 @@ const ReadyRequest = ({ preStep, nextStep, check }) => {
             console.log("이전 단계를 채워주세요.")
         }
     };
-
-    const showId = 8;
 
     const uploadData = async () => {
         const token = sessionStorage.getItem("accessToken");

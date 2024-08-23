@@ -4,12 +4,10 @@ import { useTable } from 'react-table';
 import checkbox from "../../../assets/img_Ready/checkbox.svg";
 import check from "../../../assets/img_Ready/check.svg";
 
-const CheckEntrance = () => {
+const CheckEntrance = ({showId}) => {
   const [data, setData] = useState([]);
 
     // 공연 준비 시 입장 관리  
-    const showId = 6;
-
     async function getDownloadData() {
         const token = sessionStorage.getItem("accessToken");
 

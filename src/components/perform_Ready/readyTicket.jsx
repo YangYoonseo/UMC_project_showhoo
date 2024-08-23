@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import Button from "../common/Button";
 
 
-const ReadyDetail = ({ preStep, nextStep }) => {
+const ReadyDetail = ({ preStep, nextStep, showId }) => {
     const [bank, setBank] = useState('');
     const [accountHolder, setAccountHolder] = useState('');
     const [accountNum, setAccountNum] = useState('');
@@ -12,8 +12,6 @@ const ReadyDetail = ({ preStep, nextStep }) => {
     const [perMaxticket, setPermaxticket] = useState(0);
 
     // 티켓 발행 등록 API 연결 
-    const showId = 8;
-
     const uploadTicket = async () => {
         const token = sessionStorage.getItem("accessToken");
 
