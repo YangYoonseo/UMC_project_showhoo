@@ -8,6 +8,7 @@ import ReadyRequest from "./readyRequest";
 import ReadyComplete from "./readyComplete";
 
 const ReadyMain = () => {
+
     const location = useLocation();
     console.log("location:", location);
     const spaceApplyId = location.state.id || "받아오지 못함";

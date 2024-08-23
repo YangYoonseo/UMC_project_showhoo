@@ -30,8 +30,6 @@ const ReadyQsheet = ({ nextStep, check, spaceApplyId, setShowId, showId }) => {
     const [ rentalTime, setRentalTime ] = useState('');
     const [ addOrder, setAddOrder ] = useState('');
 
-    const showId = 8;
-
     // 다운로드 양식 받기 
     async function getDownloadData() {
         const token = sessionStorage.getItem("accessToken");
