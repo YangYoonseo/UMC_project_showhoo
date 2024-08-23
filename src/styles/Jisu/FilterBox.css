@@ -42,3 +42,11 @@
     outline: none;
     box-shadow: none;
 }
+
+.InputCost.a {
+    padding-left: 0px !important;
+}
+
+.myong {
+    padding-right: 12px;
+}

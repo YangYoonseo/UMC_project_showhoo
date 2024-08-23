@@ -1,14 +1,16 @@
-import React from 'react';
+import React, { useState } from 'react';
 import "../../styles/Jisu/RentalSearchFilterModal.css";
 import FilterBox from './FilterBox';
-import FilterPriceSlide from './FilterPriceSlide'
+import FilterPriceSlide from './FilterPriceSlide';
 
-const RentalSearchFilterModal = ({ isOpen, onClose }) => {
+const RentalSearchFilterModal = ({ isOpen, onClose, minPrice, maxPrice, selectedMinPrice, selectedMaxPrice, minCapacity, maxCapacity, selectedMinCapacity, selectedMaxCapacity, onPriceChange, onCapacityChange }) => {
+
     if (!isOpen) return null;
 
     return (
         <div className="RentalSearchFilterModalBackdrop" onClick={onClose}>
             <div className="RentalSearchFilterModalContent" onClick={(e) => e.stopPropagation()}>
+                {/* 가격 필터 섹션 */}
                 <div className='RentalSearchFilterModalBody'>
                     <div className='Cost'>
                         가격
@@ -18,34 +20,52 @@ const RentalSearchFilterModal = ({ isOpen, onClose }) => {
                     </div>
                     <div className='FilterBoxes'>
                         <FilterBox
-                        rangeText="최저" rangeStartValue={0}
+                            rangeText="최저"
+                            rangeValue={selectedMinPrice}
                         />
                         <div className='border31px' />
                         <FilterBox
-                            rangeText="최고" rangeStartValue={999999}
+                            rangeText="최고"
+                            rangeValue={selectedMaxPrice}
                         />
                     </div>
                     <FilterPriceSlide
-                        minPrice= {0} fixedMaxPrice = {3000000} priceGap = {100000}
+                        minPrice={minPrice}
+                        fixedMaxPrice={maxPrice}
+                        selectedMinValue={selectedMinPrice}
+                        selectedMaxValue={selectedMaxPrice}
+                        priceGap={100000}
+                        onPriceChange={onPriceChange}
                     />
                 </div>
+                {/* 수용인원 필터 섹션 */}
                 <div className='RentalSearchFilterModalBody'>
                     <div className='Cost'>
                         수용인원
                     </div>
                     <div className='FilterBoxes'>
                         <FilterBox
-                        rangeText="최저" rangeStartValue={0}
+                            rangeText="최저" 
+                            rangeValue={selectedMinCapacity}
+                            index={2}
                         />
                         <div className='border31px' />
                         <FilterBox
-                            rangeText="최고" rangeStartValue={999999}
+                            rangeText="최고" 
+                            rangeValue={selectedMaxCapacity}
+                            index={2}
                         />
                     </div>
                     <FilterPriceSlide
-                        minPrice= {0} fixedMaxPrice = {3000000} priceGap = {100000}
+                        minPrice={minCapacity} 
+                        fixedMaxPrice={maxCapacity} 
+                        selectedMinValue={selectedMinCapacity}
+                        selectedMaxValue={selectedMaxCapacity}
+                        priceGap={10} 
+                        onPriceChange={onCapacityChange}  // 수용인원에 대한 핸들러 사용
                     />
                 </div>
+                {/* 버튼 섹션 */}
                 <div className='twoButtons'>
                     <button
                         style={{
@@ -57,7 +77,14 @@ const RentalSearchFilterModal = ({ isOpen, onClose }) => {
                             borderColor: "transparent",
                             cursor: "pointer"
                         }}
-                    >초기화
+                        onClick={() => {
+                            // 초기화 버튼 클릭 시 상태 초기화
+                            onPriceChange(minPrice, maxPrice);
+                            onCapacityChange(minCapacity, maxCapacity);
+                            onClose();
+                        }}
+                    >
+                        초기화
                     </button>
                     <button
                         style={{
@@ -69,7 +96,9 @@ const RentalSearchFilterModal = ({ isOpen, onClose }) => {
                             borderColor: "transparent",
                             cursor: "pointer"
                         }}
-                    >필터 적용하기
+                        onClick={onClose} // 필터 적용 후 모달 닫기
+                    >
+                        필터 적용하기
                     </button>
                 </div>
             </div>
