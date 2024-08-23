@@ -33,22 +33,21 @@ const ReadyQsheet = ({ nextStep, check, spaceApplyId, setShowId, showId }) => {
     // 다운로드 양식 받기 
     async function getDownloadData() {
         const token = sessionStorage.getItem("accessToken");
-        if(showId) {
-            try {
-                const res = await axios.get(
-                    `https://showhoo.site/performer/${showId}/prepare`,
-                    {
-                        headers: {
-                            Authorization: `Bearer ${token}`,
-                        },           
-                    }
-                );
-                const { setListForm, rentalTimeForm, addOrderForm } = res.data.result;
-                setUrls({ setListForm, rentalTimeForm, addOrderForm });
-                console.log("다운로드 양식 보기", res.data);
-            } catch (error) {
-                console.log("Error:", error);
-            }
+        try {
+            const res = await axios.get(
+                `https://showhoo.site/performer/${spaceApplyId}/prepare`,
+                {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    },           
+                }
+            );
+            const { setListForm, rentalTimeForm, addOrderForm } = res.data.result;
+            console.log(res.data.result);
+            setUrls({ setListForm, rentalTimeForm, addOrderForm });
+            console.log("다운로드 양식 보기", res.data);
+        } catch (error) {
+            console.log("Error:", error);
         }
     };
 

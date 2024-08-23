@@ -12,7 +12,7 @@ const ReservationTicket = ({ showId }) => {
 
     try {
       const res = await axios.get(
-        `https://showhoo.site/performer/${showId}/prepare/book-admin`,
+        `https://showhoo.site/performer/${showId}/prepare/book-admin?detail=CONFIRMED`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
